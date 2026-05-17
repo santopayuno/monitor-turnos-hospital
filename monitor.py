@@ -126,6 +126,24 @@ def guardar_json_seguro(datos, archivo):
         logger.error(f"Error guardando {archivo}: {e}")
 
 # ═══════════════════════════════════════════════════════════════
+# UTILIDADES DE FORMATO
+# ═══════════════════════════════════════════════════════════════
+
+def formato_cupos(cupo):
+    """Formatea correctamente singular/plural de cupos"""
+    if cupo == 1:
+        return f"Cupo"
+    else:
+        return f"Cupos"
+
+def formato_cupos_disponibles(cupo):
+    """Formatea: X Cupo(s) Disponible(s)"""
+    if cupo == 1:
+        return f"1 Cupo Disponible"
+    else:
+        return f"{cupo} Cupos Disponibles"
+
+# ═══════════════════════════════════════════════════════════════
 # API
 # ═══════════════════════════════════════════════════════════════
 
@@ -359,28 +377,32 @@ class ConstructorMensajeTelegram:
         
         lineas = ["🆕 CAMBIOS DETECTADOS", ""]
         
-        # NUEVOS
-        for item in self.cambios["nuevos"]:
+        # NUEVOS - Ordenar alfabéticamente
+        nuevos_ordenados = sorted(self.cambios["nuevos"], key=lambda x: x['nombre'])
+        for item in nuevos_ordenados:
             lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"🍀 {item['cupo_actual']} cupos disponibles")
+            lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
             lineas.append(f"📈 +{item['cupo_actual']} nuevos")
             lineas.append("")
             lineas.append("▫️▫️▫️")
             lineas.append("")
         
-        # AUMENTOS
-        for item in self.cambios["aumentos"]:
+        # AUMENTOS - Ordenar alfabéticamente
+        aumentos_ordenados = sorted(self.cambios["aumentos"], key=lambda x: x['nombre'])
+        for item in aumentos_ordenados:
             lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"🍀 {item['cupo_actual']} cupos disponibles")
+            lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
             lineas.append(f"📈 +{item['aumento']} nuevos")
             lineas.append("")
             lineas.append("▫️▫️▫️")
             lineas.append("")
         
-        # ÚLTIMOS
-        for item in self.cambios["ultimos"]:
+        # ÚLTIMOS - Ordenar alfabéticamente
+        ultimos_ordenados = sorted(self.cambios["ultimos"], key=lambda x: x['nombre'])
+        for item in ultimos_ordenados:
             lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"⚠️ {item['cupo_actual']} cupos restantes")
+            plural = "s" if item['cupo_actual'] > 1 else ""
+            lineas.append(f"⚠️ {item['cupo_actual']} Cupo{plural} Restante{plural}")
             lineas.append("")
             lineas.append("▫️▫️▫️")
             lineas.append("")
@@ -399,7 +421,8 @@ class ConstructorMensajeTelegram:
         if not self.clasificacion["disponible"]:
             return None
         
-        items = sorted(self.clasificacion["disponible"], key=lambda x: x[1], reverse=True)
+        # Ordenar alfabéticamente
+        items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
         
         lineas = [
             "🟢 DISPONIBLES AHORA",
@@ -411,7 +434,8 @@ class ConstructorMensajeTelegram:
         # Mostrar TODAS
         for nombre, cupo in items:
             lineas.append(f"🏥 {nombre}")
-            lineas.append(f"✅ {cupo} cupos")
+            plural = "s" if cupo > 1 else ""
+            lineas.append(f"✅ {cupo} Cupo{plural}")
             lineas.append("")
         
         # Eliminar última línea vacía
@@ -433,7 +457,8 @@ class ConstructorMensajeTelegram:
         if not especiales:
             return None
         
-        items = sorted(especiales, key=lambda x: x[1], reverse=True)
+        # Ordenar alfabéticamente
+        items = sorted(especiales, key=lambda x: x[0])
         
         lineas = [
             "⚠️ POCOS CUPOS DISPONIBLES",
@@ -443,8 +468,9 @@ class ConstructorMensajeTelegram:
         # Mostrar TODAS
         for nombre, cupo in items:
             icono = "⚠️" if cupo < 5 else "🟡"
+            plural = "s" if cupo > 1 else ""
             lineas.append(f"🏥 {nombre}")
-            lineas.append(f"{icono} {cupo} cupo{'s' if cupo > 1 else ''}")
+            lineas.append(f"{icono} {cupo} Cupo{plural}")
             lineas.append("")
         
         # Eliminar última línea vacía
@@ -464,8 +490,9 @@ class ConstructorMensajeTelegram:
             ""
         ]
         
-        # Obtener todas las agotadas del estado actual
-        agotadas = [(nombre, cupo) for nombre, cupo in self.estado_actual.items() if cupo == 0]
+        # Obtener todas las agotadas del estado actual - Ordenar alfabéticamente
+        agotadas = sorted([(nombre, cupo) for nombre, cupo in self.estado_actual.items() if cupo == 0], 
+                         key=lambda x: x[0])
         
         if not agotadas:
             lineas.append("(No hay especialidades agotadas)")
