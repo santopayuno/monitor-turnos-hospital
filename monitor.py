@@ -658,8 +658,8 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación si hay contenido
-    if procesador.hay_contenido():
+    # Enviar notificación SOLO si hay cambios
+    if procesador.hay_cambios():
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
             procesador.clasificacion,
