@@ -8,6 +8,7 @@ Características:
 - Estadísticas históricas (90 días)
 - Dashboard web interactivo
 - Diseño profesional y moderno
+- Todos los cambios estéticos finales
 """
 
 import requests
@@ -200,6 +201,8 @@ class ProcesadorEspecialidades:
         
         if disponible:
             self._clasificar(nombre, cupo)
+        elif cupo == 0:
+            self.clasificacion["agotado"].append((nombre, 0))
     
     def _normalizar_nombre(self, nombre):
         nombre = nombre.strip().upper()
@@ -252,15 +255,16 @@ class ProcesadorEspecialidades:
         ])
 
 # ═══════════════════════════════════════════════════════════════
-# TELEGRAM - MENSAJES PROFESIONALES
+# TELEGRAM - MENSAJES PROFESIONALES - VERSIÓN FINAL
 # ═══════════════════════════════════════════════════════════════
 
 class ConstructorMensajeTelegram:
-    def __init__(self, cambios, clasificacion, fecha_hora, estado_actual):
+    def __init__(self, cambios, clasificacion, fecha_hora, estado_actual, total_especialidades):
         self.cambios = cambios
         self.clasificacion = clasificacion
         self.fecha_hora = fecha_hora
         self.estado_actual = estado_actual or {}
+        self.total_especialidades = total_especialidades
     
     def construir(self):
         if not self._hay_contenido():
@@ -268,12 +272,18 @@ class ConstructorMensajeTelegram:
         
         lineas = []
         
+        # ─────────────────────────────────────────────────────
+        # ENCABEZADO
+        # ─────────────────────────────────────────────────────
         lineas.append("🚨 NUEVOS TURNOS DISPONIBLES")
         lineas.append("🏥 HOSPITAL PERRUPATO")
         lineas.append("")
         lineas.append("━━━━━━━━━━━━━━━━━━")
         lineas.append("")
         
+        # ─────────────────────────────────────────────────────
+        # CAMBIOS DETECTADOS (si los hay)
+        # ─────────────────────────────────────────────────────
         cambios_section = self._seccion_cambios()
         if cambios_section:
             lineas.extend(cambios_section)
@@ -281,6 +291,9 @@ class ConstructorMensajeTelegram:
             lineas.append("━━━━━━━━━━━━━━━━━━")
             lineas.append("")
         
+        # ─────────────────────────────────────────────────────
+        # DISPONIBLES AHORA (si los hay)
+        # ─────────────────────────────────────────────────────
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
             lineas.extend(disponibles_section)
@@ -288,13 +301,19 @@ class ConstructorMensajeTelegram:
             lineas.append("━━━━━━━━━━━━━━━━━━")
             lineas.append("")
         
-        ultimos_section = self._seccion_ultimos()
-        if ultimos_section:
-            lineas.extend(ultimos_section)
+        # ─────────────────────────────────────────────────────
+        # POCOS CUPOS (si los hay)
+        # ─────────────────────────────────────────────────────
+        pocos_section = self._seccion_pocos()
+        if pocos_section:
+            lineas.extend(pocos_section)
             lineas.append("")
             lineas.append("━━━━━━━━━━━━━━━━━━")
             lineas.append("")
         
+        # ─────────────────────────────────────────────────────
+        # SIN CUPOS (SIEMPRE visible)
+        # ─────────────────────────────────────────────────────
         agotados_section = self._seccion_agotados()
         if agotados_section:
             lineas.extend(agotados_section)
@@ -302,12 +321,16 @@ class ConstructorMensajeTelegram:
             lineas.append("━━━━━━━━━━━━━━━━━━")
             lineas.append("")
         
+        # ─────────────────────────────────────────────────────
+        # ESTADÍSTICAS FINALES
+        # ─────────────────────────────────────────────────────
         stats_section = self._seccion_estadisticas()
         if stats_section:
             lineas.extend(stats_section)
             lineas.append("")
             lineas.append("━━━━━━━━━━━━━━━━━━")
         
+        # Limpiar líneas vacías finales
         while lineas and lineas[-1] == "":
             lineas.pop()
         
@@ -319,6 +342,10 @@ class ConstructorMensajeTelegram:
             any(self.clasificacion.values())
         )
     
+    # ─────────────────────────────────────────────────────────
+    # SECCIÓN: CAMBIOS DETECTADOS
+    # ─────────────────────────────────────────────────────────
+    
     def _seccion_cambios(self):
         if not any([self.cambios["nuevos"], self.cambios["aumentos"], 
                     self.cambios["ultimos"], self.cambios["agotados"]]):
@@ -326,6 +353,7 @@ class ConstructorMensajeTelegram:
         
         lineas = ["🆕 CAMBIOS DETECTADOS", ""]
         
+        # NUEVOS
         for item in self.cambios["nuevos"]:
             lineas.append(f"🏥 {item['nombre']}")
             lineas.append(f"🍀 {item['cupo_actual']} cupos disponibles")
@@ -334,6 +362,7 @@ class ConstructorMensajeTelegram:
             lineas.append("▫️▫️▫️")
             lineas.append("")
         
+        # AUMENTOS
         for item in self.cambios["aumentos"]:
             lineas.append(f"🏥 {item['nombre']}")
             lineas.append(f"🍀 {item['cupo_actual']} cupos disponibles")
@@ -342,6 +371,7 @@ class ConstructorMensajeTelegram:
             lineas.append("▫️▫️▫️")
             lineas.append("")
         
+        # ÚLTIMOS
         for item in self.cambios["ultimos"]:
             lineas.append(f"🏥 {item['nombre']}")
             lineas.append(f"⚠️ {item['cupo_actual']} cupos restantes")
@@ -349,16 +379,15 @@ class ConstructorMensajeTelegram:
             lineas.append("▫️▫️▫️")
             lineas.append("")
         
-        if self.cambios["agotados"]:
-            lineas.append("❌ Se agotaron:")
-            for item in self.cambios["agotados"]:
-                lineas.append(f"  🚫 {item['nombre']}")
-            lineas.append("")
-        
+        # Eliminar último separador de cambios
         while lineas and lineas[-1] in ["", "▫️▫️▫️"]:
             lineas.pop()
         
         return lineas
+    
+    # ─────────────────────────────────────────────────────────
+    # SECCIÓN: DISPONIBLES AHORA
+    # ─────────────────────────────────────────────────────────
     
     def _seccion_disponibles(self):
         if not self.clasificacion["disponible"]:
@@ -373,11 +402,13 @@ class ConstructorMensajeTelegram:
             ""
         ]
         
+        # Mostrar TODAS
         for nombre, cupo in items:
             lineas.append(f"🏥 {nombre}")
             lineas.append(f"✅ {cupo} cupos")
             lineas.append("")
         
+        # Eliminar última línea vacía
         if lineas and lineas[-1] == "":
             lineas.pop()
         
@@ -386,7 +417,11 @@ class ConstructorMensajeTelegram:
         
         return lineas
     
-    def _seccion_ultimos(self):
+    # ─────────────────────────────────────────────────────────
+    # SECCIÓN: POCOS CUPOS DISPONIBLES
+    # ─────────────────────────────────────────────────────────
+    
+    def _seccion_pocos(self):
         especiales = self.clasificacion["pocos"] + self.clasificacion["ultimos"]
         
         if not especiales:
@@ -395,48 +430,59 @@ class ConstructorMensajeTelegram:
         items = sorted(especiales, key=lambda x: x[1], reverse=True)
         
         lineas = [
-            "🟡 ÚLTIMOS CUPOS",
+            "⚠️ POCOS CUPOS DISPONIBLES",
             ""
         ]
         
+        # Mostrar TODAS
         for nombre, cupo in items:
             icono = "⚠️" if cupo < 5 else "🟡"
-            lineas.append(f"{icono} {nombre}")
-            lineas.append(f"🔸 {cupo} cupo{'s' if cupo > 1 else ''}")
+            lineas.append(f"🏥 {nombre}")
+            lineas.append(f"{icono} {cupo} cupo{'s' if cupo > 1 else ''}")
             lineas.append("")
         
+        # Eliminar última línea vacía
         while lineas and lineas[-1] == "":
             lineas.pop()
         
         return lineas
     
+    # ─────────────────────────────────────────────────────────
+    # SECCIÓN: SIN CUPOS DISPONIBLES (SIEMPRE visible)
+    # ─────────────────────────────────────────────────────────
+    
     def _seccion_agotados(self):
-        if not self.cambios["agotados"]:
-            return None
-        
+        # Mostrar TODAS las especialidades con 0 cupos
         lineas = [
-            "‼️❌ SIN CUPOS DISPONIBLES",
+            "‼️ SIN CUPOS DISPONIBLES",
             ""
         ]
         
-        items_mostrados = self.cambios["agotados"][:5]
+        # Obtener todas las agotadas del estado actual
+        agotadas = [(nombre, cupo) for nombre, cupo in self.estado_actual.items() if cupo == 0]
         
-        for item in items_mostrados:
-            lineas.append(f"🚫 {item['nombre']}")
+        if not agotadas:
+            lineas.append("(No hay especialidades agotadas)")
+            return lineas
         
-        if len(self.cambios["agotados"]) > 5:
-            rest = len(self.cambios["agotados"]) - 5
-            lineas.append(f"🚫 Y {rest} especialidade{'s' if rest > 1 else ''} más")
+        # Mostrar TODAS
+        for nombre, _ in agotadas:
+            lineas.append(f"🚫 {nombre}")
         
         return lineas
+    
+    # ─────────────────────────────────────────────────────────
+    # SECCIÓN: ESTADÍSTICAS FINALES
+    # ─────────────────────────────────────────────────────────
     
     def _seccion_estadisticas(self):
         total_con_cupos = len([c for c in self.estado_actual.values() if c > 0])
         total_cupos = sum(self.estado_actual.values())
         
         lineas = [
-            "🔵 Especialidades Disponibles: " + str(total_con_cupos),
-            "🔵 Total de Cupos: " + str(total_cupos),
+            f"🔵 Especialidades Monitoreadas: {self.total_especialidades}",
+            f"🔵 Especialidades Disponibles: {total_con_cupos}",
+            f"🔵 Total de Cupos: {total_cupos}",
             "",
             "🕒 Actualizado: " + self.fecha_hora
         ]
@@ -577,12 +623,16 @@ def main():
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
     guardar_estadisticas(procesador.cambios, procesador.estado_actual)
     
-    if procesador.hay_cambios():
+    total_especialidades = len(procesador.estado_actual)
+    
+    # Enviar notificación SIEMPRE que hay contenido
+    if procesador.hay_contenido():
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
             procesador.clasificacion,
             fecha_hora,
-            procesador.estado_actual
+            procesador.estado_actual,
+            total_especialidades
         )
         mensaje = constructor.construir()
         if mensaje:
@@ -609,4 +659,3 @@ if __name__ == "__main__":
     except Exception as e:
         logger.critical(f"Error crítico: {e}", exc_info=True)
         enviar_telegram(f"🚨 Error crítico: {str(e)[:100]}")
-
