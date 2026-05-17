@@ -1,0 +1,14 @@
+2026-05-17 08:36:32,717 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-17 08:36:32,717 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 17/05/2026 05:36:32 ║
+2026-05-17 08:36:32,717 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-17 08:36:32,717 | INFO     | → Consultando API...
+2026-05-17 08:36:35,076 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-17 08:36:35,079 | CRITICAL | Error crítico: 'ProcesadorEspecialidades' object has no attribute 'hay_contenido'
+Traceback (most recent call last):
+  File "/home/runner/work/monitor-turnos-hospital/monitor-turnos-hospital/monitor.py", line 664, in <module>
+    main()
+  File "/home/runner/work/monitor-turnos-hospital/monitor-turnos-hospital/monitor.py", line 637, in main
+    if procesador.hay_contenido():
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ProcesadorEspecialidades' object has no attribute 'hay_contenido'
+2026-05-17 08:36:35,746 | INFO     | ✓ Notificación Telegram enviada
