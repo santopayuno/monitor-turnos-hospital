@@ -253,15 +253,13 @@ class ProcesadorEspecialidades:
             self.cambios["ultimos"],
             self.cambios["agotados"]
         ])
-def hay_contenido(self):
-        """
-        Verifica si hay contenido para mostrar en Telegram.
-        """
+    
+    def hay_contenido(self):
         return (
             any(self.cambios.values()) or
-            any(self.clasificacion.values()) or
-            any(c == 0 for c in self.estado_actual.values())
+            any(self.clasificacion.values())
         )
+
 # ═══════════════════════════════════════════════════════════════
 # TELEGRAM - MENSAJES PROFESIONALES - VERSIÓN FINAL
 # ═══════════════════════════════════════════════════════════════
@@ -633,7 +631,7 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación SIEMPRE que hay contenido
+    # Enviar notificación si hay contenido
     if procesador.hay_contenido():
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
