@@ -1,0 +1,17 @@
+2026-05-17 14:06:22,879 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-17 14:06:22,879 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 17/05/2026 11:06:22 ║
+2026-05-17 14:06:22,879 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-17 14:06:22,879 | INFO     | → Consultando API...
+2026-05-17 14:06:24,581 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: PEDIATRIA CONSULTA (69 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: CIRUGIA GENERAL (1 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: CIRUGIA INFANTIL (1 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: CLINICA MEDICA CONSULTA (45 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: HEMATOLOGIA CLINICA (1 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: INFECTOLOGIA PEDIATRICA (1 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA) (1 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: OBSTETRICIA BAJO RIESGO (17 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: ONCOLOGIA (23 cupos)
+2026-05-17 14:06:24,583 | INFO     | 🆕 NUEVO: CIRUGIA TORACICA (9 cupos)
+2026-05-17 14:06:25,237 | INFO     | ✓ Notificación Telegram enviada
+2026-05-17 14:06:25,239 | INFO     | ═════════════════════════════════════════════════════
