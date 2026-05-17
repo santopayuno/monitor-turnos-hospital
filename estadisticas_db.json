@@ -14,6 +14,12 @@
         "con_cupos": 10,
         "total_cupos": 168,
         "cambios": 1
+      },
+      {
+        "hora": "04:27:00",
+        "con_cupos": 10,
+        "total_cupos": 168,
+        "cambios": 1
       }
     ]
   },
@@ -140,6 +146,66 @@
     },
     {
       "fecha": "2026-05-17T04:15:04.093982-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 69
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 45
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 17
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 23
+    },
+    {
+      "fecha": "2026-05-17T04:27:00.378267-03:00",
       "tipo": "nuevos",
       "especialidad": "CIRUGIA TORACICA",
       "cupos": 9
