@@ -6,8 +6,21 @@
         "con_cupos": 10,
         "total_cupos": 164,
         "cambios": 0
+      },
+      {
+        "hora": "16:48:57",
+        "con_cupos": 9,
+        "total_cupos": 117,
+        "cambios": 1
       }
     ]
   },
-  "eventos": []
+  "eventos": [
+    {
+      "fecha": "2026-05-17T16:48:57.740386-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    }
+  ]
 }
