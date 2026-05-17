@@ -445,12 +445,16 @@
             document.getElementById('total-cupos').textContent = totalCupos;
             document.getElementById('especialidades-activas').textContent = conCupos;
             
+            // Ordenar alfabéticamente
+            nuevos.sort((a, b) => a.especialidad.localeCompare(b.especialidad));
+            disponibles.sort((a, b) => a[0].localeCompare(b[0]));
+            pocos.sort((a, b) => a[0].localeCompare(b[0]));
+            ultimos.sort((a, b) => a[0].localeCompare(b[0]));
+            agotados.sort((a, b) => a[0].localeCompare(b[0]));
+            
             renderList('lista-nuevos', nuevos.map(e => [e.especialidad, e.cupos]), 'nuevo');
-            disponibles.sort((a, b) => b[1] - a[1]);
             renderList('lista-disponibles', disponibles, 'disponible');
-            pocos.sort((a, b) => b[1] - a[1]);
             renderList('lista-pocos', pocos, 'pocos');
-            ultimos.sort((a, b) => b[1] - a[1]);
             renderList('lista-ultimos', ultimos, 'ultimos');
             renderList('lista-agotados', agotados, 'agotado');
             
@@ -523,4 +527,3 @@
     </script>
 </body>
 </html>
-
