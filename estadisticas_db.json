@@ -12,6 +12,12 @@
         "con_cupos": 9,
         "total_cupos": 117,
         "cambios": 1
+      },
+      {
+        "hora": "19:39:19",
+        "con_cupos": 7,
+        "total_cupos": 78,
+        "cambios": 2
       }
     ]
   },
@@ -20,6 +26,24 @@
       "fecha": "2026-05-17T16:48:57.740386-03:00",
       "tipo": "agotados",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-17T19:39:19.130273-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-17T19:39:19.130273-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-17T19:39:19.130273-03:00",
+      "tipo": "agotados",
+      "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 0
     }
   ]

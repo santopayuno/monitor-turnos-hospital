@@ -1,0 +1,10 @@
+2026-05-17 22:39:17,734 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-17 22:39:17,734 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 17/05/2026 19:39:17 ║
+2026-05-17 22:39:17,734 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-17 22:39:17,734 | INFO     | → Consultando API...
+2026-05-17 22:39:19,128 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-17 22:39:19,129 | WARNING  | ❌ AGOTADO: CIRUGIA GENERAL
+2026-05-17 22:39:19,129 | WARNING  | ⚠️ ÚLTIMOS: CLINICA MEDICA CONSULTA (3 cupos)
+2026-05-17 22:39:19,129 | WARNING  | ❌ AGOTADO: HEMATOLOGIA CLINICA
+2026-05-17 22:39:19,782 | INFO     | ✓ Notificación Telegram enviada
+2026-05-17 22:39:19,783 | INFO     | ═════════════════════════════════════════════════════
