@@ -253,7 +253,15 @@ class ProcesadorEspecialidades:
             self.cambios["ultimos"],
             self.cambios["agotados"]
         ])
-
+def hay_contenido(self):
+        """
+        Verifica si hay contenido para mostrar en Telegram.
+        """
+        return (
+            any(self.cambios.values()) or
+            any(self.clasificacion.values()) or
+            any(c == 0 for c in self.estado_actual.values())
+        )
 # ═══════════════════════════════════════════════════════════════
 # TELEGRAM - MENSAJES PROFESIONALES - VERSIÓN FINAL
 # ═══════════════════════════════════════════════════════════════
