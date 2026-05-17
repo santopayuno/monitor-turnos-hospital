@@ -436,16 +436,7 @@
             const agotados = Object.entries(estadoActual).filter(([_, c]) => c === 0);
             
             const hoy = new Date().toISOString().split('T')[0];
-            let nuevos = (estadisticas.eventos || []).filter(e => e.tipo === 'nuevos' && e.fecha.includes(hoy));
-            
-            // Eliminar duplicados en Nuevos (mantener solo uno por especialidad)
-            const nuevosUnicos = {};
-            nuevos.forEach(e => {
-                if (!nuevosUnicos[e.especialidad]) {
-                    nuevosUnicos[e.especialidad] = e;
-                }
-            });
-            nuevos = Object.values(nuevosUnicos);
+            const nuevos = (estadisticas.eventos || []).filter(e => e.tipo === 'nuevos' && e.fecha.includes(hoy));
             
             const totalCupos = Object.values(estadoActual).reduce((a, b) => a + b, 0);
             const conCupos = Object.values(estadoActual).filter(c => c > 0).length;
