@@ -1,0 +1,80 @@
+{
+  "registros": {
+    "2026-05-16": [
+      {
+        "hora": "21:25:25",
+        "con_cupos": 11,
+        "total_cupos": 185,
+        "cambios": 1
+      }
+    ]
+  },
+  "eventos": [
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 77
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 52
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 18
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 23
+    },
+    {
+      "fecha": "2026-05-16T21:25:25.181350-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 9
+    }
+  ]
+}
