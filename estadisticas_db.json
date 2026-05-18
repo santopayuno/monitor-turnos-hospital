@@ -44,6 +44,12 @@
         "con_cupos": 5,
         "total_cupos": 32,
         "cambios": 0
+      },
+      {
+        "hora": "15:23:53",
+        "con_cupos": 4,
+        "total_cupos": 247,
+        "cambios": 3
       }
     ]
   },
@@ -112,6 +118,42 @@
       "fecha": "2026-05-18T05:17:14.021112-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-18T15:23:53.975081-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 78
+    },
+    {
+      "fecha": "2026-05-18T15:23:53.975081-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 161
+    },
+    {
+      "fecha": "2026-05-18T15:23:53.975081-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-18T15:23:53.975081-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-18T15:23:53.975081-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-18T15:23:53.975081-03:00",
+      "tipo": "agotados",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
       "cupos": 0
     }
   ]

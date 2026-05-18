@@ -1,0 +1,13 @@
+2026-05-18 18:23:52,265 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-18 18:23:52,266 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 18/05/2026 15:23:52 ║
+2026-05-18 18:23:52,266 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-18 18:23:52,266 | INFO     | → Consultando API...
+2026-05-18 18:23:53,972 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-18 18:23:53,973 | INFO     | 🆕 NUEVO: PEDIATRIA CONSULTA (78 cupos)
+2026-05-18 18:23:53,974 | WARNING  | ❌ AGOTADO: CIRUGIA INFANTIL
+2026-05-18 18:23:53,974 | INFO     | 🆕 NUEVO: CLINICA MEDICA CONSULTA (161 cupos)
+2026-05-18 18:23:53,974 | WARNING  | ❌ AGOTADO: INFECTOLOGIA PEDIATRICA
+2026-05-18 18:23:53,974 | WARNING  | ❌ AGOTADO: OBSTETRICIA BAJO RIESGO
+2026-05-18 18:23:53,974 | WARNING  | ⚠️ ÚLTIMOS: CIRUGIA TORACICA (3 cupos)
+2026-05-18 18:23:54,610 | INFO     | ✓ Notificación Telegram enviada
+2026-05-18 18:23:54,611 | INFO     | ═════════════════════════════════════════════════════
