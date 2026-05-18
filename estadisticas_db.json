@@ -18,6 +18,12 @@
         "con_cupos": 7,
         "total_cupos": 78,
         "cambios": 2
+      },
+      {
+        "hora": "22:13:25",
+        "con_cupos": 6,
+        "total_cupos": 57,
+        "cambios": 1
       }
     ]
   },
@@ -45,6 +51,42 @@
       "tipo": "agotados",
       "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-17T22:13:25.572452-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 15
+    },
+    {
+      "fecha": "2026-05-17T22:13:25.572452-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-17T22:13:25.572452-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-17T22:13:25.572452-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-17T22:13:25.572452-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 22
+    },
+    {
+      "fecha": "2026-05-17T22:13:25.572452-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 9
     }
   ]
 }
