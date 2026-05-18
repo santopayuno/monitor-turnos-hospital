@@ -38,6 +38,12 @@
         "con_cupos": 5,
         "total_cupos": 35,
         "cambios": 1
+      },
+      {
+        "hora": "09:03:19",
+        "con_cupos": 5,
+        "total_cupos": 32,
+        "cambios": 0
       }
     ]
   },
