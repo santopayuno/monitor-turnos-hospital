@@ -31,6 +31,14 @@
         "total_cupos": 57,
         "cambios": 0
       }
+    ],
+    "2026-05-18": [
+      {
+        "hora": "05:17:14",
+        "con_cupos": 5,
+        "total_cupos": 35,
+        "cambios": 1
+      }
     ]
   },
   "eventos": [
@@ -93,6 +101,12 @@
       "tipo": "nuevos",
       "especialidad": "CIRUGIA TORACICA",
       "cupos": 9
+    },
+    {
+      "fecha": "2026-05-18T05:17:14.021112-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
     }
   ]
 }
