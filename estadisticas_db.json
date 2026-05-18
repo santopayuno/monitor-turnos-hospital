@@ -50,6 +50,12 @@
         "con_cupos": 4,
         "total_cupos": 247,
         "cambios": 3
+      },
+      {
+        "hora": "19:12:06",
+        "con_cupos": 4,
+        "total_cupos": 159,
+        "cambios": 1
       }
     ]
   },
@@ -155,6 +161,12 @@
       "tipo": "agotados",
       "especialidad": "OBSTETRICIA BAJO RIESGO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-18T19:12:06.447644-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 2
     }
   ]
 }
