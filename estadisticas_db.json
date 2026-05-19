@@ -57,6 +57,14 @@
         "total_cupos": 159,
         "cambios": 1
       }
+    ],
+    "2026-05-19": [
+      {
+        "hora": "05:34:46",
+        "con_cupos": 4,
+        "total_cupos": 51,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
