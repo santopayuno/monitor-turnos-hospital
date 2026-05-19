@@ -1,0 +1,12 @@
+2026-05-19 14:00:16,457 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-19 14:00:16,457 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 19/05/2026 11:00:16 ║
+2026-05-19 14:00:16,457 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-19 14:00:16,458 | INFO     | → Consultando API...
+2026-05-19 14:00:18,301 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-19 14:00:18,302 | WARNING  | ⚠️ ÚLTIMOS: DIABETOLOGIA GENERAL (2 cupos)
+2026-05-19 14:00:18,302 | WARNING  | ⚠️ ÚLTIMOS: PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA) (1 cupos)
+2026-05-19 14:00:18,302 | WARNING  | ⚠️ ÚLTIMOS: NEFROLOGIA (3 cupos)
+2026-05-19 14:00:18,302 | WARNING  | ❌ AGOTADO: TRAUMATOLOGIA ADULTO
+2026-05-19 14:00:18,302 | WARNING  | ⚠️ ÚLTIMOS: ELECTROCARDIOGRAMA ADULTO(CON DERIVACION) (3 cupos)
+2026-05-19 14:00:18,776 | INFO     | ✓ Notificación Telegram enviada
+2026-05-19 14:00:18,777 | INFO     | ═════════════════════════════════════════════════════

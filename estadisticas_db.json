@@ -88,6 +88,12 @@
         "con_cupos": 25,
         "total_cupos": 842,
         "cambios": 2
+      },
+      {
+        "hora": "11:00:18",
+        "con_cupos": 24,
+        "total_cupos": 737,
+        "cambios": 2
       }
     ]
   },
@@ -474,6 +480,36 @@
       "fecha": "2026-05-19T10:35:40.447666-03:00",
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T11:00:18.303615-03:00",
+      "tipo": "ultimos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-19T11:00:18.303615-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-19T11:00:18.303615-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-19T11:00:18.303615-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-19T11:00:18.303615-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
       "cupos": 0
     }
   ]
