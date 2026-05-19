@@ -1,0 +1,11 @@
+2026-05-19 13:35:38,823 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-19 13:35:38,823 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 19/05/2026 10:35:38 ║
+2026-05-19 13:35:38,823 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-19 13:35:38,823 | INFO     | → Consultando API...
+2026-05-19 13:35:40,445 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-19 13:35:40,446 | WARNING  | ❌ AGOTADO: NEUMONOLOGIA ADULTO (CON DERIVACIÓN)
+2026-05-19 13:35:40,446 | WARNING  | ❌ AGOTADO: REUMATOLOGIA (DERIVACION OBLIGATORIA)
+2026-05-19 13:35:40,447 | WARNING  | ⚠️ ÚLTIMOS: TRAUMATOLOGIA ADULTO (1 cupos)
+2026-05-19 13:35:40,447 | WARNING  | ⚠️ ÚLTIMOS: ESPIROMETRIA NIÑOS (CON DERIVACIÓN) (3 cupos)
+2026-05-19 13:35:40,448 | INFO     | ℹ️ Sin nuevos cupos
+2026-05-19 13:35:40,448 | INFO     | ═════════════════════════════════════════════════════

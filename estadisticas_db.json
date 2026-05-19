@@ -82,6 +82,12 @@
         "con_cupos": 27,
         "total_cupos": 901,
         "cambios": 2
+      },
+      {
+        "hora": "10:35:40",
+        "con_cupos": 25,
+        "total_cupos": 842,
+        "cambios": 2
       }
     ]
   },
@@ -444,6 +450,30 @@
       "fecha": "2026-05-19T10:26:54.479347-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T10:35:40.447666-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-19T10:35:40.447666-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-19T10:35:40.447666-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T10:35:40.447666-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ]
