@@ -1,0 +1,9 @@
+2026-05-19 22:46:44,323 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-19 22:46:44,323 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 19/05/2026 19:46:44 ║
+2026-05-19 22:46:44,323 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-19 22:46:44,323 | INFO     | → Consultando API...
+2026-05-19 22:46:46,446 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-19 22:46:46,447 | WARNING  | ❌ AGOTADO: PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)
+2026-05-19 22:46:46,448 | WARNING  | ❌ AGOTADO: PEDIATRIA MEDIANO RIESGO
+2026-05-19 22:46:46,939 | INFO     | ✓ Notificación Telegram enviada
+2026-05-19 22:46:46,940 | INFO     | ═════════════════════════════════════════════════════
