@@ -658,8 +658,8 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación SOLO cuando hay nuevos cupos
-    if procesador.cambios["nuevos"]:
+    # Enviar notificación si hay contenido
+    if procesador.hay_contenido():
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
             procesador.clasificacion,
@@ -671,7 +671,7 @@ def main():
         if mensaje:
             enviar_telegram(mensaje)
     else:
-        logger.info("ℹ️ Sin nuevos cupos")
+        logger.info("ℹ️ Sin cambios relevantes")
     
     if CONFIG.get("generar_reporte_diario"):
         hora = ahora.strftime("%H:%M")
