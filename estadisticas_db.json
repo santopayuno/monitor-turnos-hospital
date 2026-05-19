@@ -94,6 +94,12 @@
         "con_cupos": 24,
         "total_cupos": 737,
         "cambios": 2
+      },
+      {
+        "hora": "15:17:52",
+        "con_cupos": 18,
+        "total_cupos": 453,
+        "cambios": 2
       }
     ]
   },
@@ -510,6 +516,66 @@
       "fecha": "2026-05-19T11:00:18.303615-03:00",
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T15:17:52.656128-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
     }
   ]
