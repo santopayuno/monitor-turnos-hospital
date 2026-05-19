@@ -28,6 +28,13 @@ from urllib3.util.retry import Retry
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 CHAT_ID = os.environ.get("CHAT_ID", "")
 
+# Debug: Verificar que se reciben los valores
+import sys
+if not BOT_TOKEN:
+    print("⚠️ ADVERTENCIA: BOT_TOKEN no configurado", file=sys.stderr)
+if not CHAT_ID:
+    print("⚠️ ADVERTENCIA: CHAT_ID no configurado", file=sys.stderr)
+
 API_URL = "https://sganotti.mendoza.gov.ar/digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular"
 
 ARCHIVOS = {
@@ -658,8 +665,8 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación si hay contenido
-    if procesador.hay_contenido():
+    # Enviar notificación cuando hay CUALQUIER cambio
+    if procesador.hay_cambios():
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
             procesador.clasificacion,
