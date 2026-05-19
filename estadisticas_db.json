@@ -76,6 +76,12 @@
         "con_cupos": 33,
         "total_cupos": 1604,
         "cambios": 2
+      },
+      {
+        "hora": "10:26:54",
+        "con_cupos": 27,
+        "total_cupos": 901,
+        "cambios": 2
       }
     ]
   },
@@ -391,6 +397,54 @@
       "tipo": "aumentos",
       "especialidad": "CIRUGIA TORACICA",
       "cupos": 12
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-19T10:26:54.479347-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
     }
   ]
 }
