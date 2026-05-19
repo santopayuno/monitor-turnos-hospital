@@ -64,6 +64,12 @@
         "con_cupos": 4,
         "total_cupos": 51,
         "cambios": 0
+      },
+      {
+        "hora": "07:48:36",
+        "con_cupos": 4,
+        "total_cupos": 25,
+        "cambios": 1
       }
     ]
   },
@@ -175,6 +181,12 @@
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-05-19T07:48:36.323309-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 1
     }
   ]
 }
