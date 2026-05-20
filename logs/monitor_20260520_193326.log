@@ -1,0 +1,11 @@
+2026-05-20 19:33:23,675 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-20 19:33:23,675 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 20/05/2026 16:33:23 ║
+2026-05-20 19:33:23,675 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-20 19:33:23,675 | INFO     | → Consultando API...
+2026-05-20 19:33:25,403 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-20 19:33:25,404 | INFO     | 🆕 NUEVO: PEDIATRIA CONSULTA (45 cupos)
+2026-05-20 19:33:25,404 | INFO     | 📈 AUMENTO: CLINICA MEDICA CONSULTA (5 → 86, +81)
+2026-05-20 19:33:25,404 | WARNING  | ❌ AGOTADO: DIABETOLOGIA GENERAL
+2026-05-20 19:33:25,404 | WARNING  | ⚠️ ÚLTIMOS: COLOPROCTOLOGIA (2 cupos)
+2026-05-20 19:33:26,051 | INFO     | ✓ Notificación Telegram enviada
+2026-05-20 19:33:26,053 | INFO     | ═════════════════════════════════════════════════════

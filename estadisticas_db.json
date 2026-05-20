@@ -138,6 +138,12 @@
         "con_cupos": 15,
         "total_cupos": 276,
         "cambios": 0
+      },
+      {
+        "hora": "16:33:25",
+        "con_cupos": 15,
+        "total_cupos": 329,
+        "cambios": 4
       }
     ]
   },
@@ -717,6 +723,30 @@
       "tipo": "nuevos",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-05-20T16:33:25.405743-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 45
+    },
+    {
+      "fecha": "2026-05-20T16:33:25.405743-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 86
+    },
+    {
+      "fecha": "2026-05-20T16:33:25.405743-03:00",
+      "tipo": "ultimos",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-20T16:33:25.405743-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
     }
   ]
 }
