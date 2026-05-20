@@ -113,6 +113,14 @@
         "total_cupos": 358,
         "cambios": 0
       }
+    ],
+    "2026-05-20": [
+      {
+        "hora": "06:26:15",
+        "con_cupos": 15,
+        "total_cupos": 285,
+        "cambios": 1
+      }
     ]
   },
   "eventos": [
@@ -601,6 +609,96 @@
       "tipo": "agotados",
       "especialidad": "PEDIATRIA MEDIANO RIESGO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 67
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 34
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 8
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 13
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 83
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 17
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 36
+    },
+    {
+      "fecha": "2026-05-20T06:26:15.624285-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 1
     }
   ]
 }
