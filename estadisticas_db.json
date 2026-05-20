@@ -144,6 +144,12 @@
         "con_cupos": 15,
         "total_cupos": 329,
         "cambios": 4
+      },
+      {
+        "hora": "20:39:54",
+        "con_cupos": 13,
+        "total_cupos": 230,
+        "cambios": 1
       }
     ]
   },
@@ -746,6 +752,18 @@
       "fecha": "2026-05-20T16:33:25.405743-03:00",
       "tipo": "agotados",
       "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-20T20:39:54.232467-03:00",
+      "tipo": "agotados",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-20T20:39:54.232467-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
     }
   ]
