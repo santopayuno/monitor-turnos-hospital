@@ -16,6 +16,7 @@ import os
 import json
 import logging
 import tempfile
+import sys
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from requests.adapters import HTTPAdapter
@@ -29,7 +30,6 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 CHAT_ID = os.environ.get("CHAT_ID", "")
 
 # Debug: Verificar que se reciben los valores
-import sys
 if not BOT_TOKEN:
     print("⚠️ ADVERTENCIA: BOT_TOKEN no configurado", file=sys.stderr)
 if not CHAT_ID:
@@ -135,13 +135,6 @@ def guardar_json_seguro(datos, archivo):
 # ═══════════════════════════════════════════════════════════════
 # UTILIDADES DE FORMATO
 # ═══════════════════════════════════════════════════════════════
-
-def formato_cupos(cupo):
-    """Formatea correctamente singular/plural de cupos"""
-    if cupo == 1:
-        return f"Cupo"
-    else:
-        return f"Cupos"
 
 def formato_cupos_disponibles(cupo):
     """Formatea: X Cupo(s) Disponible(s)"""
@@ -541,7 +534,7 @@ def enviar_telegram(mensaje):
     try:
         response = requests.post(
             f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-            data={"chat_id": CHAT_ID, "text": mensaje, "parse_mode": "HTML"},
+            data={"chat_id": CHAT_ID, "text": mensaje},
             timeout=10
         )
         
@@ -665,7 +658,7 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación cuando hay CUALQUIER cambio
+    # Enviar notificación cuando hay cambios
     if procesador.hay_cambios():
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
@@ -687,7 +680,7 @@ def main():
             if reporte:
                 with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
                     f.write(reporte)
-                enviar_telegram(f"<pre>{reporte}</pre>")
+                enviar_telegram(reporte)
     
     logger.info("═════════════════════════════════════════════════════")
 
