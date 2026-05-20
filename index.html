@@ -269,7 +269,8 @@
         
         .chart-wrapper {
             position: relative;
-            height: 300px;
+            height: 350px;
+            width: 100%;
         }
         
         footer {
@@ -319,6 +320,18 @@
             .tab-btn {
                 padding: 10px 12px;
                 font-size: 0.85rem;
+            }
+            
+            .chart-wrapper {
+                height: 300px;
+            }
+            
+            .chart-container {
+                padding: 15px;
+            }
+            
+            .chart-container h3 {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -411,9 +424,23 @@
             </div>
             
             <div class="chart-container">
-                <h3>🔄 Cantidad de Cambios por Registro</h3>
+                <h3>🔄 Suma Total de Cambios Diarios</h3>
                 <div class="chart-wrapper">
                     <canvas id="chartCambios"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>🆙 Top 10: Especialidades con Más Aperturas</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartAperturas"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>⬇️ Top 10: Especialidades que Más se Agotan</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartAgotamientos"></canvas>
                 </div>
             </div>
         </div>
@@ -465,7 +492,6 @@
             const hoy = new Date().toISOString().split('T')[0];
             let nuevos = (estadisticas.eventos || []).filter(e => e.tipo === 'nuevos' && e.fecha.includes(hoy));
             
-            // Eliminar duplicados en Nuevos
             const nuevosUnicos = {};
             nuevos.forEach(e => {
                 if (!nuevosUnicos[e.especialidad]) {
@@ -481,7 +507,6 @@
             document.getElementById('total-cupos').textContent = totalCupos;
             document.getElementById('especialidades-activas').textContent = conCupos;
             
-            // Ordenar alfabéticamente
             nuevos.sort((a, b) => a.especialidad.localeCompare(b.especialidad));
             disponibles.sort((a, b) => a[0].localeCompare(b[0]));
             pocos.sort((a, b) => a[0].localeCompare(b[0]));
@@ -512,32 +537,42 @@
             `).join('');
         }
         
+        function destruirGraficos() {
+            Object.values(chartsInstances).forEach(chart => {
+                if (chart && typeof chart.destroy === 'function') {
+                    chart.destroy();
+                }
+            });
+            chartsInstances = {};
+        }
+        
         function renderGraficosCompletos() {
+            destruirGraficos();
+            
             if (!estadisticas.registros || Object.keys(estadisticas.registros).length === 0) {
-                console.log('No hay datos para gráficos');
                 return;
             }
             
-            // Preparar datos
             const fechas = Object.keys(estadisticas.registros).sort();
             const dataCupos = [];
             const dataEspecialidades = [];
             const dataCambios = [];
             const labels = [];
             
+            // Procesar datos por fecha
             fechas.forEach(fecha => {
                 const registros = estadisticas.registros[fecha];
                 const ultimoRegistro = registros[registros.length - 1];
                 
                 dataCupos.push(ultimoRegistro.total_cupos);
                 dataEspecialidades.push(ultimoRegistro.con_cupos);
-                dataCambios.push(ultimoRegistro.cambios);
+                
+                // SUMAR todos los cambios del día
+                const sumaCambios = registros.reduce((sum, reg) => sum + reg.cambios, 0);
+                dataCambios.push(sumaCambios);
+                
                 labels.push(new Date(fecha).toLocaleDateString('es-AR'));
             });
-            
-            // Destruir gráficos anteriores
-            Object.values(chartsInstances).forEach(chart => chart.destroy?.());
-            chartsInstances = {};
             
             // Gráfico 1: Evolución de Cupos
             const ctx1 = document.getElementById('chartCupos');
@@ -553,14 +588,22 @@
                             backgroundColor: 'rgba(3, 105, 161, 0.1)',
                             tension: 0.4,
                             fill: true,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#0369a1'
+                            pointRadius: 4,
+                            pointBackgroundColor: '#0369a1',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: true } }
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            filler: { propagate: true }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
                     }
                 });
             }
@@ -579,19 +622,27 @@
                             backgroundColor: 'rgba(22, 163, 74, 0.1)',
                             tension: 0.4,
                             fill: true,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#16a34a'
+                            pointRadius: 4,
+                            pointBackgroundColor: '#16a34a',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: true } }
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            filler: { propagate: true }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
                     }
                 });
             }
             
-            // Gráfico 3: Cambios por Registro
+            // Gráfico 3: Suma Total de Cambios Diarios
             const ctx3 = document.getElementById('chartCambios');
             if (ctx3) {
                 chartsInstances.cambios = new Chart(ctx3, {
@@ -599,15 +650,98 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Cambios Detectados',
+                            label: 'Cambios Detectados (Suma Diaria)',
                             data: dataCambios,
-                            backgroundColor: '#eab308'
+                            backgroundColor: '#eab308',
+                            borderColor: '#ca8a04',
+                            borderWidth: 1
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: true } }
+                        plugins: {
+                            legend: { display: true, position: 'top' }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+            
+            // Gráfico 4: Especialidades con Más Aperturas
+            const aperturas = {};
+            (estadisticas.eventos || []).forEach(evento => {
+                if (evento.tipo === 'nuevos' || evento.tipo === 'aumentos') {
+                    aperturas[evento.especialidad] = (aperturas[evento.especialidad] || 0) + 1;
+                }
+            });
+            
+            const aperturasOrdenadas = Object.entries(aperturas)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            
+            const ctx4 = document.getElementById('chartAperturas');
+            if (ctx4 && aperturasOrdenadas.length > 0) {
+                chartsInstances.aperturas = new Chart(ctx4, {
+                    type: 'barH',
+                    data: {
+                        labels: aperturasOrdenadas.map(item => item[0].substring(0, 30)),
+                        datasets: [{
+                            label: 'Aperturas',
+                            data: aperturasOrdenadas.map(item => item[1]),
+                            backgroundColor: '#0369a1'
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' }
+                        },
+                        scales: {
+                            x: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+            
+            // Gráfico 5: Especialidades que Más se Agotan
+            const agotamientos = {};
+            (estadisticas.eventos || []).forEach(evento => {
+                if (evento.tipo === 'agotados') {
+                    agotamientos[evento.especialidad] = (agotamientos[evento.especialidad] || 0) + 1;
+                }
+            });
+            
+            const agotamientosOrdenados = Object.entries(agotamientos)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            
+            const ctx5 = document.getElementById('chartAgotamientos');
+            if (ctx5 && agotamientosOrdenados.length > 0) {
+                chartsInstances.agotamientos = new Chart(ctx5, {
+                    type: 'barH',
+                    data: {
+                        labels: agotamientosOrdenados.map(item => item[0].substring(0, 30)),
+                        datasets: [{
+                            label: 'Agotamientos',
+                            data: agotamientosOrdenados.map(item => item[1]),
+                            backgroundColor: '#dc2626'
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' }
+                        },
+                        scales: {
+                            x: { beginAtZero: true }
+                        }
                     }
                 });
             }
