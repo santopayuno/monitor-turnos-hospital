@@ -169,6 +169,14 @@
         "total_cupos": 214,
         "cambios": 1
       }
+    ],
+    "2026-05-21": [
+      {
+        "hora": "06:00:11",
+        "con_cupos": 13,
+        "total_cupos": 163,
+        "cambios": 1
+      }
     ]
   },
   "eventos": [
@@ -789,6 +797,84 @@
       "tipo": "ultimos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 33
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 30
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 8
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 52
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 8
+    },
+    {
+      "fecha": "2026-05-21T06:00:11.119485-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 13
     }
   ]
 }

@@ -1,0 +1,20 @@
+2026-05-21 09:00:09,548 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-05-21 09:00:09,549 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 21/05/2026 06:00:09 ║
+2026-05-21 09:00:09,549 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-05-21 09:00:09,549 | INFO     | → Consultando API...
+2026-05-21 09:00:11,116 | INFO     | ✓ API: 41 especialidades recibidas
+2026-05-21 09:00:11,117 | INFO     | 🆕 NUEVO: PEDIATRIA CONSULTA (1 cupos)
+2026-05-21 09:00:11,117 | INFO     | 🆕 NUEVO: CIRUGIA GENERAL (33 cupos)
+2026-05-21 09:00:11,117 | INFO     | 🆕 NUEVO: CIRUGIA INFANTIL (30 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: CLINICA MEDICA CONSULTA (8 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA (10 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: INFECTOLOGIA (1 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: INFECTOLOGIA PEDIATRICA (1 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: OBSTETRICIA BAJO RIESGO (52 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: ONCOLOGIA (3 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: PRE ANESTESIA PEDIATRIA (1 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: COLOPROCTOLOGIA (2 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: CIRUGIA TORACICA (8 cupos)
+2026-05-21 09:00:11,118 | INFO     | 🆕 NUEVO: PODOLOGIA (13 cupos)
+2026-05-21 09:00:11,627 | INFO     | ✓ Notificación Telegram enviada
+2026-05-21 09:00:11,628 | INFO     | ═════════════════════════════════════════════════════
