@@ -17,7 +17,6 @@ import json
 import logging
 import tempfile
 import sys
-import base64
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from requests.adapters import HTTPAdapter
@@ -29,10 +28,6 @@ from urllib3.util.retry import Retry
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 CHAT_ID = os.environ.get("CHAT_ID", "")
-GITHUB_TOKEN = os.environ.get("GITHUB_PERSONAL_ACCESS_TOKEN", "")
-GITHUB_REPO = "santopayuno/monitor-turnos-hospital"
-GITHUB_BRANCH = "main"
-DB_URL = os.environ.get("DATABASE_URL", "")
 
 # Debug: Verificar que se reciben los valores
 if not BOT_TOKEN:
@@ -284,14 +279,6 @@ class ProcesadorEspecialidades:
         )
 
 # ═══════════════════════════════════════════════════════════════
-# FAVORITAS
-# ═══════════════════════════════════════════════════════════════
-
-def _es_favorita(nombre):
-    favs = CONFIG.get("especialidades_interes", [])
-    return nombre.upper() in [f.upper() for f in favs]
-
-# ═══════════════════════════════════════════════════════════════
 # TELEGRAM - MENSAJES PROFESIONALES - VERSIÓN FINAL
 # ═══════════════════════════════════════════════════════════════
 
@@ -394,8 +381,7 @@ class ConstructorMensajeTelegram:
         # NUEVOS - Ordenar alfabéticamente
         nuevos_ordenados = sorted(self.cambios["nuevos"], key=lambda x: x['nombre'])
         for item in nuevos_ordenados:
-            fav = "⭐ " if _es_favorita(item['nombre']) else ""
-            lineas.append(f"{fav}🏥 {item['nombre']}")
+            lineas.append(f"🏥 {item['nombre']}")
             lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
             lineas.append(f"📈 +{item['cupo_actual']} nuevos")
             lineas.append("")
@@ -405,8 +391,7 @@ class ConstructorMensajeTelegram:
         # AUMENTOS - Ordenar alfabéticamente
         aumentos_ordenados = sorted(self.cambios["aumentos"], key=lambda x: x['nombre'])
         for item in aumentos_ordenados:
-            fav = "⭐ " if _es_favorita(item['nombre']) else ""
-            lineas.append(f"{fav}🏥 {item['nombre']}")
+            lineas.append(f"🏥 {item['nombre']}")
             lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
             lineas.append(f"📈 +{item['aumento']} nuevos")
             lineas.append("")
@@ -416,8 +401,7 @@ class ConstructorMensajeTelegram:
         # ÚLTIMOS - Ordenar alfabéticamente
         ultimos_ordenados = sorted(self.cambios["ultimos"], key=lambda x: x['nombre'])
         for item in ultimos_ordenados:
-            fav = "⭐ " if _es_favorita(item['nombre']) else ""
-            lineas.append(f"{fav}🏥 {item['nombre']}")
+            lineas.append(f"🏥 {item['nombre']}")
             plural = "s" if item['cupo_actual'] > 1 else ""
             lineas.append(f"⚠️ {item['cupo_actual']} Cupo{plural} Restante{plural}")
             lineas.append("")
@@ -450,8 +434,7 @@ class ConstructorMensajeTelegram:
         
         # Mostrar TODAS
         for nombre, cupo in items:
-            fav = "⭐ " if _es_favorita(nombre) else ""
-            lineas.append(f"{fav}🏥 {nombre}")
+            lineas.append(f"🏥 {nombre}")
             plural = "s" if cupo > 1 else ""
             lineas.append(f"✅ {cupo} Cupo{plural}")
             lineas.append("")
@@ -485,10 +468,9 @@ class ConstructorMensajeTelegram:
         
         # Mostrar TODAS
         for nombre, cupo in items:
-            fav = "⭐ " if _es_favorita(nombre) else ""
             icono = "⚠️" if cupo < 5 else "🟡"
             plural = "s" if cupo > 1 else ""
-            lineas.append(f"{fav}🏥 {nombre}")
+            lineas.append(f"🏥 {nombre}")
             lineas.append(f"{icono} {cupo} Cupo{plural}")
             lineas.append("")
         
@@ -654,119 +636,6 @@ Reporte generado: {ahora.strftime('%d/%m/%Y %H:%M:%S')}
 # MAIN
 # ═══════════════════════════════════════════════════════════════
 
-# ═══════════════════════════════════════════════════════════════
-# SINCRONIZACIÓN GITHUB
-# ═══════════════════════════════════════════════════════════════
-
-# ═══════════════════════════════════════════════════════════════
-# BASE DE DATOS POSTGRESQL
-# ═══════════════════════════════════════════════════════════════
-
-def guardar_en_db(estado_actual, cambios, ahora):
-    if not DB_URL:
-        logger.debug("DB sync desactivado (sin DATABASE_URL)")
-        return
-    try:
-        import psycopg2
-        ahora_naive = ahora.replace(tzinfo=None)
-        conn = psycopg2.connect(DB_URL)
-        cur = conn.cursor()
-
-        for nombre, cupos in estado_actual.items():
-            cur.execute("""
-                INSERT INTO estado_turnos (nombre, cupos, actualizado_at)
-                VALUES (%s, %s, %s)
-                ON CONFLICT (nombre) DO UPDATE
-                SET cupos = EXCLUDED.cupos, actualizado_at = EXCLUDED.actualizado_at
-            """, (nombre, cupos, ahora_naive))
-
-        fecha = ahora.strftime("%Y-%m-%d")
-        hora = ahora.strftime("%H:%M:%S")
-        con_cupos = len([c for c in estado_actual.values() if c > 0])
-        total_cupos = sum(estado_actual.values())
-        n_cambios = sum(len(v) for v in cambios.values())
-        cur.execute("""
-            INSERT INTO estadisticas_registros (fecha, hora, con_cupos, total_cupos, cambios)
-            VALUES (%s, %s, %s, %s, %s)
-        """, (fecha, hora, con_cupos, total_cupos, n_cambios))
-
-        for tipo, items in cambios.items():
-            for item in items:
-                cur.execute("""
-                    INSERT INTO estadisticas_eventos (fecha, tipo, especialidad, cupos)
-                    VALUES (%s, %s, %s, %s)
-                """, (ahora_naive, tipo, item["nombre"], item.get("cupo_actual", 0)))
-
-        conn.commit()
-        cur.close()
-        conn.close()
-        logger.info("🗄️  DB sync: estado, registros y eventos guardados")
-    except Exception as e:
-        logger.warning(f"⚠️ Error guardando en DB: {e}")
-
-
-def guardar_monitor_status(estado, ahora, total_esp, total_cupos, ciclos_hoy, error_msg=None):
-    if not DB_URL:
-        return
-    try:
-        import psycopg2
-        ahora_naive = ahora.replace(tzinfo=None)
-        conn = psycopg2.connect(DB_URL)
-        cur = conn.cursor()
-        cur.execute("""
-            INSERT INTO monitor_status
-                (ultima_consulta, estado, especialidades_contadas, cupos_totales, ciclos_hoy, error_msg)
-            VALUES (%s, %s, %s, %s, %s, %s)
-        """, (ahora_naive, estado, total_esp, total_cupos, ciclos_hoy, error_msg))
-        conn.commit()
-        cur.close()
-        conn.close()
-    except Exception as e:
-        logger.warning(f"⚠️ Error guardando monitor status: {e}")
-
-
-def _github_get_sha(session, archivo):
-    url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{archivo}?ref={GITHUB_BRANCH}"
-    r = session.get(url, timeout=15)
-    if r.status_code == 404:
-        return None
-    r.raise_for_status()
-    return r.json().get("sha")
-
-def push_a_github(archivos):
-    if not GITHUB_TOKEN:
-        logger.debug("GitHub sync desactivado (sin token)")
-        return
-    headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json",
-    }
-    session = requests.Session()
-    session.headers.update(headers)
-    subidos = []
-    for archivo in archivos:
-        if not os.path.exists(archivo):
-            continue
-        try:
-            with open(archivo, "r", encoding="utf-8") as f:
-                contenido = f.read()
-            sha = _github_get_sha(session, archivo)
-            body = {
-                "message": f"auto: actualización {archivo}",
-                "content": base64.b64encode(contenido.encode("utf-8")).decode("utf-8"),
-                "branch": GITHUB_BRANCH,
-            }
-            if sha:
-                body["sha"] = sha
-            url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{archivo}"
-            r = session.put(url, json=body, timeout=15)
-            r.raise_for_status()
-            subidos.append(archivo)
-        except Exception as e:
-            logger.warning(f"⚠️ No se pudo subir {archivo} a GitHub: {e}")
-    if subidos:
-        logger.info(f"☁️  GitHub sync: {', '.join(subidos)}")
-
 def main():
     ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
     fecha_hora = ahora.strftime("%d/%m • %H:%M hs")
@@ -787,8 +656,7 @@ def main():
     
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
     guardar_estadisticas(procesador.cambios, procesador.estado_actual)
-    guardar_en_db(procesador.estado_actual, procesador.cambios, ahora)
-
+    
     total_especialidades = len(procesador.estado_actual)
     
     # Enviar notificación SOLO si hay nuevos o aumentos
@@ -815,13 +683,6 @@ def main():
                     f.write(reporte)
                 enviar_telegram(reporte)
     
-    stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}}
-    ciclos_hoy = len(stats["registros"].get(ahora.strftime("%Y-%m-%d"), []))
-    total_cupos_final = sum(procesador.estado_actual.values())
-    guardar_monitor_status("ok", ahora, total_especialidades, total_cupos_final, ciclos_hoy)
-
-    push_a_github([ARCHIVOS["estado"], ARCHIVOS["estadisticas"]])
-
     logger.info("═════════════════════════════════════════════════════")
 
 if __name__ == "__main__":
