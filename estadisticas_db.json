@@ -162,6 +162,12 @@
         "con_cupos": 13,
         "total_cupos": 225,
         "cambios": 0
+      },
+      {
+        "hora": "21:12:16",
+        "con_cupos": 13,
+        "total_cupos": 214,
+        "cambios": 1
       }
     ]
   },
@@ -777,6 +783,12 @@
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-20T21:12:16.284226-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 4
     }
   ]
 }
