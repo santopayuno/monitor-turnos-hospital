@@ -13,7 +13,7 @@ permissions:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    
+
     steps:
 
       - name: Checkout
@@ -35,13 +35,13 @@ jobs:
       - name: Crear config.json si no existe
         run: |
           if [ ! -f config.json ]; then
-            cat > config.json << 'EOF'
+            cat > config.json << 'CONFIGEOF'
           {
             "especialidades_interes": [],
             "generar_reporte_diario": true,
             "hora_reporte_diario": "23:55"
           }
-          EOF
+          CONFIGEOF
           fi
 
       - name: Ejecutar Monitor
@@ -74,6 +74,8 @@ jobs:
           [ -d logs/ ] && git add logs/ 2>/dev/null || true
 
           git commit -m "Actualizar estado $(date +%Y-%m-%d\ %H:%M:%S)" || echo "Sin cambios"
+          
+          git pull --rebase origin main || true
           git push
 
       - name: Mostrar resumen
