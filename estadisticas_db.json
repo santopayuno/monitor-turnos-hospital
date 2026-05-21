@@ -170,6 +170,12 @@
         "con_cupos": 11,
         "total_cupos": 140,
         "cambios": 0
+      },
+      {
+        "hora": "15:27:28",
+        "con_cupos": 15,
+        "total_cupos": 133,
+        "cambios": 1
       }
     ]
   },
@@ -311,6 +317,96 @@
       "tipo": "agotados",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 21
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 26
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 11
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 38
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 11
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-05-21T15:27:28.582850-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 2
     }
   ]
 }
