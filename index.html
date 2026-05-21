@@ -269,8 +269,17 @@
         
         .chart-wrapper {
             position: relative;
-            height: 350px;
             width: 100%;
+            min-height: 350px;
+        }
+        
+        .chart-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 350px;
+            color: #94a3b8;
+            font-size: 1rem;
         }
         
         footer {
@@ -323,7 +332,7 @@
             }
             
             .chart-wrapper {
-                height: 300px;
+                min-height: 300px;
             }
             
             .chart-container {
@@ -432,14 +441,14 @@
             
             <div class="chart-container">
                 <h3>🆙 Top 10: Especialidades con Más Aperturas</h3>
-                <div class="chart-wrapper">
+                <div class="chart-wrapper" id="wrapperAperturas">
                     <canvas id="chartAperturas"></canvas>
                 </div>
             </div>
             
             <div class="chart-container">
                 <h3>⬇️ Top 10: Especialidades que Más se Agotan</h3>
-                <div class="chart-wrapper">
+                <div class="chart-wrapper" id="wrapperAgotamientos">
                     <canvas id="chartAgotamientos"></canvas>
                 </div>
             </div>
@@ -553,26 +562,34 @@
                 return;
             }
             
-            const fechas = Object.keys(estadisticas.registros).sort();
-            const dataCupos = [];
-            const dataEspecialidades = [];
-            const dataCambios = [];
-            const labels = [];
-            
-            // Procesar datos por fecha
-            fechas.forEach(fecha => {
-                const registros = estadisticas.registros[fecha];
-                const ultimoRegistro = registros[registros.length - 1];
-                
-                dataCupos.push(ultimoRegistro.total_cupos);
-                dataEspecialidades.push(ultimoRegistro.con_cupos);
-                
-                // SUMAR todos los cambios del día
-                const sumaCambios = registros.reduce((sum, reg) => sum + reg.cambios, 0);
-                dataCambios.push(sumaCambios);
-                
-                labels.push(new Date(fecha).toLocaleDateString('es-AR'));
+            // Procesar TODOS los registros con timestamp
+            const allRecords = [];
+            Object.keys(estadisticas.registros).sort().forEach(fecha => {
+                estadisticas.registros[fecha].forEach(reg => {
+                    allRecords.push({
+                        fecha: fecha,
+                        ...reg
+                    });
+                });
             });
+            
+            const labels = allRecords.map((r, i) => {
+                const fecha = new Date(r.fecha + 'T' + r.hora);
+                return fecha.toLocaleString('es-AR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            });
+            
+            const dataCupos = allRecords.map(r => r.total_cupos);
+            const dataEspecialidades = allRecords.map(r => r.con_cupos);
+            
+            // Cambios por día (agrupado)
+            const cambiosPorDia = {};
+            Object.keys(estadisticas.registros).sort().forEach(fecha => {
+                const sumaCambios = estadisticas.registros[fecha].reduce((sum, reg) => sum + reg.cambios, 0);
+                cambiosPorDia[fecha] = sumaCambios;
+            });
+            
+            const labelsDias = Object.keys(cambiosPorDia).map(fecha => new Date(fecha).toLocaleDateString('es-AR'));
+            const dataCambios = Object.values(cambiosPorDia);
             
             // Gráfico 1: Evolución de Cupos
             const ctx1 = document.getElementById('chartCupos');
@@ -586,20 +603,26 @@
                             data: dataCupos,
                             borderColor: '#0369a1',
                             backgroundColor: 'rgba(3, 105, 161, 0.1)',
-                            tension: 0.4,
+                            tension: 0.2,
                             fill: true,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#0369a1',
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 2
+                            pointRadius: 2,
+                            pointHoverRadius: 5,
+                            pointBackgroundColor: '#0369a1'
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
                         plugins: {
                             legend: { display: true, position: 'top' },
-                            filler: { propagate: true }
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                padding: 12,
+                                titleFont: { size: 12 },
+                                bodyFont: { size: 12 },
+                                displayColors: true
+                            }
                         },
                         scales: {
                             y: { beginAtZero: true }
@@ -620,20 +643,25 @@
                             data: dataEspecialidades,
                             borderColor: '#16a34a',
                             backgroundColor: 'rgba(22, 163, 74, 0.1)',
-                            tension: 0.4,
+                            tension: 0.2,
                             fill: true,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#16a34a',
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 2
+                            pointRadius: 2,
+                            pointHoverRadius: 5,
+                            pointBackgroundColor: '#16a34a'
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
                         plugins: {
                             legend: { display: true, position: 'top' },
-                            filler: { propagate: true }
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                padding: 12,
+                                titleFont: { size: 12 },
+                                bodyFont: { size: 12 }
+                            }
                         },
                         scales: {
                             y: { beginAtZero: true }
@@ -648,7 +676,7 @@
                 chartsInstances.cambios = new Chart(ctx3, {
                     type: 'bar',
                     data: {
-                        labels: labels,
+                        labels: labelsDias,
                         datasets: [{
                             label: 'Cambios Detectados (Suma Diaria)',
                             data: dataCambios,
@@ -661,7 +689,13 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { display: true, position: 'top' }
+                            legend: { display: true, position: 'top' },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                padding: 12,
+                                titleFont: { size: 12 },
+                                bodyFont: { size: 12 }
+                            }
                         },
                         scales: {
                             y: { beginAtZero: true }
@@ -682,16 +716,22 @@
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 10);
             
+            const wrapperAperturas = document.getElementById('wrapperAperturas');
             const ctx4 = document.getElementById('chartAperturas');
-            if (ctx4 && aperturasOrdenadas.length > 0) {
-                chartsInstances.aperturas = new Chart(ctx4, {
-                    type: 'barH',
+            
+            if (aperturasOrdenadas.length > 0 && ctx4) {
+                wrapperAperturas.innerHTML = '<canvas id="chartAperturas"></canvas>';
+                const newCtx4 = document.getElementById('chartAperturas');
+                chartsInstances.aperturas = new Chart(newCtx4, {
+                    type: 'bar',
                     data: {
-                        labels: aperturasOrdenadas.map(item => item[0].substring(0, 30)),
+                        labels: aperturasOrdenadas.map(item => item[0].substring(0, 35)),
                         datasets: [{
-                            label: 'Aperturas',
+                            label: 'Cantidad de Aperturas',
                             data: aperturasOrdenadas.map(item => item[1]),
-                            backgroundColor: '#0369a1'
+                            backgroundColor: '#0369a1',
+                            borderColor: '#025a8e',
+                            borderWidth: 1
                         }]
                     },
                     options: {
@@ -699,13 +739,26 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { display: true, position: 'top' }
+                            legend: { display: true, position: 'top' },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                padding: 12,
+                                titleFont: { size: 12 },
+                                bodyFont: { size: 12 },
+                                callbacks: {
+                                    label: function(context) {
+                                        return 'Aperturas: ' + context.parsed.x;
+                                    }
+                                }
+                            }
                         },
                         scales: {
-                            x: { beginAtZero: true }
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
                         }
                     }
                 });
+            } else {
+                wrapperAperturas.innerHTML = '<div class="chart-empty">No hay suficientes eventos registrados</div>';
             }
             
             // Gráfico 5: Especialidades que Más se Agotan
@@ -720,16 +773,22 @@
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 10);
             
+            const wrapperAgotamientos = document.getElementById('wrapperAgotamientos');
             const ctx5 = document.getElementById('chartAgotamientos');
-            if (ctx5 && agotamientosOrdenados.length > 0) {
-                chartsInstances.agotamientos = new Chart(ctx5, {
-                    type: 'barH',
+            
+            if (agotamientosOrdenados.length > 0 && ctx5) {
+                wrapperAgotamientos.innerHTML = '<canvas id="chartAgotamientos"></canvas>';
+                const newCtx5 = document.getElementById('chartAgotamientos');
+                chartsInstances.agotamientos = new Chart(newCtx5, {
+                    type: 'bar',
                     data: {
-                        labels: agotamientosOrdenados.map(item => item[0].substring(0, 30)),
+                        labels: agotamientosOrdenados.map(item => item[0].substring(0, 35)),
                         datasets: [{
-                            label: 'Agotamientos',
+                            label: 'Cantidad de Agotamientos',
                             data: agotamientosOrdenados.map(item => item[1]),
-                            backgroundColor: '#dc2626'
+                            backgroundColor: '#dc2626',
+                            borderColor: '#b91c1c',
+                            borderWidth: 1
                         }]
                     },
                     options: {
@@ -737,13 +796,26 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { display: true, position: 'top' }
+                            legend: { display: true, position: 'top' },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                padding: 12,
+                                titleFont: { size: 12 },
+                                bodyFont: { size: 12 },
+                                callbacks: {
+                                    label: function(context) {
+                                        return 'Agotamientos: ' + context.parsed.x;
+                                    }
+                                }
+                            }
                         },
                         scales: {
-                            x: { beginAtZero: true }
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
                         }
                     }
                 });
+            } else {
+                wrapperAgotamientos.innerHTML = '<div class="chart-empty">No hay suficientes eventos registrados</div>';
             }
         }
         
