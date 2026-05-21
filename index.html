@@ -217,6 +217,14 @@
             margin-left: 20px;
         }
         
+        .especialidad.nuevo {
+            border-left: 4px solid var(--color-primary);
+        }
+        
+        .especialidad.nuevo .especialidad-cupos {
+            color: var(--color-primary);
+        }
+        
         .especialidad.disponible {
             border-left: 4px solid var(--color-success);
         }
@@ -493,14 +501,29 @@
         function actualizarDashboard() {
             document.getElementById('fecha-actualizacion').textContent = new Date().toLocaleString('es-AR');
             
-            const disponibles = Object.entries(estadoActual).filter(([_, c]) => c >= 20);
-            const pocos = Object.entries(estadoActual).filter(([_, c]) => 5 <= c < 20);
-            const ultimos = Object.entries(estadoActual).filter(([_, c]) => 1 <= c < 5);
-            const agotados = Object.entries(estadoActual).filter(([_, c]) => c === 0);
+            // Clasificación MUTUALMENTE EXCLUYENTE
+            const disponibles = [];
+            const pocos = [];
+            const ultimos = [];
+            const agotados = [];
             
+            Object.entries(estadoActual).forEach(([nombre, cupo]) => {
+                if (cupo >= 20) {
+                    disponibles.push([nombre, cupo]);
+                } else if (cupo >= 5) {
+                    pocos.push([nombre, cupo]);
+                } else if (cupo >= 1) {
+                    ultimos.push([nombre, cupo]);
+                } else {
+                    agotados.push([nombre, cupo]);
+                }
+            });
+            
+            // Nuevos del día (eventos, no clasificación de cupos)
             const hoy = new Date().toISOString().split('T')[0];
             let nuevos = (estadisticas.eventos || []).filter(e => e.tipo === 'nuevos' && e.fecha.includes(hoy));
             
+            // Eliminar duplicados en Nuevos
             const nuevosUnicos = {};
             nuevos.forEach(e => {
                 if (!nuevosUnicos[e.especialidad]) {
@@ -516,6 +539,7 @@
             document.getElementById('total-cupos').textContent = totalCupos;
             document.getElementById('especialidades-activas').textContent = conCupos;
             
+            // Ordenar alfabéticamente
             nuevos.sort((a, b) => a.especialidad.localeCompare(b.especialidad));
             disponibles.sort((a, b) => a[0].localeCompare(b[0]));
             pocos.sort((a, b) => a[0].localeCompare(b[0]));
@@ -562,7 +586,6 @@
                 return;
             }
             
-            // Procesar TODOS los registros con timestamp
             const allRecords = [];
             Object.keys(estadisticas.registros).sort().forEach(fecha => {
                 estadisticas.registros[fecha].forEach(reg => {
@@ -581,7 +604,6 @@
             const dataCupos = allRecords.map(r => r.total_cupos);
             const dataEspecialidades = allRecords.map(r => r.con_cupos);
             
-            // Cambios por día (agrupado)
             const cambiosPorDia = {};
             Object.keys(estadisticas.registros).sort().forEach(fecha => {
                 const sumaCambios = estadisticas.registros[fecha].reduce((sum, reg) => sum + reg.cambios, 0);
