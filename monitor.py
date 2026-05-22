@@ -682,7 +682,7 @@ def main():
                     f.write(reporte)
                 enviar_telegram(reporte)
     
-    logger.info("═════════════════════════════════════════════════════")
+   logger.info("═════════════════════════════════════════════════════")
 
 if __name__ == "__main__":
     try:
