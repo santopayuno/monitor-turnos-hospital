@@ -173,6 +173,12 @@
             padding: 15px;
             margin-bottom: 20px;
             box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+        
+        .search-wrapper {
+            position: relative;
+            width: 100%;
         }
         
         .search-input {
@@ -193,6 +199,75 @@
         
         .search-input::placeholder {
             color: #94a3b8;
+        }
+        
+        .search-clear {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 4px 8px;
+            transition: color 0.3s;
+        }
+        
+        .search-clear:hover {
+            color: var(--color-primary);
+        }
+        
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            max-height: 320px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        
+        .search-dropdown.visible {
+            display: block;
+        }
+        
+        .search-suggestion {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid var(--color-border);
+            color: #1e293b;
+        }
+        
+        .search-suggestion:hover,
+        .search-suggestion.active {
+            background: var(--color-light);
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        
+        .search-suggestion:last-child {
+            border-bottom: none;
+        }
+        
+        .search-suggestion-highlight {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        
+        .search-no-results {
+            padding: 20px 16px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
         }
         
         .tabs {
@@ -542,13 +617,17 @@
         </div>
         
         <div class="search-container">
-            <input 
-                type="text" 
-                id="search-input" 
-                class="search-input" 
-                placeholder="🔍 Buscar especialidad..."
-                onkeyup="filtrarEspecialidades()"
-            >
+            <div class="search-wrapper">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    class="search-input" 
+                    placeholder="🔍 Buscar especialidad..."
+                    autocomplete="off"
+                >
+                <div class="search-dropdown" id="search-dropdown"></div>
+            </div>
+            <button class="search-clear" id="search-clear" style="display: none;">✕</button>
         </div>
         
         <div class="tabs">
@@ -667,18 +746,174 @@
             }
         }
         
-        function filtrarEspecialidades() {
-            const busqueda = document.getElementById('search-input').value.toLowerCase();
-            const especialidades = document.querySelectorAll('.especialidad');
+        let searchState = {
+            allEspecialidades: [],
+            filteredResults: [],
+            selectedIndex: -1,
+            isOpen: false
+        };
+        
+        function inicializarBuscador() {
+            const searchInput = document.getElementById('search-input');
+            const searchDropdown = document.getElementById('search-dropdown');
+            const searchClear = document.getElementById('search-clear');
             
-            especialidades.forEach(esp => {
-                const nombre = esp.querySelector('.especialidad-nombre').textContent.toLowerCase();
-                if (nombre.includes(busqueda)) {
-                    esp.classList.remove('hidden');
-                } else {
-                    esp.classList.add('hidden');
+            // Recolectar todas las especialidades
+            searchState.allEspecialidades = Object.keys(estadoActual).sort();
+            
+            // Input event - en tiempo real
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.trim();
+                
+                if (query.length === 0) {
+                    cerrarDropdown();
+                    searchClear.style.display = 'none';
+                    resetearFiltros();
+                    return;
+                }
+                
+                searchClear.style.display = 'block';
+                mostrarSugerencias(query);
+            });
+            
+            // Click fuera del buscador
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-wrapper') && !e.target.closest('.search-clear')) {
+                    cerrarDropdown();
                 }
             });
+            
+            // Botón limpiar
+            searchClear.addEventListener('click', function() {
+                searchInput.value = '';
+                searchClear.style.display = 'none';
+                cerrarDropdown();
+                resetearFiltros();
+                searchInput.focus();
+            });
+            
+            // Teclas de navegación
+            searchInput.addEventListener('keydown', function(e) {
+                if (!searchState.isOpen) return;
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    searchState.selectedIndex = Math.min(searchState.selectedIndex + 1, searchState.filteredResults.length - 1);
+                    actualizarSeleccion();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    searchState.selectedIndex = Math.max(searchState.selectedIndex - 1, -1);
+                    actualizarSeleccion();
+                } else if (e.key === 'Enter' && searchState.selectedIndex >= 0) {
+                    e.preventDefault();
+                    seleccionarEspecialidad(searchState.filteredResults[searchState.selectedIndex]);
+                } else if (e.key === 'Escape') {
+                    cerrarDropdown();
+                }
+            });
+        }
+        
+        function mostrarSugerencias(query) {
+            const dropdown = document.getElementById('search-dropdown');
+            const queryLower = query.toLowerCase();
+            
+            // Filtrar especialidades que coincidan
+            searchState.filteredResults = searchState.allEspecialidades.filter(esp => 
+                esp.toLowerCase().includes(queryLower)
+            ).slice(0, 6);
+            
+            searchState.selectedIndex = -1;
+            
+            if (searchState.filteredResults.length === 0) {
+                dropdown.innerHTML = '<div class="search-no-results">No encontrado</div>';
+                dropdown.classList.add('visible');
+                searchState.isOpen = true;
+                return;
+            }
+            
+            // Construir dropdown
+            const html = searchState.filteredResults.map((esp, index) => {
+                const highlighted = destacarTexto(esp, query);
+                return `<div class="search-suggestion" data-index="${index}" onclick="seleccionarEspecialidad('${esp}')">${highlighted}</div>`;
+            }).join('');
+            
+            dropdown.innerHTML = html;
+            dropdown.classList.add('visible');
+            searchState.isOpen = true;
+        }
+        
+        function destacarTexto(texto, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return texto.replace(regex, '<span class="search-suggestion-highlight">$1</span>');
+        }
+        
+        function actualizarSeleccion() {
+            const suggestions = document.querySelectorAll('.search-suggestion');
+            suggestions.forEach((el, index) => {
+                if (index === searchState.selectedIndex) {
+                    el.classList.add('active');
+                    el.scrollIntoView({ block: 'nearest' });
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+        }
+        
+        function seleccionarEspecialidad(especialidad) {
+            document.getElementById('search-input').value = especialidad;
+            document.getElementById('search-clear').style.display = 'block';
+            cerrarDropdown();
+            
+            // Filtrar para mostrar solo esta especialidad
+            filtrarEspecialidadUnica(especialidad);
+        }
+        
+        function filtrarEspecialidadUnica(especialidad) {
+            const allEspecialidades = document.querySelectorAll('.especialidad');
+            let encontrada = false;
+            let tabEncontrada = null;
+            
+            allEspecialidades.forEach(el => {
+                const nombre = el.querySelector('.especialidad-nombre').textContent.replace('🏥 ', '');
+                
+                if (nombre === especialidad) {
+                    el.classList.remove('hidden');
+                    encontrada = true;
+                    
+                    // Identificar tab
+                    if (el.closest('#tab-nuevos')) tabEncontrada = 'nuevos';
+                    else if (el.closest('#tab-disponibles')) tabEncontrada = 'disponibles';
+                    else if (el.closest('#tab-pocos')) tabEncontrada = 'pocos';
+                    else if (el.closest('#tab-ultimos')) tabEncontrada = 'ultimos';
+                    else if (el.closest('#tab-agotados')) tabEncontrada = 'agotados';
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+            
+            // Abrir pestaña correcta
+            if (tabEncontrada) {
+                mostrarTab({ target: { classList: { add: () => {} } } }, tabEncontrada);
+                setTimeout(() => {
+                    document.querySelector(`[data-especialidad="${especialidad}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+        
+        function resetearFiltros() {
+            document.querySelectorAll('.especialidad').forEach(el => {
+                el.classList.remove('hidden');
+            });
+        }
+        
+        function cerrarDropdown() {
+            const dropdown = document.getElementById('search-dropdown');
+            dropdown.classList.remove('visible');
+            searchState.isOpen = false;
+        }
+        
+        function filtrarEspecialidades() {
+            // Función heredada - mantenida para compatibilidad
         }
         
         function actualizarDashboard() {
@@ -730,6 +965,9 @@
             renderList('lista-pocos', pocos, 'pocos');
             renderList('lista-ultimos', ultimos, 'ultimos');
             renderList('lista-agotados', agotados, 'agotado');
+            
+            // Inicializar buscador
+            inicializarBuscadorDespuesDeDatos();
         }
         
         function renderList(elementId, items, clase) {
@@ -740,13 +978,19 @@
             }
             
             el.innerHTML = items.map(([nombre, cupo]) => `
-                <div class="especialidad ${clase}">
+                <div class="especialidad ${clase}" data-especialidad="${nombre}">
                     <div class="especialidad-info">
                         <div class="especialidad-nombre">🏥 ${nombre}</div>
                     </div>
                     <div class="especialidad-cupos">${cupo}</div>
                 </div>
             `).join('');
+        }
+        
+        function inicializarBuscadorDespuesDeDatos() {
+            setTimeout(() => {
+                inicializarBuscador();
+            }, 100);
         }
         
         function destruirGraficos() {
