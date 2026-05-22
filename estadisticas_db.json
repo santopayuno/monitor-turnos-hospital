@@ -238,6 +238,12 @@
         "con_cupos": 11,
         "total_cupos": 88,
         "cambios": 0
+      },
+      {
+        "hora": "14:26:41",
+        "con_cupos": 13,
+        "total_cupos": 353,
+        "cambios": 2
       }
     ]
   },
@@ -787,6 +793,24 @@
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-22T14:26:41.005482-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 95
+    },
+    {
+      "fecha": "2026-05-22T14:26:41.005482-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 187
+    },
+    {
+      "fecha": "2026-05-22T14:26:41.005482-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 4
     }
   ]
 }
