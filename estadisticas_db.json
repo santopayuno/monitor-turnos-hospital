@@ -220,6 +220,12 @@
         "con_cupos": 12,
         "total_cupos": 100,
         "cambios": 1
+      },
+      {
+        "hora": "08:51:27",
+        "con_cupos": 11,
+        "total_cupos": 96,
+        "cambios": 2
       }
     ]
   },
@@ -757,6 +763,18 @@
       "tipo": "nuevos",
       "especialidad": "CIRUGIA TORACICA",
       "cupos": 7
+    },
+    {
+      "fecha": "2026-05-22T08:51:27.334842-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-22T08:51:27.334842-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ]
 }
