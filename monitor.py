@@ -296,9 +296,10 @@ class ConstructorMensajeTelegram:
         
         lineas = []
         
-        # ENCABEZADO
+        # ENCABEZADO (con doble salto después)
         lineas.append("🚨 NUEVOS TURNOS DISPONIBLES")
         lineas.append("🏥 HOSPITAL PERRUPATO")
+        lineas.append("")
         lineas.append("")
         
         # CAMBIOS DETECTADOS (si los hay)
@@ -306,11 +307,13 @@ class ConstructorMensajeTelegram:
         if cambios_section:
             lineas.extend(cambios_section)
             lineas.append("")
+            lineas.append("")
         
         # DISPONIBLES AHORA (si los hay)
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
             lineas.extend(disponibles_section)
+            lineas.append("")
             lineas.append("")
         
         # POCOS CUPOS (si los hay)
@@ -318,11 +321,13 @@ class ConstructorMensajeTelegram:
         if pocos_section:
             lineas.extend(pocos_section)
             lineas.append("")
+            lineas.append("")
         
         # SIN CUPOS (SIEMPRE visible)
         agotados_section = self._seccion_agotados()
         if agotados_section:
             lineas.extend(agotados_section)
+            lineas.append("")
             lineas.append("")
         
         # ESTADÍSTICAS FINALES
@@ -356,17 +361,21 @@ class ConstructorMensajeTelegram:
         # NUEVOS - Ordenar alfabéticamente
         nuevos_ordenados = sorted(self.cambios["nuevos"], key=lambda x: x['nombre'])
         for item in nuevos_ordenados:
+            cupo = item['cupo_actual']
+            plural = "s" if cupo > 1 else ""
             lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
-            lineas.append(f"📈 +{item['cupo_actual']} nuevos")
+            lineas.append(f"🍀 {formato_cupos_disponibles(cupo)}")
+            lineas.append(f"📈 +{cupo} nuevo{plural}")
             lineas.append("")
         
         # AUMENTOS - Ordenar alfabéticamente
         aumentos_ordenados = sorted(self.cambios["aumentos"], key=lambda x: x['nombre'])
         for item in aumentos_ordenados:
+            aumento = item['aumento']
+            plural = "s" if aumento > 1 else ""
             lineas.append(f"🏥 {item['nombre']}")
             lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
-            lineas.append(f"📈 +{item['aumento']} nuevos")
+            lineas.append(f"📈 +{aumento} nuevo{plural}")
             lineas.append("")
         
         # ÚLTIMOS - Ordenar alfabéticamente
