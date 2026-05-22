@@ -244,6 +244,12 @@
         "con_cupos": 13,
         "total_cupos": 353,
         "cambios": 2
+      },
+      {
+        "hora": "18:45:43",
+        "con_cupos": 13,
+        "total_cupos": 296,
+        "cambios": 3
       }
     ]
   },
@@ -811,6 +817,24 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA GENERAL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-05-22T18:45:43.005601-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-22T18:45:43.005601-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-22T18:45:43.005601-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
     }
   ]
 }
