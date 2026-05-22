@@ -202,6 +202,12 @@
         "con_cupos": 12,
         "total_cupos": 100,
         "cambios": 0
+      },
+      {
+        "hora": "07:51:39",
+        "con_cupos": 12,
+        "total_cupos": 100,
+        "cambios": 1
       }
     ]
   },
@@ -520,6 +526,78 @@
     },
     {
       "fecha": "2026-05-22T07:31:57.792894-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 14
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 24
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 27
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 8
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
+      "tipo": "nuevos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-22T07:51:39.682088-03:00",
       "tipo": "nuevos",
       "especialidad": "CIRUGIA TORACICA",
       "cupos": 7
