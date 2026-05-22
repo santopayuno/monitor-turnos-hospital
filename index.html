@@ -609,8 +609,8 @@
                 <div class="stat-subtitle">Abiertos ahora</div>
             </div>
             
-            <div class="stat-card warning">
-                <h3>🟡 Especialidades Activas</h3>
+            <div class="stat-card">
+                <h3>🔵 Especialidades Activas</h3>
                 <div class="stat-number" id="especialidades-activas">-</div>
                 <div class="stat-subtitle">Con turnos</div>
             </div>
@@ -732,7 +732,7 @@
         function actualizarCountdown() {
             nextCheckTime--;
             if (nextCheckTime < 0) nextCheckTime = 5;
-            document.getElementById('next-check').textContent = nextCheckTime + 'm';
+            document.getElementById('next-check').textContent = nextCheckTime + ' m';
         }
         
         function mostrarTab(event, nombre) {
