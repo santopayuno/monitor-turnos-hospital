@@ -438,10 +438,9 @@ class ConstructorMensajeTelegram:
         
         # Mostrar TODAS
         for nombre, cupo in items:
-            icono = "⚠️" if cupo < 5 else "🟡"
             plural = "s" if cupo > 1 else ""
             lineas.append(f"🏥 {nombre}")
-            lineas.append(f"{icono} {cupo} Cupo{plural}")
+            lineas.append(f"⚠️ {cupo} Cupo{plural}")
             lineas.append("")
         
         # Eliminar última línea vacía
