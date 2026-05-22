@@ -296,63 +296,39 @@ class ConstructorMensajeTelegram:
         
         lineas = []
         
-        # ─────────────────────────────────────────────────────
         # ENCABEZADO
-        # ─────────────────────────────────────────────────────
         lineas.append("🚨 NUEVOS TURNOS DISPONIBLES")
         lineas.append("🏥 HOSPITAL PERRUPATO")
         lineas.append("")
-        lineas.append("━━━━━━━━━━━━━━━━━━")
-        lineas.append("")
         
-        # ─────────────────────────────────────────────────────
         # CAMBIOS DETECTADOS (si los hay)
-        # ─────────────────────────────────────────────────────
         cambios_section = self._seccion_cambios()
         if cambios_section:
             lineas.extend(cambios_section)
             lineas.append("")
-            lineas.append("━━━━━━━━━━━━━━━━━━")
-            lineas.append("")
         
-        # ─────────────────────────────────────────────────────
         # DISPONIBLES AHORA (si los hay)
-        # ─────────────────────────────────────────────────────
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
             lineas.extend(disponibles_section)
             lineas.append("")
-            lineas.append("━━━━━━━━━━━━━━━━━━")
-            lineas.append("")
         
-        # ─────────────────────────────────────────────────────
         # POCOS CUPOS (si los hay)
-        # ─────────────────────────────────────────────────────
         pocos_section = self._seccion_pocos()
         if pocos_section:
             lineas.extend(pocos_section)
             lineas.append("")
-            lineas.append("━━━━━━━━━━━━━━━━━━")
-            lineas.append("")
         
-        # ─────────────────────────────────────────────────────
         # SIN CUPOS (SIEMPRE visible)
-        # ─────────────────────────────────────────────────────
         agotados_section = self._seccion_agotados()
         if agotados_section:
             lineas.extend(agotados_section)
             lineas.append("")
-            lineas.append("━━━━━━━━━━━━━━━━━━")
-            lineas.append("")
         
-        # ─────────────────────────────────────────────────────
         # ESTADÍSTICAS FINALES
-        # ─────────────────────────────────────────────────────
         stats_section = self._seccion_estadisticas()
         if stats_section:
             lineas.extend(stats_section)
-            lineas.append("")
-            lineas.append("━━━━━━━━━━━━━━━━━━")
         
         # Limpiar líneas vacías finales
         while lineas and lineas[-1] == "":
@@ -384,8 +360,6 @@ class ConstructorMensajeTelegram:
             lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
             lineas.append(f"📈 +{item['cupo_actual']} nuevos")
             lineas.append("")
-            lineas.append("▫️▫️▫️")
-            lineas.append("")
         
         # AUMENTOS - Ordenar alfabéticamente
         aumentos_ordenados = sorted(self.cambios["aumentos"], key=lambda x: x['nombre'])
@@ -393,8 +367,6 @@ class ConstructorMensajeTelegram:
             lineas.append(f"🏥 {item['nombre']}")
             lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
             lineas.append(f"📈 +{item['aumento']} nuevos")
-            lineas.append("")
-            lineas.append("▫️▫️▫️")
             lineas.append("")
         
         # ÚLTIMOS - Ordenar alfabéticamente
@@ -404,11 +376,9 @@ class ConstructorMensajeTelegram:
             plural = "s" if item['cupo_actual'] > 1 else ""
             lineas.append(f"⚠️ {item['cupo_actual']} Cupo{plural} Restante{plural}")
             lineas.append("")
-            lineas.append("▫️▫️▫️")
-            lineas.append("")
         
-        # Eliminar último separador de cambios
-        while lineas and lineas[-1] in ["", "▫️▫️▫️"]:
+        # Eliminar última línea vacía
+        while lineas and lineas[-1] == "":
             lineas.pop()
         
         return lineas
@@ -424,12 +394,7 @@ class ConstructorMensajeTelegram:
         # Ordenar alfabéticamente
         items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
         
-        lineas = [
-            "🟢 DISPONIBLES AHORA",
-            "",
-            "┌────────────────",
-            ""
-        ]
+        lineas = ["🟢 DISPONIBLES AHORA", ""]
         
         # Mostrar TODAS
         for nombre, cupo in items:
@@ -439,11 +404,8 @@ class ConstructorMensajeTelegram:
             lineas.append("")
         
         # Eliminar última línea vacía
-        if lineas and lineas[-1] == "":
+        while lineas and lineas[-1] == "":
             lineas.pop()
-        
-        lineas.append("")
-        lineas.append("└────────────────")
         
         return lineas
     
@@ -513,11 +475,13 @@ class ConstructorMensajeTelegram:
         total_cupos = sum(self.estado_actual.values())
         
         lineas = [
-            f"🔵 Especialidades Monitoreadas: {self.total_especialidades}",
-            f"🔵 Especialidades Disponibles: {total_con_cupos}",
-            f"🔵 Total de Cupos: {total_cupos}",
+            "📊 ESTADÍSTICAS",
             "",
-            "🕒 Actualizado: " + self.fecha_hora
+            f"• Monitoreadas: {self.total_especialidades}",
+            f"• Con cupos: {total_con_cupos}",
+            f"• Total: {total_cupos}",
+            "",
+            f"🕒 {self.fecha_hora}"
         ]
         
         return lineas
@@ -658,8 +622,8 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación cuando hay cambios
-    if procesador.hay_cambios():
+    # Enviar notificación SOLO si hay nuevos o aumentos
+    if procesador.cambios["nuevos"] or procesador.cambios["aumentos"]:
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
             procesador.clasificacion,
@@ -671,7 +635,7 @@ def main():
         if mensaje:
             enviar_telegram(mensaje)
     else:
-        logger.info("ℹ️ Sin cambios relevantes")
+        logger.info("ℹ️ Sin nuevos o aumentos para notificar")
     
     if CONFIG.get("generar_reporte_diario"):
         hora = ahora.strftime("%H:%M")
@@ -682,7 +646,7 @@ def main():
                     f.write(reporte)
                 enviar_telegram(reporte)
     
-   logger.info("═════════════════════════════════════════════════════")
+    logger.info("═════════════════════════════════════════════════════")
 
 if __name__ == "__main__":
     try:
