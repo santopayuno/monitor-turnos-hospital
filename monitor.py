@@ -350,7 +350,6 @@ class ConstructorMensajeTelegram:
         # ─────────────────────────────────────────────────────
         stats_section = self._seccion_estadisticas()
         if stats_section:
-            lineas.append("")
             lineas.extend(stats_section)
             lineas.append("")
             lineas.append("━━━━━━━━━━━━━━━━━━")
@@ -659,8 +658,8 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación SOLO si hay nuevos o aumentos
-    if procesador.cambios["nuevos"] or procesador.cambios["aumentos"]:
+    # Enviar notificación cuando hay cambios
+    if procesador.hay_cambios():
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
             procesador.clasificacion,
@@ -672,7 +671,7 @@ def main():
         if mensaje:
             enviar_telegram(mensaje)
     else:
-        logger.info("ℹ️ Sin nuevos o aumentos para notificar")
+        logger.info("ℹ️ Sin cambios relevantes")
     
     if CONFIG.get("generar_reporte_diario"):
         hora = ahora.strftime("%H:%M")
