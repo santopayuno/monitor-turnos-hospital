@@ -505,6 +505,44 @@
             color: #94a3b8;
         }
 
+        .btn-solicitar-simple {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            color: var(--color-primary);
+            padding: 18px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            margin: 20px auto;
+            white-space: nowrap;
+        }
+
+        .btn-solicitar-simple:hover {
+            box-shadow: var(--shadow-md);
+            background: var(--color-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-solicitar-simple:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .btn-solicitar-simple {
+                width: 95%;
+                padding: 16px 20px;
+                font-size: 0.95rem;
+            }
+        }
+
         footer {
             text-align: center;
             color: #94a3b8;
@@ -704,6 +742,12 @@
         </div>
 
     </main>
+
+    <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+        <a href="https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328" target="_blank" class="btn-solicitar-simple">
+            👉 Solicitar Turnos Aquí
+        </a>
+    </div>
 
     <footer>
         ⏰ Se actualiza cada 5 minutos • 🤖 Monitor Profesional
