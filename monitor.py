@@ -662,6 +662,9 @@ def main():
         enviar_telegram("🚨 Error: No se pudo conectar con la API del hospital")
         return
     
+    # VERIFICAR si es primera ejecución
+    es_primera_ejecucion = len(estado_anterior) == 0
+    
     procesador = ProcesadorEspecialidades(especialidades, estado_anterior).procesar()
     
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
@@ -669,7 +672,14 @@ def main():
     
     total_especialidades = len(procesador.estado_actual)
     
-    # Enviar notificación SOLO si hay nuevos o aumentos
+    # ✓ PRIMERA EJECUCIÓN: NO enviar Telegram, solo guardar estado
+    if es_primera_ejecucion:
+        logger.info("🎯 PRIMERA EJECUCIÓN")
+        logger.info(f"   ✓ Estado base guardado ({total_especialidades} especialidades)")
+        logger.info("   ℹ️ NO se envía notificación en primera ejecución")
+        return
+    
+    # Enviar notificación SOLO si hay nuevos o aumentos (después de primera ejecución)
     if procesador.cambios["nuevos"] or procesador.cambios["aumentos"]:
         constructor = ConstructorMensajeTelegram(
             procesador.cambios,
