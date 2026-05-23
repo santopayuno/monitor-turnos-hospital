@@ -7,10 +7,14 @@ on:
   workflow_dispatch:
 
 # ═══════════════════════════════════════════════════════════════
-# CONCURRENCY: Evitar ejecuciones simultáneas
+# PERMISOS: GitHub Actions necesita escribir en el repo
 # ═══════════════════════════════════════════════════════════════
-# Cancelar ejecuciones anteriores si una nueva empieza
-# Evita: race conditions, duplicación, corrupción de JSON
+
+permissions:
+  contents: write
+
+# ═══════════════════════════════════════════════════════════════
+# CONCURRENCY: Evitar ejecuciones simultáneas
 # ═══════════════════════════════════════════════════════════════
 
 concurrency:
