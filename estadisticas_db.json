@@ -1,5 +1,14 @@
 {
-  "registros": {},
+  "registros": {
+    "2026-05-23": [
+      {
+        "hora": "10:40:04",
+        "con_cupos": 13,
+        "total_cupos": 226,
+        "cambios": 13
+      }
+    ]
+  },
   "eventos": [],
-  "es_primera_ejecucion": true
+  "es_primera_ejecucion": false
 }
