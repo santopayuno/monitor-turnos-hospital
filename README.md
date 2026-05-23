@@ -146,6 +146,6 @@ No afiliado oficialmente al Hospital Perrupato ni al sistema Digisalud.
 
 ---
 
-👨‍💻 Autor
+👨‍💻 Autor:
 Desarrollado y mantenido por Ariel.
 🚀 Proyecto en evolución constante.
