@@ -1,214 +1,151 @@
-🏥 Monitor de Turnos - Hospital Alfredo I. Perrupato
+🏥 Monitor de Turnos Hospital Perrupato
 
-🚨 Monitor en tiempo real de disponibilidad de turnos hospitalarios con notificaciones automáticas por Telegram y dashboard analítico.
+Sistema automático de monitoreo de turnos médicos del Hospital Perrupato con alertas en Telegram, estadísticas y dashboard web en tiempo real.
 
 ---
 
 ✨ Características
 
-🎨 Dashboard Web
-
-- 🟢 Badge LIVE con indicador en tiempo real
-- ⏳ Countdown automático del próximo chequeo
-- 🔍 Buscador inteligente con autocompletado
-- 📱 Diseño responsive para móvil y PC
-- 📊 Dashboard analítico con gráficos interactivos
-
-📂 Categorías Visuales
-
-- 🆕 Nuevos cupos detectados
-- ✅ Disponibles (20+ cupos)
-- 🟡 Pocos cupos (5-19)
-- ⚠️ Últimos cupos (1-4)
-- 🚫 Sin cupos disponibles
-- 📈 Panel de análisis
-
-📊 Análisis y Estadísticas
-
-- ⏰ Actividad por hora
-- 📅 Movimientos últimas 24 horas
-- 📈 Especialidades más activas
-- 📉 Especialidades que más rápido se agotan
-- 📊 Métricas automáticas en tiempo real
-
-🔔 Notificaciones Telegram
-
-- 🏥 Diseño limpio y minimalista
-- 🍀 Emojis suaves y claros
-- 📈 Avisos sólo cuando aparecen nuevos cupos
-- 🚫 Sin spam innecesario
-- 📱 Formato optimizado para lectura rápida
-
-🤖 Automatización
-
-- ⏱️ Monitoreo automático cada 5 minutos
-- ⚙️ Ejecutado con GitHub Actions
-- ☁️ Sin necesidad de servidor
-- 💾 Historial automático en JSON
-- 🔄 Actualización continua
+✅ Monitoreo automático de especialidades
+✅ Alertas instantáneas por Telegram
+✅ Dashboard web en GitHub Pages
+✅ Detección inteligente de nuevos turnos
+✅ Persistencia de estado entre ejecuciones
+✅ Protección contra falsos positivos
+✅ Validación defensiva de API
+✅ Historial y estadísticas
+✅ Logs automáticos
+✅ Compatible con GitHub Actions
 
 ---
 
-🚀 Instalación Rápida
+📲 Funcionalidades
 
-📦 Requisitos
+🔔 Alertas Telegram
 
-- Cuenta de GitHub
-- Bot de Telegram creado con @BotFather
-- CHAT_ID de Telegram
+El sistema detecta automáticamente:
 
----
-
-⚙️ Comandos Básicos
-
-git init
-git add .
-git commit -m "Monitor de Turnos"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/monitor-turnos-hospital
-git push -u origin main
+- 🆕 Nuevos turnos
+- 📈 Aumentos de cupos
+- ❌ Especialidades agotadas
+- 🔄 Cambios importantes
 
 ---
 
-📁 Estructura del Proyecto
+📊 Dashboard Web
 
-monitor-turnos-hospital/
-│
-├── .github/
-│   └── workflows/
-│       └── monitor.yml
-│
-├── logs/
-│   └── .gitkeep
-│
-├── index.html
-├── monitor.py
-├── config.json
-├── estado_turnos.json
-├── estadisticas_db.json
-├── README.md
-└── .gitignore
+Visualización en tiempo real de:
+
+- Especialidades disponibles
+- Cantidad de cupos
+- Estadísticas históricas
+- Últimas actualizaciones
+- Estado general del sistema
 
 ---
 
-🌐 Dashboard Público
+⚙️ Tecnologías
 
-https://TU_USUARIO.github.io/monitor-turnos-hospital
-
----
-
-🔍 Funciones del Dashboard
-
-🔎 Buscador Inteligente
-
-- Autocompleta mientras escribes
-- Sugiere especialidades automáticamente
-- Filtra instantáneamente
-
-📊 Gráficos
-
-- Hover interactivo
-- Datos en tiempo real
-- Historial automático
-
-🟢 Badge LIVE
-
-- Indica monitor funcionando
-- Actualización automática
-
-⏳ Countdown
-
-- Muestra tiempo restante al próximo chequeo
+- 🐍 Python 3.11
+- ⚡ GitHub Actions
+- 🌐 GitHub Pages
+- 📡 API Digisalud
+- 🤖 Telegram Bot API
+- 📈 JSON Stats Engine
 
 ---
 
-🔔 Formato Telegram
+🚀 Funcionamiento
 
-🚨 NUEVOS TURNOS DISPONIBLES
+El monitor:
 
-🏥 HOSPITAL PERRUPATO
-
-🆕 CAMBIOS DETECTADOS
-
-🏥 CIRUGIA GENERAL
-🍀 14 Cupos Disponibles
-📈 +14 nuevos
-
-🏥 CIRUGIA TORACICA
-🍀 7 Cupos Disponibles
-📈 +7 nuevos
-
-🟢 DISPONIBLES AHORA
-
-🏥 CIRUGIA INFANTIL
-✅ 24 Cupos
-
-⚠️ POCOS CUPOS DISPONIBLES
-
-🏥 ONCOLOGIA
-🟡 8 Cupos
-
-🚫 SIN CUPOS DISPONIBLES
-
-🚫 CARDIOLOGIA
-🚫 PEDIATRIA
-
-📊 ESTADÍSTICAS
-
-• Monitoreadas: 41
-• Con cupos: 12
-• Total: 100
+1. Consulta automáticamente la API del hospital
+2. Analiza cambios respecto al estado anterior
+3. Detecta nuevos turnos y modificaciones
+4. Envía alertas por Telegram
+5. Actualiza estadísticas
+6. Publica el dashboard automáticamente
 
 ---
 
-🔧 Troubleshooting
+🛡️ Mejoras de Robustez Implementadas
 
-🚫 Telegram no notifica
+✅ Anti-Spam
 
-- Revisar BOT_TOKEN
-- Revisar CHAT_ID
-- Ejecutar workflow manualmente
+- Evita alertas duplicadas
+- Control de primera ejecución
+- Persistencia segura de estado
 
-📊 Gráficos vacíos
+✅ Validación de API
 
-- Esperar algunos ciclos de monitoreo
-- Revisar Actions
+- Detecta respuestas incompletas
+- Evita falsos “agotados”
+- Parseo defensivo de datos
 
-🌐 GitHub Pages no carga
+✅ Estabilidad
 
-- Verificar Settings > Pages
-- Esperar 2-3 minutos
-
----
-
-🔐 Seguridad
-
-- ✅ Secrets protegidos
-- ✅ Sin servidores externos
-- ✅ Datos públicos del hospital
-- ✅ GitHub Actions gratuito
+- Protección contra corrupción de JSON
+- Manejo seguro de errores
+- Reintentos automáticos
+- Compatibilidad total con GitHub Actions
 
 ---
 
-📈 Roadmap
+📂 Archivos Principales
 
-- ✅ Dashboard responsive
-- ✅ Telegram limpio
-- ✅ Buscador inteligente
-- ✅ Gráficos analíticos
-- 🔄 Futuro: historial individual por especialidad
-
----
-
-🏥 Tecnologías
-
-- 🐍 Python
-- 🌐 JavaScript
-- 📊 Chart.js
-- ⚙️ GitHub Actions
-- ☁️ GitHub Pages
+Archivo| Función
+"monitor.py"| Motor principal del sistema
+"estado_turnos.json"| Estado persistente
+"estadisticas_db.json"| Historial y estadísticas
+"index.html"| Dashboard web
+".github/workflows/"| Automatizaciones
 
 ---
 
-📅 Última actualización: Mayo 2026
-🚀 Versión: 2.1
+📸 Dashboard
+
+🌐 Sitio en vivo:
+
+👉 https://santopayuno.github.io/monitor-turnos-hospital/
+
+---
+
+🔧 Configuración
+
+Variables necesarias:
+
+- "TELEGRAM_TOKEN"
+- "TELEGRAM_CHAT_ID"
+
+Configuradas en:
+
+"GitHub → Settings → Secrets and variables → Actions"
+
+---
+
+📈 Estado Actual
+
+🟢 Sistema operativo
+🟢 Monitoreo activo
+🟢 Persistencia funcional
+🟢 Dashboard online
+🟢 Alertas funcionando
+
+---
+
+💡 Objetivo
+
+Este proyecto busca automatizar la detección de turnos médicos disponibles para mejorar velocidad de acceso, monitoreo y seguimiento en tiempo real.
+
+---
+
+⚠️ Aviso
+
+Proyecto independiente y experimental.
+No afiliado oficialmente al Hospital Perrupato ni al sistema Digisalud.
+
+---
+
+👨‍💻 Autor
+Desarrollado y mantenido por Ariel.
+🚀 Proyecto en evolución constante.
