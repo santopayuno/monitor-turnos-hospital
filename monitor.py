@@ -167,6 +167,12 @@ def consultar_api():
         if not isinstance(especialidades, list):
             raise ValueError("Respuesta no es lista válida")
         
+        # VALIDACIÓN: Si recibimos muy pocas especialidades, algo está mal
+        if len(especialidades) < 20:
+            logger.warning(f"⚠️ API devolvió solo {len(especialidades)} especialidades (esperaba ~30+)")
+            logger.warning("Posible error en API, ignorando respuesta")
+            return None
+        
         logger.info(f"✓ API: {len(especialidades)} especialidades recibidas")
         return especialidades
         
@@ -208,7 +214,14 @@ class ProcesadorEspecialidades:
     
     def _procesar_especialidad(self, esp):
         nombre = self._normalizar_nombre(esp.get("descripcion", ""))
-        cupo = max(0, int(esp.get("cupo", 0)))
+        
+        # Parseo DEFENSIVO: API puede devolver null, strings inválidos, etc
+        try:
+            cupo = max(0, int(esp.get("cupo") or 0))
+        except (TypeError, ValueError):
+            logger.warning(f"⚠️ Cupo inválido para {nombre}: {esp.get('cupo')}, usando 0")
+            cupo = 0
+        
         suspendido = esp.get("suspendido", True)
         disponible = cupo > 0 and not suspendido
         
@@ -503,6 +516,13 @@ def enviar_telegram(mensaje):
         logger.warning("⚠️ Telegram no configurado")
         return False
     
+    # VALIDACIÓN: Límite de 4096 caracteres en Telegram
+    limite_telegram = 4096
+    if len(mensaje) > limite_telegram:
+        logger.warning(f"⚠️ Mensaje muy largo ({len(mensaje)} chars), truncando...")
+        # Truncar y agregar nota
+        mensaje = mensaje[:limite_telegram - 50] + "\n\n[...mensaje truncado por longitud]"
+    
     try:
         response = requests.post(
             f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
@@ -511,7 +531,7 @@ def enviar_telegram(mensaje):
         )
         
         if response.status_code == 200:
-            logger.info("✓ Notificación Telegram enviada")
+            logger.info(f"✓ Notificación Telegram enviada ({len(mensaje)} chars)")
             return True
         else:
             logger.error(f"✗ Error Telegram: {response.status_code}")
@@ -526,7 +546,7 @@ def enviar_telegram(mensaje):
 
 def guardar_estadisticas(cambios, estado_actual):
     try:
-        stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}, "eventos": []}
+        stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}, "eventos": [], "es_primera_ejecucion": True}
         ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
         fecha = ahora.strftime("%Y-%m-%d")
         
@@ -537,20 +557,39 @@ def guardar_estadisticas(cambios, estado_actual):
             "hora": ahora.strftime("%H:%M:%S"),
             "con_cupos": len([c for c in estado_actual.values() if c > 0]),
             "total_cupos": sum(estado_actual.values()),
-            "cambios": len([x for x in cambios.values() if x])
+            "cambios": sum(len(x) for x in cambios.values())
         })
+        
+        # DEDUPLICACIÓN: Hash único por evento para evitar duplicados
+        eventos_existentes = {f"{e['fecha'][:19]}|{e['tipo']}|{e['especialidad']}" for e in stats["eventos"]}
         
         for cambio_tipo, items in cambios.items():
             for item in items:
-                stats["eventos"].append({
-                    "fecha": ahora.isoformat(),
-                    "tipo": cambio_tipo,
-                    "especialidad": item["nombre"],
-                    "cupos": item.get("cupo_actual", 0)
-                })
+                evento_key = f"{ahora.isoformat()[:19]}|{cambio_tipo}|{item['nombre']}"
+                
+                # Si es primera ejecución, no registrar como "nuevos" (son solo estado inicial)
+                if stats["es_primera_ejecucion"] and cambio_tipo == "nuevos":
+                    logger.info(f"ℹ️ Primera ejecución: no registrando {item['nombre']} como nuevo")
+                    continue
+                
+                # No duplicar eventos
+                if evento_key not in eventos_existentes:
+                    stats["eventos"].append({
+                        "fecha": ahora.isoformat(),
+                        "tipo": cambio_tipo,
+                        "especialidad": item["nombre"],
+                        "cupos": item.get("cupo_actual", 0)
+                    })
+                    eventos_existentes.add(evento_key)
         
+        # Limpiar eventos antiguos (90 días)
         fecha_limite = (ahora - timedelta(days=90)).isoformat()
         stats["eventos"] = [e for e in stats["eventos"] if e["fecha"] > fecha_limite]
+        
+        # Marcar que ya no es primera ejecución
+        if stats.get("es_primera_ejecucion"):
+            stats["es_primera_ejecucion"] = False
+            logger.info("✓ Primera ejecución completada")
         
         guardar_json_seguro(stats, ARCHIVOS["estadisticas"])
         
@@ -647,7 +686,7 @@ def main():
     
     if CONFIG.get("generar_reporte_diario"):
         hora = ahora.strftime("%H:%M")
-        if hora == CONFIG.get("hora_reporte", "23:55"):
+        if hora == CONFIG.get("hora_reporte_diario", "23:55"):
             reporte = generar_reporte_diario()
             if reporte:
                 with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
