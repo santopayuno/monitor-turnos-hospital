@@ -251,6 +251,14 @@
         "total_cupos": 296,
         "cambios": 3
       }
+    ],
+    "2026-05-23": [
+      {
+        "hora": "01:41:29",
+        "con_cupos": 13,
+        "total_cupos": 249,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
