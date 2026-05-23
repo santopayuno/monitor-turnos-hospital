@@ -1,91 +1,114 @@
-name: Monitor de Turnos
+name: Monitor de Turnos Hospital Perrupato
 
 on:
   schedule:
+    # Ejecutar cada 5 minutos
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+# ═══════════════════════════════════════════════════════════════
+# CONCURRENCY: Evitar ejecuciones simultáneas
+# ═══════════════════════════════════════════════════════════════
+# Cancelar ejecuciones anteriores si una nueva empieza
+# Evita: race conditions, duplicación, corrupción de JSON
+# ═══════════════════════════════════════════════════════════════
+
+concurrency:
+  group: monitor-turnos
+  cancel-in-progress: true
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-
+    
     steps:
-
-      - name: Checkout
-        uses: actions/checkout@v4
+      # 1. Checkout del repositorio
+      - uses: actions/checkout@v4
         with:
-          persist-credentials: true
-          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Full history para evitar conflictos
 
-      - name: Configurar Python
-        uses: actions/setup-python@v5
+      # 2. Setup Python
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
+      # 3. Instalar dependencias
       - name: Instalar dependencias
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests urllib3
+        run: pip install requests --quiet
 
-      - name: Crear config.json si no existe
-        run: |
-          if [ ! -f config.json ]; then
-            cat > config.json << 'CONFIGEOF'
-          {
-            "especialidades_interes": [],
-            "generar_reporte_diario": true,
-            "hora_reporte_diario": "23:55"
-          }
-          CONFIGEOF
-          fi
-
-      - name: Ejecutar Monitor
+      # 4. Ejecutar monitor
+      - name: Ejecutar Monitor de Turnos
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python monitor.py
-        continue-on-error: true
 
-      - name: Guardar logs
-        if: always()
+      # 5. Configurar Git
+      - name: Configurar Git
         run: |
-          mkdir -p logs
-          if [ -f monitor.log ]; then
-            TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-            cp monitor.log "logs/monitor_$TIMESTAMP.log"
-            ls -1t logs/monitor_*.log 2>/dev/null | tail -n +51 | xargs -r rm 2>/dev/null || true
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      # 6. Agregar cambios (con validación)
+      - name: Agregar cambios
+        run: |
+          git add estado_turnos.json estadisticas_db.json logs/ || true
+          
+          # Verificar que hay cambios reales
+          if git diff --cached --quiet; then
+            echo "ℹ️ Sin cambios para guardar"
+            exit 0
           fi
 
+      # 7. Commit (con validación de cambios)
       - name: Commit cambios
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          [ -f estado_turnos.json ] && git add estado_turnos.json || true
-          [ -f estadisticas_db.json ] && git add estadisticas_db.json || true
-          [ -f config.json ] && git add config.json || true
-          [ -f index.html ] && git add index.html || true
-          [ -f reporte_diario.txt ] && git add reporte_diario.txt || true
-          [ -d logs/ ] && git add logs/ 2>/dev/null || true
-
-          git commit -m "Actualizar estado $(date +%Y-%m-%d\ %H:%M:%S)" || echo "Sin cambios"
-          
-          git pull --rebase origin main || true
-          git push
-
-      - name: Mostrar resumen
-        if: always()
-        run: |
-          echo "## Monitor de Turnos" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f monitor.log ]; then
-            echo "### Logs" >> $GITHUB_STEP_SUMMARY
-            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-            tail -10 monitor.log >> $GITHUB_STEP_SUMMARY
-            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualizar estado $(date +'%Y-%m-%d %H:%M:%S')"
+            echo "✓ Commit realizado"
+          else
+            echo "ℹ️ Sin cambios para commitear"
           fi
+
+      # 8. Pull antes de push (para evitar conflictos)
+      - name: Pull antes de push
+        run: |
+          git pull --rebase origin main || true
+          echo "✓ Pull realizado"
+
+      # 9. Push con reintentos
+      - name: Push cambios
+        run: |
+          # Reintentar hasta 3 veces en caso de race condition
+          for i in 1 2 3; do
+            if git push; then
+              echo "✓ Push exitoso en intento $i"
+              exit 0
+            else
+              echo "⚠️ Push falló en intento $i, reintentando..."
+              sleep 2
+              git pull --rebase origin main || true
+            fi
+          done
+          echo "✗ Push falló después de 3 intentos"
+          exit 1
+
+      # 10. Registrar éxito
+      - name: Log de éxito
+        if: success()
+        run: |
+          echo "════════════════════════════════════"
+          echo "✓ Ejecución completada exitosamente"
+          echo "════════════════════════════════════"
+          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "Concurrency: monitor-turnos"
+
+      # 11. Registrar errores
+      - name: Log de error
+        if: failure()
+        run: |
+          echo "════════════════════════════════════"
+          echo "✗ Error en ejecución"
+          echo "════════════════════════════════════"
+          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
