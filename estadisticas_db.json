@@ -68,6 +68,12 @@
         "con_cupos": 13,
         "total_cupos": 87,
         "cambios": 1
+      },
+      {
+        "hora": "20:39:07",
+        "con_cupos": 11,
+        "total_cupos": 65,
+        "cambios": 3
       }
     ]
   },
@@ -77,6 +83,24 @@
       "tipo": "ultimos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-05-24T20:39:07.941373-03:00",
+      "tipo": "ultimos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-24T20:39:07.941373-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-24T20:39:07.941373-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
