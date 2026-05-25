@@ -970,13 +970,19 @@
 
             Object.entries(estadoActual).forEach(([nombre, cupoRaw]) => {
                 const cupo = Number(cupoRaw);
-                if (cupo >= 20) {
+                
+                // DISPONIBLES: >= 1 (TODOS los con cupos)
+                if (cupo >= 1) {
                     disponibles.push([nombre, cupo]);
-                } else if (cupo >= 5) {
-                    pocos.push([nombre, cupo]);
-                } else if (cupo >= 1) {
-                    ultimos.push([nombre, cupo]);
+                    
+                    // Sub-análisis dentro de disponibles
+                    if (cupo >= 5 && cupo < 20) {
+                        pocos.push([nombre, cupo]);
+                    } else if (cupo >= 1 && cupo < 5) {
+                        ultimos.push([nombre, cupo]);
+                    }
                 } else {
+                    // AGOTADOS: 0 cupos
                     agotados.push([nombre, cupo]);
                 }
             });
@@ -1303,4 +1309,4 @@
         setInterval(actualizarCountdown, 60000);
     </script>
 </body>
-</html> 
+</html>
