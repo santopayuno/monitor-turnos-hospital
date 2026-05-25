@@ -997,8 +997,18 @@
             // Función heredada - mantenida para compatibilidad
         }
 
+        function formatearFecha(date) {
+            const d = new Date(date);
+            const dia = String(d.getDate()).padStart(2, '0');
+            const mes = String(d.getMonth() + 1).padStart(2, '0');
+            const año = d.getFullYear();
+            const horas = String(d.getHours()).padStart(2, '0');
+            const minutos = String(d.getMinutes()).padStart(2, '0');
+            return `${dia}/${mes}/${año} ${horas}:${minutos} hs`;
+        }
+
         function actualizarDashboard() {
-            document.getElementById('fecha-actualizacion').textContent = new Date().toLocaleString('es-AR');
+            document.getElementById('fecha-actualizacion').textContent = formatearFecha(new Date());
 
             const disponibles = [];
             const pocos = [];
