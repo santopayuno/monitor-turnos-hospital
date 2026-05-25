@@ -112,6 +112,12 @@
         "con_cupos": 9,
         "total_cupos": 44,
         "cambios": 0
+      },
+      {
+        "hora": "09:46:57",
+        "con_cupos": 8,
+        "total_cupos": 32,
+        "cambios": 2
       }
     ]
   },
@@ -150,6 +156,18 @@
       "fecha": "2026-05-25T01:17:30.581604-03:00",
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-25T09:46:57.335372-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-25T09:46:57.335372-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA GENERAL",
       "cupos": 0
     }
   ],
