@@ -1063,15 +1063,69 @@
         function renderGraficosAnalisis() {
             destruirGraficos();
 
-            if (!estadisticas.registros || Object.keys(estadisticas.registros).length === 0) {
+            // VERIFICAR si hay eventos de aperturas (nuevos/aumentos)
+            const hayAperturas = (estadisticas.eventos || []).some(e => 
+                e.tipo === 'nuevos' || e.tipo === 'aumentos'
+            );
+
+            // Si no hay eventos: mostrar placeholder elegante
+            if (!hayAperturas || !estadisticas.registros || Object.keys(estadisticas.registros).length === 0) {
+                mostrarPlaceholderAnalisis();
                 return;
             }
 
+            // Si hay datos: renderizar gráficos normalmente
             renderMetricas();
             renderAperturasPorHora();
             renderUltimas24Horas();
             renderTopAperturas();
             renderTopAgotadas();
+        }
+
+        function mostrarPlaceholderAnalisis() {
+            // Limpiar todos los contenedores de gráficos
+            const contenedores = [
+                'metricsContainer',
+                'chartAperturasPorHora',
+                'chartUltimas24',
+                'chartTopAperturas',
+                'chartTopAgotadas'
+            ];
+
+            contenedores.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = '';
+                    el.style.display = 'none';
+                }
+            });
+
+            // Mostrar mensaje elegante en el contenedor de métricas
+            const metricsContainer = document.getElementById('metricsContainer');
+            if (metricsContainer) {
+                metricsContainer.style.display = 'block';
+                metricsContainer.innerHTML = `
+                    <div style="
+                        grid-column: 1 / -1;
+                        text-align: center;
+                        padding: 60px 20px;
+                        background: white;
+                        border-radius: 8px;
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+                    ">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">⏳</div>
+                        <div style="font-size: 1.2rem; color: #0369a1; font-weight: 600; margin-bottom: 8px;">
+                            Esperando datos de aperturas
+                        </div>
+                        <div style="font-size: 0.95rem; color: #64748b; margin-bottom: 20px;">
+                            El análisis se poblará cuando se detecten nuevas aperturas de turnos o cambios significativos.
+                        </div>
+                        <div style="font-size: 0.85rem; color: #94a3b8;">
+                            Mientras tanto, puedes ver el estado actual en las pestañas de Disponibles, Pocos Cupos y Agotados.
+                        </div>
+                    </div>
+                `;
+            }
         }
 
         function renderMetricas() {
