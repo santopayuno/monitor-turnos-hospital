@@ -739,6 +739,43 @@
                     <canvas id="chartTopAgotadas"></canvas>
                 </div>
             </div>
+
+            <!-- NUEVOS GRÁFICOS - ANÁLISIS PROFESIONAL -->
+
+            <div class="chart-container">
+                <h3>📈 Evolución Total de Cupos</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartEvolucionCupos"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>🔥 Especialidades Más Dinámicas</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartActividadEspecialidades"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📊 Aperturas vs Cierres por Hora</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartAperturasVsCierres"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>⏰ Horarios Más Activos</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartActividadPorHora"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>✨ Disponibilidad Histórica</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartDisponibilidad"></canvas>
+                </div>
+            </div>
         </div>
 
     </main>
@@ -1080,6 +1117,13 @@
             renderUltimas24Horas();
             renderTopAperturas();
             renderTopAgotadas();
+            
+            // NUEVOS GRÁFICOS PROFESIONALES
+            renderEvolucionCupos();
+            renderActividadEspecialidades();
+            renderAperturasVsCierres();
+            renderActividadPorHora();
+            renderDisponibilidad();
         }
 
         function mostrarPlaceholderAnalisis() {
@@ -1352,6 +1396,252 @@
                         },
                         scales: {
                             x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // NUEVOS GRÁFICOS PROFESIONALES - ANÁLISIS AVANZADO
+        // ═══════════════════════════════════════════════════════════════
+
+        function renderEvolucionCupos() {
+            const registros = estadisticas.registros || {};
+            const labels = [];
+            const datos = [];
+
+            Object.entries(registros).forEach(([fecha, eventos]) => {
+                if (Array.isArray(eventos) && eventos.length > 0) {
+                    eventos.forEach((evt, idx) => {
+                        if (idx === eventos.length - 1) { // Último del día
+                            labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
+                            datos.push(evt.total_cupos || 0);
+                        }
+                    });
+                }
+            });
+
+            const ctx = document.getElementById('chartEvolucionCupos');
+            if (ctx && datos.length > 0) {
+                chartsInstances.evolucionCupos = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total de Cupos',
+                            data: datos,
+                            borderColor: '#0369a1',
+                            backgroundColor: 'rgba(3, 105, 161, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: '#0369a1'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderActividadEspecialidades() {
+            const eventos = estadisticas.eventos || [];
+            const actividad = {};
+
+            eventos.forEach(e => {
+                const esp = e.especialidad;
+                if (!actividad[esp]) {
+                    actividad[esp] = 0;
+                }
+                actividad[esp]++;
+            });
+
+            const top = Object.entries(actividad)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            const ctx = document.getElementById('chartActividadEspecialidades');
+            if (ctx && top.length > 0) {
+                chartsInstances.actividadEspecialidades = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: top.map(item => item[0].substring(0, 25)),
+                        datasets: [{
+                            label: 'Total de Eventos',
+                            data: top.map(item => item[1]),
+                            backgroundColor: '#16a34a'
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderAperturasVsCierres() {
+            const horas = {};
+            for (let i = 0; i < 24; i++) {
+                const h = i.toString().padStart(2, '0') + ':00';
+                horas[h] = { aperturas: 0, cierres: 0 };
+            }
+
+            (estadisticas.eventos || []).forEach(e => {
+                const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
+                if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
+                    horas[hora].aperturas++;
+                } else if (e.tipo === 'agotados') {
+                    horas[hora].cierres++;
+                }
+            });
+
+            const ctx = document.getElementById('chartAperturasVsCierres');
+            if (ctx) {
+                chartsInstances.aperturasVsCierres = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Object.keys(horas),
+                        datasets: [
+                            {
+                                label: 'Aperturas',
+                                data: Object.values(horas).map(h => h.aperturas),
+                                borderColor: '#16a34a',
+                                backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                                tension: 0.3,
+                                fill: false,
+                                pointRadius: 3,
+                                pointBackgroundColor: '#16a34a'
+                            },
+                            {
+                                label: 'Cierres',
+                                data: Object.values(horas).map(h => h.cierres),
+                                borderColor: '#dc2626',
+                                backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                                tension: 0.3,
+                                fill: false,
+                                pointRadius: 3,
+                                pointBackgroundColor: '#dc2626'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderActividadPorHora() {
+            const horas = {};
+            for (let i = 0; i < 24; i++) {
+                horas[i.toString().padStart(2, '0') + ':00'] = 0;
+            }
+
+            (estadisticas.eventos || []).forEach(e => {
+                const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
+                horas[hora]++;
+            });
+
+            const ctx = document.getElementById('chartActividadPorHora');
+            if (ctx) {
+                chartsInstances.actividadPorHora = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(horas),
+                        datasets: [{
+                            label: 'Eventos Detectados',
+                            data: Object.values(horas),
+                            backgroundColor: '#eab308',
+                            borderColor: '#ca8a04',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderDisponibilidad() {
+            const registros = estadisticas.registros || {};
+            const labels = [];
+            const datos = [];
+
+            Object.entries(registros).forEach(([fecha, eventos]) => {
+                if (Array.isArray(eventos) && eventos.length > 0) {
+                    eventos.forEach((evt, idx) => {
+                        if (idx === eventos.length - 1) {
+                            labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
+                            datos.push(evt.con_cupos || 0);
+                        }
+                    });
+                }
+            });
+
+            const ctx = document.getElementById('chartDisponibilidad');
+            if (ctx && datos.length > 0) {
+                chartsInstances.disponibilidad = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Especialidades con Cupos',
+                            data: datos,
+                            borderColor: '#8b5cf6',
+                            backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: '#8b5cf6'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
                         }
                     }
                 });
