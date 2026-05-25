@@ -75,6 +75,14 @@
         "total_cupos": 65,
         "cambios": 3
       }
+    ],
+    "2026-05-25": [
+      {
+        "hora": "01:17:30",
+        "con_cupos": 9,
+        "total_cupos": 46,
+        "cambios": 2
+      }
     ]
   },
   "eventos": [
@@ -100,6 +108,18 @@
       "fecha": "2026-05-24T20:39:07.941373-03:00",
       "tipo": "agotados",
       "especialidad": "NEFROLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-25T01:17:30.581604-03:00",
+      "tipo": "agotados",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-25T01:17:30.581604-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
       "cupos": 0
     }
   ],
