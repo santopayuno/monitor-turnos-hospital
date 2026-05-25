@@ -968,7 +968,8 @@
             const ultimos = [];
             const agotados = [];
 
-            Object.entries(estadoActual).forEach(([nombre, cupo]) => {
+            Object.entries(estadoActual).forEach(([nombre, cupoRaw]) => {
+                const cupo = Number(cupoRaw);
                 if (cupo >= 20) {
                     disponibles.push([nombre, cupo]);
                 } else if (cupo >= 5) {
