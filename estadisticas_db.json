@@ -118,6 +118,12 @@
         "con_cupos": 8,
         "total_cupos": 32,
         "cambios": 2
+      },
+      {
+        "hora": "15:18:09",
+        "con_cupos": 7,
+        "total_cupos": 29,
+        "cambios": 1
       }
     ]
   },
@@ -168,6 +174,12 @@
       "fecha": "2026-05-25T09:46:57.335372-03:00",
       "tipo": "agotados",
       "especialidad": "CIRUGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-25T15:18:09.998956-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 0
     }
   ],
