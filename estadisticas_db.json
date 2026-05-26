@@ -180,6 +180,12 @@
         "con_cupos": 23,
         "total_cupos": 641,
         "cambios": 7
+      },
+      {
+        "hora": "13:52:21",
+        "con_cupos": 21,
+        "total_cupos": 552,
+        "cambios": 3
       }
     ]
   },
@@ -530,6 +536,24 @@
       "fecha": "2026-05-26T12:16:22.395704-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-26T13:52:21.522862-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-26T13:52:21.522862-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-26T13:52:21.522862-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 0
     }
   ],
