@@ -168,6 +168,12 @@
         "con_cupos": 29,
         "total_cupos": 915,
         "cambios": 7
+      },
+      {
+        "hora": "11:15:05",
+        "con_cupos": 28,
+        "total_cupos": 830,
+        "cambios": 1
       }
     ]
   },
@@ -470,6 +476,12 @@
       "fecha": "2026-05-26T10:40:33.041343-03:00",
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-26T11:15:05.634360-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
       "cupos": 0
     }
   ],
