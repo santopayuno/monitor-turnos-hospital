@@ -2,16 +2,11 @@ name: Monitor de Turnos Hospital Perrupato
 
 on:
   schedule:
-    # Ejecutar cada 5 minutos SIN EXCEPCIONES
     - cron: '*/5 * * * *'
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['estado_turnos.json', 'estadisticas_db.json']
 
 permissions:
   contents: write
-  pages: write
 
 concurrency:
   group: monitor-turnos
@@ -34,7 +29,7 @@ jobs:
       - name: Instalar dependencias
         run: pip install requests --quiet
 
-      - name: Ejecutar Monitor de Turnos
+      - name: Ejecutar Monitor
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
@@ -48,53 +43,25 @@ jobs:
       - name: Agregar cambios
         run: |
           git add estado_turnos.json estadisticas_db.json logs/ || true
-          if git diff --cached --quiet; then
-            echo "ℹ️ Sin cambios para guardar"
-            exit 0
-          fi
 
       - name: Commit cambios
         run: |
           if ! git diff --cached --quiet; then
             git commit -m "Actualizar estado $(date +'%Y-%m-%d %H:%M:%S')"
-            echo "✓ Commit realizado"
-          else
-            echo "ℹ️ Sin cambios para commitear"
           fi
 
-      - name: Pull + Rebase
-        run: |
-          git pull --rebase origin main || true
-          echo "✓ Pull realizado"
+      - name: Pull antes de push
+        run: git pull --rebase origin main || true
 
       - name: Push cambios
         run: |
           for i in 1 2 3; do
             if git push; then
-              echo "✓ Push exitoso en intento $i"
+              echo "✓ Push exitoso"
               exit 0
             else
-              echo "⚠️ Push falló en intento $i, reintentando..."
               sleep 2
               git pull --rebase origin main || true
             fi
           done
-          echo "✗ Push falló después de 3 intentos"
           exit 1
-
-      - name: Log de éxito
-        if: success()
-        run: |
-          echo "════════════════════════════════════"
-          echo "✓ Ejecución completada exitosamente"
-          echo "════════════════════════════════════"
-          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "Próxima ejecución: en 5 minutos"
-
-      - name: Log de error
-        if: failure()
-        run: |
-          echo "════════════════════════════════════"
-          echo "✗ Error en ejecución"
-          echo "════════════════════════════════════"
-          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
