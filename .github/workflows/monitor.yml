@@ -2,117 +2,41 @@ name: Monitor de Turnos Hospital Perrupato
 
 on:
   schedule:
-    # Ejecutar cada 5 minutos (sin fallos)
     - cron: '*/5 * * * *'
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['estado_turnos.json', 'estadisticas_db.json', 'monitor.py']
 
 permissions:
   contents: write
-  pages: write
-
-# ═══════════════════════════════════════════════════════════════
-# CONCURRENCY: Evitar ejecuciones simultáneas
-# ═══════════════════════════════════════════════════════════════
-
-concurrency:
-  group: monitor-turnos
-  cancel-in-progress: true
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    
-    steps:
-      # 1. Checkout del repositorio
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0  # Full history para evitar conflictos
 
-      # 2. Setup Python
-      - uses: actions/setup-python@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 3. Instalar dependencias
       - name: Instalar dependencias
-        run: pip install requests --quiet
+        run: pip install requests
 
-      # 4. Ejecutar monitor
-      - name: Ejecutar Monitor de Turnos
+      - name: Ejecutar monitor
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python monitor.py
 
-      # 5. Configurar Git
-      - name: Configurar Git
+      - name: Commit y Push
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
 
-      # 6. Agregar cambios (con validación)
-      - name: Agregar cambios
-        run: |
-          git add estado_turnos.json estadisticas_db.json logs/ || true
-          
-          # Verificar que hay cambios reales
-          if git diff --cached --quiet; then
-            echo "ℹ️ Sin cambios para guardar"
-            exit 0
-          fi
+          git add .
 
-      # 7. Commit (con validación de cambios)
-      - name: Commit cambios
-        run: |
-          if ! git diff --cached --quiet; then
-            git commit -m "Actualizar estado $(date +'%Y-%m-%d %H:%M:%S')"
-            echo "✓ Commit realizado"
-          else
-            echo "ℹ️ Sin cambios para commitear"
-          fi
+          git diff --staged --quiet || git commit -m "Actualización automática"
 
-      # 8. Pull antes de push (para evitar conflictos)
-      - name: Pull antes de push
-        run: |
-          git pull --rebase origin main || true
-          echo "✓ Pull realizado"
-
-      # 9. Push con reintentos
-      - name: Push cambios
-        run: |
-          # Reintentar hasta 3 veces en caso de race condition
-          for i in 1 2 3; do
-            if git push; then
-              echo "✓ Push exitoso en intento $i"
-              exit 0
-            else
-              echo "⚠️ Push falló en intento $i, reintentando..."
-              sleep 2
-              git pull --rebase origin main || true
-            fi
-          done
-          echo "✗ Push falló después de 3 intentos"
-          exit 1
-
-      # 10. Registrar éxito
-      - name: Log de éxito
-        if: success()
-        run: |
-          echo "════════════════════════════════════"
-          echo "✓ Ejecución completada exitosamente"
-          echo "════════════════════════════════════"
-          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "Concurrency: monitor-turnos"
-
-      # 11. Registrar errores
-      - name: Log de error
-        if: failure()
-        run: |
-          echo "════════════════════════════════════"
-          echo "✗ Error en ejecución"
-          echo "════════════════════════════════════"
-          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git push
