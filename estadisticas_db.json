@@ -186,6 +186,12 @@
         "con_cupos": 21,
         "total_cupos": 552,
         "cambios": 3
+      },
+      {
+        "hora": "16:28:59",
+        "con_cupos": 19,
+        "total_cupos": 489,
+        "cambios": 4
       }
     ]
   },
@@ -554,6 +560,30 @@
       "fecha": "2026-05-26T13:52:21.522862-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-26T16:28:59.557219-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-26T16:28:59.557219-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-26T16:28:59.557219-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-26T16:28:59.557219-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
