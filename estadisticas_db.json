@@ -150,6 +150,12 @@
         "con_cupos": 8,
         "total_cupos": 290,
         "cambios": 2
+      },
+      {
+        "hora": "09:51:59",
+        "con_cupos": 32,
+        "total_cupos": 1301,
+        "cambios": 28
       }
     ]
   },
@@ -225,6 +231,174 @@
       "tipo": "nuevos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 192
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 85
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 118
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 34
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 43
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 41
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 12
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 11
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 12
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 12
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 28
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 134
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "UROLOGIA",
+      "cupos": 79
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 39
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 16
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 19
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 85
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 21
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 46
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "aumentos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 154
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "aumentos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 51
+    },
+    {
+      "fecha": "2026-05-26T09:51:59.855026-03:00",
+      "tipo": "aumentos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 14
     }
   ],
   "es_primera_ejecucion": false
