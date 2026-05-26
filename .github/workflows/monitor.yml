@@ -13,24 +13,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - run: pip install requests
-      - name: Monitor
+
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Ejecutar Monitor
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python monitor.py
-      - name: Git config
+
+      - name: Configurar Git
         run: |
-          git config user.email "action@github.com"
-          git config user.name "GitHub Action"
-      - name: Commit
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+
+      - name: Commit si hay cambios
         run: |
-          git add -A
-          git commit -m "Update $(date +'%Y-%m-%d %H:%M:%S')" || true
-      - name: Push
+          if git diff --quiet; then
+            echo "ℹ️ Sin cambios"
+            exit 0
+          fi
+          git add estado_turnos.json estadisticas_db.json logs/ || true
+          git commit -m "Monitor: $(date +'%Y-%m-%d %H:%M:%S')" || true
+
+      - name: Sincronizar y Push
         run: |
-          git pull --rebase origin main || true
-          git push
+          git fetch origin main --quiet
+          git rebase origin/main || git rebase --abort
+          git push origin main --quiet || echo "Push falló, continuando..."
