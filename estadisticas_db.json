@@ -205,6 +205,14 @@
         "total_cupos": 446,
         "cambios": 0
       }
+    ],
+    "2026-05-27": [
+      {
+        "hora": "09:03:30",
+        "con_cupos": 19,
+        "total_cupos": 375,
+        "cambios": 7
+      }
     ]
   },
   "eventos": [
@@ -608,6 +616,48 @@
       "fecha": "2026-05-26T19:24:15.989180-03:00",
       "tipo": "agotados",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-27T09:03:30.388119-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-27T09:03:30.388119-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-05-27T09:03:30.388119-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-27T09:03:30.388119-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-27T09:03:30.388119-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-27T09:03:30.388119-03:00",
+      "tipo": "ultimos",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-27T09:03:30.388119-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA MEDIANO RIESGO",
       "cupos": 0
     }
   ],
