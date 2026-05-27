@@ -212,6 +212,12 @@
         "con_cupos": 19,
         "total_cupos": 375,
         "cambios": 7
+      },
+      {
+        "hora": "13:15:12",
+        "con_cupos": 18,
+        "total_cupos": 325,
+        "cambios": 4
       }
     ]
   },
@@ -658,6 +664,30 @@
       "fecha": "2026-05-27T09:03:30.388119-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-27T13:15:12.365830-03:00",
+      "tipo": "nuevos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 8
+    },
+    {
+      "fecha": "2026-05-27T13:15:12.365830-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-27T13:15:12.365830-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-27T13:15:12.365830-03:00",
+      "tipo": "agotados",
+      "especialidad": "UROLOGIA",
       "cupos": 0
     }
   ],
