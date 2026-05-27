@@ -224,6 +224,12 @@
         "con_cupos": 17,
         "total_cupos": 284,
         "cambios": 2
+      },
+      {
+        "hora": "19:49:01",
+        "con_cupos": 15,
+        "total_cupos": 271,
+        "cambios": 2
       }
     ]
   },
@@ -706,6 +712,18 @@
       "fecha": "2026-05-27T16:50:05.291231-03:00",
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-27T19:49:01.069015-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-27T19:49:01.069015-03:00",
+      "tipo": "agotados",
+      "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
     }
   ],
