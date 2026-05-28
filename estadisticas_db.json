@@ -442,6 +442,12 @@
         "con_cupos": 15,
         "total_cupos": 258,
         "cambios": 0
+      },
+      {
+        "hora": "04:00:57",
+        "con_cupos": 15,
+        "total_cupos": 257,
+        "cambios": 1
       }
     ]
   },
@@ -937,6 +943,12 @@
       "tipo": "agotados",
       "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-28T04:00:57.272039-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
