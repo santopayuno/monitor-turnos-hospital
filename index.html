@@ -213,7 +213,6 @@
             font-size: 1.2rem;
             padding: 4px 8px;
             transition: color 0.3s;
-            z-index: 1001;
         }
 
         .search-clear:hover {
@@ -406,7 +405,7 @@
         }
 
         .especialidad.hidden {
-            display: none !important;
+            display: none;
         }
 
         .no-data {
@@ -664,9 +663,9 @@
                     placeholder="🔍 Buscar especialidad..."
                     autocomplete="off"
                 >
-                <button class="search-clear" id="search-clear" style="display: none;">✕</button>
                 <div class="search-dropdown" id="search-dropdown"></div>
             </div>
+            <button class="search-clear" id="search-clear" style="display: none;">✕</button>
         </div>
 
         <div class="tabs">
@@ -741,6 +740,8 @@
                 </div>
             </div>
 
+            <!-- NUEVOS GRÁFICOS - ANÁLISIS PROFESIONAL -->
+
             <div class="chart-container">
                 <h3>📈 Evolución Total de Cupos</h3>
                 <div class="chart-wrapper">
@@ -786,14 +787,14 @@
     </div>
 
     <footer>
-        ⏰ Se actualiza cada 15 minutos • 🤖 Monitor Profesional
+        ⏰ Se actualiza cada 5 minutos • 🤖 Monitor Profesional
     </footer>
 
     <script>
         let estadoActual = {};
         let estadisticas = { registros: {}, eventos: [] };
         let chartsInstances = {};
-        let nextCheckTime = 15;
+        let nextCheckTime = 5;
 
         async function cargarDatos() {
             try {
@@ -811,7 +812,7 @@
 
         function actualizarCountdown() {
             nextCheckTime--;
-            if (nextCheckTime < 0) nextCheckTime = 15;
+            if (nextCheckTime < 0) nextCheckTime = 5;
             document.getElementById('next-check').textContent = nextCheckTime + ' m';
         }
 
@@ -819,13 +820,7 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + nombre).classList.add('active');
-            
-            if (event && event.target) {
-                event.target.classList.add('active');
-            } else {
-                const btn = document.querySelector(`button[onclick*="'${nombre}'"]`);
-                if (btn) btn.classList.add('active');
-            }
+            event.target.classList.add('active');
 
             if (nombre === 'graficos') {
                 setTimeout(renderGraficosAnalisis, 100);
@@ -844,8 +839,10 @@
             const searchDropdown = document.getElementById('search-dropdown');
             const searchClear = document.getElementById('search-clear');
 
+            // Recolectar todas las especialidades
             searchState.allEspecialidades = Object.keys(estadoActual).sort();
 
+            // Input event - en tiempo real
             searchInput.addEventListener('input', function(e) {
                 const query = e.target.value.trim();
 
@@ -860,12 +857,14 @@
                 mostrarSugerencias(query);
             });
 
+            // Click fuera del buscador
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.search-wrapper')) {
+                if (!e.target.closest('.search-wrapper') && !e.target.closest('.search-clear')) {
                     cerrarDropdown();
                 }
             });
 
+            // Botón limpiar
             searchClear.addEventListener('click', function() {
                 searchInput.value = '';
                 searchClear.style.display = 'none';
@@ -874,6 +873,7 @@
                 searchInput.focus();
             });
 
+            // Teclas de navegación
             searchInput.addEventListener('keydown', function(e) {
                 if (!searchState.isOpen) return;
 
@@ -885,13 +885,9 @@
                     e.preventDefault();
                     searchState.selectedIndex = Math.max(searchState.selectedIndex - 1, -1);
                     actualizarSeleccion();
-                } else if (e.key === 'Enter') {
+                } else if (e.key === 'Enter' && searchState.selectedIndex >= 0) {
                     e.preventDefault();
-                    if (searchState.selectedIndex >= 0) {
-                        seleccionarEspecialidad(searchState.filteredResults[searchState.selectedIndex]);
-                    } else if (searchState.filteredResults.length > 0) {
-                        seleccionarEspecialidad(searchState.filteredResults[0]);
-                    }
+                    seleccionarEspecialidad(searchState.filteredResults[searchState.selectedIndex]);
                 } else if (e.key === 'Escape') {
                     cerrarDropdown();
                 }
@@ -902,6 +898,7 @@
             const dropdown = document.getElementById('search-dropdown');
             const queryLower = query.toLowerCase();
 
+            // Filtrar especialidades que coincidan
             searchState.filteredResults = searchState.allEspecialidades.filter(esp => 
                 esp.toLowerCase().includes(queryLower)
             ).slice(0, 6);
@@ -915,6 +912,7 @@
                 return;
             }
 
+            // Construir dropdown
             const html = searchState.filteredResults.map((esp, index) => {
                 const highlighted = destacarTexto(esp, query);
                 return `<div class="search-suggestion" data-index="${index}" onclick="seleccionarEspecialidad('${esp}')">${highlighted}</div>`;
@@ -946,19 +944,24 @@
             document.getElementById('search-input').value = especialidad;
             document.getElementById('search-clear').style.display = 'block';
             cerrarDropdown();
+
+            // Filtrar para mostrar solo esta especialidad
             filtrarEspecialidadUnica(especialidad);
         }
 
         function filtrarEspecialidadUnica(especialidad) {
             const allEspecialidades = document.querySelectorAll('.especialidad');
+            let encontrada = false;
             let tabEncontrada = null;
 
             allEspecialidades.forEach(el => {
-                const nombre = el.getAttribute('data-especialidad');
+                const nombre = el.querySelector('.especialidad-nombre').textContent.replace('🏥 ', '');
 
                 if (nombre === especialidad) {
                     el.classList.remove('hidden');
+                    encontrada = true;
 
+                    // Identificar tab
                     if (el.closest('#tab-nuevos')) tabEncontrada = 'nuevos';
                     else if (el.closest('#tab-disponibles')) tabEncontrada = 'disponibles';
                     else if (el.closest('#tab-pocos')) tabEncontrada = 'pocos';
@@ -969,8 +972,9 @@
                 }
             });
 
+            // Abrir pestaña correcta
             if (tabEncontrada) {
-                mostrarTab(null, tabEncontrada);
+                mostrarTab({ target: { classList: { add: () => {} } } }, tabEncontrada);
                 setTimeout(() => {
                     document.querySelector(`[data-especialidad="${especialidad}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 100);
@@ -987,6 +991,10 @@
             const dropdown = document.getElementById('search-dropdown');
             dropdown.classList.remove('visible');
             searchState.isOpen = false;
+        }
+
+        function filtrarEspecialidades() {
+            // Función heredada - mantenida para compatibilidad
         }
 
         function formatearFecha(date) {
@@ -1010,15 +1018,18 @@
             Object.entries(estadoActual).forEach(([nombre, cupoRaw]) => {
                 const cupo = Number(cupoRaw);
 
+                // DISPONIBLES: >= 1 (TODOS los con cupos)
                 if (cupo >= 1) {
                     disponibles.push([nombre, cupo]);
 
+                    // Sub-análisis dentro de disponibles
                     if (cupo >= 5 && cupo < 20) {
                         pocos.push([nombre, cupo]);
                     } else if (cupo >= 1 && cupo < 5) {
                         ultimos.push([nombre, cupo]);
                     }
                 } else {
+                    // AGOTADOS: 0 cupos
                     agotados.push([nombre, cupo]);
                 }
             });
@@ -1034,6 +1045,7 @@
             });
             nuevos = Object.values(nuevosUnicos);
 
+            // FALLBACK: Si no hay eventos (reinicio reciente), mostrar especialidades con cupos como "nuevos"
             if (nuevos.length === 0 && Object.keys(estadisticas.eventos || []).length === 0) {
                 nuevos = Object.entries(estadoActual)
                     .filter(([nombre, cupo]) => cupo > 0)
@@ -1059,6 +1071,7 @@
             renderList('lista-ultimos', ultimos, 'ultimos');
             renderList('lista-agotados', agotados, 'agotado');
 
+            // Inicializar buscador
             inicializarBuscadorDespuesDeDatos();
         }
 
@@ -1082,10 +1095,6 @@
         function inicializarBuscadorDespuesDeDatos() {
             setTimeout(() => {
                 inicializarBuscador();
-                const currentQuery = document.getElementById('search-input').value.trim();
-                if (currentQuery.length > 0) {
-                    filtrarEspecialidadUnica(currentQuery);
-                }
             }, 100);
         }
 
@@ -1101,21 +1110,25 @@
         function renderGraficosAnalisis() {
             destruirGraficos();
 
+            // VERIFICAR si hay eventos de aperturas (nuevos/aumentos)
             const hayAperturas = (estadisticas.eventos || []).some(e => 
                 e.tipo === 'nuevos' || e.tipo === 'aumentos'
             );
 
+            // Si no hay eventos: mostrar placeholder elegante
             if (!hayAperturas || !estadisticas.registros || Object.keys(estadisticas.registros).length === 0) {
                 mostrarPlaceholderAnalisis();
                 return;
             }
 
+            // Si hay datos: renderizar gráficos normalmente
             renderMetricas();
             renderAperturasPorHora();
             renderUltimas24Horas();
             renderTopAperturas();
             renderTopAgotadas();
 
+            // NUEVOS GRÁFICOS PROFESIONALES
             renderEvolucionCupos();
             renderActividadEspecialidades();
             renderAperturasVsCierres();
@@ -1124,6 +1137,7 @@
         }
 
         function mostrarPlaceholderAnalisis() {
+            // Limpiar todos los contenedores de gráficos
             const contenedores = [
                 'metricsContainer',
                 'chartAperturasPorHora',
@@ -1140,6 +1154,7 @@
                 }
             });
 
+            // Mostrar mensaje elegante en el contenedor de métricas
             const metricsContainer = document.getElementById('metricsContainer');
             if (metricsContainer) {
                 metricsContainer.style.display = 'block';
@@ -1397,6 +1412,10 @@
             }
         }
 
+        // ═══════════════════════════════════════════════════════════════
+        // NUEVOS GRÁFICOS PROFESIONALES - ANÁLISIS AVANZADO
+        // ═══════════════════════════════════════════════════════════════
+
         function renderEvolucionCupos() {
             const registros = estadisticas.registros || {};
             const labels = [];
@@ -1405,7 +1424,7 @@
             Object.entries(registros).forEach(([fecha, eventos]) => {
                 if (Array.isArray(eventos) && eventos.length > 0) {
                     eventos.forEach((evt, idx) => {
-                        if (idx === eventos.length - 1) { 
+                        if (idx === eventos.length - 1) { // Último del día
                             labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
                             datos.push(evt.total_cupos || 0);
                         }
