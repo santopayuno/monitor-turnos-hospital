@@ -213,6 +213,7 @@
             font-size: 1.2rem;
             padding: 4px 8px;
             transition: color 0.3s;
+            z-index: 1001;
         }
 
         .search-clear:hover {
@@ -405,7 +406,7 @@
         }
 
         .especialidad.hidden {
-            display: none;
+            display: none !important;
         }
 
         .no-data {
@@ -663,9 +664,9 @@
                     placeholder="🔍 Buscar especialidad..."
                     autocomplete="off"
                 >
+                <button class="search-clear" id="search-clear" style="display: none;">✕</button>
                 <div class="search-dropdown" id="search-dropdown"></div>
             </div>
-            <button class="search-clear" id="search-clear" style="display: none;">✕</button>
         </div>
 
         <div class="tabs">
@@ -818,7 +819,13 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + nombre).classList.add('active');
-            event.target.classList.add('active');
+            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                const btn = document.querySelector(`button[onclick*="'${nombre}'"]`);
+                if (btn) btn.classList.add('active');
+            }
 
             if (nombre === 'graficos') {
                 setTimeout(renderGraficosAnalisis, 100);
@@ -854,7 +861,7 @@
             });
 
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.search-wrapper') && !e.target.closest('.search-clear')) {
+                if (!e.target.closest('.search-wrapper')) {
                     cerrarDropdown();
                 }
             });
@@ -878,9 +885,13 @@
                     e.preventDefault();
                     searchState.selectedIndex = Math.max(searchState.selectedIndex - 1, -1);
                     actualizarSeleccion();
-                } else if (e.key === 'Enter' && searchState.selectedIndex >= 0) {
+                } else if (e.key === 'Enter') {
                     e.preventDefault();
-                    seleccionarEspecialidad(searchState.filteredResults[searchState.selectedIndex]);
+                    if (searchState.selectedIndex >= 0) {
+                        seleccionarEspecialidad(searchState.filteredResults[searchState.selectedIndex]);
+                    } else if (searchState.filteredResults.length > 0) {
+                        seleccionarEspecialidad(searchState.filteredResults[0]);
+                    }
                 } else if (e.key === 'Escape') {
                     cerrarDropdown();
                 }
@@ -940,15 +951,13 @@
 
         function filtrarEspecialidadUnica(especialidad) {
             const allEspecialidades = document.querySelectorAll('.especialidad');
-            let encontrada = false;
             let tabEncontrada = null;
 
             allEspecialidades.forEach(el => {
-                const nombre = el.querySelector('.especialidad-nombre').textContent.replace('🏥 ', '');
+                const nombre = el.getAttribute('data-especialidad');
 
                 if (nombre === especialidad) {
                     el.classList.remove('hidden');
-                    encontrada = true;
 
                     if (el.closest('#tab-nuevos')) tabEncontrada = 'nuevos';
                     else if (el.closest('#tab-disponibles')) tabEncontrada = 'disponibles';
@@ -961,7 +970,7 @@
             });
 
             if (tabEncontrada) {
-                mostrarTab({ target: { classList: { add: () => {} } } }, tabEncontrada);
+                mostrarTab(null, tabEncontrada);
                 setTimeout(() => {
                     document.querySelector(`[data-especialidad="${especialidad}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 100);
@@ -979,8 +988,6 @@
             dropdown.classList.remove('visible');
             searchState.isOpen = false;
         }
-
-        function filtrarEspecialidades() {}
 
         function formatearFecha(date) {
             const d = new Date(date);
@@ -1002,8 +1009,10 @@
 
             Object.entries(estadoActual).forEach(([nombre, cupoRaw]) => {
                 const cupo = Number(cupoRaw);
+
                 if (cupo >= 1) {
                     disponibles.push([nombre, cupo]);
+
                     if (cupo >= 5 && cupo < 20) {
                         pocos.push([nombre, cupo]);
                     } else if (cupo >= 1 && cupo < 5) {
@@ -1073,6 +1082,10 @@
         function inicializarBuscadorDespuesDeDatos() {
             setTimeout(() => {
                 inicializarBuscador();
+                const currentQuery = document.getElementById('search-input').value.trim();
+                if (currentQuery.length > 0) {
+                    filtrarEspecialidadUnica(currentQuery);
+                }
             }, 100);
         }
 
@@ -1170,7 +1183,7 @@
             const horasPorApertura = {};
             (estadisticas.eventos || []).forEach(e => {
                 if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
-                    const hora = e.fecha.split('T')[1].substring(0, 5);
+                    const hora = new Date(e.fecha).getHours() + ':00';
                     horasPorApertura[hora] = (horasPorApertura[hora] || 0) + 1;
                 }
             });
@@ -1195,4 +1208,440 @@
                 </div>
                 <div class="metric-card warning">
                     <div class="metric-label">⏰ Hora Pico</div>
-                    <div class="metric-value">${maxHora ? maxHora[0]
+                    <div class="metric-value">${maxHora ? maxHora[0] : '-'}</div>
+                    <div class="metric-detail">${maxHora ? maxHora[1] + ' cambios' : 'Sin datos'}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">📊 Promedio Cupos</div>
+                    <div class="metric-value">${promedioCupos}</div>
+                    <div class="metric-detail">por especialidad</div>
+                </div>
+                <div class="metric-card danger">
+                    <div class="metric-label">⬇️ Menos Disponible</div>
+                    <div class="metric-value">${menosDisponible ? menosDisponible[0].substring(0, 20) : '-'}</div>
+                    <div class="metric-detail">${menosDisponible ? menosDisponible[1] + ' cupos' : 'Sin datos'}</div>
+                </div>
+            `;
+        }
+
+        function renderAperturasPorHora() {
+            const horasPorApertura = {};
+            for (let i = 0; i < 24; i++) {
+                horasPorApertura[i.toString().padStart(2, '0') + ':00'] = 0;
+            }
+
+            (estadisticas.eventos || []).forEach(e => {
+                if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
+                    const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
+                    horasPorApertura[hora]++;
+                }
+            });
+
+            const ctx = document.getElementById('chartAperturasPorHora');
+            if (ctx) {
+                chartsInstances.aperturasPorHora = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(horasPorApertura),
+                        datasets: [{
+                            label: 'Aperturas de Turnos',
+                            data: Object.values(horasPorApertura),
+                            backgroundColor: '#0369a1',
+                            borderColor: '#025a8e',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderUltimas24Horas() {
+            const ahora = new Date();
+            const hace24 = new Date(ahora.getTime() - 24 * 60 * 60 * 1000);
+
+            const cambiosPorHora = {};
+            for (let i = 23; i >= 0; i--) {
+                const fecha = new Date(ahora.getTime() - i * 60 * 60 * 1000);
+                cambiosPorHora[fecha.getHours().toString().padStart(2, '0') + ':00'] = 0;
+            }
+
+            (estadisticas.eventos || []).forEach(e => {
+                const fechaEvento = new Date(e.fecha);
+                if (fechaEvento > hace24) {
+                    const hora = fechaEvento.getHours().toString().padStart(2, '0') + ':00';
+                    cambiosPorHora[hora]++;
+                }
+            });
+
+            const ctx = document.getElementById('chartUltimas24');
+            if (ctx) {
+                chartsInstances.ultimas24 = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Object.keys(cambiosPorHora),
+                        datasets: [{
+                            label: 'Cambios Detectados',
+                            data: Object.values(cambiosPorHora),
+                            borderColor: '#16a34a',
+                            backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                            tension: 0.3,
+                            fill: true,
+                            pointRadius: 3,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#16a34a'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderTopAperturas() {
+            const aperturas = {};
+            (estadisticas.eventos || []).forEach(e => {
+                if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
+                    aperturas[e.especialidad] = (aperturas[e.especialidad] || 0) + 1;
+                }
+            });
+
+            const top = Object.entries(aperturas)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            const ctx = document.getElementById('chartTopAperturas');
+            if (ctx && top.length > 0) {
+                chartsInstances.topAperturas = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: top.map(item => item[0].substring(0, 30)),
+                        datasets: [{
+                            label: 'Total de Aperturas',
+                            data: top.map(item => item[1]),
+                            backgroundColor: '#0369a1'
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderTopAgotadas() {
+            const agotadas = {};
+            (estadisticas.eventos || []).forEach(e => {
+                if (e.tipo === 'agotados') {
+                    agotadas[e.especialidad] = (agotadas[e.especialidad] || 0) + 1;
+                }
+            });
+
+            const top = Object.entries(agotadas)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            const ctx = document.getElementById('chartTopAgotadas');
+            if (ctx && top.length > 0) {
+                chartsInstances.topAgotadas = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: top.map(item => item[0].substring(0, 30)),
+                        datasets: [{
+                            label: 'Veces Agotada',
+                            data: top.map(item => item[1]),
+                            backgroundColor: '#dc2626'
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderEvolucionCupos() {
+            const registros = estadisticas.registros || {};
+            const labels = [];
+            const datos = [];
+
+            Object.entries(registros).forEach(([fecha, eventos]) => {
+                if (Array.isArray(eventos) && eventos.length > 0) {
+                    eventos.forEach((evt, idx) => {
+                        if (idx === eventos.length - 1) { 
+                            labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
+                            datos.push(evt.total_cupos || 0);
+                        }
+                    });
+                }
+            });
+
+            const ctx = document.getElementById('chartEvolucionCupos');
+            if (ctx && datos.length > 0) {
+                chartsInstances.evolucionCupos = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total de Cupos',
+                            data: datos,
+                            borderColor: '#0369a1',
+                            backgroundColor: 'rgba(3, 105, 161, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: '#0369a1'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderActividadEspecialidades() {
+            const eventos = estadisticas.eventos || [];
+            const actividad = {};
+
+            eventos.forEach(e => {
+                const esp = e.especialidad;
+                if (!actividad[esp]) {
+                    actividad[esp] = 0;
+                }
+                actividad[esp]++;
+            });
+
+            const top = Object.entries(actividad)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            const ctx = document.getElementById('chartActividadEspecialidades');
+            if (ctx && top.length > 0) {
+                chartsInstances.actividadEspecialidades = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: top.map(item => item[0].substring(0, 25)),
+                        datasets: [{
+                            label: 'Total de Eventos',
+                            data: top.map(item => item[1]),
+                            backgroundColor: '#16a34a'
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderAperturasVsCierres() {
+            const horas = {};
+            for (let i = 0; i < 24; i++) {
+                const h = i.toString().padStart(2, '0') + ':00';
+                horas[h] = { aperturas: 0, cierres: 0 };
+            }
+
+            (estadisticas.eventos || []).forEach(e => {
+                const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
+                if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
+                    horas[hora].aperturas++;
+                } else if (e.tipo === 'agotados') {
+                    horas[hora].cierres++;
+                }
+            });
+
+            const ctx = document.getElementById('chartAperturasVsCierres');
+            if (ctx) {
+                chartsInstances.aperturasVsCierres = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Object.keys(horas),
+                        datasets: [
+                            {
+                                label: 'Aperturas',
+                                data: Object.values(horas).map(h => h.aperturas),
+                                borderColor: '#16a34a',
+                                backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                                tension: 0.3,
+                                fill: false,
+                                pointRadius: 3,
+                                pointBackgroundColor: '#16a34a'
+                            },
+                            {
+                                label: 'Cierres',
+                                data: Object.values(horas).map(h => h.cierres),
+                                borderColor: '#dc2626',
+                                backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                                tension: 0.3,
+                                fill: false,
+                                pointRadius: 3,
+                                pointBackgroundColor: '#dc2626'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderActividadPorHora() {
+            const horas = {};
+            for (let i = 0; i < 24; i++) {
+                horas[i.toString().padStart(2, '0') + ':00'] = 0;
+            }
+
+            (estadisticas.eventos || []).forEach(e => {
+                const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
+                horas[hora]++;
+            });
+
+            const ctx = document.getElementById('chartActividadPorHora');
+            if (ctx) {
+                chartsInstances.actividadPorHora = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(horas),
+                        datasets: [{
+                            label: 'Eventos Detectados',
+                            data: Object.values(horas),
+                            backgroundColor: '#eab308',
+                            borderColor: '#ca8a04',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderDisponibilidad() {
+            const registros = estadisticas.registros || {};
+            const labels = [];
+            const datos = [];
+
+            Object.entries(registros).forEach(([fecha, eventos]) => {
+                if (Array.isArray(eventos) && eventos.length > 0) {
+                    eventos.forEach((evt, idx) => {
+                        if (idx === eventos.length - 1) {
+                            labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
+                            datos.push(evt.con_cupos || 0);
+                        }
+                    });
+                }
+            });
+
+            const ctx = document.getElementById('chartDisponibilidad');
+            if (ctx && datos.length > 0) {
+                chartsInstances.disponibilidad = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Especialidades con Cupos',
+                            data: datos,
+                            borderColor: '#8b5cf6',
+                            backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: '#8b5cf6'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true, position: 'top' },
+                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        }
+
+        cargarDatos();
+        setInterval(cargarDatos, 5 * 60 * 1000);
+        setInterval(actualizarCountdown, 60000);
+    </script>
+</body>
+</html>
