@@ -92,7 +92,7 @@ try:
     print("🔀 Sincronizando cambios remotos...")
     run_cmd(['git', 'pull', 'origin', 'main', '--rebase'], ignore_error=True)
     
-        # ============================================================
+    # ============================================================
     # PASO 8: Git push
     # ============================================================
     print("📤 Haciendo push a GitHub...")
@@ -104,7 +104,7 @@ try:
         print("⚠️  Push falló, pero monitor ejecutó correctamente\n")
 
     # ============================================================
-    # NUEVO PASO: Forzar la ejecución manual en GitHub Actions
+    # NUEVO PASO: Forzar la ejecución manual en GitHub Actions (Telegram)
     # ============================================================
     import urllib.request
     import json
@@ -113,7 +113,7 @@ try:
     if token:
         print("🚀 Despertando a GitHub Actions para enviar la notificación de Telegram...")
         
-        # ⚠️ REVISÁ ACÁ: Si tu archivo .yml en GitHub no se llama 'monitor.yml', poné el nombre real acá abajo (ej: turnos.yml)
+        # Como tu archivo se llama exactamente monitor.yml, esta URL ya está perfecta:
         url = "https://api.github.com/repos/santopayuno/monitor-turnos-hospital/actions/workflows/monitor.yml/dispatches"
         
         headers = {
@@ -123,20 +123,20 @@ try:
             "User-Agent": "Railway-Trigger-Script"
         }
         
-        # Le indicamos a GitHub que ejecute el flujo usando la rama main
+        # Le indicamos a GitHub que ejecute el flujo usando la rama principal (main)
         data = json.dumps({"ref": "main"}).encode('utf-8')
         
         try:
             req = urllib.request.Request(url, data=data, headers=headers, method='POST')
             with urllib.request.urlopen(req) as response:
                 if response.status == 204:
-                    print("✅ ¡GitHub Actions despertado con éxito! Se debería ejecutar el monitor en unos segundos.")
+                    print("✅ ¡GitHub Actions despertado con éxito! Se ejecutará el monitor manual en breve.")
                 else:
-                    print(f"⚠️ GitHub respondió con código: {response.status}")
+                    print(f"⚠️ GitHub respondió con código de estado: {response.status}")
         except Exception as api_err:
             print(f"❌ Error al conectar con la API de GitHub: {api_err}")
     else:
-        print("⚠️ No se encontró GITHUB_TOKEN en Railway. No se pudo disparar el flujo de GitHub.")
+        print("⚠️ No se encontró la variable GITHUB_TOKEN en Railway. Asegúrate de añadirla en las Variables de Entorno del servicio.")
 
     # ============================================================
     # PASO 9: Log final
