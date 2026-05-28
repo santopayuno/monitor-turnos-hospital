@@ -174,3 +174,7 @@
 2026-05-28 21:15:09,054 [INFO] Consultando API del Hospital Perrupato...
 2026-05-28 21:15:09,184 [ERROR] Fallo al conectar con la API: HTTPSConnectionPool(host='mendoza.bahiayasociados.com', port=443): Max retries exceeded with url: /turnos/hospital-perrupato/especialidades (Caused by NameResolutionError("HTTPSConnection(host='mendoza.bahiayasociados.com', port=443): Failed to resolve 'mendoza.bahiayasociados.com' ([Errno -2] Name or service not known)"))
 2026-05-28 21:15:09,184 [ERROR] No se pudieron recopilar datos legibles de la API externa.
+2026-05-28 21:30:35,690 [INFO] === INICIANDO INSTANCIA DE MONITOREO ===
+2026-05-28 21:30:35,691 [INFO] Consultando API del Hospital Perrupato...
+2026-05-28 21:30:35,852 [ERROR] Fallo al conectar con la API: HTTPSConnectionPool(host='mendoza.bahiayasociados.com', port=443): Max retries exceeded with url: /turnos/hospital-perrupato/especialidades (Caused by NameResolutionError("HTTPSConnection(host='mendoza.bahiayasociados.com', port=443): Failed to resolve 'mendoza.bahiayasociados.com' ([Errno -2] Name or service not known)"))
+2026-05-28 21:30:35,852 [ERROR] No se pudieron recopilar datos legibles de la API externa.
