@@ -1,35 +1,41 @@
-name: Actualización de Dashboard Web
+name: Despliegue del Dashboard Web
 
 on:
-  # Permitimos que Railway despierte este flujo de forma manual y dirigida
-  workflow_dispatch:
+  workflow_dispatch: # Permite que Railway despierte este proceso a la distancia
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+      - 'estado_turnos.json'
+      - 'estadisticas_db.json'
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  deploy-pantalla:
     environment:
       name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del repositorio
+      - name: Checkout del Repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar entorno de GitHub Pages
+      - name: Configurar Entorno de GitHub Pages
         uses: actions/configure-pages@v4
 
-      - name: Subir artefacto web estático
+      - name: Subir Contenido Estático
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '.' # Sube la raíz del proyecto (index.html y los JSON)
 
       - name: Desplegar en GitHub Pages
         id: deployment
