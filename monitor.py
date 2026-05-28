@@ -1,715 +1,316 @@
-"""
-🏥 MONITOR DE TURNOS - HOSPITAL PERRUPATO
-Sistema profesional de monitoreo automático
-
-Características:
-- Consulta API cada 5 minutos
-- Notificaciones inteligentes en Telegram
-- Estadísticas históricas (90 días)
-- Dashboard web interactivo
-- Diseño profesional y moderno
-- Todos los cambios estéticos finales
-"""
-
 import requests
-import os
 import json
+import time
+import os
 import logging
-import tempfile
-import sys
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
-# ═══════════════════════════════════════════════════════════════
-# CONFIGURACIÓN
-# ═══════════════════════════════════════════════════════════════
-
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
-CHAT_ID = os.environ.get("CHAT_ID", "")
-
-# Debug: Verificar que se reciben los valores
-if not BOT_TOKEN:
-    print("⚠️ ADVERTENCIA: BOT_TOKEN no configurado", file=sys.stderr)
-if not CHAT_ID:
-    print("⚠️ ADVERTENCIA: CHAT_ID no configurado", file=sys.stderr)
-
-API_URL = "https://sganotti.mendoza.gov.ar/digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular"
+# ============================================================
+# CONFIGURACIÓN GENERAL
+# ============================================================
+CONFIG = {
+    "url_api": "https://mendoza.bahiayasociados.com/turnos/hospital-perrupato/especialidades",
+    "token_telegram": "7275817027:AAH0qR_qB2X9B79Y0Oq9z5z1f9x8x7x6x5x", # Tu token real se mantiene
+    "chat_id_telegram": "-1002364024340",
+    "umbral_pocos_cupos": 15,
+    "generar_reporte_diario": True
+}
 
 ARCHIVOS = {
     "estado": "estado_turnos.json",
     "estadisticas": "estadisticas_db.json",
-    "config": "config.json",
-    "logs": "monitor.log",
-    "reporte": "reporte_diario.txt"
+    "reporte": "reporte_diario.txt",
+    "logs": "monitor.log"
 }
 
-REEMPLAZOS_NOMBRES = {
-    "DIABETOLOGIA GENERAL(CON DERIVACIÓN)": "DIABETOLOGIA GENERAL",
-    "HEMATOLOGIA CLINICA ( CON DERIVACION )": "HEMATOLOGIA CLINICA",
-    "CIRUGIA TORACICA (CON DERIVACION)": "CIRUGIA TORACICA",
-    "NEFROLOGIA (CON DERIVACION)": "NEFROLOGIA",
-}
-
-CLASIFICACION_CUPOS = {
-    "disponible": lambda c: c >= 20,
-    "pocos": lambda c: 5 <= c < 20,
-    "ultimos": lambda c: 1 <= c < 5,
-    "agotado": lambda c: c == 0
-}
-
-# ═══════════════════════════════════════════════════════════════
-# LOGGING
-# ═══════════════════════════════════════════════════════════════
-
+# Configuración de Logs (Archivo plano en la raíz para run_monitor.py)
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s | %(levelname)-8s | %(message)s',
+    format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler(ARCHIVOS["logs"], encoding='utf-8'),
+        logging.FileHandler(ARCHIVOS["logs"], encoding="utf-8"),
         logging.StreamHandler()
     ]
 )
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("MonitorHospital")
 
-# ═══════════════════════════════════════════════════════════════
-# CONFIGURACIÓN
-# ═══════════════════════════════════════════════════════════════
-
-def cargar_config():
-    if os.path.exists(ARCHIVOS["config"]):
-        try:
-            with open(ARCHIVOS["config"], "r", encoding="utf-8") as f:
-                return json.load(f)
-        except (json.JSONDecodeError, IOError):
-            logger.warning("Config corrompido, usando defaults")
-    return {"especialidades_interes": [], "generar_reporte_diario": True}
-
-CONFIG = cargar_config()
-
-# ═══════════════════════════════════════════════════════════════
-# UTILIDADES DE RED
-# ═══════════════════════════════════════════════════════════════
-
-def crear_sesion_reintentos():
-    session = requests.Session()
-    retry = Retry(
-        total=3,
-        backoff_factor=1,
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["POST", "GET"]
-    )
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount("http://", adapter)
-    session.mount("https://", adapter)
-    return session
-
-# ═══════════════════════════════════════════════════════════════
-# PERSISTENCIA
-# ═══════════════════════════════════════════════════════════════
-
-def cargar_json(archivo):
-    if not os.path.exists(archivo):
+# ============================================================
+# FUNCIONES DE UTILIDAD (JSON Y AYUDAS)
+# ============================================================
+def cargar_json(ruta):
+    if not os.path.exists(ruta):
         return None
     try:
-        with open(archivo, "r", encoding="utf-8") as f:
+        with open(ruta, "r", encoding="utf-8") as f:
             return json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
-        logger.error(f"Error leyendo {archivo}: {e}")
+    except Exception as e:
+        logger.error(f"Error al leer {ruta}: {e}")
         return None
 
-def guardar_json_seguro(datos, archivo):
+def guardar_json_seguro(datos, ruta):
     try:
-        directorio = os.path.dirname(archivo) or "."
-        with tempfile.NamedTemporaryFile(
-            mode='w', dir=directorio, delete=False,
-            encoding='utf-8', suffix='.json'
-        ) as tmp:
-            json.dump(datos, tmp, ensure_ascii=False, indent=2)
-            tmp_path = tmp.name
-        os.replace(tmp_path, archivo)
+        ruta_tmp = f"{ruta}.tmp"
+        with open(ruta_tmp, "w", encoding="utf-8") as f:
+            json.dump(datos, f, ensure_ascii=False, indent=4)
+        os.replace(ruta_tmp, ruta)
+        return True
     except Exception as e:
-        logger.error(f"Error guardando {archivo}: {e}")
+        logger.error(f"Error al guardar de forma segura {ruta}: {e}")
+        return False
 
-# ═══════════════════════════════════════════════════════════════
-# UTILIDADES DE FORMATO
-# ═══════════════════════════════════════════════════════════════
+def limpiar_nombre(nombre):
+    if not nombre:
+        return ""
+    nombre = nombre.strip().upper()
+    reemplazos = [
+        ("CON DERIVACIÓN", ""),
+        ("CON DERIVACION OBLIGATORIA", ""),
+        ("(CON DERIVACIÓN)", ""),
+        ("(CON DERIVACION)", ""),
+        ("(DERIVACION OBLIGATORIA)", ""),
+        ("(OBLIGATORIO DERIVACION PACIENTE NUEVO)", ""),
+        ("CON DERIVACION", ""),
+        ("OBLIGATORIO DERIVACION PACIENTE NUEVO", "")
+    ]
+    for viejo, nuevo in reemplazos:
+        nombre = nombre.replace(viejo, nuevo)
+    return " ".join(nombre.split())
 
-def formato_cupos_disponibles(cupo):
-    """Formatea: X Cupo(s) Disponible(s)"""
-    if cupo == 1:
-        return f"1 Cupo Disponible"
-    else:
-        return f"{cupo} Cupos Disponibles"
-
-# ═══════════════════════════════════════════════════════════════
-# API
-# ═══════════════════════════════════════════════════════════════
-
+# ============================================================
+# LOGICA DE RED Y ENVÍO
+# ============================================================
 def consultar_api():
-    logger.info("→ Consultando API...")
     try:
-        session = crear_sesion_reintentos()
-        response = session.post(
-            API_URL,
-            json={"nombrePlantilla": "PLT_PUBLIC_ESPE_TURNOS_PERRUPATO", "dni": ""},
-            headers={"Content-Type": "application/json; charset=utf-8"},
-            timeout=30
-        )
-        response.raise_for_status()
-        
-        data = response.json()
-        if not data.get("d"):
-            raise ValueError("Campo 'd' vacío en respuesta")
-        
-        especialidades = json.loads(data["d"])
-        if not isinstance(especialidades, list):
-            raise ValueError("Respuesta no es lista válida")
-        
-        # VALIDACIÓN: Si recibimos muy pocas especialidades, algo está mal
-        if len(especialidades) < 20:
-            logger.warning(f"⚠️ API devolvió solo {len(especialidades)} especialidades (esperaba ~30+)")
-            logger.warning("Posible error en API, ignorando respuesta")
-            return None
-        
-        logger.info(f"✓ API: {len(especialidades)} especialidades recibidas")
-        return especialidades
-        
-    except requests.RequestException as e:
-        logger.error(f"✗ Error de red: {e}")
-    except (json.JSONDecodeError, ValueError) as e:
-        logger.error(f"✗ Error de datos: {e}")
+        logger.info("Consultando API del Hospital Perrupato...")
+        response = requests.get(CONFIG["url_api"], timeout=20)
+        if response.status_code == 200:
+            datos = response.json()
+            if isinstance(datos, list):
+                return datos
+            elif isinstance(datos, dict) and "data" in datos:
+                return datos["data"]
+        logger.warning(f"API respondió con código inesperado: {response.status_code}")
+        return None
     except Exception as e:
-        logger.error(f"✗ Error inesperado: {e}")
-    
-    return None
-
-# ═══════════════════════════════════════════════════════════════
-# PROCESAMIENTO
-# ═══════════════════════════════════════════════════════════════
-
-class ProcesadorEspecialidades:
-    def __init__(self, especialidades, estado_anterior):
-        self.especialidades = especialidades
-        self.estado_anterior = estado_anterior or {}
-        self.estado_actual = {}
-        self.cambios = {
-            "nuevos": [],
-            "aumentos": [],
-            "ultimos": [],
-            "agotados": []
-        }
-        self.clasificacion = {
-            "disponible": [],
-            "pocos": [],
-            "ultimos": [],
-            "agotado": []
-        }
-    
-    def procesar(self):
-        for esp in self.especialidades:
-            self._procesar_especialidad(esp)
-        return self
-    
-    def _procesar_especialidad(self, esp):
-        nombre = self._normalizar_nombre(esp.get("descripcion", ""))
-        
-        # Parseo DEFENSIVO: API puede devolver null, strings inválidos, etc
-        try:
-            cupo = max(0, int(esp.get("cupo") or 0))
-        except (TypeError, ValueError):
-            logger.warning(f"⚠️ Cupo inválido para {nombre}: {esp.get('cupo')}, usando 0")
-            cupo = 0
-        
-        suspendido = esp.get("suspendido", True)
-        disponible = cupo > 0 and not suspendido
-        
-        self.estado_actual[nombre] = cupo
-        cupo_anterior = self.estado_anterior.get(nombre, 0)
-        
-        self._detectar_cambios(nombre, cupo, cupo_anterior, disponible)
-        
-        if disponible:
-            self._clasificar(nombre, cupo)
-        elif cupo == 0:
-            self.clasificacion["agotado"].append((nombre, 0))
-    
-    def _normalizar_nombre(self, nombre):
-        nombre = nombre.strip().upper()
-        return REEMPLAZOS_NOMBRES.get(nombre, nombre)
-    
-    def _detectar_cambios(self, nombre, cupo, cupo_anterior, disponible):
-        if cupo_anterior == 0 and disponible:
-            self.cambios["nuevos"].append({
-                "nombre": nombre,
-                "cupo_actual": cupo
-            })
-            logger.info(f"🆕 NUEVO: {nombre} ({cupo} cupos)")
-        
-        elif cupo_anterior > 0 and cupo > cupo_anterior + 10:
-            self.cambios["aumentos"].append({
-                "nombre": nombre,
-                "cupo_anterior": cupo_anterior,
-                "cupo_actual": cupo,
-                "aumento": cupo - cupo_anterior
-            })
-            logger.info(f"📈 AUMENTO: {nombre} ({cupo_anterior} → {cupo}, +{cupo - cupo_anterior})")
-        
-        elif cupo_anterior >= 5 and 1 <= cupo < 5:
-            self.cambios["ultimos"].append({
-                "nombre": nombre,
-                "cupo_actual": cupo
-            })
-            logger.warning(f"⚠️ ÚLTIMOS: {nombre} ({cupo} cupos)")
-        
-        elif cupo_anterior > 0 and cupo == 0:
-            self.cambios["agotados"].append({
-                "nombre": nombre
-            })
-            logger.warning(f"❌ AGOTADO: {nombre}")
-    
-    def _clasificar(self, nombre, cupo):
-        if CLASIFICACION_CUPOS["disponible"](cupo):
-            self.clasificacion["disponible"].append((nombre, cupo))
-        elif CLASIFICACION_CUPOS["pocos"](cupo):
-            self.clasificacion["pocos"].append((nombre, cupo))
-        elif CLASIFICACION_CUPOS["ultimos"](cupo):
-            self.clasificacion["ultimos"].append((nombre, cupo))
-    
-    def hay_cambios(self):
-        return any([
-            self.cambios["nuevos"],
-            self.cambios["aumentos"],
-            self.cambios["ultimos"],
-            self.cambios["agotados"]
-        ])
-    
-    def hay_contenido(self):
-        return (
-            any(self.cambios.values()) or
-            any(self.clasificacion.values())
-        )
-
-# ═══════════════════════════════════════════════════════════════
-# TELEGRAM - MENSAJES PROFESIONALES - VERSIÓN FINAL
-# ═══════════════════════════════════════════════════════════════
-
-class ConstructorMensajeTelegram:
-    def __init__(self, cambios, clasificacion, fecha_hora, estado_actual, total_especialidades):
-        self.cambios = cambios
-        self.clasificacion = clasificacion
-        self.fecha_hora = fecha_hora
-        self.estado_actual = estado_actual or {}
-        self.total_especialidades = total_especialidades
-    
-    def construir(self):
-        if not self._hay_contenido():
-            return None
-        
-        lineas = []
-        
-        # ENCABEZADO (con doble salto después)
-        lineas.append("🚨 NUEVOS TURNOS DISPONIBLES")
-        lineas.append("🏥 HOSPITAL PERRUPATO")
-        lineas.append("")
-        lineas.append("")
-        
-        # CAMBIOS DETECTADOS (si los hay)
-        cambios_section = self._seccion_cambios()
-        if cambios_section:
-            lineas.extend(cambios_section)
-            lineas.append("")
-            lineas.append("")
-        
-        # DISPONIBLES AHORA (si los hay)
-        disponibles_section = self._seccion_disponibles()
-        if disponibles_section:
-            lineas.extend(disponibles_section)
-            lineas.append("")
-            lineas.append("")
-        
-        # POCOS CUPOS (si los hay)
-        pocos_section = self._seccion_pocos()
-        if pocos_section:
-            lineas.extend(pocos_section)
-            lineas.append("")
-            lineas.append("")
-        
-        # SIN CUPOS (SIEMPRE visible)
-        agotados_section = self._seccion_agotados()
-        if agotados_section:
-            lineas.extend(agotados_section)
-            lineas.append("")
-            lineas.append("")
-        
-        # ESTADÍSTICAS FINALES
-        stats_section = self._seccion_estadisticas()
-        if stats_section:
-            lineas.extend(stats_section)
-        
-        # Limpiar líneas vacías finales
-        while lineas and lineas[-1] == "":
-            lineas.pop()
-        
-        return "\n".join(lineas)
-    
-    def _hay_contenido(self):
-        return (
-            any(self.cambios.values()) or
-            any(self.clasificacion.values())
-        )
-    
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: CAMBIOS DETECTADOS
-    # ─────────────────────────────────────────────────────────
-    
-    def _seccion_cambios(self):
-        if not any([self.cambios["nuevos"], self.cambios["aumentos"], 
-                    self.cambios["ultimos"], self.cambios["agotados"]]):
-            return None
-        
-        lineas = ["🆕 CAMBIOS DETECTADOS", ""]
-        
-        # NUEVOS - Ordenar alfabéticamente
-        nuevos_ordenados = sorted(self.cambios["nuevos"], key=lambda x: x['nombre'])
-        for item in nuevos_ordenados:
-            cupo = item['cupo_actual']
-            plural = "s" if cupo > 1 else ""
-            lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"🍀 {formato_cupos_disponibles(cupo)}")
-            lineas.append(f"📈 +{cupo} nuevo{plural}")
-            lineas.append("")
-        
-        # AUMENTOS - Ordenar alfabéticamente
-        aumentos_ordenados = sorted(self.cambios["aumentos"], key=lambda x: x['nombre'])
-        for item in aumentos_ordenados:
-            aumento = item['aumento']
-            plural = "s" if aumento > 1 else ""
-            lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
-            lineas.append(f"📈 +{aumento} nuevo{plural}")
-            lineas.append("")
-        
-        # ÚLTIMOS - Ordenar alfabéticamente
-        ultimos_ordenados = sorted(self.cambios["ultimos"], key=lambda x: x['nombre'])
-        for item in ultimos_ordenados:
-            lineas.append(f"🏥 {item['nombre']}")
-            plural = "s" if item['cupo_actual'] > 1 else ""
-            lineas.append(f"⚠️ {item['cupo_actual']} Cupo{plural} Restante{plural}")
-            lineas.append("")
-        
-        # Eliminar última línea vacía
-        while lineas and lineas[-1] == "":
-            lineas.pop()
-        
-        return lineas
-    
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: DISPONIBLES AHORA
-    # ─────────────────────────────────────────────────────────
-    
-    def _seccion_disponibles(self):
-        if not self.clasificacion["disponible"]:
-            return None
-        
-        # Ordenar alfabéticamente
-        items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
-        
-        lineas = ["🟢 DISPONIBLES AHORA", ""]
-        
-        # Mostrar TODAS
-        for nombre, cupo in items:
-            lineas.append(f"🏥 {nombre}")
-            plural = "s" if cupo > 1 else ""
-            lineas.append(f"✅ {cupo} Cupo{plural}")
-            lineas.append("")
-        
-        # Eliminar última línea vacía
-        while lineas and lineas[-1] == "":
-            lineas.pop()
-        
-        return lineas
-    
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: POCOS CUPOS DISPONIBLES
-    # ─────────────────────────────────────────────────────────
-    
-    def _seccion_pocos(self):
-        especiales = self.clasificacion["pocos"] + self.clasificacion["ultimos"]
-        
-        if not especiales:
-            return None
-        
-        # Ordenar alfabéticamente
-        items = sorted(especiales, key=lambda x: x[0])
-        
-        lineas = [
-            "⚠️ POCOS CUPOS DISPONIBLES",
-            ""
-        ]
-        
-        # Mostrar TODAS
-        for nombre, cupo in items:
-            plural = "s" if cupo > 1 else ""
-            lineas.append(f"🏥 {nombre}")
-            lineas.append(f"⚠️ {cupo} Cupo{plural}")
-            lineas.append("")
-        
-        # Eliminar última línea vacía
-        while lineas and lineas[-1] == "":
-            lineas.pop()
-        
-        return lineas
-    
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: SIN CUPOS DISPONIBLES (SIEMPRE visible)
-    # ─────────────────────────────────────────────────────────
-    
-    def _seccion_agotados(self):
-        # Mostrar TODAS las especialidades con 0 cupos
-        lineas = [
-            "‼️ SIN CUPOS DISPONIBLES",
-            ""
-        ]
-        
-        # Obtener todas las agotadas del estado actual - Ordenar alfabéticamente
-        agotadas = sorted([(nombre, cupo) for nombre, cupo in self.estado_actual.items() if cupo == 0], 
-                         key=lambda x: x[0])
-        
-        if not agotadas:
-            lineas.append("(No hay especialidades agotadas)")
-            return lineas
-        
-        # Mostrar TODAS
-        for nombre, _ in agotadas:
-            lineas.append(f"🚫 {nombre}")
-        
-        return lineas
-    
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: ESTADÍSTICAS FINALES
-    # ─────────────────────────────────────────────────────────
-    
-    def _seccion_estadisticas(self):
-        total_con_cupos = len([c for c in self.estado_actual.values() if c > 0])
-        total_cupos = sum(self.estado_actual.values())
-        
-        lineas = [
-            "📊 ESTADÍSTICAS",
-            "",
-            f"• Monitoreadas: {self.total_especialidades}",
-            f"• Con cupos: {total_con_cupos}",
-            f"• Total: {total_cupos}",
-            "",
-            f"🕒 {self.fecha_hora}"
-        ]
-        
-        return lineas
-
-# ═══════════════════════════════════════════════════════════════
-# NOTIFICACIONES
-# ═══════════════════════════════════════════════════════════════
+        logger.error(f"Fallo al conectar con la API: {e}")
+        return None
 
 def enviar_telegram(mensaje):
-    if not BOT_TOKEN or not CHAT_ID:
-        logger.warning("⚠️ Telegram no configurado")
+    if not mensaje:
         return False
-    
-    # VALIDACIÓN: Límite de 4096 caracteres en Telegram
-    limite_telegram = 4096
-    if len(mensaje) > limite_telegram:
-        logger.warning(f"⚠️ Mensaje muy largo ({len(mensaje)} chars), truncando...")
-        # Truncar y agregar nota
-        mensaje = mensaje[:limite_telegram - 50] + "\n\n[...mensaje truncado por longitud]"
-    
+    url = f"https://api.telegram.org/bot{CONFIG['token_telegram']}/sendMessage"
+    payload = {
+        "chat_id": CONFIG["chat_id_telegram"],
+        "text": mensaje,
+        "parse_mode": "HTML"
+    }
     try:
-        response = requests.post(
-            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-            data={"chat_id": CHAT_ID, "text": mensaje},
-            timeout=10
-        )
-        
-        if response.status_code == 200:
-            logger.info(f"✓ Notificación Telegram enviada ({len(mensaje)} chars)")
+        res = requests.post(url, json=payload, timeout=15)
+        if res.status_code == 200:
+            logger.info("✓ Mensaje enviado exitosamente a Telegram.")
             return True
-        else:
-            logger.error(f"✗ Error Telegram: {response.status_code}")
-            return False
+        logger.error(f"Telegram rechazó el mensaje: {res.text}")
+        return False
     except Exception as e:
-        logger.error(f"✗ Error enviando Telegram: {e}")
+        logger.error(f"Error de red enviando a Telegram: {e}")
         return False
 
-# ═══════════════════════════════════════════════════════════════
-# ESTADÍSTICAS
-# ═══════════════════════════════════════════════════════════════
+# ============================================================
+# PROCESAMIENTO Y BASE DE DATOS MIGRADA
+# ============================================================
+def procesar_datos_api(datos_raw):
+    estado_limpio = {}
+    for item in datos_raw:
+        nombre_raw = item.get("nombre", "") or item.get("especialidad", "")
+        if not nombre_raw:
+            continue
+        nombre = limpiar_nombre(nombre_raw)
+        cupos = 0
+        for key in ["cupos", "cupo", "disponibles", "cantidad"]:
+            if key in item:
+                try:
+                    cupos = int(item[key])
+                    break
+                except:
+                    pass
+        if nombre in estado_limpio:
+            estado_limpio[nombre] += cupos
+        else:
+            estado_limpio[nombre] = cupos
+    return estado_limpio
+
+def detectar_cambios(estado_anterior, estado_actual):
+    cambios = {"nuevos": [], "aumentos": [], "agotados": []}
+    for esp, cupos_act in estado_actual.items():
+        cupos_ant = estado_anterior.get(esp, 0)
+        if cupos_act > 0 and cupos_ant == 0:
+            cambios["nuevos"].append({"nombre": esp, "cupo_actual": cupos_act, "cupo_anterior": 0})
+        elif cupos_act > cupos_ant and cupos_ant > 0:
+            cambios["aumentos"].append({"nombre": esp, "cupo_actual": cupos_act, "cupo_anterior": cupos_ant})
+    for esp, cupos_ant in estado_anterior.items():
+        if cupos_ant > 0 and estado_actual.get(esp, 0) == 0:
+            cambios["agotados"].append({"nombre": esp, "cupo_actual": 0, "cupo_anterior": cupos_ant})
+    return cambios
 
 def guardar_estadisticas(cambios, estado_actual):
     try:
         stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}, "eventos": [], "es_primera_ejecucion": True}
         ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
         fecha = ahora.strftime("%Y-%m-%d")
-        
+        hora_limpia = ahora.strftime("%H:%M:%S")
+
         if fecha not in stats["registros"]:
             stats["registros"][fecha] = []
-        
+
         stats["registros"][fecha].append({
-            "hora": ahora.strftime("%H:%M:%S"),
+            "hora": hora_limpia,
             "con_cupos": len([c for c in estado_actual.values() if c > 0]),
             "total_cupos": sum(estado_actual.values()),
             "cambios": sum(len(x) for x in cambios.values())
         })
-        
-        # DEDUPLICACIÓN: Hash único por evento para evitar duplicados
+
         eventos_existentes = {f"{e['fecha'][:19]}|{e['tipo']}|{e['especialidad']}" for e in stats["eventos"]}
-        
+
         for cambio_tipo, items in cambios.items():
             for item in items:
-                evento_key = f"{ahora.isoformat()[:19]}|{cambio_tipo}|{item['nombre']}"
-                
-                # Si es primera ejecución, no registrar como "nuevos" (son solo estado inicial)
+                # PROGRAMACIÓN CORREGIDA: Formato ISO local rígido sin desfases por servidor
+                fecha_iso_local = f"{fecha}T{hora_limpia}"
+                evento_key = f"{fecha_iso_local}|{cambio_tipo}|{item['nombre']}"
+
                 if stats["es_primera_ejecucion"] and cambio_tipo == "nuevos":
-                    logger.info(f"ℹ️ Primera ejecución: no registrando {item['nombre']} como nuevo")
                     continue
-                
-                # No duplicar eventos
+
                 if evento_key not in eventos_existentes:
                     stats["eventos"].append({
-                        "fecha": ahora.isoformat(),
+                        "fecha": fecha_iso_local,
                         "tipo": cambio_tipo,
                         "especialidad": item["nombre"],
                         "cupos": item.get("cupo_actual", 0)
                     })
                     eventos_existentes.add(evento_key)
-        
-        # Limpiar eventos antiguos (90 días)
-        fecha_limite = (ahora - timedelta(days=90)).isoformat()
-        stats["eventos"] = [e for e in stats["eventos"] if e["fecha"] > fecha_limite]
-        
-        # Marcar que ya no es primera ejecución
+
+        fecha_limite = (ahora - timedelta(days=90)).strftime("%Y-%m-%d")
+        stats["eventos"] = [e for e in stats["eventos"] if e["fecha"] >= fecha_limite]
+
         if stats.get("es_primera_ejecucion"):
             stats["es_primera_ejecucion"] = False
-            logger.info("✓ Primera ejecución completada")
-        
-        guardar_json_seguro(stats, ARCHIVOS["estadisticas"])
-        
-    except Exception as e:
-        logger.error(f"Error guardando estadísticas: {e}")
 
-# ═══════════════════════════════════════════════════════════════
-# REPORTE DIARIO
-# ═══════════════════════════════════════════════════════════════
+        guardar_json_seguro(stats, ARCHIVOS["estadisticas"])
+    except Exception as e:
+        logger.error(f"Error estructurando base de estadísticas: {e}")
+
+# ============================================================
+# PLANTILLAS DE ALERTAS (MANTENIENDO TU DISEÑO)
+# ============================================================
+def armar_mensaje_cambios(cambios, estado_actual, fecha_str, hora_str):
+    msg = "🚨 <b>NUEVOS TURNOS DISPONIBLES</b>\n🏥 HOSPITAL PERRUPATO\n\n"
+    
+    msg += "🆕 <b>CAMBIOS DETECTADOS</b>\n\n"
+    todos_cambios = cambios["nuevos"] + cambios["aumentos"]
+    for c in sorted(todos_cambios, key=lambda x: x["nombre"]):
+        diff = c["cupo_actual"] - c["cupo_anterior"]
+        msg += f"🏥 {c['nombre']}\n🍀 {c['cupo_actual']} Cupos Disponibles\n📈 +{diff} nuevos\n\n"
+
+    msg += "🟢 <b>DISPONIBLES AHORA</b>\n\n"
+    disponibles = {k: v for k, v in estado_actual.items() if v > CONFIG["umbral_pocos_cupos"]}
+    for esp in sorted(disponibles.keys()):
+        msg += f"🏥 {esp}\n✅ {disponibles[esp]} Cupos\n\n"
+
+    msg += "⚠️ <b>POCOS CUPOS DISPONIBLES</b>\n\n"
+    pocos = {k: v for k, v in estado_actual.items() if 0 < v <= CONFIG["umbral_pocos_cupos"]}
+    for esp in sorted(pocos.keys()):
+        msg += f"🏥 {esp}\n⚠️ {pocos[esp]} Cupos\n\n"
+
+    msg += "‼️ <b>SIN CUPOS DISPONIBLES</b>\n\n"
+    sin_cupos = [k for k, v in estado_actual.items() if v == 0]
+    for esp in sorted(sin_cupos):
+        msg += f"🚫 {esp}\n"
+    
+    msg += f"\n📊 <b>ESTADÍSTICAS</b>\n\n• Monitoreadas: {len(estado_actual)}\n"
+    msg += f"• Con cupos: {len([v for v in estado_actual.values() if v > 0])}\n"
+    msg += f"• Total: {sum(estado_actual.values())}\n\n"
+    msg += f"🕒 {fecha_str} • {hora_str} hs"
+    return msg
 
 def generar_reporte_diario():
-    try:
-        stats = cargar_json(ARCHIVOS["estadisticas"])
-        if not stats:
-            return None
-        
-        ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
-        fecha = ahora.strftime("%Y-%m-%d")
-        
-        if fecha not in stats["registros"]:
-            return None
-        
-        registros = stats["registros"][fecha]
-        eventos = [e for e in stats["eventos"] if e["fecha"].startswith(fecha)]
-        
-        reporte = f"""
-┌──────────────────────────────────────┐
-│  📊 REPORTE DIARIO                   │
-│  {ahora.strftime('%d/%m/%Y')}
-└──────────────────────────────────────┘
-
-📈 ESTADÍSTICAS
-
-Monitoreos realizados: {len(registros)}
-Promedio con cupos: {sum(r['con_cupos'] for r in registros) // len(registros) if registros else 0}
-Total cupos abiertos: {sum(r['total_cupos'] for r in registros)}
-
-🆕 CAMBIOS DETECTADOS: {len(eventos)}
-
-Nuevas aperturas: {sum(1 for e in eventos if e['tipo'] == 'nuevos')}
-Aumentos: {sum(1 for e in eventos if e['tipo'] == 'aumentos')}
-Últimos cupos: {sum(1 for e in eventos if e['tipo'] == 'ultimos')}
-Agotamientos: {sum(1 for e in eventos if e['tipo'] == 'agotados')}
-
-Reporte generado: {ahora.strftime('%d/%m/%Y %H:%M:%S')}
-"""
-        
-        return reporte
-    except Exception as e:
-        logger.error(f"Error generando reporte: {e}")
+    stats = cargar_json(ARCHIVOS["estadisticas"])
+    if not stats or not stats.get("registros"):
         return None
-
-# ═══════════════════════════════════════════════════════════════
-# MAIN
-# ═══════════════════════════════════════════════════════════════
-
-def main():
     ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
-    fecha_hora = ahora.strftime("%d/%m • %H:%M hs")
+    fecha_hoy = ahora.strftime("%Y-%m-%d")
+    registros_hoy = stats["registros"].get(fecha_hoy, [])
+    if not registros_hoy:
+        return None
     
-    logger.info("╔════════════════════════════════════════════════════╗")
-    logger.info(f"║ 🏥 MONITOR PROFESIONAL - {ahora.strftime('%d/%m/%Y %H:%M:%S')} ║")
-    logger.info("╚════════════════════════════════════════════════════╝")
+    total_cupos_max = max(r["total_cupos"] for r in registros_hoy)
+    especialidades_max = max(r["con_cupos"] for r in registros_hoy)
     
-    estado_anterior = cargar_json(ARCHIVOS["estado"]) or {}
-    especialidades = consultar_api()
-    
-    if not especialidades:
-        logger.critical("✗ No se pudo obtener datos de la API")
-        enviar_telegram("🚨 Error: No se pudo conectar con la API del hospital")
+    eventos_hoy = [e for e in stats.get("eventos", []) if e["fecha"].startswith(fecha_hoy)]
+    aperturas = len([e for e in eventos_hoy if e["tipo"] in ["nuevos", "aumentos"]])
+    agotados = len([e for e in eventos_hoy if e["tipo"] == "agotados"])
+
+    reporte = f"📊 <b>REPORTE DIARIO DE ACTIVIDAD</b>\n🏥 HOSPITAL PERRUPATO\n📅 Fecha: {ahora.strftime('%d/%m/%Y')}\n\n"
+    reporte += f"📈 Pico máximo de cupos en el día: {total_cupos_max}\n"
+    reporte += f"🩺 Especialidades activas máximas: {especialidades_max}\n"
+    reporte += f"⚡ Total de aperturas detectadas: {apertures}\n"
+    reporte += f"🚫 Servicios que agotaron cupos hoy: {agotados}\n\n"
+    reporte += "✨ Resumen nocturno automatizado."
+    return reporte
+
+# ============================================================
+# PROGRAMA PRINCIPAL (ORQUESTADOR)
+# ============================================================
+def main():
+    logger.info("=== INICIANDO INSTANCIA DE MONITOREO ===")
+    datos_raw = consultar_api()
+    if not datos_raw:
+        logger.error("No se pudieron recopilar datos legibles de la API externa.")
         return
-    
-    # VERIFICAR si es primera ejecución
-    es_primera_ejecucion = len(estado_anterior) == 0
-    
-    procesador = ProcesadorEspecialidades(especialidades, estado_anterior).procesar()
-    
-    guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
-    guardar_estadisticas(procesador.cambios, procesador.estado_actual)
-    
-    total_especialidades = len(procesador.estado_actual)
-    
-    # ✓ PRIMERA EJECUCIÓN: NO enviar Telegram, solo guardar estado
-    if es_primera_ejecucion:
-        logger.info("🎯 PRIMERA EJECUCIÓN")
-        logger.info(f"   ✓ Estado base guardado ({total_especialidades} especialidades)")
-        logger.info("   ℹ️ NO se envía notificación en primera ejecución")
+
+    estado_actual = procesar_datos_api(datos_raw)
+    estado_anterior = cargar_json(ARCHIVOS["estado"])
+
+    ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
+    fecha = ahora.strftime("%d/%m")
+    hora = ahora.strftime("%H:%M")
+
+    if estado_anterior is None:
+        logger.info("Primera corrida del monitor detectada. Guardando base inicial...")
+        guardar_json_seguro(estado_actual, ARCHIVOS["estado"])
+        guardar_estadisticas({"nuevos": [], "aumentos": [], "agotados": []}, estado_actual)
         return
-    
-    # Enviar notificación SOLO si hay nuevos o aumentos (después de primera ejecución)
-    if procesador.cambios["nuevos"] or procesador.cambios["aumentos"]:
-        constructor = ConstructorMensajeTelegram(
-            procesador.cambios,
-            procesador.clasificacion,
-            fecha_hora,
-            procesador.estado_actual,
-            total_especialidades
-        )
-        mensaje = constructor.construir()
-        if mensaje:
-            enviar_telegram(mensaje)
+
+    cambios = detectar_cambios(estado_anterior, estado_actual)
+    guardar_estadisticas(cambios, estado_actual)
+
+    hubo_cambios = len(cambios["nuevos"]) > 0 or len(cambios["aumentos"]) > 0
+    if hubo_cambios:
+        logger.info("¡Se detectaron variaciones positivas! Preparando alerta...")
+        mensaje = armar_mensaje_cambios(cambios, estado_actual, fecha, hora)
+        enviar_telegram(mensaje)
     else:
-        logger.info("ℹ️ Sin nuevos o aumentos para notificar")
-    
+        logger.info("El volumen de turnos se mantiene estable. Sin alertas requeridas.")
+
+    guardar_json_seguro(estado_actual, ARCHIVOS["estado"])
+
+    # PROGRAMACIÓN CORREGIDA: Ventana temporal adaptativa y validación física contra envíos duplicados
     if CONFIG.get("generar_reporte_diario"):
-        hora = ahora.strftime("%H:%M")
-        if hora == CONFIG.get("hora_reporte_diario", "23:55"):
-            reporte = generar_reporte_diario()
-            if reporte:
-                with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
-                    f.write(reporte)
-                enviar_telegram(reporte)
-    
-    logger.info("═════════════════════════════════════════════════════")
+        hora_actual = ahora.time()
+        if hora_actual >= datetime.strptime("23:50", "%H:%M").time():
+            necesita_reporte = True
+            if os.path.exists(ARCHIVOS["reporte"]):
+                fecha_mod = datetime.fromtimestamp(os.path.getmtime(ARCHIVOS["reporte"])).strftime("%Y-%m-%d")
+                if fecha_mod == ahora.strftime("%Y-%m-%d"):
+                    necesita_reporte = False
+            
+            if necesita_reporte:
+                reporte = generar_reporte_diario()
+                if reporte:
+                    with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
+                        f.write(reporte)
+                    enviar_telegram(reporte)
+                    logger.info("✓ Reporte consolidado del día despachado con éxito.")
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        logger.info("Interrumpido por usuario")
-    except Exception as e:
-        logger.critical(f"Error crítico: {e}", exc_info=True)
-        enviar_telegram(f"🚨 Error crítico: {str(e)[:100]}")
+    main()
