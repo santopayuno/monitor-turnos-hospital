@@ -1,56 +1,27 @@
-# Python
+# Carpetas de Python e instalación (Fundamentales para que Railway no suba basura)
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
 env/
 venv/
-ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Logs
-logs/*.log
-*.log
-
-# Temporal
-*.tmp
-*.temp
-.cache/
-
-# Secrets locales (nunca enviar a GitHub)
+# Configuración local sensible (Para que no se filtren tus tokens por error)
 .env
-.env.local
-secrets.json
+local_settings.py
 
-# Node (si agregas npm en el futuro)
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# OS
+# Archivos temporales del sistema operativo
+.DS_Store
 Thumbs.db
-.AppleDouble
-.LSOverride
+*.swp
+*.bak
+*.tmp
+
+# REGLA EXPLÍCITA: Aseguramos que tus bases de datos JSON y logs SÍ se suban
+!estado_turnos.json
+!estadisticas_db.json
+!monitor.log
