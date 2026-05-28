@@ -114,7 +114,7 @@ try:
         print("🚀 Despertando a GitHub Actions para enviar la notificación de Telegram...")
         
         # ⚠️ REVISÁ ACÁ: Si tu archivo .yml en GitHub no se llama 'monitor.yml', poné el nombre real acá abajo (ej: turnos.yml)
-        url = "https://api.github.com/repos/santapayuno/monitor-turnos-hospital/actions/workflows/monitor.yml/dispatches"
+        url = "https://api.github.com/repos/santopayuno/monitor-turnos-hospital/actions/workflows/monitor.yml/dispatches"
         
         headers = {
             "Authorization": f"Bearer {token}",
