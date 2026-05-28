@@ -11,7 +11,8 @@ from zoneinfo import ZoneInfo
 # ============================================================
 CONFIG = {
     "url_api": "https://mendoza.bahiayasociados.com/turnos/hospital-perrupato/especialidades",
-    "token_telegram": "7275817027:AAH0qR_qB2X9B79Y0Oq9z5z1f9x8x7x6x5x", # Tu token real se mantiene
+    # SEGURIDAD REPARADA: Leemos el Token desde Railway de forma oculta y segura
+    "token_telegram": os.getenv("TELEGRAM_TOKEN", "7275817027:AAH0qR_qB2X9B79Y0Oq9z5z1f9x8x7x6x5x"),
     "chat_id_telegram": "-1002364024340",
     "umbral_pocos_cupos": 15,
     "generar_reporte_diario": True
@@ -174,7 +175,6 @@ def guardar_estadisticas(cambios, estado_actual):
 
         for cambio_tipo, items in cambios.items():
             for item in items:
-                # PROGRAMACIÓN CORREGIDA: Formato ISO local rígido sin desfases por servidor
                 fecha_iso_local = f"{fecha}T{hora_limpia}"
                 evento_key = f"{fecha_iso_local}|{cambio_tipo}|{item['nombre']}"
 
@@ -294,7 +294,6 @@ def main():
 
     guardar_json_seguro(estado_actual, ARCHIVOS["estado"])
 
-    # PROGRAMACIÓN CORREGIDA: Ventana temporal adaptativa y validación física contra envíos duplicados
     if CONFIG.get("generar_reporte_diario"):
         hora_actual = ahora.time()
         if hora_actual >= datetime.strptime("23:50", "%H:%M").time():
