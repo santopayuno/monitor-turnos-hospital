@@ -9,6 +9,14 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 try:
+    # 0. Inicializar git si no existe
+    if not os.path.exists('.git'):
+        print("Inicializando repositorio git...")
+        subprocess.run(['git', 'init'], check=False)
+        subprocess.run(['git', 'remote', 'add', 'origin', f'https://{os.getenv("GITHUB_TOKEN")}@github.com/santopayuno/monitor-turnos-hospital.git'], check=False)
+        subprocess.run(['git', 'fetch', 'origin', 'main'], check=False)
+        subprocess.run(['git', 'checkout', '-b', 'main', 'origin/main'], check=False)
+    
     # 1. Ejecutar monitor
     print("Ejecutando monitor.py...")
     result = subprocess.run([sys.executable, 'monitor.py'], check=False)
