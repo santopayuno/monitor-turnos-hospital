@@ -586,6 +586,13 @@ def guardar_estadisticas(cambios, estado_actual):
         fecha_limite = (ahora - timedelta(days=90)).isoformat()
         stats["eventos"] = [e for e in stats["eventos"] if e["fecha"] > fecha_limite]
 
+        # Limpiar registros diarios antiguos (90 días)
+        fecha_limite_registros = (ahora - timedelta(days=90)).strftime("%Y-%m-%d")
+        stats["registros"] = {
+            f: r for f, r in stats["registros"].items()
+            if f >= fecha_limite_registros
+        }
+
         # Marcar que ya no es primera ejecución
         if stats.get("es_primera_ejecucion"):
             stats["es_primera_ejecucion"] = False
