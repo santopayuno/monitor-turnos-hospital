@@ -1,42 +1,67 @@
-name: Despliegue del Dashboard Web
+name: Monitor de Turnos Hospital Perrupato
 
 on:
-  workflow_dispatch: # Permite que Railway despierte este proceso a la distancia
-  push:
-    branches:
-      - main
-    paths:
-      - 'index.html'
-      - 'estado_turnos.json'
-      - 'estadisticas_db.json'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: "pages"
+  group: monitor-turnos
   cancel-in-progress: true
 
 jobs:
-  deploy-pantalla:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  monitor:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout del Repositorio
-        uses: actions/checkout@v4
-
-      - name: Configurar Entorno de GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Subir Contenido Estático
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
         with:
-          path: '.' # Sube la raíz del proyecto (index.html y los JSON)
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-      - name: Desplegar en GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install requests --quiet
+
+      - name: Ejecutar Monitor
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python monitor.py
+
+      - name: Configurar Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Agregar cambios
+        run: |
+          git add estado_turnos.json estadisticas_db.json logs/ || true
+
+      - name: Commit cambios
+        run: |
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualizar estado $(date +'%Y-%m-%d %H:%M:%S')"
+          fi
+
+      - name: Pull antes de push
+        run: git pull --rebase origin main || true
+
+      - name: Push cambios
+        run: |
+          for i in 1 2 3; do
+            if git push; then
+              echo "✓ Push exitoso"
+              exit 0
+            else
+              sleep 2
+              git pull --rebase origin main || true
+            fi
+          done
+          exit 1
