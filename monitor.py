@@ -679,6 +679,25 @@ def main():
 
     total_especialidades = len(procesador.estado_actual)
 
+    # ✓ MODO PRUEBA: Forzar notificación con estado actual
+    if os.environ.get("TEST_MODE") == "true":
+        logger.info("🧪 MODO PRUEBA ACTIVADO — forzando notificación Telegram")
+        constructor = ConstructorMensajeTelegram(
+            procesador.cambios,
+            procesador.clasificacion,
+            fecha_hora,
+            procesador.estado_actual,
+            total_especialidades
+        )
+        # En modo prueba, forzar cambios vacíos pero mostrar disponibles
+        constructor.cambios = {"nuevos": [], "aumentos": [], "ultimos": [], "agotados": []}
+        mensaje = constructor.construir()
+        if mensaje:
+            enviar_telegram("🧪 MENSAJE DE PRUEBA\n\n" + mensaje)
+        else:
+            enviar_telegram("🧪 PRUEBA OK — Sin especialidades con cupos en este momento")
+        return
+
     # ✓ PRIMERA EJECUCIÓN: NO enviar Telegram, solo guardar estado
     if es_primera_ejecucion:
         logger.info("🎯 PRIMERA EJECUCIÓN")
