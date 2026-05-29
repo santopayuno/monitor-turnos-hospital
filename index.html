@@ -103,11 +103,11 @@
             color: #64748b;
         }
 
-        .next-check {
+       .next-check {
             font-size: 0.85rem;
             color: #16a34a;
             font-weight: 600;
-            margin-top: 4px;
+            margin-top: 4px; 
         }
 
         .stats-grid {
@@ -1425,7 +1425,6 @@
                 if (Array.isArray(eventos) && eventos.length > 0) {
                     eventos.forEach((evt, idx) => {
                         if (idx === eventos.length - 1) { // Último del día
-                            // ✅ MEJORA GEMINI: Agregó mes-día al label para no superponer fechas
                             labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
                             datos.push(evt.total_cupos || 0);
                         }
@@ -1518,15 +1517,11 @@
             }
 
             (estadisticas.eventos || []).forEach(e => {
-                // ✅ MEJORA GEMINI: Lee hora directamente del string ISO, evita desfase horario
-                const hora = e.fecha.split('T')[1];
-                const horaInt = parseInt(hora.split(':')[0], 10);
-                const h = horaInt.toString().padStart(2, '0') + ':00';
-                
+                const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
                 if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
-                    horas[h].aperturas++;
+                    horas[hora].aperturas++;
                 } else if (e.tipo === 'agotados') {
-                    horas[h].cierres++;
+                    horas[hora].cierres++;
                 }
             });
 
@@ -1581,11 +1576,8 @@
             }
 
             (estadisticas.eventos || []).forEach(e => {
-                // ✅ MEJORA GEMINI: Lee hora directamente del string ISO
-                const hora = e.fecha.split('T')[1];
-                const horaInt = parseInt(hora.split(':')[0], 10);
-                const h = horaInt.toString().padStart(2, '0') + ':00';
-                horas[h]++;
+                const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
+                horas[hora]++;
             });
 
             const ctx = document.getElementById('chartActividadPorHora');
@@ -1626,7 +1618,6 @@
                 if (Array.isArray(eventos) && eventos.length > 0) {
                     eventos.forEach((evt, idx) => {
                         if (idx === eventos.length - 1) {
-                            // ✅ MEJORA GEMINI: Agregó mes-día al label
                             labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
                             datos.push(evt.con_cupos || 0);
                         }
