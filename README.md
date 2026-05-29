@@ -10,9 +10,9 @@ Monitor automático de disponibilidad de turnos médicos del Hospital Alfredo I.
 
 - 🔄 **Monitoreo automático cada 15 minutos** - Sin intervención manual
 - 📱 **Notificaciones Telegram instantáneas** - Cuando hay nuevos turnos disponibles
-- 📊 **Dashboard interactivo** - 40 especialidades, 5 gráficos, búsqueda en tiempo real
+- 📊 **Dashboard interactivo** - 40 especialidades, gráficos, búsqueda en tiempo real
 - 🌐 **Hosted en GitHub Pages** - Gratuito y confiable
-- ⚡ **Arquitectura confiable** - Railway + GitHub API + Telegram Bot
+- ⚡ **Arquitectura confiable** - Railway como motor principal
 - 🔒 **Sin dependencias externas** - Solo Python, Git, y APIs públicas
 
 ---
@@ -21,20 +21,19 @@ Monitor automático de disponibilidad de turnos médicos del Hospital Alfredo I.
 
 ```
 Railway Cron (cada 15 min)
-    ├─ 🏥 Scraping API Hospital
+    ├─ 🏥 Consulta API Hospital
+    ├─ 📱 Telegram (si hay turnos nuevos o aumentos)
     ├─ 📝 Actualiza JSON locales
-    ├─ 📤 Git push a GitHub
-    ├─ 📄 GitHub Pages compila automáticamente
-    └─ 🚀 Dispara GitHub Actions
-         └─ 📱 Telegram notificación (si hay cambios)
+    └─ 📤 Git push a GitHub
+         └─ 📄 GitHub Pages se actualiza automáticamente
 ```
 
 ### ¿Por qué esta arquitectura?
 
-- **Railway Cron** es puntual cada 15 minutos (GitHub Cron tiene retrasos masivos)
-- **GitHub Pages** se actualiza automáticamente al detectar push
-- **workflow_dispatch** dispara GitHub Actions al instante (sin depender de cron)
-- **Telegram** notifica solo si hay cambios (eficiente)
+- **Railway Cron** es puntual cada 15 minutos (GitHub Cron tiene retrasos de horas)
+- **Railway** envía el Telegram directamente, sin depender de GitHub Actions
+- **GitHub Pages** se actualiza automáticamente al detectar el push de Railway
+- **Telegram** notifica solo si hay cambios (sin spam)
 
 ---
 
@@ -43,7 +42,7 @@ Railway Cron (cada 15 min)
 - Python 3.11+
 - Git
 - Cuenta Railway (gratuita)
-- Token GitHub (repo + actions)
+- Token GitHub (permisos: repo)
 - Token Telegram Bot
 - Docker (para Railway)
 
@@ -66,15 +65,12 @@ pip install -r requirements.txt
 
 ### 3. Configurar variables de entorno
 
-Crear archivo `.env`:
+En Railway → Variables:
 
 ```
-BOT_TOKEN=tu_token_telegram_bot
-CHAT_ID=tu_chat_id_telegram
-GITHUB_TOKEN=tu_token_github
-GITHUB_USER=santopayuno
-GITHUB_EMAIL=tu_email@example.com
-GITHUB_REPO=santopayuno/monitor-turnos-hospital
+BOT_TOKEN       = tu_token_telegram_bot
+CHAT_ID         = tu_chat_id_telegram
+GITHUB_TOKEN    = tu_token_github (permisos: repo)
 ```
 
 ### 4. Ejecutar localmente (opcional)
@@ -85,11 +81,9 @@ python monitor.py
 
 ### 5. Deployar en Railway
 
-```bash
-# Railway detecta Dockerfile automáticamente
-# Solo necesitas:
-1. Conectar tu repo GitHub
-2. Agregar variables de entorno en Railway
+```
+1. Conectar repo GitHub en Railway
+2. Agregar variables de entorno (ver arriba)
 3. Configurar Cron Schedule: */15 * * * *
 4. Comando: python run_monitor.py
 ```
@@ -102,16 +96,15 @@ El sistema rastrea **40 especialidades médicas** incluyendo:
 
 - Clínica Médica
 - Pediatría
-- Ginecología
 - Cardiología
 - Traumatología
-- Y 35 más...
+- Y 36 más...
 
-**Información capturada:**
+**Información capturada por especialidad:**
 - Cupos disponibles
-- Cupos reservados
-- Fecha/hora de actualización
-- Estadísticas históricas
+- Cambios respecto al ciclo anterior
+- Fecha y hora de actualización
+- Estadísticas históricas (90 días)
 
 ---
 
@@ -121,32 +114,32 @@ El sistema rastrea **40 especialidades médicas** incluyendo:
 Script principal que:
 - Consulta API del hospital
 - Parsea especialidades y cupos
+- Detecta cambios (nuevos turnos, aumentos, agotados)
+- Envía notificación Telegram si hay novedades
 - Actualiza `estado_turnos.json` y `estadisticas_db.json`
-- Detecta cambios automáticamente
+- Limpia automáticamente registros con más de 90 días
 
 ### `run_monitor.py`
 Wrapper para Railway que:
-- Inicializa Git (resuelve conflictos)
-- Ejecuta monitor.py
-- Hace git commit & push
-- Dispara GitHub Actions via API
+- Inicializa Git si es necesario (resuelve conflictos)
+- Ejecuta `monitor.py`
+- Hace git commit & push a GitHub
 
 ### `index.html`
 Dashboard interactivo con:
 - 40 especialidades en tiempo real
-- 5 gráficos de tendencias
+- Gráficos de tendencias
 - Buscador inteligente
 - Diseño responsive (mobile-friendly)
 
 ### `.github/workflows/monitor.yml`
-GitHub Actions que:
-- Se dispara vía workflow_dispatch
-- Envía notificación Telegram si hay cambios
-- Anti-spam: solo si hay nuevos/aumentos
+GitHub Actions configurado solo con `workflow_dispatch`:
+- No tiene cron propio (para evitar ejecuciones dobles con Railway)
+- Puede ejecutarse manualmente desde GitHub si es necesario
 
 ### `Dockerfile`
 Contenerización para Railway:
-- Base: Python 3.11
+- Base: Python 3.11-slim
 - Instala: Git + dependencias Python
 - CMD: `python run_monitor.py`
 
@@ -154,77 +147,48 @@ Contenerización para Railway:
 
 ## 📱 Notificaciones Telegram
 
-El bot envía notificaciones **solo cuando hay cambios**:
+El bot envía notificaciones **solo cuando hay turnos nuevos o aumentos significativos**:
 
 ```
-🆕 NUEVOS TURNOS - 27/05/2026 03:52
+🚨 NUEVOS TURNOS DISPONIBLES
+🏥 HOSPITAL PERRUPATO
 
-CLÍNICA MÉDICA CONSULTA: +5 cupos
-PEDIATRÍA CONSULTA: +3 cupos
-CARDIOLOGÍA: nuevos turnos disponibles
+🆕 CAMBIOS DETECTADOS
 
-👉 Ver disponibilidad: santopayuno.github.io/...
+🏥 CLINICA MEDICA CONSULTA
+🍀 71 Cupos Disponibles
+📈 +71 nuevos
+
+🟢 DISPONIBLES AHORA
+...
+
+📊 ESTADÍSTICAS
+• Monitoreadas: 40
+• Con cupos: 15
+• Total: 231
+
+🕒 29/05 • 20:00 hs
 ```
 
 ---
 
-## 📈 Estadísticas
+## 🛠️ Modo Prueba
 
-El sistema registra automáticamente:
+Para verificar que Telegram funciona correctamente sin esperar cambios reales:
 
-- Histórico de cambios
-- Patrones horarios (cuándo abren más turnos)
-- Tendencias por especialidad
-- Gráficos de disponibilidad
-
----
-
-## 🛠️ Desarrollo
-
-### Estructura de archivos
-
-```
-├── monitor.py              # Script principal
-├── run_monitor.py          # Wrapper Railway
-├── index.html              # Dashboard
-├── requirements.txt        # Dependencias Python
-├── config.json             # Config (especialidades, etc)
-├── Dockerfile              # Imagen Docker
-├── estado_turnos.json      # Estado actual
-├── estadisticas_db.json    # Histórico
-├── logs/                   # Logs de ejecución
-└── .github/workflows/      # GitHub Actions
-    └── monitor.yml         # Notificación Telegram
-```
-
-### Agregar nuevas especialidades
-
-Editar `config.json`:
-
-```json
-{
-  "especialidades": [
-    {
-      "nombre": "Mi Especialidad",
-      "id": "CODIGO_API",
-      "monitorear": true
-    }
-  ]
-}
-```
-
-### Personalizar dashboard
-
-Editar `index.html` - CSS/HTML puro, sin dependencias.
+1. En Railway → Variables → agregar `TEST_MODE = true`
+2. Railway → Run now
+3. Verificar que llega el mensaje en Telegram
+4. Borrar la variable `TEST_MODE` para volver al modo normal
 
 ---
 
 ## 🔐 Seguridad
 
-- ✅ Tokens guardados solo en Railway (no en GitHub)
-- ✅ No se almacenan datos sensibles
+- ✅ Tokens guardados solo en Railway (variables de entorno)
+- ✅ No se almacenan datos sensibles en el repositorio
 - ✅ HTTPS en GitHub Pages
-- ✅ API hospital es pública
+- ✅ API del hospital es pública
 - ✅ Telegram Bot con permisos limitados
 
 ---
@@ -232,80 +196,76 @@ Editar `index.html` - CSS/HTML puro, sin dependencias.
 ## 📊 Flujo de ejecución
 
 ```
-⏰ 00:00 → Railway cron job
-   ├─ 🏥 API call (especialidades + cupos)
-   ├─ 📝 Parse y actualiza JSON
-   ├─ 📊 Calcula estadísticas
-   ├─ 📤 Git push
-   ├─ 📄 GitHub Pages se regenera
-   └─ 🚀 workflow_dispatch trigger
-        └─ 📱 Telegram notificación
+⏰ Cada 15 minutos → Railway cron job
+   ├─ 🏥 Consulta API hospital (40 especialidades)
+   ├─ 🔍 Compara con estado anterior
+   ├─ 📱 Telegram (solo si hay nuevos o aumentos)
+   ├─ 📝 Guarda estado actualizado
+   └─ 📤 Git push → GitHub Pages se regenera
 
-⏰ 00:15 → Repite
-⏰ 00:30 → Repite
-⏰ 00:45 → Repite
-... (cada 15 minutos)
+⏰ +15 min → Repite
+⏰ +30 min → Repite
+... (indefinidamente)
+```
+
+---
+
+## 🗂️ Estructura de archivos
+
+```
+├── monitor.py              # Script principal + lógica Telegram
+├── run_monitor.py          # Wrapper Railway + git push
+├── index.html              # Dashboard web
+├── requirements.txt        # Dependencias Python
+├── config.json             # Configuración (reporte diario, etc)
+├── Dockerfile              # Imagen Docker para Railway
+├── estado_turnos.json      # Estado actual de especialidades
+├── estadisticas_db.json    # Histórico 90 días
+├── .gitignore
+└── .github/workflows/
+    └── monitor.yml         # Solo workflow_dispatch (sin cron)
 ```
 
 ---
 
 ## ✅ Verificación
 
-### En Railway
+### En Railway (Cron Runs → View logs)
 
-Buscar en logs:
 ```
-✅ Ejecutando monitor.py...
-✅ API: 40 especialidades recibidas
-✅ Push exitoso a GitHub
-✅ GitHub Actions disparado!
-✅ EJECUCIÓN COMPLETADA
-```
-
-### En GitHub Actions
-
-Workflow `monitor.yml` debe ejecutarse al segundo:
-```
-✅ Notificación Telegram enviada
+→ Consultando API...
+✓ API: 40 especialidades recibidas
+✓ Notificación Telegram enviada
+✓ Push exitoso a GitHub
+🎉 EJECUCIÓN COMPLETADA
 ```
 
 ### En Dashboard
 
-Los datos deben estar frescos (hace menos de 15 minutos):
+Los datos deben estar frescos (menos de 15 minutos):
 ```
-Actualizado: 27/05/2026 03:52 hs
+Actualizado: 29/05/2026 20:00 hs
 ```
 
 ---
 
 ## 🐛 Troubleshooting
 
+### Telegram: No llegan notificaciones
+
+- Verificar que `BOT_TOKEN` y `CHAT_ID` están cargados en Railway → Variables
+- Usar modo prueba (`TEST_MODE=true`) para verificar conectividad
+- Revisar logs de Railway → View logs
+
 ### Railway: Push falló
 
-**Problema:** `error: failed to push some refs`
-
-**Solución:**
-- Verificar GITHUB_TOKEN tenga permisos `repo`
-- Verificar rama `main` existe en GitHub
-- Ejecutar `git reset --hard origin/main`
-
-### Telegram: No recibe notificaciones
-
-**Problema:** Bot no envía mensajes
-
-**Solución:**
-- Verificar BOT_TOKEN es válido
-- Verificar CHAT_ID es correcto
-- Revisar logs de GitHub Actions
+- Verificar que `GITHUB_TOKEN` tiene permisos `repo`
+- Verificar que la rama `main` existe en GitHub
 
 ### Dashboard: Datos desactualizados
 
-**Problema:** Sigue mostrando datos viejos
-
-**Solución:**
 - Hard refresh: `Ctrl+Shift+R` (o `Cmd+Shift+R`)
-- Limpiar caché del navegador
-- Verificar que Railway ejecute correctamente
+- Verificar que Railway está ejecutando correctamente en Cron Runs
 
 ---
 
@@ -313,66 +273,15 @@ Actualizado: 27/05/2026 03:52 hs
 
 - **Especialidades monitoreadas:** 40
 - **Frecuencia:** Cada 15 minutos
-- **Uptime:** 99.9%
-- **Latencia:** < 1 segundo (dashboard)
-- **Confiabilidad:** Railway Cron es puntual
+- **Historial:** 90 días
+- **Notificaciones:** Solo cuando hay cambios reales
 
 ---
 
-## 🗓️ Roadmap
+**Última actualización:** 29/05/2026
 
-### ✅ Completado
-- Monitoreo automático
-- Dashboard interactivo
-- Notificaciones Telegram
-- Git push confiable
-- GitHub Pages deployment
-
-### 📋 Próximas mejoras
-- Diferenciar: Nuevo turno vs Reapertura
-- Detección inteligente: % cambio en lugar de +N
-- Anti-spam: 1 notificación por especialidad/ciclo
-- Análisis: Patrones horarios
-- Historial: Gráficos de tendencias
+**Estado:** ✅ En producción — Funcionando correctamente
 
 ---
 
-## 📞 Contacto & Soporte
-
-- **Issues:** [GitHub Issues](https://github.com/santopayuno/monitor-turnos-hospital/issues)
-- **Telegram:** @TuBotName (para cambios en turnos)
-
----
-
-## 📄 Licencia
-
-Este proyecto es de código abierto bajo licencia MIT.
-
----
-
-## ⚡ Quick Start
-
-```bash
-# Clonar
-git clone https://github.com/santopayuno/monitor-turnos-hospital.git
-
-# Instalar
-pip install -r requirements.txt
-
-# Configurar variables en .env (local) o Railway (producción)
-
-# Deployar en Railway
-# Railway detecta Dockerfile automáticamente
-
-# ¡Listo! Monitoreo automático cada 15 minutos
-```
-
----
-
-**Última actualización:** 28/05/2026
-
-**Estado:** ✅ En producción - Funcionando perfectamente
-
----
-
-*Monitoreando turnos del Hospital Alfredo I. Perrupato desde Railroad, desplegado en GitHub Pages, notificando vía Telegram. 100% automático, 0% manual.*
+*Monitor del Hospital Alfredo I. Perrupato. Desplegado en Railway, dashboard en GitHub Pages, notificaciones vía Telegram. 100% automático.*
