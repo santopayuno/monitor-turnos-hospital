@@ -599,6 +599,14 @@
         "total_cupos": 493,
         "cambios": 0
       }
+    ],
+    "2026-05-29": [
+      {
+        "hora": "18:01:20",
+        "con_cupos": 15,
+        "total_cupos": 262,
+        "cambios": 13
+      }
     ]
   },
   "eventos": [
@@ -1111,6 +1119,84 @@
       "tipo": "nuevos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 149
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 34
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "nuevos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "nuevos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "agotados",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-29T18:01:20.221360-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
