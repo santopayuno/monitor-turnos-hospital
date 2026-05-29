@@ -690,6 +690,12 @@
         "con_cupos": 15,
         "total_cupos": 245,
         "cambios": 0
+      },
+      {
+        "hora": "20:00:25",
+        "con_cupos": 15,
+        "total_cupos": 239,
+        "cambios": 15
       }
     ]
   },
@@ -1281,6 +1287,96 @@
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 30
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 71
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 11
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 34
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 65
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-29T20:00:25.308397-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
