@@ -104,41 +104,6 @@ try:
         print("⚠️  Push falló, pero monitor ejecutó correctamente\n")
 
     # ============================================================
-    # NUEVO PASO: Forzar la ejecución manual en GitHub Actions (Telegram)
-    # ============================================================
-    import urllib.request
-    import json
-
-    token = os.getenv('GITHUB_TOKEN')
-    if token:
-        print("🚀 Despertando a GitHub Actions para enviar la notificación de Telegram...")
-
-        # Como tu archivo se llama exactamente monitor.yml, esta URL ya está perfecta:
-        url = "https://api.github.com/repos/santopayuno/monitor-turnos-hospital/actions/workflows/monitor.yml/dispatches"
-
-        headers = {
-            "Authorization": f"Bearer {token}",
-            "Accept": "application/vnd.github+json",
-            "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "Railway-Trigger-Script"
-        }
-
-        # Le indicamos a GitHub que ejecute el flujo usando la rama principal (main)
-        data = json.dumps({"ref": "main"}).encode('utf-8')
-
-        try:
-            req = urllib.request.Request(url, data=data, headers=headers, method='POST')
-            with urllib.request.urlopen(req) as response:
-                if response.status == 204:
-                    print("✅ ¡GitHub Actions despertado con éxito! Se ejecutará el monitor manual en breve.")
-                else:
-                    print(f"⚠️ GitHub respondió con código de estado: {response.status}")
-        except Exception as api_err:
-            print(f"❌ Error al conectar con la API de GitHub: {api_err}")
-    else:
-        print("⚠️ No se encontró la variable GITHUB_TOKEN en Railway. Asegúrate de añadirla en las Variables de Entorno del servicio.")
-
-    # ============================================================
     # PASO 9: Log final
     # ============================================================
     print("=" * 60)
