@@ -787,14 +787,14 @@
     </div>
 
     <footer>
-        ⏰ Se actualiza cada 5 minutos • 🤖 Monitor Profesional
+        ⏰ Se actualiza cada 15 minutos • 🤖 Monitor Profesional
     </footer>
 
     <script>
         let estadoActual = {};
         let estadisticas = { registros: {}, eventos: [] };
         let chartsInstances = {};
-        let nextCheckTime = 5;
+        let nextCheckTime = 15;
 
         async function cargarDatos() {
             try {
@@ -812,7 +812,7 @@
 
         function actualizarCountdown() {
             nextCheckTime--;
-            if (nextCheckTime < 0) nextCheckTime = 5;
+            if (nextCheckTime < 0) nextCheckTime = 15;
             document.getElementById('next-check').textContent = nextCheckTime + ' m';
         }
 
@@ -1659,7 +1659,7 @@
         }
 
         cargarDatos();
-        setInterval(cargarDatos, 5 * 60 * 1000);
+        setInterval(cargarDatos, 15 * 60 * 1000);
         setInterval(actualizarCountdown, 60000);
     </script>
 </body>
