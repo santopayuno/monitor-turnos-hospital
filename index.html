@@ -627,7 +627,7 @@
             <div class="header-info">
                 <div><strong>Hospital Alfredo I. Perrupato</strong></div>
                 <div>Actualizado: <span id="fecha-actualizacion">Cargando...</span></div>
-                <div class="next-check">Próximo chequeo: <span id="next-check">5 m</span></div>
+                <div class="next-check">Próximo chequeo: <span id="next-check">...</span></div>
             </div>
         </div>
     </header>
@@ -794,7 +794,7 @@
         let estadoActual = {};
         let estadisticas = { registros: {}, eventos: [] };
         let chartsInstances = {};
-        let nextCheckTime = 15;
+        
 
         async function cargarDatos() {
             try {
@@ -811,9 +811,7 @@
         }
 
         function actualizarCountdown() {
-            nextCheckTime--;
-            if (nextCheckTime < 0) nextCheckTime = 15;
-            document.getElementById('next-check').textContent = nextCheckTime + ' m';
+            const el = document.getElementById('next-check'); if (el) { const ahora = new Date(); const minutos = ahora.getMinutes(); const segundos = ahora.getSeconds(); const resto = minutos % 15; const faltan = resto === 0 && segundos < 30 ? 0 : 15 - resto; el.textContent = faltan === 0 ? '< 1 m' : faltan + ' m'; }
         }
 
         function mostrarTab(event, nombre) {
@@ -1659,8 +1657,10 @@
         }
 
         cargarDatos();
-        setInterval(cargarDatos, 15 * 60 * 1000);
+        actualizarCountdown();
         setInterval(actualizarCountdown, 60000);
+        setInterval(cargarDatos, 15 * 60 * 1000);
+        
     </script>
 </body>
 </html>
