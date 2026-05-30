@@ -1220,6 +1220,12 @@
         "con_cupos": 24,
         "total_cupos": 283,
         "cambios": 0
+      },
+      {
+        "hora": "13:45:51",
+        "con_cupos": 23,
+        "total_cupos": 282,
+        "cambios": 1
       }
     ]
   },
@@ -2056,6 +2062,12 @@
       "fecha": "2026-05-30T13:15:56.059657-03:00",
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-30T13:45:51.121857-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
