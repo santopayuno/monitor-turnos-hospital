@@ -52,7 +52,47 @@ try:
         print("✅ Git inicializado correctamente\n")
 
     # ============================================================
-    # PASO 2: Ejecutar monitor
+    # PASO 2: Watchdog — detectar si el monitor anterior falló
+    # ============================================================
+    import json
+    from datetime import datetime, timezone
+
+    try:
+        with open('heartbeat.json', 'r') as f:
+            hb = json.load(f)
+        ultima = datetime.fromisoformat(hb.get('ultima_ejecucion', ''))
+        ahora_utc = datetime.now(timezone.utc)
+        if ultima.tzinfo is None:
+            ultima = ultima.replace(tzinfo=timezone.utc)
+        minutos_desde_ultima = (ahora_utc - ultima).total_seconds() / 60
+
+        if minutos_desde_ultima > 30:
+            horas = int(minutos_desde_ultima // 60)
+            mins = int(minutos_desde_ultima % 60)
+            tiempo_str = f"{horas} h {mins} min" if horas > 0 else f"{int(minutos_desde_ultima)} min"
+            bot_token = os.getenv('BOT_TOKEN', '')
+            chat_id = os.getenv('CHAT_ID', '')
+            if bot_token and chat_id:
+                import urllib.request
+                msg = (
+                    f"⚠️ ALERTA: Monitor sin ejecutar\n\n"
+                    f"La última ejecución exitosa fue hace {tiempo_str}.\n"
+                    f"Revisá Railway → Cron Runs para verificar el estado del servicio."
+                )
+                data = json.dumps({"chat_id": chat_id, "text": msg}).encode('utf-8')
+                req = urllib.request.Request(
+                    f"https://api.telegram.org/bot{bot_token}/sendMessage",
+                    data=data,
+                    headers={"Content-Type": "application/json"},
+                    method="POST"
+                )
+                urllib.request.urlopen(req, timeout=10)
+                print(f"⚠️ Watchdog: alerta enviada por Telegram ({tiempo_str} sin ejecución)")
+    except Exception as e:
+        print(f"ℹ️ Watchdog: no pudo verificar heartbeat ({e})")
+
+    # ============================================================
+    # PASO 3: Ejecutar monitor
     # ============================================================
     print("🏥 Ejecutando monitor.py...")
     result = subprocess.run([sys.executable, 'monitor.py'], check=False)
