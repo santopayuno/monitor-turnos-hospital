@@ -13,6 +13,7 @@ Características:
 
 import requests
 import os
+import time
 import json
 import logging
 import tempfile
@@ -148,41 +149,53 @@ def formato_cupos_disponibles(cupo):
 # API
 # ═══════════════════════════════════════════════════════════════
 
-def consultar_api():
+def _consultar_api_una_vez():
+    """Intento único de consulta a la API. Lanza excepción si falla."""
+    session = crear_sesion_reintentos()
+    response = session.post(
+        API_URL,
+        json={"nombrePlantilla": "PLT_PUBLIC_ESPE_TURNOS_PERRUPATO", "dni": ""},
+        headers={"Content-Type": "application/json; charset=utf-8"},
+        timeout=30
+    )
+    response.raise_for_status()
+
+    data = response.json()
+    if not data.get("d"):
+        raise ValueError("Campo 'd' vacío en respuesta")
+
+    especialidades = json.loads(data["d"])
+    if not isinstance(especialidades, list):
+        raise ValueError("Respuesta no es lista válida")
+
+    if len(especialidades) < 20:
+        raise ValueError(f"API devolvió solo {len(especialidades)} especialidades (esperaba ~30+)")
+
+    return especialidades
+
+
+def consultar_api(max_intentos=3, espera_segundos=10):
     logger.info("→ Consultando API...")
-    try:
-        session = crear_sesion_reintentos()
-        response = session.post(
-            API_URL,
-            json={"nombrePlantilla": "PLT_PUBLIC_ESPE_TURNOS_PERRUPATO", "dni": ""},
-            headers={"Content-Type": "application/json; charset=utf-8"},
-            timeout=30
-        )
-        response.raise_for_status()
+    ultimo_error = None
 
-        data = response.json()
-        if not data.get("d"):
-            raise ValueError("Campo 'd' vacío en respuesta")
+    for intento in range(1, max_intentos + 1):
+        try:
+            especialidades = _consultar_api_una_vez()
+            logger.info(f"✓ API: {len(especialidades)} especialidades recibidas")
+            return especialidades
+        except requests.RequestException as e:
+            ultimo_error = f"Error de red: {e}"
+        except (json.JSONDecodeError, ValueError) as e:
+            ultimo_error = f"Error de datos: {e}"
+        except Exception as e:
+            ultimo_error = f"Error inesperado: {e}"
 
-        especialidades = json.loads(data["d"])
-        if not isinstance(especialidades, list):
-            raise ValueError("Respuesta no es lista válida")
+        if intento < max_intentos:
+            logger.warning(f"⚠️ Intento {intento}/{max_intentos} falló: {ultimo_error}")
+            logger.info(f"   Reintentando en {espera_segundos} segundos...")
+            time.sleep(espera_segundos)
 
-        # VALIDACIÓN: Si recibimos muy pocas especialidades, algo está mal
-        if len(especialidades) < 20:
-            logger.warning(f"⚠️ API devolvió solo {len(especialidades)} especialidades (esperaba ~30+)")
-            logger.warning("Posible error en API, ignorando respuesta")
-            return None
-
-        logger.info(f"✓ API: {len(especialidades)} especialidades recibidas")
-        return especialidades
-
-    except requests.RequestException as e:
-        logger.error(f"✗ Error de red: {e}")
-    except (json.JSONDecodeError, ValueError) as e:
-        logger.error(f"✗ Error de datos: {e}")
-    except Exception as e:
-        logger.error(f"✗ Error inesperado: {e}")
+    logger.error(f"✗ API falló tras {max_intentos} intentos. Último error: {ultimo_error}")
 
     return None
 
