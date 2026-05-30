@@ -1210,7 +1210,7 @@
             }
 
             el.innerHTML = items.map(([nombre, cupo]) => `
-                <div class="especialidad ${clase}" data-especialidad="${nombre}" onclick="abrirHistorial('${nombre.replace(/'/g, '\\'')}')">
+                <div class="especialidad ${clase}" data-especialidad="${nombre}" onclick="abrirHistorial(this.dataset.especialidad)">
                     <div class="especialidad-info">
                         <div class="especialidad-nombre">🏥 ${nombre}</div>
                     </div>
