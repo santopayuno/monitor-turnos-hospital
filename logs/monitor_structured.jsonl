@@ -1,2 +1,3 @@
 {"ts": "2026-05-30T20:00:33.414397", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 262, "con_cupos": 21}
 {"ts": "2026-05-30T20:12:45.775217", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 260, "con_cupos": 21}
+{"ts": "2026-05-30T22:06:12.364687", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 250, "con_cupos": 20}
