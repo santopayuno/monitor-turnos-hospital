@@ -627,7 +627,7 @@
             <div class="header-info">
                 <div><strong>Hospital Alfredo I. Perrupato</strong></div>
                 <div>Actualizado: <span id="fecha-actualizacion">Cargando...</span></div>
-                <div class="next-check">Próximo chequeo: <span id="next-check">...</span></div>
+                <div class="next-check" id="heartbeat-status">Cargando estado...</div>
             </div>
         </div>
     </header>
@@ -810,8 +810,35 @@
             }
         }
 
-        function actualizarCountdown() {
-            const el = document.getElementById('next-check'); if (el) { const ahora = new Date(); const minutos = ahora.getMinutes(); const segundos = ahora.getSeconds(); const resto = minutos % 15; const faltan = resto === 0 && segundos < 30 ? 0 : 15 - resto; el.textContent = faltan === 0 ? '< 1 m' : faltan + ' m'; }
+        async function actualizarHeartbeat() {
+            const el = document.getElementById('heartbeat-status');
+            if (!el) return;
+            try {
+                const res = await fetch('heartbeat.json?t=' + Date.now());
+                if (!res.ok) throw new Error('no heartbeat');
+                const data = await res.json();
+                const ultima = new Date(data.ultima_ejecucion);
+                const ahora = new Date();
+                const diffMin = Math.floor((ahora - ultima) / 60000);
+                let texto, color;
+                if (diffMin < 20) {
+                    color = '#16a34a';
+                    texto = diffMin <= 1 ? 'hace 1 minuto' : 'hace ' + diffMin + ' minutos';
+                } else if (diffMin < 60) {
+                    color = '#ea580c';
+                    texto = 'hace ' + diffMin + ' minutos';
+                } else {
+                    const horas = Math.floor(diffMin / 60);
+                    const mins = diffMin % 60;
+                    color = '#dc2626';
+                    texto = 'hace ' + horas + ' h ' + (mins > 0 ? mins + ' min' : '');
+                }
+                el.style.color = color;
+                el.textContent = '● Última ejecución: ' + texto;
+            } catch (e) {
+                el.style.color = '#94a3b8';
+                el.textContent = '● Sin datos de ejecución aún';
+            }
         }
 
         function mostrarTab(event, nombre) {
@@ -1657,8 +1684,8 @@
         }
 
         cargarDatos();
-        actualizarCountdown();
-        setInterval(actualizarCountdown, 60000);
+        actualizarHeartbeat();
+        setInterval(actualizarHeartbeat, 60000);
         setInterval(cargarDatos, 15 * 60 * 1000);
         
     </script>
