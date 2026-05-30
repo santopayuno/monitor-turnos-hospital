@@ -1286,6 +1286,12 @@
         "con_cupos": 22,
         "total_cupos": 267,
         "cambios": 0
+      },
+      {
+        "hora": "16:30:16",
+        "con_cupos": 21,
+        "total_cupos": 264,
+        "cambios": 1
       }
     ]
   },
@@ -2134,6 +2140,12 @@
       "fecha": "2026-05-30T15:00:31.383414-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-30T16:30:16.077289-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
     }
   ],
