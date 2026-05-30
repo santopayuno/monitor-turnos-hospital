@@ -48,9 +48,17 @@ jobs:
           import json
           with open('config.json') as f:
               config = json.load(f)
-          campos = ['especialidades_interes', 'generar_reporte_diario', 'hora_reporte_diario', 'alertas_patrones']
+
+          campos = [
+            'especialidades_interes',
+            'generar_reporte_diario',
+            'hora_reporte_diario',
+            'alertas_patrones'
+          ]
+
           for campo in campos:
               assert campo in config, f'Campo faltante: {campo}'
+
           print('✓ config.json válido:', config)
           "
 
@@ -61,26 +69,41 @@ jobs:
           from datetime import datetime
           from zoneinfo import ZoneInfo
 
-          # Test procesador con datos simulados
+          # Estado anterior simulado (persistido)
           estado_anterior = {'PEDIATRIA': 0, 'CARDIOLOGIA': 5}
-          estado_nuevo    = {'PEDIATRIA': 10, 'CARDIOLOGIA': 2}
 
-          proc = ProcesadorEspecialidades(estado_anterior, estado_nuevo)
+          # API real simulada (FORMATO REAL)
+          estado_nuevo_api = [
+              {'descripcion': 'PEDIATRIA', 'cupo': 10, 'suspendido': False},
+              {'descripcion': 'CARDIOLOGIA', 'cupo': 2, 'suspendido': False}
+          ]
+
+          proc = ProcesadorEspecialidades(estado_nuevo_api, estado_anterior).procesar()
+
           assert len(proc.cambios['nuevos']) == 1, 'Debería detectar 1 nuevo'
           assert proc.cambios['nuevos'][0]['nombre'] == 'PEDIATRIA'
           assert len(proc.cambios['ultimos']) == 1, 'Debería detectar últimos cupos'
+
           print('✓ ProcesadorEspecialidades OK')
 
           # Test constructor de mensaje
           ahora = datetime.now(ZoneInfo('America/Argentina/Mendoza'))
           fecha_hora = ahora.strftime('%d/%m • %H:%M hs')
+
           constructor = ConstructorMensajeTelegram(
-              proc.cambios, proc.clasificacion, fecha_hora, estado_nuevo, 2
+              proc.cambios,
+              proc.clasificacion,
+              fecha_hora,
+              proc.estado_actual,
+              2
           )
+
           mensaje = constructor.construir()
+
           assert mensaje is not None, 'Mensaje no debería ser None'
           assert 'HOSPITAL PERRUPATO' in mensaje
           assert 'PEDIATRIA' in mensaje
+
           print('✓ ConstructorMensajeTelegram OK')
           print('✓ Mensaje generado correctamente')
 
@@ -97,12 +120,16 @@ jobs:
         run: |
           python -c "
           import json, os
+
           if os.path.exists('heartbeat.json'):
               with open('heartbeat.json') as f:
                   hb = json.load(f)
+
               assert 'ultima_ejecucion' in hb, 'Campo ultima_ejecucion faltante'
+
               from datetime import datetime
               datetime.fromisoformat(hb['ultima_ejecucion'])
+
               print('✓ heartbeat.json válido:', hb['ultima_ejecucion'])
           else:
               print('⚠ heartbeat.json no existe aún (se crea en primera ejecución)')
