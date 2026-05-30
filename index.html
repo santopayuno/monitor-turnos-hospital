@@ -334,6 +334,7 @@
             justify-content: space-between;
             align-items: center;
             transition: background 0.3s;
+            cursor: pointer;
         }
 
         .especialidad:hover {
@@ -685,7 +686,6 @@
             color: #64748b;
             margin-top: 2px;
         }
-        .especialidad { cursor: pointer; }
     </style>
 </head>
 <body>
@@ -810,8 +810,6 @@
                     <canvas id="chartTopAgotadas"></canvas>
                 </div>
             </div>
-
-            <!-- NUEVOS GRÁFICOS - ANÁLISIS PROFESIONAL -->
 
             <div class="chart-container">
                 <h3>📈 Evolución Total de Cupos</h3>
@@ -962,14 +960,11 @@
             const searchDropdown = document.getElementById('search-dropdown');
             const searchClear = document.getElementById('search-clear');
 
-            // Recolectar todas las especialidades
             searchState.allEspecialidades = Object.keys(estadoActual).sort();
 
-            // Evitar registrar listeners múltiples en recargas de datos
             if (searchState.listenersRegistrados) return;
             searchState.listenersRegistrados = true;
 
-            // Input event - en tiempo real
             searchInput.addEventListener('input', function(e) {
                 const query = e.target.value.trim();
 
@@ -984,14 +979,12 @@
                 mostrarSugerencias(query);
             });
 
-            // Click fuera del buscador
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.search-wrapper') && !e.target.closest('.search-clear')) {
                     cerrarDropdown();
                 }
             });
 
-            // Botón limpiar
             searchClear.addEventListener('click', function() {
                 searchInput.value = '';
                 searchClear.style.display = 'none';
@@ -1000,7 +993,6 @@
                 searchInput.focus();
             });
 
-            // Teclas de navegación
             searchInput.addEventListener('keydown', function(e) {
                 if (!searchState.isOpen) return;
 
@@ -1025,7 +1017,6 @@
             const dropdown = document.getElementById('search-dropdown');
             const queryLower = query.toLowerCase();
 
-            // Filtrar especialidades que coincidan
             searchState.filteredResults = searchState.allEspecialidades.filter(esp => 
                 esp.toLowerCase().includes(queryLower)
             ).slice(0, 6);
@@ -1039,19 +1030,26 @@
                 return;
             }
 
-            // Construir dropdown
             const html = searchState.filteredResults.map((esp, index) => {
                 const highlighted = destacarTexto(esp, query);
-                return `<div class="search-suggestion" data-index="${index}" onclick="seleccionarEspecialidad('${esp}')">${highlighted}</div>`;
+                return '<div class="search-suggestion" data-index="' + index + '" data-esp="' + index + '">' + highlighted + '</div>';
             }).join('');
 
             dropdown.innerHTML = html;
+
+            // Agregar listeners en lugar de onclick inline
+            dropdown.querySelectorAll('.search-suggestion').forEach(function(el, index) {
+                el.addEventListener('click', function() {
+                    seleccionarEspecialidad(searchState.filteredResults[index]);
+                });
+            });
+
             dropdown.classList.add('visible');
             searchState.isOpen = true;
         }
 
         function destacarTexto(texto, query) {
-            const regex = new RegExp(`(${query})`, 'gi');
+            const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
             return texto.replace(regex, '<span class="search-suggestion-highlight">$1</span>');
         }
 
@@ -1071,24 +1069,18 @@
             document.getElementById('search-input').value = especialidad;
             document.getElementById('search-clear').style.display = 'block';
             cerrarDropdown();
-
-            // Filtrar para mostrar solo esta especialidad
             filtrarEspecialidadUnica(especialidad);
         }
 
         function filtrarEspecialidadUnica(especialidad) {
             const allEspecialidades = document.querySelectorAll('.especialidad');
-            let encontrada = false;
             let tabEncontrada = null;
 
             allEspecialidades.forEach(el => {
-                const nombre = el.querySelector('.especialidad-nombre').textContent.replace('🏥 ', '');
+                const nombre = el.dataset.nombre;
 
                 if (nombre === especialidad) {
                     el.classList.remove('hidden');
-                    encontrada = true;
-
-                    // Identificar tab
                     if (el.closest('#tab-nuevos')) tabEncontrada = 'nuevos';
                     else if (el.closest('#tab-disponibles')) tabEncontrada = 'disponibles';
                     else if (el.closest('#tab-pocos')) tabEncontrada = 'pocos';
@@ -1099,11 +1091,10 @@
                 }
             });
 
-            // Abrir pestaña correcta
             if (tabEncontrada) {
                 mostrarTab(tabEncontrada);
                 setTimeout(() => {
-                    document.querySelector(`[data-especialidad="${especialidad}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    document.querySelector('[data-nombre="' + especialidad + '"]')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 100);
             }
         }
@@ -1120,10 +1111,6 @@
             searchState.isOpen = false;
         }
 
-        function filtrarEspecialidades() {
-            // Función heredada - mantenida para compatibilidad
-        }
-
         function formatearFecha(date) {
             const d = new Date(date);
             const dia = String(d.getDate()).padStart(2, '0');
@@ -1131,7 +1118,7 @@
             const año = d.getFullYear();
             const horas = String(d.getHours()).padStart(2, '0');
             const minutos = String(d.getMinutes()).padStart(2, '0');
-            return `${dia}/${mes}/${año} ${horas}:${minutos} hs`;
+            return dia + '/' + mes + '/' + año + ' ' + horas + ':' + minutos + ' hs';
         }
 
         function actualizarDashboard() {
@@ -1145,18 +1132,15 @@
             Object.entries(estadoActual).forEach(([nombre, cupoRaw]) => {
                 const cupo = Number(cupoRaw);
 
-                // DISPONIBLES: >= 1 (TODOS los con cupos)
                 if (cupo >= 1) {
                     disponibles.push([nombre, cupo]);
 
-                    // Sub-análisis dentro de disponibles
                     if (cupo >= 5 && cupo < 20) {
                         pocos.push([nombre, cupo]);
                     } else if (cupo >= 1 && cupo < 5) {
                         ultimos.push([nombre, cupo]);
                     }
                 } else {
-                    // AGOTADOS: 0 cupos
                     agotados.push([nombre, cupo]);
                 }
             });
@@ -1172,7 +1156,6 @@
             });
             nuevos = Object.values(nuevosUnicos);
 
-            // FALLBACK: Si no hay eventos (reinicio reciente), mostrar especialidades con cupos como "nuevos"
             if (nuevos.length === 0 && Object.keys(estadisticas.eventos || []).length === 0) {
                 nuevos = Object.entries(estadoActual)
                     .filter(([nombre, cupo]) => cupo > 0)
@@ -1198,10 +1181,13 @@
             renderList('lista-ultimos', ultimos, 'ultimos');
             renderList('lista-agotados', agotados, 'agotado');
 
-            // Inicializar buscador
             inicializarBuscadorDespuesDeDatos();
         }
 
+        // ═══════════════════════════════════════════════════════════════
+        // FIX: renderList usa data-nombre + addEventListener
+        // en lugar de onclick inline para evitar SyntaxError con apóstrofes
+        // ═══════════════════════════════════════════════════════════════
         function renderList(elementId, items, clase) {
             const el = document.getElementById(elementId);
             if (items.length === 0) {
@@ -1209,14 +1195,24 @@
                 return;
             }
 
-            el.innerHTML = items.map(([nombre, cupo]) => `
-                <div class="especialidad ${clase}" data-especialidad="${nombre}" onclick="abrirHistorial('${nombre.replace(/'/g, '\\'')}')">
-                    <div class="especialidad-info">
-                        <div class="especialidad-nombre">🏥 ${nombre}</div>
-                    </div>
-                    <div class="especialidad-cupos">${cupo}</div>
-                </div>
-            `).join('');
+            el.innerHTML = items.map(function(item) {
+                const nombre = item[0];
+                const cupo = item[1];
+                const nombreEscapado = nombre.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                return '<div class="especialidad ' + clase + '" data-especialidad="' + nombreEscapado + '" data-nombre="' + nombreEscapado + '">' +
+                    '<div class="especialidad-info">' +
+                    '<div class="especialidad-nombre">🏥 ' + nombreEscapado + '</div>' +
+                    '</div>' +
+                    '<div class="especialidad-cupos">' + cupo + '</div>' +
+                    '</div>';
+            }).join('');
+
+            // Event listeners en lugar de onclick inline
+            el.querySelectorAll('.especialidad').forEach(function(div) {
+                div.addEventListener('click', function() {
+                    abrirHistorial(this.dataset.nombre);
+                });
+            });
         }
 
         function inicializarBuscadorDespuesDeDatos() {
@@ -1237,25 +1233,20 @@
         function renderGraficosAnalisis() {
             destruirGraficos();
 
-            // VERIFICAR si hay eventos de aperturas (nuevos/aumentos)
             const hayAperturas = (estadisticas.eventos || []).some(e => 
                 e.tipo === 'nuevos' || e.tipo === 'aumentos'
             );
 
-            // Si no hay eventos: mostrar placeholder elegante
             if (!hayAperturas || !estadisticas.registros || Object.keys(estadisticas.registros).length === 0) {
                 mostrarPlaceholderAnalisis();
                 return;
             }
 
-            // Si hay datos: renderizar gráficos normalmente
             renderMetricas();
             renderAperturasPorHora();
             renderUltimas24Horas();
             renderTopAperturas();
             renderTopAgotadas();
-
-            // NUEVOS GRÁFICOS PROFESIONALES
             renderEvolucionCupos();
             renderActividadEspecialidades();
             renderAperturasVsCierres();
@@ -1264,7 +1255,6 @@
         }
 
         function mostrarPlaceholderAnalisis() {
-            // Limpiar todos los contenedores de gráficos
             const contenedores = [
                 'metricsContainer',
                 'chartAperturasPorHora',
@@ -1281,31 +1271,16 @@
                 }
             });
 
-            // Mostrar mensaje elegante en el contenedor de métricas
             const metricsContainer = document.getElementById('metricsContainer');
             if (metricsContainer) {
                 metricsContainer.style.display = 'block';
-                metricsContainer.innerHTML = `
-                    <div style="
-                        grid-column: 1 / -1;
-                        text-align: center;
-                        padding: 60px 20px;
-                        background: white;
-                        border-radius: 8px;
-                        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-                    ">
-                        <div style="font-size: 3rem; margin-bottom: 16px;">⏳</div>
-                        <div style="font-size: 1.2rem; color: #0369a1; font-weight: 600; margin-bottom: 8px;">
-                            Esperando datos de aperturas
-                        </div>
-                        <div style="font-size: 0.95rem; color: #64748b; margin-bottom: 20px;">
-                            El análisis se poblará cuando se detecten nuevas aperturas de turnos o cambios significativos.
-                        </div>
-                        <div style="font-size: 0.85rem; color: #94a3b8;">
-                            Mientras tanto, puedes ver el estado actual en las pestañas de Disponibles, Pocos Cupos y Agotados.
-                        </div>
-                    </div>
-                `;
+                metricsContainer.innerHTML =
+                    '<div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: white; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">' +
+                    '<div style="font-size: 3rem; margin-bottom: 16px;">⏳</div>' +
+                    '<div style="font-size: 1.2rem; color: #0369a1; font-weight: 600; margin-bottom: 8px;">Esperando datos de aperturas</div>' +
+                    '<div style="font-size: 0.95rem; color: #64748b; margin-bottom: 20px;">El análisis se poblará cuando se detecten nuevas aperturas de turnos o cambios significativos.</div>' +
+                    '<div style="font-size: 0.85rem; color: #94a3b8;">Mientras tanto, puedes ver el estado actual en las pestañas de Disponibles, Pocos Cupos y Agotados.</div>' +
+                    '</div>';
             }
         }
 
@@ -1342,28 +1317,27 @@
                 ? Object.entries(estadoActual).sort((a, b) => a[1] - b[1])[0]
                 : null;
 
-            container.innerHTML = `
-                <div class="metric-card success">
-                    <div class="metric-label">🆙 Más Activa</div>
-                    <div class="metric-value">${maxApertura ? (maxApertura[0].length > 20 ? maxApertura[0].substring(0, 20) + '…' : maxApertura[0]) : 'Sin datos'}</div>
-                    <div class="metric-detail">${maxApertura ? maxApertura[1] + ' aperturas' : 'Datos acumulándose'}</div>
-                </div>
-                <div class="metric-card warning">
-                    <div class="metric-label">⏰ Hora Pico</div>
-                    <div class="metric-value">${maxHora ? maxHora[0] : '-'}</div>
-                    <div class="metric-detail">${maxHora ? maxHora[1] + ' cambios' : 'Sin datos'}</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">📊 Promedio Cupos</div>
-                    <div class="metric-value">${promedioCupos}</div>
-                    <div class="metric-detail">por especialidad</div>
-                </div>
-                <div class="metric-card danger">
-                    <div class="metric-label">⬇️ Menos Disponible</div>
-                    <div class="metric-value">${menosDisponible ? (menosDisponible[0].length > 20 ? menosDisponible[0].substring(0, 20) + '…' : menosDisponible[0]) : '-'}</div>
-                    <div class="metric-detail">${menosDisponible ? menosDisponible[1] + ' cupos' : 'Sin datos'}</div>
-                </div>
-            `;
+            container.innerHTML =
+                '<div class="metric-card success">' +
+                '<div class="metric-label">🆙 Más Activa</div>' +
+                '<div class="metric-value">' + (maxApertura ? (maxApertura[0].length > 20 ? maxApertura[0].substring(0, 20) + '…' : maxApertura[0]) : 'Sin datos') + '</div>' +
+                '<div class="metric-detail">' + (maxApertura ? maxApertura[1] + ' aperturas' : 'Datos acumulándose') + '</div>' +
+                '</div>' +
+                '<div class="metric-card warning">' +
+                '<div class="metric-label">⏰ Hora Pico</div>' +
+                '<div class="metric-value">' + (maxHora ? maxHora[0] : '-') + '</div>' +
+                '<div class="metric-detail">' + (maxHora ? maxHora[1] + ' cambios' : 'Sin datos') + '</div>' +
+                '</div>' +
+                '<div class="metric-card">' +
+                '<div class="metric-label">📊 Promedio Cupos</div>' +
+                '<div class="metric-value">' + promedioCupos + '</div>' +
+                '<div class="metric-detail">por especialidad</div>' +
+                '</div>' +
+                '<div class="metric-card danger">' +
+                '<div class="metric-label">⬇️ Menos Disponible</div>' +
+                '<div class="metric-value">' + (menosDisponible ? (menosDisponible[0].length > 20 ? menosDisponible[0].substring(0, 20) + '…' : menosDisponible[0]) : '-') + '</div>' +
+                '<div class="metric-detail">' + (menosDisponible ? menosDisponible[1] + ' cupos' : 'Sin datos') + '</div>' +
+                '</div>';
         }
 
         function renderAperturasPorHora() {
@@ -1539,10 +1513,6 @@
             }
         }
 
-        // ═══════════════════════════════════════════════════════════════
-        // NUEVOS GRÁFICOS PROFESIONALES - ANÁLISIS AVANZADO
-        // ═══════════════════════════════════════════════════════════════
-
         function renderEvolucionCupos() {
             const registros = estadisticas.registros || {};
             const labels = [];
@@ -1551,7 +1521,7 @@
             Object.entries(registros).forEach(([fecha, eventos]) => {
                 if (Array.isArray(eventos) && eventos.length > 0) {
                     eventos.forEach((evt, idx) => {
-                        if (idx === eventos.length - 1) { // Último del día
+                        if (idx === eventos.length - 1) {
                             labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
                             datos.push(evt.total_cupos || 0);
                         }
@@ -1785,21 +1755,18 @@
             }
         }
 
-
         let modalChart = null;
 
         function abrirHistorial(nombre) {
             const modal = document.getElementById('modal-historial');
             document.getElementById('modal-nombre').textContent = '🏥 ' + nombre;
 
-            // Calcular stats de la especialidad
             const eventos = estadisticas.eventos || [];
             const aperturas = eventos.filter(e => e.especialidad === nombre && (e.tipo === 'nuevos' || e.tipo === 'aumentos'));
             const agotamientos = eventos.filter(e => e.especialidad === nombre && e.tipo === 'agotados');
             const maxCupos = aperturas.length > 0 ? Math.max(...aperturas.map(e => e.cupos || 0)) : 0;
             const cupoActual = estadoActual[nombre] || 0;
 
-            // Calcular tiempo promedio hasta agotarse
             let tiempoPromedio = '-';
             const pares = [];
             aperturas.forEach(ap => {
@@ -1808,7 +1775,7 @@
                     .map(ag => ({ ag, diff: new Date(ag.fecha) - fechaAp }))
                     .filter(x => x.diff > 0)
                     .sort((a, b) => a.diff - b.diff)[0];
-                if (agotDespues) pares.push(agotDespues.diff / 60000); // minutos
+                if (agotDespues) pares.push(agotDespues.diff / 60000);
             });
             if (pares.length > 0) {
                 const promMin = Math.round(pares.reduce((a, b) => a + b, 0) / pares.length);
@@ -1817,35 +1784,19 @@
                     : Math.floor(promMin / 60) + ' h ' + (promMin % 60 > 0 ? promMin % 60 + ' min' : '');
             }
 
-            document.getElementById('modal-stats').innerHTML = `
-                <div class="modal-stat">
-                    <div class="modal-stat-valor">${cupoActual}</div>
-                    <div class="modal-stat-label">Cupos ahora</div>
-                </div>
-                <div class="modal-stat">
-                    <div class="modal-stat-valor">${aperturas.length}</div>
-                    <div class="modal-stat-label">Aperturas</div>
-                </div>
-                <div class="modal-stat">
-                    <div class="modal-stat-valor">${agotamientos.length}</div>
-                    <div class="modal-stat-label">Agotamientos</div>
-                </div>
-                <div class="modal-stat">
-                    <div class="modal-stat-valor" style="font-size:1.1rem">${tiempoPromedio}</div>
-                    <div class="modal-stat-label">Prom. hasta agotar</div>
-                </div>
-            `;
+            document.getElementById('modal-stats').innerHTML =
+                '<div class="modal-stat"><div class="modal-stat-valor">' + cupoActual + '</div><div class="modal-stat-label">Cupos ahora</div></div>' +
+                '<div class="modal-stat"><div class="modal-stat-valor">' + aperturas.length + '</div><div class="modal-stat-label">Aperturas</div></div>' +
+                '<div class="modal-stat"><div class="modal-stat-valor">' + agotamientos.length + '</div><div class="modal-stat-label">Agotamientos</div></div>' +
+                '<div class="modal-stat"><div class="modal-stat-valor" style="font-size:1.1rem">' + tiempoPromedio + '</div><div class="modal-stat-label">Prom. hasta agotar</div></div>';
 
-            // Construir serie de cupos históricos por día
             const registros = estadisticas.registros || {};
             const labels = [];
             const datos = [];
 
             Object.entries(registros).sort().forEach(([fecha, regs]) => {
                 if (Array.isArray(regs) && regs.length > 0) {
-                    const ultimo = regs[regs.length - 1];
-                    labels.push(fecha.substring(5)); // MM-DD
-                    // No hay cupo por especialidad en registros, usamos eventos del día
+                    labels.push(fecha.substring(5));
                     const eventoDia = [...eventos]
                         .filter(e => e.especialidad === nombre && e.fecha.startsWith(fecha))
                         .sort((a, b) => b.fecha.localeCompare(a.fecha))[0];
@@ -1853,7 +1804,6 @@
                 }
             });
 
-            // Render chart
             if (modalChart) modalChart.destroy();
             const ctx = document.getElementById('modal-chart');
             modalChart = new Chart(ctx, {
@@ -1872,40 +1822,3 @@
                         spanGaps: true
                     }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 10 }
-                    },
-                    scales: { y: { beginAtZero: true } }
-                }
-            });
-
-            modal.classList.add('visible');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function cerrarModal(event) {
-            if (event && event.target !== document.getElementById('modal-historial')) return;
-            document.getElementById('modal-historial').classList.remove('visible');
-            document.body.style.overflow = '';
-            if (modalChart) { modalChart.destroy(); modalChart = null; }
-        }
-
-        cargarDatos();
-        actualizarHeartbeat();
-        setInterval(actualizarHeartbeat, 60000);
-        setInterval(cargarDatos, 15 * 60 * 1000);
-
-        // Service Worker: soporte offline
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/monitor-turnos-hospital/sw.js')
-                .then(() => console.log('Service Worker registrado'))
-                .catch(e => console.log('Service Worker no disponible:', e));
-        }
-        
-    </script>
-</body>
-</html>
