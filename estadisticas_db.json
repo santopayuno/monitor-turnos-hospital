@@ -1148,6 +1148,12 @@
         "con_cupos": 27,
         "total_cupos": 338,
         "cambios": 15
+      },
+      {
+        "hora": "10:45:12",
+        "con_cupos": 28,
+        "total_cupos": 334,
+        "cambios": 1
       }
     ]
   },
@@ -1931,6 +1937,12 @@
       "tipo": "ultimos",
       "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-05-30T10:45:12.131576-03:00",
+      "tipo": "nuevos",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
