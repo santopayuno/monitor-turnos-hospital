@@ -1172,6 +1172,12 @@
         "con_cupos": 28,
         "total_cupos": 320,
         "cambios": 0
+      },
+      {
+        "hora": "11:45:14",
+        "con_cupos": 26,
+        "total_cupos": 315,
+        "cambios": 3
       }
     ]
   },
@@ -1967,6 +1973,24 @@
       "tipo": "ultimos",
       "especialidad": "NEUMONOLOGIA INFANTIL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-05-30T11:45:14.822376-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-30T11:45:14.822376-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-30T11:45:14.822376-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
