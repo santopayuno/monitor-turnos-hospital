@@ -1142,6 +1142,12 @@
         "con_cupos": 14,
         "total_cupos": 269,
         "cambios": 0
+      },
+      {
+        "hora": "10:30:07",
+        "con_cupos": 27,
+        "total_cupos": 338,
+        "cambios": 15
       }
     ]
   },
@@ -1835,6 +1841,96 @@
       "tipo": "aumentos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 134
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 8
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "aumentos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 15
+    },
+    {
+      "fecha": "2026-05-30T10:30:07.545675-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
