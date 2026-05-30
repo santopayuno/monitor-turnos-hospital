@@ -861,13 +861,13 @@ def main():
                     f.write(reporte)
                 enviar_telegram(reporte)
 
-    # Detección de patrones: avisar si especialidades suelen abrir en la próxima hora
+    # Detección de patrones: avisar UNA sola vez por hora (solo al minuto 45-59 de cada hora)
     if CONFIG.get("alertas_patrones", True):
-        hora_actual = ahora.hour
-        hora_siguiente = (hora_actual + 1) % 24
-        alerta_patrones = detectar_patrones_apertura(hora_siguiente)
-        if alerta_patrones:
-            enviar_telegram(alerta_patrones)
+        if ahora.minute >= 45:
+            hora_siguiente = (ahora.hour + 1) % 24
+            alerta_patrones = detectar_patrones_apertura(hora_siguiente)
+            if alerta_patrones:
+                enviar_telegram(alerta_patrones)
 
     logger.info("═════════════════════════════════════════════════════")
 
