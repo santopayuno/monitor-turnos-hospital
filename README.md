@@ -9,10 +9,11 @@ Monitor automático de disponibilidad de turnos médicos del Hospital Alfredo I.
 ## ✨ Características
 
 - 🔄 **Monitoreo automático cada 15 minutos** - Sin intervención manual
-- 📱 **Notificaciones Telegram instantáneas** - Cuando hay nuevos turnos disponibles
+- 📱 **Notificaciones Telegram instantáneas** - Solo cuando hay turnos nuevos o aumentos
 - 📊 **Dashboard interactivo** - 40 especialidades, gráficos, búsqueda en tiempo real
+- 💓 **Heartbeat en tiempo real** - Indicador visual del estado real de Railway (verde/naranja/rojo)
 - 🌐 **Hosted en GitHub Pages** - Gratuito y confiable
-- ⚡ **Arquitectura confiable** - Railway como motor principal
+- ⚡ **Arquitectura confiable** - Railway como único motor de ejecución
 - 🔒 **Sin dependencias externas** - Solo Python, Git, y APIs públicas
 
 ---
@@ -23,7 +24,8 @@ Monitor automático de disponibilidad de turnos médicos del Hospital Alfredo I.
 Railway Cron (cada 15 min)
     ├─ 🏥 Consulta API Hospital
     ├─ 📱 Telegram (si hay turnos nuevos o aumentos)
-    ├─ 📝 Actualiza JSON locales
+    ├─ 💓 Actualiza heartbeat.json
+    ├─ 📝 Actualiza estado_turnos.json y estadisticas_db.json
     └─ 📤 Git push a GitHub
          └─ 📄 GitHub Pages se actualiza automáticamente
 ```
@@ -33,7 +35,7 @@ Railway Cron (cada 15 min)
 - **Railway Cron** es puntual cada 15 minutos (GitHub Cron tiene retrasos de horas)
 - **Railway** envía el Telegram directamente, sin depender de GitHub Actions
 - **GitHub Pages** se actualiza automáticamente al detectar el push de Railway
-- **Telegram** notifica solo si hay cambios (sin spam)
+- **Telegram** notifica solo si hay cambios reales (sin spam)
 
 ---
 
@@ -116,6 +118,7 @@ Script principal que:
 - Parsea especialidades y cupos
 - Detecta cambios (nuevos turnos, aumentos, agotados)
 - Envía notificación Telegram si hay novedades
+- Escribe `heartbeat.json` con timestamp de cada ejecución real
 - Actualiza `estado_turnos.json` y `estadisticas_db.json`
 - Limpia automáticamente registros con más de 90 días
 
@@ -123,19 +126,21 @@ Script principal que:
 Wrapper para Railway que:
 - Inicializa Git si es necesario (resuelve conflictos)
 - Ejecuta `monitor.py`
-- Hace git commit & push a GitHub
+- Hace git commit & push a GitHub (incluye `heartbeat.json`)
 
 ### `index.html`
 Dashboard interactivo con:
 - 40 especialidades en tiempo real
-- Gráficos de tendencias
-- Buscador inteligente
+- Heartbeat con color semántico (🟢 < 20 min / 🟠 20-60 min / 🔴 > 60 min)
+- Render optimizado: solo actualiza el DOM si los datos cambiaron
+- Gráficos de tendencias y análisis histórico
+- Buscador inteligente sin memory leaks
 - Diseño responsive (mobile-friendly)
 
 ### `.github/workflows/monitor.yml`
 GitHub Actions configurado solo con `workflow_dispatch`:
-- No tiene cron propio (para evitar ejecuciones dobles con Railway)
-- Puede ejecutarse manualmente desde GitHub si es necesario
+- No tiene cron propio (evita ejecuciones dobles con Railway)
+- Disponible para ejecución manual desde GitHub si es necesario
 
 ### `Dockerfile`
 Contenerización para Railway:
@@ -147,20 +152,36 @@ Contenerización para Railway:
 
 ## 📱 Notificaciones Telegram
 
-El bot envía notificaciones **solo cuando hay turnos nuevos o aumentos significativos**:
+El bot notifica **solo cuando hay turnos nuevos o aumentos**:
 
 ```
 🚨 NUEVOS TURNOS DISPONIBLES
 🏥 HOSPITAL PERRUPATO
 
+────────────
 🆕 CAMBIOS DETECTADOS
-
+────────────
 🏥 CLINICA MEDICA CONSULTA
 🍀 71 Cupos Disponibles
 📈 +71 nuevos
 
+────────────
 🟢 DISPONIBLES AHORA
-...
+────────────
+🏥 CIRUGIA INFANTIL
+✅ 30 Cupos
+
+────────────
+⚠️ POCOS CUPOS DISPONIBLES
+────────────
+🏥 ONCOLOGIA
+⚠️ 1 Cupo
+
+────────────
+‼️ SIN CUPOS DISPONIBLES
+────────────
+🚫 CARDIOLOGIA ADULTO
+🚫 CARDIOLOGIA INFANTIL
 
 📊 ESTADÍSTICAS
 • Monitoreadas: 40
@@ -174,7 +195,7 @@ El bot envía notificaciones **solo cuando hay turnos nuevos o aumentos signific
 
 ## 🛠️ Modo Prueba
 
-Para verificar que Telegram funciona correctamente sin esperar cambios reales:
+Para verificar que Telegram funciona sin esperar cambios reales:
 
 1. En Railway → Variables → agregar `TEST_MODE = true`
 2. Railway → Run now
@@ -200,11 +221,11 @@ Para verificar que Telegram funciona correctamente sin esperar cambios reales:
    ├─ 🏥 Consulta API hospital (40 especialidades)
    ├─ 🔍 Compara con estado anterior
    ├─ 📱 Telegram (solo si hay nuevos o aumentos)
+   ├─ 💓 Escribe heartbeat.json
    ├─ 📝 Guarda estado actualizado
    └─ 📤 Git push → GitHub Pages se regenera
 
 ⏰ +15 min → Repite
-⏰ +30 min → Repite
 ... (indefinidamente)
 ```
 
@@ -217,10 +238,11 @@ Para verificar que Telegram funciona correctamente sin esperar cambios reales:
 ├── run_monitor.py          # Wrapper Railway + git push
 ├── index.html              # Dashboard web
 ├── requirements.txt        # Dependencias Python
-├── config.json             # Configuración (reporte diario, etc)
+├── config.json             # Configuración
 ├── Dockerfile              # Imagen Docker para Railway
 ├── estado_turnos.json      # Estado actual de especialidades
 ├── estadisticas_db.json    # Histórico 90 días
+├── heartbeat.json          # Timestamp de última ejecución real
 ├── .gitignore
 └── .github/workflows/
     └── monitor.yml         # Solo workflow_dispatch (sin cron)
@@ -235,17 +257,13 @@ Para verificar que Telegram funciona correctamente sin esperar cambios reales:
 ```
 → Consultando API...
 ✓ API: 40 especialidades recibidas
-✓ Notificación Telegram enviada
 ✓ Push exitoso a GitHub
 🎉 EJECUCIÓN COMPLETADA
 ```
 
 ### En Dashboard
 
-Los datos deben estar frescos (menos de 15 minutos):
-```
-Actualizado: 29/05/2026 20:00 hs
-```
+El heartbeat debe mostrar en verde con menos de 20 minutos desde la última ejecución.
 
 ---
 
@@ -262,25 +280,15 @@ Actualizado: 29/05/2026 20:00 hs
 - Verificar que `GITHUB_TOKEN` tiene permisos `repo`
 - Verificar que la rama `main` existe en GitHub
 
+### Dashboard: Heartbeat en rojo
+
+- Revisar Railway → Cron Runs para confirmar que el cron está activo
+- Verificar que `heartbeat.json` existe en el repositorio
+
 ### Dashboard: Datos desactualizados
 
 - Hard refresh: `Ctrl+Shift+R` (o `Cmd+Shift+R`)
 - Verificar que Railway está ejecutando correctamente en Cron Runs
-
----
-
-## 📊 Métricas
-
-- **Especialidades monitoreadas:** 40
-- **Frecuencia:** Cada 15 minutos
-- **Historial:** 90 días
-- **Notificaciones:** Solo cuando hay cambios reales
-
----
-
-**Última actualización:** 29/05/2026
-
-**Estado:** ✅ En producción — Funcionando correctamente
 
 ---
 
