@@ -965,4 +965,4 @@ if __name__ == "__main__":
         logger.info("Interrumpido por usuario")
     except Exception as e:
         logger.critical(f"Error crítico: {e}", exc_info=True)
-        enviar_telegram(f"🚨 Error crítico: {str(e)[:100]}")
+        enviar_telegram(f"🚨 Error crítico: {str(e)[:100]}") 
