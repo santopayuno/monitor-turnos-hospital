@@ -692,10 +692,23 @@ def main():
         logger.info("   ℹ️ NO se envía notificación en primera ejecución")
         return
 
+    # Aplicar filtro de especialidades de interés si está configurado
+    interes = [e.upper().strip() for e in CONFIG.get("especialidades_interes", [])]
+    cambios_filtrados = procesador.cambios
+
+    if interes:
+        cambios_filtrados = {
+            "nuevos":    [c for c in procesador.cambios["nuevos"]    if c["nombre"].upper() in interes],
+            "aumentos":  [c for c in procesador.cambios["aumentos"]  if c["nombre"].upper() in interes],
+            "ultimos":   [c for c in procesador.cambios["ultimos"]   if c["nombre"].upper() in interes],
+            "agotados":  [c for c in procesador.cambios["agotados"]  if c["nombre"].upper() in interes],
+        }
+        logger.info(f"🎯 Filtro activo: {len(interes)} especialidades de interés")
+
     # Enviar notificación SOLO si hay nuevos o aumentos (después de primera ejecución)
-    if procesador.cambios["nuevos"] or procesador.cambios["aumentos"]:
+    if cambios_filtrados["nuevos"] or cambios_filtrados["aumentos"]:
         constructor = ConstructorMensajeTelegram(
-            procesador.cambios,
+            cambios_filtrados,
             procesador.clasificacion,
             fecha_hora,
             procesador.estado_actual,
@@ -705,7 +718,10 @@ def main():
         if mensaje:
             enviar_telegram(mensaje)
     else:
-        logger.info("ℹ️ Sin nuevos o aumentos para notificar")
+        if interes:
+            logger.info("ℹ️ Sin nuevos o aumentos en especialidades de interés")
+        else:
+            logger.info("ℹ️ Sin nuevos o aumentos para notificar")
 
     if CONFIG.get("generar_reporte_diario"):
         hora = ahora.strftime("%H:%M")
