@@ -1250,6 +1250,12 @@
         "con_cupos": 23,
         "total_cupos": 274,
         "cambios": 0
+      },
+      {
+        "hora": "15:00:31",
+        "con_cupos": 22,
+        "total_cupos": 270,
+        "cambios": 1
       }
     ]
   },
@@ -2092,6 +2098,12 @@
       "fecha": "2026-05-30T13:45:51.121857-03:00",
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-30T15:00:31.383414-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 0
     }
   ],
