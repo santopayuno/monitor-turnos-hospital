@@ -669,12 +669,12 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="mostrarTab(event, 'nuevos')">🆕 Nuevos</button>
-            <button class="tab-btn" onclick="mostrarTab(event, 'disponibles')">✅ Disponibles</button>
-            <button class="tab-btn" onclick="mostrarTab(event, 'pocos')">🟡 Pocos Cupos</button>
-            <button class="tab-btn" onclick="mostrarTab(event, 'ultimos')">‼️ Últimos</button>
-            <button class="tab-btn" onclick="mostrarTab(event, 'agotados')">❌ Agotados</button>
-            <button class="tab-btn" onclick="mostrarTab(event, 'graficos')">📊 Análisis</button>
+            <button class="tab-btn active" data-tab="nuevos" onclick="mostrarTab('nuevos')">🆕 Nuevos</button>
+            <button class="tab-btn" data-tab="disponibles" onclick="mostrarTab('disponibles')">✅ Disponibles</button>
+            <button class="tab-btn" data-tab="pocos" onclick="mostrarTab('pocos')">🟡 Pocos Cupos</button>
+            <button class="tab-btn" data-tab="ultimos" onclick="mostrarTab('ultimos')">‼️ Últimos</button>
+            <button class="tab-btn" data-tab="agotados" onclick="mostrarTab('agotados')">❌ Agotados</button>
+            <button class="tab-btn" data-tab="graficos" onclick="mostrarTab('graficos')">📊 Análisis</button>
         </div>
 
         <div id="tab-nuevos" class="tab-content active">
@@ -841,11 +841,12 @@
             }
         }
 
-        function mostrarTab(event, nombre) {
+        function mostrarTab(nombre) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + nombre).classList.add('active');
-            event.target.classList.add('active');
+            const btn = document.querySelector('.tab-btn[data-tab="' + nombre + '"]');
+            if (btn) btn.classList.add('active');
 
             if (nombre === 'graficos') {
                 setTimeout(renderGraficosAnalisis, 100);
@@ -866,6 +867,10 @@
 
             // Recolectar todas las especialidades
             searchState.allEspecialidades = Object.keys(estadoActual).sort();
+
+            // Evitar registrar listeners múltiples en recargas de datos
+            if (searchState.listenersRegistrados) return;
+            searchState.listenersRegistrados = true;
 
             // Input event - en tiempo real
             searchInput.addEventListener('input', function(e) {
@@ -999,7 +1004,7 @@
 
             // Abrir pestaña correcta
             if (tabEncontrada) {
-                mostrarTab({ target: { classList: { add: () => {} } } }, tabEncontrada);
+                mostrarTab(tabEncontrada);
                 setTimeout(() => {
                     document.querySelector(`[data-especialidad="${especialidad}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 100);
