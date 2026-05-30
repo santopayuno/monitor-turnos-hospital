@@ -308,37 +308,45 @@ class ConstructorMensajeTelegram:
         if not self._hay_contenido():
             return None
 
-        lineas = []
+        secciones = []
 
-        # ENCABEZADO (con doble salto después)
-        lineas.append("🚨 NUEVOS TURNOS DISPONIBLES")
-        lineas.append("🏥 HOSPITAL PERRUPATO")
-        lineas.append("")
+        # Cada sección devuelve sus líneas SIN espaciado exterior.
+        # construir() inserta exactamente 2 líneas vacías entre bloques.
 
-        # CAMBIOS DETECTADOS (si los hay)
         cambios_section = self._seccion_cambios()
         if cambios_section:
-            lineas.extend(cambios_section)
+            secciones.append(cambios_section)
 
-        # DISPONIBLES AHORA (si los hay)
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
-            lineas.extend(disponibles_section)
+            secciones.append(disponibles_section)
 
-        # POCOS CUPOS (si los hay)
         pocos_section = self._seccion_pocos()
         if pocos_section:
-            lineas.extend(pocos_section)
+            secciones.append(pocos_section)
 
-        # SIN CUPOS (SIEMPRE visible)
         agotados_section = self._seccion_agotados()
         if agotados_section:
-            lineas.extend(agotados_section)
+            secciones.append(agotados_section)
 
-        # ESTADÍSTICAS FINALES
         stats_section = self._seccion_estadisticas()
         if stats_section:
-            lineas.extend(stats_section)
+            secciones.append(stats_section)
+
+        # Encabezado
+        lineas = [
+            "🚨 NUEVOS TURNOS DISPONIBLES",
+            "🏥 HOSPITAL PERRUPATO",
+            "",
+            "",  # 2 líneas vacías antes de primera sección
+        ]
+
+        # Unir secciones con exactamente 2 líneas vacías entre ellas
+        for i, seccion in enumerate(secciones):
+            lineas.extend(seccion)
+            if i < len(secciones) - 1:
+                lineas.append("")
+                lineas.append("")  # 2 líneas vacías entre secciones
 
         # Limpiar líneas vacías finales
         while lineas and lineas[-1] == "":
@@ -361,35 +369,44 @@ class ConstructorMensajeTelegram:
                     self.cambios["ultimos"], self.cambios["agotados"]]):
             return None
 
+        # Encabezado sin línea vacía después del separador de cierre
         lineas = ["────────────", "🆕 CAMBIOS DETECTADOS", "────────────"]
 
-        # NUEVOS - Ordenar alfabéticamente
+        todos_items = []
+
         nuevos_ordenados = sorted(self.cambios["nuevos"], key=lambda x: x['nombre'])
         for item in nuevos_ordenados:
             cupo = item['cupo_actual']
             plural = "s" if cupo > 1 else ""
-            lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"🍀 {formato_cupos_disponibles(cupo)}")
-            lineas.append(f"📈 +{cupo} nuevo{plural}")
-            lineas.append("")
+            todos_items.append([
+                f"🏥 {item['nombre']}",
+                f"🍀 {formato_cupos_disponibles(cupo)}",
+                f"📈 +{cupo} nuevo{plural}",
+            ])
 
-        # AUMENTOS - Ordenar alfabéticamente
         aumentos_ordenados = sorted(self.cambios["aumentos"], key=lambda x: x['nombre'])
         for item in aumentos_ordenados:
             aumento = item['aumento']
             plural = "s" if aumento > 1 else ""
-            lineas.append(f"🏥 {item['nombre']}")
-            lineas.append(f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}")
-            lineas.append(f"📈 +{aumento} nuevo{plural}")
-            lineas.append("")
+            todos_items.append([
+                f"🏥 {item['nombre']}",
+                f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}",
+                f"📈 +{aumento} nuevo{plural}",
+            ])
 
-        # ÚLTIMOS - Ordenar alfabéticamente
         ultimos_ordenados = sorted(self.cambios["ultimos"], key=lambda x: x['nombre'])
         for item in ultimos_ordenados:
-            lineas.append(f"🏥 {item['nombre']}")
             plural = "s" if item['cupo_actual'] > 1 else ""
-            lineas.append(f"⚠️ {item['cupo_actual']} Cupo{plural} Restante{plural}")
-            lineas.append("")
+            todos_items.append([
+                f"🏥 {item['nombre']}",
+                f"⚠️ {item['cupo_actual']} Cupo{plural} Restante{plural}",
+            ])
+
+        # Agregar items con 1 línea vacía ENTRE ellos (no al final)
+        for i, item_lineas in enumerate(todos_items):
+            lineas.extend(item_lineas)
+            if i < len(todos_items) - 1:
+                lineas.append("")
 
         return lineas
 
@@ -401,17 +418,15 @@ class ConstructorMensajeTelegram:
         if not self.clasificacion["disponible"]:
             return None
 
-        # Ordenar alfabéticamente
         items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
-
         lineas = ["────────────", "🟢 DISPONIBLES AHORA", "────────────"]
 
-        # Mostrar TODAS
-        for nombre, cupo in items:
-            lineas.append(f"🏥 {nombre}")
+        for i, (nombre, cupo) in enumerate(items):
             plural = "s" if cupo > 1 else ""
+            lineas.append(f"🏥 {nombre}")
             lineas.append(f"✅ {cupo} Cupo{plural}")
-            lineas.append("")
+            if i < len(items) - 1:
+                lineas.append("")
 
         return lineas
 
@@ -425,21 +440,15 @@ class ConstructorMensajeTelegram:
         if not especiales:
             return None
 
-        # Ordenar alfabéticamente
         items = sorted(especiales, key=lambda x: x[0])
+        lineas = ["────────────", "⚠️ POCOS CUPOS DISPONIBLES", "────────────"]
 
-        lineas = [
-            "────────────",
-            "⚠️ POCOS CUPOS DISPONIBLES",
-            "────────────"
-        ]
-
-        # Mostrar TODAS
-        for nombre, cupo in items:
+        for i, (nombre, cupo) in enumerate(items):
             plural = "s" if cupo > 1 else ""
             lineas.append(f"🏥 {nombre}")
             lineas.append(f"⚠️ {cupo} Cupo{plural}")
-            lineas.append("")
+            if i < len(items) - 1:
+                lineas.append("")
 
         return lineas
 
@@ -448,25 +457,21 @@ class ConstructorMensajeTelegram:
     # ─────────────────────────────────────────────────────────
 
     def _seccion_agotados(self):
-        # Mostrar TODAS las especialidades con 0 cupos
-        lineas = [
-            "────────────",
-            "‼️ SIN CUPOS DISPONIBLES",
-            "────────────"
-        ]
+        lineas = ["────────────", "‼️ SIN CUPOS DISPONIBLES", "────────────"]
 
-        # Obtener todas las agotadas del estado actual - Ordenar alfabéticamente
-        agotadas = sorted([(nombre, cupo) for nombre, cupo in self.estado_actual.items() if cupo == 0], 
-                         key=lambda x: x[0])
+        agotadas = sorted(
+            [(nombre, cupo) for nombre, cupo in self.estado_actual.items() if cupo == 0],
+            key=lambda x: x[0]
+        )
 
         if not agotadas:
             lineas.append("(No hay especialidades agotadas)")
             return lineas
 
-        # Mostrar TODAS
+        # Compacto: sin líneas vacías entre items
         for nombre, _ in agotadas:
             lineas.append(f"🚫 {nombre}")
-        lineas.append("")
+
         return lineas
 
     # ─────────────────────────────────────────────────────────
@@ -479,7 +484,6 @@ class ConstructorMensajeTelegram:
 
         lineas = [
             "📊 ESTADÍSTICAS",
-            "",
             f"• Monitoreadas: {self.total_especialidades}",
             f"• Con cupos: {total_con_cupos}",
             f"• Total: {total_cupos}",
