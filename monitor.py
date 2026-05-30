@@ -314,35 +314,26 @@ class ConstructorMensajeTelegram:
         lineas.append("🚨 NUEVOS TURNOS DISPONIBLES")
         lineas.append("🏥 HOSPITAL PERRUPATO")
         lineas.append("")
-        lineas.append("")
 
         # CAMBIOS DETECTADOS (si los hay)
         cambios_section = self._seccion_cambios()
         if cambios_section:
             lineas.extend(cambios_section)
-            lineas.append("")
-            lineas.append("")
 
         # DISPONIBLES AHORA (si los hay)
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
             lineas.extend(disponibles_section)
-            lineas.append("")
-            lineas.append("")
 
         # POCOS CUPOS (si los hay)
         pocos_section = self._seccion_pocos()
         if pocos_section:
             lineas.extend(pocos_section)
-            lineas.append("")
-            lineas.append("")
 
         # SIN CUPOS (SIEMPRE visible)
         agotados_section = self._seccion_agotados()
         if agotados_section:
             lineas.extend(agotados_section)
-            lineas.append("")
-            lineas.append("")
 
         # ESTADÍSTICAS FINALES
         stats_section = self._seccion_estadisticas()
@@ -370,7 +361,7 @@ class ConstructorMensajeTelegram:
                     self.cambios["ultimos"], self.cambios["agotados"]]):
             return None
 
-        lineas = ["🆕 CAMBIOS DETECTADOS", ""]
+        lineas = ["────────────", "🆕 CAMBIOS DETECTADOS", "────────────"]
 
         # NUEVOS - Ordenar alfabéticamente
         nuevos_ordenados = sorted(self.cambios["nuevos"], key=lambda x: x['nombre'])
@@ -417,7 +408,7 @@ class ConstructorMensajeTelegram:
         # Ordenar alfabéticamente
         items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
 
-        lineas = ["🟢 DISPONIBLES AHORA", ""]
+        lineas = ["────────────", "🟢 DISPONIBLES AHORA", "────────────"]
 
         # Mostrar TODAS
         for nombre, cupo in items:
@@ -446,8 +437,9 @@ class ConstructorMensajeTelegram:
         items = sorted(especiales, key=lambda x: x[0])
 
         lineas = [
+            "────────────",
             "⚠️ POCOS CUPOS DISPONIBLES",
-            ""
+            "────────────"
         ]
 
         # Mostrar TODAS
@@ -470,8 +462,9 @@ class ConstructorMensajeTelegram:
     def _seccion_agotados(self):
         # Mostrar TODAS las especialidades con 0 cupos
         lineas = [
+            "────────────",
             "‼️ SIN CUPOS DISPONIBLES",
-            ""
+            "────────────"
         ]
 
         # Obtener todas las agotadas del estado actual - Ordenar alfabéticamente
