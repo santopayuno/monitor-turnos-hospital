@@ -75,7 +75,7 @@ try:
     # PASO 5: Git add - Solo archivos específicos
     # ============================================================
     print("📝 Agregando archivos cambios...")
-    run_cmd(['git', 'add', 'estado_turnos.json', 'estadisticas_db.json'], ignore_error=True)
+    run_cmd(['git', 'add', 'estado_turnos.json', 'estadisticas_db.json', 'heartbeat.json'], ignore_error=True)
     run_cmd(['git', 'add', 'logs/'], ignore_error=True)
 
     # ============================================================
