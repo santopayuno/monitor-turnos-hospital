@@ -5,3 +5,4 @@
 {"ts": "2026-05-30T22:31:31.891030", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 246, "con_cupos": 20}
 {"ts": "2026-05-30T22:45:45.069959", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 242, "con_cupos": 19}
 {"ts": "2026-05-30T22:45:45.072565", "evento": "cambio", "tipo": "agotados", "especialidad": "CIRUGIA GENERAL", "cupos": 0}
+{"ts": "2026-05-30T23:00:20.816561", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 241, "con_cupos": 19}
