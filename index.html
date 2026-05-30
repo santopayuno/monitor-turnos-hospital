@@ -615,6 +615,77 @@
                 gap: 15px;
             }
         }
+
+        /* Modal historial especialidad */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.visible {
+            display: flex;
+        }
+        .modal-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .modal-titulo {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            flex: 1;
+            margin-right: 12px;
+        }
+        .modal-cerrar {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #94a3b8;
+            padding: 0 4px;
+            line-height: 1;
+        }
+        .modal-cerrar:hover { color: var(--color-danger); }
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .modal-stat {
+            background: var(--color-light);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+        .modal-stat-valor {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        .modal-stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
+        .especialidad { cursor: pointer; }
     </style>
 </head>
 <body>
@@ -777,6 +848,21 @@
                 </div>
             </div>
         </div>
+
+
+    <!-- Modal historial especialidad -->
+    <div class="modal-overlay" id="modal-historial" onclick="cerrarModal(event)">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-titulo" id="modal-nombre"></div>
+                <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+            </div>
+            <div class="modal-stats" id="modal-stats"></div>
+            <div class="chart-wrapper" style="min-height:250px;">
+                <canvas id="modal-chart"></canvas>
+            </div>
+        </div>
+    </div>
 
     </main>
 
@@ -1124,7 +1210,7 @@
             }
 
             el.innerHTML = items.map(([nombre, cupo]) => `
-                <div class="especialidad ${clase}" data-especialidad="${nombre}">
+                <div class="especialidad ${clase}" data-especialidad="${nombre}" onclick="abrirHistorial('${nombre.replace(/'/g, '\\'')}')">
                     <div class="especialidad-info">
                         <div class="especialidad-nombre">🏥 ${nombre}</div>
                     </div>
@@ -1697,6 +1783,115 @@
                     }
                 });
             }
+        }
+
+
+        let modalChart = null;
+
+        function abrirHistorial(nombre) {
+            const modal = document.getElementById('modal-historial');
+            document.getElementById('modal-nombre').textContent = '🏥 ' + nombre;
+
+            // Calcular stats de la especialidad
+            const eventos = estadisticas.eventos || [];
+            const aperturas = eventos.filter(e => e.especialidad === nombre && (e.tipo === 'nuevos' || e.tipo === 'aumentos'));
+            const agotamientos = eventos.filter(e => e.especialidad === nombre && e.tipo === 'agotados');
+            const maxCupos = aperturas.length > 0 ? Math.max(...aperturas.map(e => e.cupos || 0)) : 0;
+            const cupoActual = estadoActual[nombre] || 0;
+
+            // Calcular tiempo promedio hasta agotarse
+            let tiempoPromedio = '-';
+            const pares = [];
+            aperturas.forEach(ap => {
+                const fechaAp = new Date(ap.fecha);
+                const agotDespues = agotamientos
+                    .map(ag => ({ ag, diff: new Date(ag.fecha) - fechaAp }))
+                    .filter(x => x.diff > 0)
+                    .sort((a, b) => a.diff - b.diff)[0];
+                if (agotDespues) pares.push(agotDespues.diff / 60000); // minutos
+            });
+            if (pares.length > 0) {
+                const promMin = Math.round(pares.reduce((a, b) => a + b, 0) / pares.length);
+                tiempoPromedio = promMin < 60
+                    ? promMin + ' min'
+                    : Math.floor(promMin / 60) + ' h ' + (promMin % 60 > 0 ? promMin % 60 + ' min' : '');
+            }
+
+            document.getElementById('modal-stats').innerHTML = `
+                <div class="modal-stat">
+                    <div class="modal-stat-valor">${cupoActual}</div>
+                    <div class="modal-stat-label">Cupos ahora</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-valor">${aperturas.length}</div>
+                    <div class="modal-stat-label">Aperturas</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-valor">${agotamientos.length}</div>
+                    <div class="modal-stat-label">Agotamientos</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-valor" style="font-size:1.1rem">${tiempoPromedio}</div>
+                    <div class="modal-stat-label">Prom. hasta agotar</div>
+                </div>
+            `;
+
+            // Construir serie de cupos históricos por día
+            const registros = estadisticas.registros || {};
+            const labels = [];
+            const datos = [];
+
+            Object.entries(registros).sort().forEach(([fecha, regs]) => {
+                if (Array.isArray(regs) && regs.length > 0) {
+                    const ultimo = regs[regs.length - 1];
+                    labels.push(fecha.substring(5)); // MM-DD
+                    // No hay cupo por especialidad en registros, usamos eventos del día
+                    const eventoDia = [...eventos]
+                        .filter(e => e.especialidad === nombre && e.fecha.startsWith(fecha))
+                        .sort((a, b) => b.fecha.localeCompare(a.fecha))[0];
+                    datos.push(eventoDia ? (eventoDia.cupos || 0) : null);
+                }
+            });
+
+            // Render chart
+            if (modalChart) modalChart.destroy();
+            const ctx = document.getElementById('modal-chart');
+            modalChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: nombre,
+                        data: datos,
+                        borderColor: '#0369a1',
+                        backgroundColor: 'rgba(3,105,161,0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#0369a1',
+                        spanGaps: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 10 }
+                    },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            modal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarModal(event) {
+            if (event && event.target !== document.getElementById('modal-historial')) return;
+            document.getElementById('modal-historial').classList.remove('visible');
+            document.body.style.overflow = '';
+            if (modalChart) { modalChart.destroy(); modalChart = null; }
         }
 
         cargarDatos();
