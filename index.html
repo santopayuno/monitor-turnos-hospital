@@ -1703,6 +1703,13 @@
         actualizarHeartbeat();
         setInterval(actualizarHeartbeat, 60000);
         setInterval(cargarDatos, 15 * 60 * 1000);
+
+        // Service Worker: soporte offline
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/monitor-turnos-hospital/sw.js')
+                .then(() => console.log('Service Worker registrado'))
+                .catch(e => console.log('Service Worker no disponible:', e));
+        }
         
     </script>
 </body>
