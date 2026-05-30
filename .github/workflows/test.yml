@@ -65,7 +65,7 @@ jobs:
           estado_anterior = {'PEDIATRIA': 0, 'CARDIOLOGIA': 5}
           estado_nuevo    = {'PEDIATRIA': 10, 'CARDIOLOGIA': 2}
 
-          proc = ProcesadorEspecialidades(estado_anterior, estado_nuevo)
+          proc = ProcesadorEspecialidades(estado_nuevo, estado_anterior)
           assert len(proc.cambios['nuevos']) == 1, 'Debería detectar 1 nuevo'
           assert proc.cambios['nuevos'][0]['nombre'] == 'PEDIATRIA'
           assert len(proc.cambios['ultimos']) == 1, 'Debería detectar últimos cupos'
