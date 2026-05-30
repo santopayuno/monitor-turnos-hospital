@@ -1202,6 +1202,12 @@
         "con_cupos": 26,
         "total_cupos": 294,
         "cambios": 0
+      },
+      {
+        "hora": "13:00:27",
+        "con_cupos": 25,
+        "total_cupos": 289,
+        "cambios": 2
       }
     ]
   },
@@ -2021,6 +2027,18 @@
       "tipo": "ultimos",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-05-30T13:00:27.214365-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-05-30T13:00:27.214365-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
