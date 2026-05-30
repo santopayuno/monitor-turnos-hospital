@@ -762,6 +762,12 @@
         "con_cupos": 15,
         "total_cupos": 212,
         "cambios": 0
+      },
+      {
+        "hora": "22:15:12",
+        "con_cupos": 14,
+        "total_cupos": 210,
+        "cambios": 1
       }
     ]
   },
@@ -1443,6 +1449,12 @@
       "tipo": "nuevos",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-05-29T22:15:12.896479-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
