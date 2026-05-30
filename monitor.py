@@ -501,7 +501,9 @@ class ConstructorMensajeTelegram:
             f"• Con cupos: {total_con_cupos}",
             f"• Total: {total_cupos}",
             "",
-            f"🕒 {self.fecha_hora}"
+            f"🕒 {self.fecha_hora}",
+            "",
+            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
         ]
 
         return lineas
@@ -676,6 +678,76 @@ def generar_reporte_diario():
         return None
 
 # ═══════════════════════════════════════════════════════════════
+# DETECCIÓN DE PATRONES
+# ═══════════════════════════════════════════════════════════════
+
+def detectar_patrones_apertura(hora_objetivo):
+    """
+    Analiza el historial de eventos y avisa si alguna especialidad
+    suele abrir turnos en la hora_objetivo.
+    Solo notifica si hay al menos 3 aperturas históricas en esa hora
+    y la especialidad no tiene cupos ahora mismo.
+    """
+    try:
+        stats = cargar_json(ARCHIVOS["estadisticas"]) or {}
+        eventos = stats.get("eventos", [])
+        estado_actual = cargar_json(ARCHIVOS["estado"]) or {}
+
+        if not eventos:
+            return None
+
+        # Contar aperturas por especialidad y hora
+        aperturas_por_hora = {}
+        for e in eventos:
+            if e.get("tipo") not in ("nuevos", "aumentos"):
+                continue
+            try:
+                hora = datetime.fromisoformat(e["fecha"]).hour
+            except Exception:
+                continue
+            esp = e["especialidad"]
+            if esp not in aperturas_por_hora:
+                aperturas_por_hora[esp] = {}
+            aperturas_por_hora[esp][hora] = aperturas_por_hora[esp].get(hora, 0) + 1
+
+        # Filtrar: especialidades que suelen abrir en hora_objetivo (mínimo 3 veces)
+        # y que ahora mismo NO tienen cupos (si ya tienen, no hace falta avisar)
+        candidatas = []
+        for esp, horas in aperturas_por_hora.items():
+            frecuencia = horas.get(hora_objetivo, 0)
+            if frecuencia >= 3 and estado_actual.get(esp, 0) == 0:
+                candidatas.append((esp, frecuencia))
+
+        if not candidatas:
+            return None
+
+        candidatas.sort(key=lambda x: x[1], reverse=True)
+
+        hora_str = f"{hora_objetivo:02d}:00"
+        lineas = [
+            "🔮 PATRÓN DETECTADO",
+            f"Estas especialidades suelen abrir turnos a las {hora_str}:",
+            ""
+        ]
+        for esp, frec in candidatas[:5]:  # máximo 5 para no saturar
+            lineas.append(f"📌 {esp} ({frec}x histórico)")
+
+        lineas += [
+            "",
+            f"🕒 Próxima verificación en 15 minutos",
+            "",
+            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
+        ]
+
+        logger.info(f"🔮 Patrón detectado: {len(candidatas)} especialidad(es) suelen abrir a las {hora_str}")
+        return "\n".join(lineas)
+
+    except Exception as e:
+        logger.error(f"Error detectando patrones: {e}")
+        return None
+
+
+# ═══════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════
 
@@ -763,6 +835,23 @@ def main():
         else:
             logger.info("ℹ️ Sin nuevos o aumentos para notificar")
 
+    # Alerta urgente separada para últimos cupos (1-4 cupos restantes)
+    if cambios_filtrados["ultimos"]:
+        lineas = ["🚨 ÚLTIMOS CUPOS — URGENTE", "🏥 HOSPITAL PERRUPATO", ""]
+        for item in sorted(cambios_filtrados["ultimos"], key=lambda x: x["cupo_actual"]):
+            cupo = item["cupo_actual"]
+            plural = "s" if cupo > 1 else ""
+            lineas.append(f"⚠️ {item['nombre']}")
+            lineas.append(f"   Solo {cupo} cupo{plural} disponible{plural}")
+            lineas.append("")
+        lineas += [
+            f"🕒 {fecha_hora}",
+            "",
+            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
+        ]
+        enviar_telegram("\n".join(lineas))
+        logger.info(f"🚨 Alerta urgente enviada: {len(cambios_filtrados['ultimos'])} especialidad(es) con últimos cupos")
+
     if CONFIG.get("generar_reporte_diario"):
         hora = ahora.strftime("%H:%M")
         if hora == CONFIG.get("hora_reporte_diario", "23:55"):
@@ -771,6 +860,14 @@ def main():
                 with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
                     f.write(reporte)
                 enviar_telegram(reporte)
+
+    # Detección de patrones: avisar si especialidades suelen abrir en la próxima hora
+    if CONFIG.get("alertas_patrones", True):
+        hora_actual = ahora.hour
+        hora_siguiente = (hora_actual + 1) % 24
+        alerta_patrones = detectar_patrones_apertura(hora_siguiente)
+        if alerta_patrones:
+            enviar_telegram(alerta_patrones)
 
     logger.info("═════════════════════════════════════════════════════")
 
