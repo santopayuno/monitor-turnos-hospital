@@ -823,18 +823,18 @@
                 let texto, color;
                 if (diffMin < 20) {
                     color = '#16a34a';
-                    texto = diffMin <= 1 ? 'hace 1 minuto' : 'hace ' + diffMin + ' minutos';
+                    texto = diffMin <= 1 ? '1 m' : diffMin + ' m';
                 } else if (diffMin < 60) {
                     color = '#ea580c';
-                    texto = 'hace ' + diffMin + ' minutos';
+                    texto = diffMin + ' m';
                 } else {
                     const horas = Math.floor(diffMin / 60);
                     const mins = diffMin % 60;
                     color = '#dc2626';
-                    texto = 'hace ' + horas + ' h ' + (mins > 0 ? mins + ' min' : '');
+                    texto = horas + ' h ' + (mins > 0 ? mins + ' min' : '');
                 }
                 el.style.color = color;
-                el.textContent = '● Última ejecución: ' + texto;
+                el.textContent = '● Actualizado hace ' + texto;
             } catch (e) {
                 el.style.color = '#94a3b8';
                 el.textContent = '● Sin datos de ejecución aún';
