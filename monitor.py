@@ -608,29 +608,56 @@ def generar_reporte_diario():
         registros = stats["registros"][fecha]
         eventos = [e for e in stats["eventos"] if e["fecha"].startswith(fecha)]
 
-        reporte = f"""
-┌──────────────────────────────────────┐
-│  📊 REPORTE DIARIO                   │
-│  {ahora.strftime('%d/%m/%Y')}
-└──────────────────────────────────────┘
+        # Especialidades con cupos ahora
+        estado_actual = cargar_json(ARCHIVOS["estado"]) or {}
+        con_cupos = [(nombre, cupo) for nombre, cupo in estado_actual.items() if cupo > 0]
+        con_cupos.sort(key=lambda x: x[0])
+        sin_cupos = [nombre for nombre, cupo in estado_actual.items() if cupo == 0]
 
-📈 ESTADÍSTICAS
+        # Aperturas del día
+        nuevas_hoy = list({e["especialidad"] for e in eventos if e["tipo"] == "nuevos"})
+        nuevas_hoy.sort()
 
-Monitoreos realizados: {len(registros)}
-Promedio con cupos: {sum(r['con_cupos'] for r in registros) // len(registros) if registros else 0}
-Total cupos abiertos: {sum(r['total_cupos'] for r in registros)}
+        # Construir mensaje
+        lineas = [
+            f"🌅 RESUMEN MATUTINO",
+            f"🏥 HOSPITAL PERRUPATO",
+            f"📅 {ahora.strftime('%d/%m/%Y')}",
+            "",
+            "────────────",
+            "📊 ESTADO ACTUAL",
+            "────────────",
+            f"• Especializades monitoreadas: {len(estado_actual)}",
+            f"• Con cupos disponibles: {len(con_cupos)}",
+            f"• Sin cupos: {len(sin_cupos)}",
+            f"• Total cupos: {sum(cupo for _, cupo in con_cupos)}",
+        ]
 
-🆕 CAMBIOS DETECTADOS: {len(eventos)}
+        if con_cupos:
+            lineas += ["", "────────────", "✅ DISPONIBLES AHORA", "────────────"]
+            for nombre, cupo in con_cupos:
+                plural = "s" if cupo > 1 else ""
+                lineas.append(f"🏥 {nombre}: {cupo} cupo{plural}")
 
-Nuevas aperturas: {sum(1 for e in eventos if e['tipo'] == 'nuevos')}
-Aumentos: {sum(1 for e in eventos if e['tipo'] == 'aumentos')}
-Últimos cupos: {sum(1 for e in eventos if e['tipo'] == 'ultimos')}
-Agotamientos: {sum(1 for e in eventos if e['tipo'] == 'agotados')}
+        if nuevas_hoy:
+            lineas += ["", "────────────", "🆕 ABRIERON AYER", "────────────"]
+            for nombre in nuevas_hoy:
+                lineas.append(f"• {nombre}")
 
-Reporte generado: {ahora.strftime('%d/%m/%Y %H:%M:%S')}
-"""
+        lineas += [
+            "",
+            "────────────",
+            "📈 ACTIVIDAD DE AYER",
+            "────────────",
+            f"• Monitoreos realizados: {len(registros)}",
+            f"• Cambios detectados: {len(eventos)}",
+            f"• Nuevas aperturas: {sum(1 for e in eventos if e['tipo'] == 'nuevos')}",
+            f"• Agotamientos: {sum(1 for e in eventos if e['tipo'] == 'agotados')}",
+            "",
+            f"🕒 Generado: {ahora.strftime('%d/%m • %H:%M hs')}",
+        ]
 
-        return reporte
+        return "\n".join(lineas)
     except Exception as e:
         logger.error(f"Error generando reporte: {e}")
         return None
