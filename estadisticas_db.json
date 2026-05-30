@@ -1178,6 +1178,12 @@
         "con_cupos": 26,
         "total_cupos": 315,
         "cambios": 3
+      },
+      {
+        "hora": "12:00:50",
+        "con_cupos": 26,
+        "total_cupos": 307,
+        "cambios": 1
       }
     ]
   },
@@ -1991,6 +1997,12 @@
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA ADULTO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-30T12:00:50.282086-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
