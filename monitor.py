@@ -391,10 +391,6 @@ class ConstructorMensajeTelegram:
             lineas.append(f"⚠️ {item['cupo_actual']} Cupo{plural} Restante{plural}")
             lineas.append("")
 
-        # Eliminar última línea vacía
-        while lineas and lineas[-1] == "":
-            lineas.pop()
-
         return lineas
 
     # ─────────────────────────────────────────────────────────
@@ -416,10 +412,6 @@ class ConstructorMensajeTelegram:
             plural = "s" if cupo > 1 else ""
             lineas.append(f"✅ {cupo} Cupo{plural}")
             lineas.append("")
-
-        # Eliminar última línea vacía
-        while lineas and lineas[-1] == "":
-            lineas.pop()
 
         return lineas
 
@@ -449,10 +441,6 @@ class ConstructorMensajeTelegram:
             lineas.append(f"⚠️ {cupo} Cupo{plural}")
             lineas.append("")
 
-        # Eliminar última línea vacía
-        while lineas and lineas[-1] == "":
-            lineas.pop()
-
         return lineas
 
     # ─────────────────────────────────────────────────────────
@@ -478,7 +466,7 @@ class ConstructorMensajeTelegram:
         # Mostrar TODAS
         for nombre, _ in agotadas:
             lineas.append(f"🚫 {nombre}")
-
+        lineas.append("")
         return lineas
 
     # ─────────────────────────────────────────────────────────
