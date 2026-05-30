@@ -794,15 +794,26 @@
         let estadoActual = {};
         let estadisticas = { registros: {}, eventos: [] };
         let chartsInstances = {};
-        
+        let lastEstadoHash = null;
+        let lastStatsHash = null;
 
         async function cargarDatos() {
             try {
                 const res1 = await fetch('estado_turnos.json?t=' + Date.now());
-                if (res1.ok) estadoActual = await res1.json();
+                const nuevoEstado = res1.ok ? await res1.json() : estadoActual;
 
                 const res2 = await fetch('estadisticas_db.json?t=' + Date.now());
-                if (res2.ok) estadisticas = await res2.json();
+                const nuevasStats = res2.ok ? await res2.json() : estadisticas;
+
+                const estadoHash = JSON.stringify(nuevoEstado);
+                const statsHash = JSON.stringify(nuevasStats);
+
+                if (estadoHash === lastEstadoHash && statsHash === lastStatsHash) return;
+
+                lastEstadoHash = estadoHash;
+                lastStatsHash = statsHash;
+                estadoActual = nuevoEstado;
+                estadisticas = nuevasStats;
 
                 actualizarDashboard();
             } catch (e) {
@@ -1248,7 +1259,7 @@
             container.innerHTML = `
                 <div class="metric-card success">
                     <div class="metric-label">🆙 Más Activa</div>
-                    <div class="metric-value">${maxApertura ? maxApertura[0].substring(0, 20) : 'Sin datos'}</div>
+                    <div class="metric-value">${maxApertura ? (maxApertura[0].length > 20 ? maxApertura[0].substring(0, 20) + '…' : maxApertura[0]) : 'Sin datos'}</div>
                     <div class="metric-detail">${maxApertura ? maxApertura[1] + ' aperturas' : 'Datos acumulándose'}</div>
                 </div>
                 <div class="metric-card warning">
@@ -1263,7 +1274,7 @@
                 </div>
                 <div class="metric-card danger">
                     <div class="metric-label">⬇️ Menos Disponible</div>
-                    <div class="metric-value">${menosDisponible ? menosDisponible[0].substring(0, 20) : '-'}</div>
+                    <div class="metric-value">${menosDisponible ? (menosDisponible[0].length > 20 ? menosDisponible[0].substring(0, 20) + '…' : menosDisponible[0]) : '-'}</div>
                     <div class="metric-detail">${menosDisponible ? menosDisponible[1] + ' cupos' : 'Sin datos'}</div>
                 </div>
             `;
