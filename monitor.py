@@ -676,7 +676,7 @@ def main():
     procesador = ProcesadorEspecialidades(especialidades, estado_anterior).procesar()
 
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
-    guardar_json_seguro({"ultima_ejecucion": fecha_hora.isoformat()}, ARCHIVOS["heartbeat"])
+    guardar_json_seguro({"ultima_ejecucion": ahora.isoformat()}, ARCHIVOS["heartbeat"])
     guardar_estadisticas(procesador.cambios, procesador.estado_actual)
 
     total_especialidades = len(procesador.estado_actual)
