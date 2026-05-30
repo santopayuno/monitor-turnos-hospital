@@ -75,6 +75,75 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
+class StructuredLogger:
+    """Escribe eventos clave en formato JSON Lines para análisis posterior."""
+
+    LOG_PATH = "logs/monitor_structured.jsonl"
+    MAX_LINES = 5000  # máximo de líneas antes de rotar
+
+    @staticmethod
+    def _escribir(evento: dict):
+        try:
+            os.makedirs("logs", exist_ok=True)
+            linea = json.dumps(evento, ensure_ascii=False) + "\n"
+
+            # Rotar si supera el límite
+            if os.path.exists(StructuredLogger.LOG_PATH):
+                with open(StructuredLogger.LOG_PATH, "r", encoding="utf-8") as f:
+                    lineas = f.readlines()
+                if len(lineas) >= StructuredLogger.MAX_LINES:
+                    # Conservar últimas MAX_LINES - 1000 líneas
+                    with open(StructuredLogger.LOG_PATH, "w", encoding="utf-8") as f:
+                        f.writelines(lineas[-(StructuredLogger.MAX_LINES - 1000):])
+
+            with open(StructuredLogger.LOG_PATH, "a", encoding="utf-8") as f:
+                f.write(linea)
+        except Exception as e:
+            logger.warning(f"StructuredLogger error: {e}")
+
+    @staticmethod
+    def ejecucion(estado: str, especialidades: int, cupos: int, con_cupos: int):
+        StructuredLogger._escribir({
+            "ts": datetime.now().isoformat(),
+            "evento": "ejecucion",
+            "estado": estado,
+            "especialidades": especialidades,
+            "cupos_total": cupos,
+            "con_cupos": con_cupos
+        })
+
+    @staticmethod
+    def cambio(tipo: str, especialidad: str, cupos: int):
+        StructuredLogger._escribir({
+            "ts": datetime.now().isoformat(),
+            "evento": "cambio",
+            "tipo": tipo,
+            "especialidad": especialidad,
+            "cupos": cupos
+        })
+
+    @staticmethod
+    def telegram(tipo: str, exito: bool, detalle: str = ""):
+        StructuredLogger._escribir({
+            "ts": datetime.now().isoformat(),
+            "evento": "telegram",
+            "tipo": tipo,
+            "exito": exito,
+            "detalle": detalle
+        })
+
+    @staticmethod
+    def error(contexto: str, mensaje: str):
+        StructuredLogger._escribir({
+            "ts": datetime.now().isoformat(),
+            "evento": "error",
+            "contexto": contexto,
+            "mensaje": mensaje
+        })
+
+slog = StructuredLogger()
+
 # ═══════════════════════════════════════════════════════════════
 # CONFIGURACIÓN
 # ═══════════════════════════════════════════════════════════════
@@ -196,6 +265,7 @@ def consultar_api(max_intentos=3, espera_segundos=10):
             time.sleep(espera_segundos)
 
     logger.error(f"✗ API falló tras {max_intentos} intentos. Último error: {ultimo_error}")
+    slog.error("api", str(ultimo_error))
 
     return None
 
@@ -774,6 +844,12 @@ def main():
 
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
     guardar_json_seguro({"ultima_ejecucion": ahora.isoformat()}, ARCHIVOS["heartbeat"])
+    slog.ejecucion(
+        estado="ok",
+        especialidades=total_especialidades,
+        cupos=sum(procesador.estado_actual.values()),
+        con_cupos=len([c for c in procesador.estado_actual.values() if c > 0])
+    )
     guardar_estadisticas(procesador.cambios, procesador.estado_actual)
 
     total_especialidades = len(procesador.estado_actual)
@@ -804,6 +880,16 @@ def main():
         logger.info("   ℹ️ NO se envía notificación en primera ejecución")
         return
 
+    # Log estructurado de cambios detectados
+    for item in procesador.cambios.get("nuevos", []):
+        slog.cambio("nuevos", item["nombre"], item.get("cupo_actual", 0))
+    for item in procesador.cambios.get("aumentos", []):
+        slog.cambio("aumentos", item["nombre"], item.get("cupo_actual", 0))
+    for item in procesador.cambios.get("ultimos", []):
+        slog.cambio("ultimos", item["nombre"], item.get("cupo_actual", 0))
+    for item in procesador.cambios.get("agotados", []):
+        slog.cambio("agotados", item["nombre"], 0)
+
     # Aplicar filtro de especialidades de interés si está configurado
     interes = [e.upper().strip() for e in CONFIG.get("especialidades_interes", [])]
     cambios_filtrados = procesador.cambios
@@ -828,7 +914,8 @@ def main():
         )
         mensaje = constructor.construir()
         if mensaje:
-            enviar_telegram(mensaje)
+            exito = enviar_telegram(mensaje)
+            slog.telegram("notificacion_principal", exito)
     else:
         if interes:
             logger.info("ℹ️ Sin nuevos o aumentos en especialidades de interés")
