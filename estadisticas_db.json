@@ -805,6 +805,14 @@
         "total_cupos": 196,
         "cambios": 0
       }
+    ],
+    "2026-05-30": [
+      {
+        "hora": "00:01:02",
+        "con_cupos": 14,
+        "total_cupos": 196,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
