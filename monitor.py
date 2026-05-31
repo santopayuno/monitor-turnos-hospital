@@ -251,12 +251,14 @@ def consultar_api(max_intentos=3, espera_segundos=10):
 # ═══════════════════════════════════════════════════════════════
 
 class ProcesadorEspecialidades:
-    def __init__(self, especialidades, estado_anterior):
+    def __init__(self, especialidades, estado_anterior, stats_db=None):
         self.especialidades = especialidades
         self.estado_anterior = estado_anterior or {}
+        self.stats_db = stats_db or {"eventos": [], "registros": {}}
         self.estado_actual = {}
         self.cambios = {
             "nuevos": [],
+            "reaperturas": [],
             "aumentos": [],
             "ultimos": [],
             "agotados": []
@@ -302,11 +304,24 @@ class ProcesadorEspecialidades:
 
     def _detectar_cambios(self, nombre, cupo, cupo_anterior, disponible):
         if cupo_anterior == 0 and disponible:
-            self.cambios["nuevos"].append({
-                "nombre": nombre,
-                "cupo_actual": cupo
-            })
-            logger.info(f"🆕 NUEVO: {nombre} ({cupo} cupos)")
+            # Verificar si alguna vez estuvo disponible (reapertura vs primera vez)
+            agotamientos_historicos = [
+                e for e in self.stats_db.get("eventos", [])
+                if e.get("especialidad") == nombre and e.get("tipo") == "agotados"
+            ]
+            if agotamientos_historicos:
+                self.cambios["reaperturas"].append({
+                    "nombre": nombre,
+                    "cupo_actual": cupo,
+                    "veces_agotada": len(agotamientos_historicos)
+                })
+                logger.info(f"🔄 REAPERTURA: {nombre} ({cupo} cupos, agotada {len(agotamientos_historicos)}x antes)")
+            else:
+                self.cambios["nuevos"].append({
+                    "nombre": nombre,
+                    "cupo_actual": cupo
+                })
+                logger.info(f"🆕 NUEVO: {nombre} ({cupo} cupos)")
 
         elif cupo_anterior > 0 and cupo - cupo_anterior >= 10:
             self.cambios["aumentos"].append({
@@ -376,6 +391,10 @@ class ConstructorMensajeTelegram:
         cambios_section = self._seccion_cambios()
         if cambios_section:
             secciones.append(cambios_section)
+
+        reaperturas_section = self._seccion_reaperturas()
+        if reaperturas_section:
+            secciones.append(reaperturas_section)
 
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
@@ -466,6 +485,29 @@ class ConstructorMensajeTelegram:
         for i, item_lineas in enumerate(todos_items):
             lineas.extend(item_lineas)
             if i < len(todos_items) - 1:
+                lineas.append("")
+
+        return lineas
+
+    # ─────────────────────────────────────────────────────────
+    # SECCIÓN: REAPERTURAS
+    # ─────────────────────────────────────────────────────────
+
+    def _seccion_reaperturas(self):
+        if not self.cambios.get("reaperturas"):
+            return None
+
+        items = sorted(self.cambios["reaperturas"], key=lambda x: x["nombre"])
+        lineas = ["────────────", "🔄 REAPERTURAS", "────────────"]
+
+        for i, item in enumerate(items):
+            cupo = item["cupo_actual"]
+            veces = item["veces_agotada"]
+            plural = "s" if cupo > 1 else ""
+            lineas.append(f"🏥 {item['nombre']}")
+            lineas.append(f"🍀 {formato_cupos_disponibles(cupo)}")
+            lineas.append(f"⚡ Reabre · agotada {veces}x antes")
+            if i < len(items) - 1:
                 lineas.append("")
 
         return lineas
@@ -824,7 +866,8 @@ def main():
     # VERIFICAR si es primera ejecución
     es_primera_ejecucion = len(estado_anterior) == 0
 
-    procesador = ProcesadorEspecialidades(especialidades, estado_anterior).procesar()
+    stats_db = cargar_json(ARCHIVOS["estadisticas"]) or {"eventos": [], "registros": {}}
+    procesador = ProcesadorEspecialidades(especialidades, estado_anterior, stats_db).procesar()
 
     guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
@@ -880,15 +923,16 @@ def main():
 
     if interes:
         cambios_filtrados = {
-            "nuevos":    [c for c in procesador.cambios["nuevos"]    if c["nombre"].upper() in interes],
-            "aumentos":  [c for c in procesador.cambios["aumentos"]  if c["nombre"].upper() in interes],
-            "ultimos":   [c for c in procesador.cambios["ultimos"]   if c["nombre"].upper() in interes],
-            "agotados":  [c for c in procesador.cambios["agotados"]  if c["nombre"].upper() in interes],
+            "nuevos":      [c for c in procesador.cambios["nuevos"]      if c["nombre"].upper() in interes],
+            "reaperturas": [c for c in procesador.cambios["reaperturas"] if c["nombre"].upper() in interes],
+            "aumentos":    [c for c in procesador.cambios["aumentos"]    if c["nombre"].upper() in interes],
+            "ultimos":     [c for c in procesador.cambios["ultimos"]     if c["nombre"].upper() in interes],
+            "agotados":    [c for c in procesador.cambios["agotados"]    if c["nombre"].upper() in interes],
         }
         logger.info(f"🎯 Filtro activo: {len(interes)} especialidades de interés")
 
     # Enviar notificación SOLO si hay nuevos o aumentos (después de primera ejecución)
-    if cambios_filtrados["nuevos"] or cambios_filtrados["aumentos"]:
+    if cambios_filtrados["nuevos"] or cambios_filtrados["reaperturas"] or cambios_filtrados["aumentos"]:
         constructor = ConstructorMensajeTelegram(
             cambios_filtrados,
             procesador.clasificacion,
