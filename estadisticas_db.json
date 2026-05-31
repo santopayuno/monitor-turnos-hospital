@@ -1798,6 +1798,12 @@
         "con_cupos": 16,
         "total_cupos": 169,
         "cambios": 0
+      },
+      {
+        "hora": "15:00:42",
+        "con_cupos": 15,
+        "total_cupos": 166,
+        "cambios": 1
       }
     ]
   },
@@ -2694,6 +2700,12 @@
       "fecha": "2026-05-31T13:15:41.095130-03:00",
       "tipo": "agotados",
       "especialidad": "NEFROLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-31T15:00:42.995496-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
