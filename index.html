@@ -792,6 +792,15 @@
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
+
+        /* Indicador de tendencia */
+        .tendencia {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-left: 4px;
+        }
+        .tendencia-sube { color: var(--color-success); }
+        .tendencia-baja { color: var(--color-danger); }
     </style>
 </head>
 <body>
@@ -1013,6 +1022,7 @@
 
     <script>
         let estadoActual = {};
+        let estadoAnterior = {};
         let estadisticas = { registros: {}, eventos: [] };
         let chartsInstances = {};
         let lastEstadoHash = null;
@@ -1049,6 +1059,9 @@
             try {
                 const res1 = await fetch('estado_turnos.json?t=' + Date.now());
                 const nuevoEstado = res1.ok ? await res1.json() : estadoActual;
+
+                const resAnterior = await fetch('estado_anterior.json?t=' + Date.now());
+                if (resAnterior.ok) estadoAnterior = await resAnterior.json();
 
                 const res2 = await fetch('estadisticas_db.json?t=' + Date.now());
                 const nuevasStats = res2.ok ? await res2.json() : estadisticas;
@@ -1521,7 +1534,25 @@
 
                 const cuposDiv = document.createElement('div');
                 cuposDiv.className = 'especialidad-cupos';
-                cuposDiv.textContent = cupo;
+
+                // Tendencia solo en disponibles y pocos cupos
+                if ((clase === 'disponible' || clase === 'pocos') && estadoAnterior[nombre] !== undefined) {
+                    const anterior = estadoAnterior[nombre];
+                    cuposDiv.textContent = cupo;
+                    if (cupo > anterior) {
+                        const flecha = document.createElement('span');
+                        flecha.className = 'tendencia tendencia-sube';
+                        flecha.textContent = ' ↑';
+                        cuposDiv.appendChild(flecha);
+                    } else if (cupo < anterior) {
+                        const flecha = document.createElement('span');
+                        flecha.className = 'tendencia tendencia-baja';
+                        flecha.textContent = ' ↓';
+                        cuposDiv.appendChild(flecha);
+                    }
+                } else {
+                    cuposDiv.textContent = cupo;
+                }
 
                 div.appendChild(info);
                 div.appendChild(cuposDiv);
