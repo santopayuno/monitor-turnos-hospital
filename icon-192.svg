@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <!-- Fondo -->
+  <rect width="192" height="192" rx="32" fill="#0369a1"/>
+
+  <!-- Cruz médica -->
+  <rect x="76" y="40" width="40" height="112" rx="8" fill="white"/>
+  <rect x="40" y="76" width="112" height="40" rx="8" fill="white"/>
+
+  <!-- Punto verde indicador LIVE -->
+  <circle cx="152" cy="40" r="16" fill="#16a34a"/>
+  <circle cx="152" cy="40" r="8" fill="white" opacity="0.9"/>
+</svg>
