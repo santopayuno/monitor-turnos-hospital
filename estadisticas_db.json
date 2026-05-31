@@ -1642,6 +1642,12 @@
         "con_cupos": 18,
         "total_cupos": 212,
         "cambios": 0
+      },
+      {
+        "hora": "08:31:07",
+        "con_cupos": 17,
+        "total_cupos": 211,
+        "cambios": 1
       }
     ]
   },
@@ -2526,6 +2532,12 @@
       "fecha": "2026-05-31T02:00:35.932082-03:00",
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-05-31T08:31:07.899013-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
       "cupos": 0
     }
   ],
