@@ -1020,7 +1020,7 @@
     </div>
 
     <footer>
-        ⏰ Se actualiza cada 15 minutos • 🤖 Monitor Profesional
+        🤖 Monitor Profesional
     </footer>
 
     <script>
@@ -1125,11 +1125,13 @@
                     color = '#dc2626';
                     textoActualizado = horas + ' h ' + (mins > 0 ? mins + ' min' : '');
                 }
+                const iconos = { '#16a34a': '🍀', '#ea580c': '⚠️', '#dc2626': '❌' };
+                const icono = iconos[color] || '🍀';
                 el.style.color = color;
-                el.textContent = '● Actualizado hace ' + textoActualizado + ' · próxima en ' + proxima;
+                el.textContent = icono + ' Actualizado hace ' + textoActualizado + ' · próxima en ' + proxima;
             } catch (e) {
                 el.style.color = '#94a3b8';
-                el.textContent = '● Sin datos · próxima en ' + proxima;
+                el.textContent = '⚠️ Sin datos · próxima en ' + proxima;
             }
         }
 
