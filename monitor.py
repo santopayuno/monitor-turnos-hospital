@@ -44,7 +44,8 @@ ARCHIVOS = {
     "config": "config.json",
     "logs": "monitor.log",
     "reporte": "reporte_diario.txt",
-    "heartbeat": "heartbeat.json"
+    "heartbeat": "heartbeat.json",
+    "estado_anterior": "estado_anterior.json"
 }
 
 REEMPLAZOS_NOMBRES = {
@@ -825,6 +826,7 @@ def main():
 
     procesador = ProcesadorEspecialidades(especialidades, estado_anterior).procesar()
 
+    guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
     guardar_json_seguro({"ultima_ejecucion": ahora.isoformat()}, ARCHIVOS["heartbeat"])
     total_especialidades = len(procesador.estado_actual)
