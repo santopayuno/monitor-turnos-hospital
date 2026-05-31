@@ -1183,7 +1183,12 @@
 
 
         function compartirEspecialidad(nombre) {
-            const slug = nombre.replace(/\s+/g, '-').replace(/[()]/g, '');
+            const slug = nombre
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // quitar tildes
+                .replace(/[^a-zA-Z0-9\s-]/g, '')  // quitar especiales
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
             const url = window.location.origin + window.location.pathname + '#' + slug;
             navigator.clipboard.writeText(url).then(() => {
                 const toast = document.getElementById('toast-copiado');
@@ -1199,9 +1204,13 @@
             const hash = decodeURIComponent(window.location.hash.slice(1));
             if (!hash) return;
             // Buscar especialidad que coincida con el slug
-            const nombre = Object.keys(estadoActual).find(n =>
-                n.replace(/\s+/g, '-').replace(/[()]/g, '') === hash
-            );
+            const normalizar = s => s
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-zA-Z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+            const nombre = Object.keys(estadoActual).find(n => normalizar(n) === hash);
             if (nombre) {
                 setTimeout(() => {
                     const el = document.querySelector(`[data-especialidad="${nombre}"]`);
@@ -1396,9 +1405,7 @@
             searchState.isOpen = false;
         }
 
-        function filtrarEspecialidades() {
-            // Función heredada - mantenida para compatibilidad
-        }
+
 
         function formatearFecha(date) {
             const d = new Date(date);
@@ -1493,15 +1500,36 @@
                 return;
             }
 
-            el.innerHTML = items.map(([nombre, cupo]) => `
-                <div class="especialidad ${clase}" data-especialidad="${nombre}" onclick="abrirHistorial(this.dataset.especialidad)">
-                    <div class="especialidad-info">
-                        <div class="especialidad-nombre">🏥 ${nombre}</div>
-                    </div>
-                    <div class="especialidad-cupos">${cupo}</div>
-                    <button class="btn-compartir" onclick="event.stopPropagation(); compartirEspecialidad('${nombre.replace(/'/g, "\\'")}')">🔗</button>
-                </div>
-            `).join('');
+            const fragment = document.createDocumentFragment();
+            items.forEach(([nombre, cupo]) => {
+                const div = document.createElement('div');
+                div.className = `especialidad ${clase}`;
+                div.dataset.especialidad = nombre;
+                div.onclick = () => abrirHistorial(nombre);
+
+                const info = document.createElement('div');
+                info.className = 'especialidad-info';
+                const nombreDiv = document.createElement('div');
+                nombreDiv.className = 'especialidad-nombre';
+                nombreDiv.textContent = '🏥 ' + nombre;
+                info.appendChild(nombreDiv);
+
+                const cuposDiv = document.createElement('div');
+                cuposDiv.className = 'especialidad-cupos';
+                cuposDiv.textContent = cupo;
+
+                const btnCompartir = document.createElement('button');
+                btnCompartir.className = 'btn-compartir';
+                btnCompartir.textContent = '🔗';
+                btnCompartir.onclick = (e) => { e.stopPropagation(); compartirEspecialidad(nombre); };
+
+                div.appendChild(info);
+                div.appendChild(cuposDiv);
+                div.appendChild(btnCompartir);
+                fragment.appendChild(div);
+            });
+            el.innerHTML = '';
+            el.appendChild(fragment);
         }
 
         function inicializarBuscadorDespuesDeDatos() {
