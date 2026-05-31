@@ -692,6 +692,36 @@
             margin-top: 2px;
         }
         .especialidad { cursor: pointer; }
+
+        /* Banner de patrones de apertura */
+        .patron-banner {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-left: 4px solid #0369a1;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .patron-banner.visible {
+            display: block;
+        }
+        .patron-banner-titulo {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 8px;
+        }
+        .patron-banner-items {
+            font-size: 0.85rem;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+        .patron-banner-hora {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 6px;
+        }
     </style>
 </head>
 <body>
@@ -729,6 +759,14 @@
                 <div class="stat-number" id="especialidades-activas">-</div>
                 <div class="stat-subtitle">Con turnos</div>
             </div>
+        </div>
+
+
+        <!-- Banner patrones de apertura -->
+        <div class="patron-banner" id="patron-banner">
+            <div class="patron-banner-titulo">🔮 PATRÓN DETECTADO</div>
+            <div class="patron-banner-items" id="patron-items"></div>
+            <div class="patron-banner-hora" id="patron-hora"></div>
         </div>
 
         <div class="search-container">
@@ -990,6 +1028,52 @@
                 el.style.color = '#94a3b8';
                 el.textContent = '● Sin datos · próxima en ' + proxima;
             }
+        }
+
+
+        function detectarPatronesDashboard() {
+            const banner = document.getElementById('patron-banner');
+            const itemsEl = document.getElementById('patron-items');
+            const horaEl = document.getElementById('patron-hora');
+            if (!banner) return;
+
+            const eventos = estadisticas.eventos || [];
+            if (eventos.length === 0) { banner.classList.remove('visible'); return; }
+
+            // Hora siguiente
+            const ahora = new Date();
+            const horaSiguiente = (ahora.getHours() + 1) % 24;
+
+            // Contar aperturas por especialidad y hora
+            const aperturasPorHora = {};
+            eventos.forEach(e => {
+                if (e.tipo !== 'nuevos' && e.tipo !== 'aumentos') return;
+                const hora = new Date(e.fecha).getHours();
+                const esp = e.especialidad;
+                if (!aperturasPorHora[esp]) aperturasPorHora[esp] = {};
+                aperturasPorHora[esp][hora] = (aperturasPorHora[esp][hora] || 0) + 1;
+            });
+
+            // Filtrar: mínimo 3 veces en hora siguiente y sin cupos ahora
+            const candidatas = [];
+            Object.entries(aperturasPorHora).forEach(([esp, horas]) => {
+                const frec = horas[horaSiguiente] || 0;
+                if (frec >= 3 && (estadoActual[esp] || 0) === 0) {
+                    candidatas.push([esp, frec]);
+                }
+            });
+
+            if (candidatas.length === 0) { banner.classList.remove('visible'); return; }
+
+            candidatas.sort((a, b) => b[1] - a[1]);
+            const top = candidatas.slice(0, 5);
+            const horaStr = String(horaSiguiente).padStart(2, '0') + ':00';
+
+            itemsEl.innerHTML = top.map(([esp, frec]) =>
+                `📌 <strong>${esp}</strong> <span style="color:#64748b">(${frec}x histórico)</span>`
+            ).join('<br>');
+            horaEl.textContent = `Suelen abrir a las ${horaStr} · basado en historial`;
+            banner.classList.add('visible');
         }
 
         function mostrarTab(nombre) {
@@ -1261,6 +1345,7 @@
 
             // Inicializar buscador
             inicializarBuscadorDespuesDeDatos();
+            detectarPatronesDashboard();
         }
 
         function renderList(elementId, items, clase) {
