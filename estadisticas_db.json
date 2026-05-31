@@ -1810,6 +1810,12 @@
         "con_cupos": 15,
         "total_cupos": 165,
         "cambios": 0
+      },
+      {
+        "hora": "15:31:01",
+        "con_cupos": 15,
+        "total_cupos": 163,
+        "cambios": 0
       }
     ]
   },
