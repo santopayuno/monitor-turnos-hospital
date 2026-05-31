@@ -830,6 +830,24 @@
             border-color: var(--color-primary);
             color: var(--color-primary);
         }
+
+        /* Velocidad de agotamiento */
+        .agotamiento-rapido {
+            font-size: 0.75rem;
+            color: #dc2626;
+            margin-top: 2px;
+            font-weight: 600;
+        }
+        .agotamiento-normal {
+            font-size: 0.75rem;
+            color: #ea580c;
+            margin-top: 2px;
+        }
+        .agotamiento-lento {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
@@ -1265,6 +1283,41 @@
         }
 
 
+
+        // Cache de velocidades de agotamiento calculadas
+        let cacheVelocidades = {};
+
+        function calcularVelocidadAgotamiento(nombre) {
+            if (cacheVelocidades[nombre] !== undefined) return cacheVelocidades[nombre];
+
+            const eventos = estadisticas.eventos || [];
+            const aperturas = eventos.filter(e => e.especialidad === nombre && (e.tipo === 'nuevos' || e.tipo === 'aumentos'));
+            const agotamientos = eventos.filter(e => e.especialidad === nombre && e.tipo === 'agotados');
+
+            const pares = [];
+            aperturas.forEach(ap => {
+                const fechaAp = new Date(ap.fecha);
+                const agotDespues = agotamientos
+                    .map(ag => ({ diff: new Date(ag.fecha) - fechaAp }))
+                    .filter(x => x.diff > 0 && x.diff < 24 * 60 * 60 * 1000) // mismo día
+                    .sort((a, b) => a.diff - b.diff)[0];
+                if (agotDespues) pares.push(agotDespues.diff / 60000);
+            });
+
+            if (pares.length < 2) { cacheVelocidades[nombre] = null; return null; }
+
+            const promMin = Math.round(pares.reduce((a, b) => a + b, 0) / pares.length);
+            cacheVelocidades[nombre] = promMin;
+            return promMin;
+        }
+
+        function formatearVelocidad(promMin) {
+            if (promMin < 60) return promMin + ' min';
+            const h = Math.floor(promMin / 60);
+            const m = promMin % 60;
+            return h + ' h' + (m > 0 ? ' ' + m + ' min' : '');
+        }
+
         function aplicarFiltroMax(lista, maxCupos, chipEl) {
             // Marcar chip activo
             const container = chipEl.closest('.filtro-chips');
@@ -1564,6 +1617,7 @@
             inicializarBuscadorDespuesDeDatos();
             detectarPatronesDashboard();
             resetearChips();
+            cacheVelocidades = {};
         }
 
         function renderList(elementId, items, clase) {
@@ -1603,6 +1657,26 @@
                 nombreDiv.className = 'especialidad-nombre';
                 nombreDiv.textContent = '🏥 ' + nombre;
                 info.appendChild(nombreDiv);
+
+                // Velocidad de agotamiento solo en disponibles y pocos
+                if (clase === 'disponible' || clase === 'pocos') {
+                    const velMin = calcularVelocidadAgotamiento(nombre);
+                    if (velMin !== null) {
+                        const velDiv = document.createElement('div');
+                        const velStr = formatearVelocidad(velMin);
+                        if (velMin < 60) {
+                            velDiv.className = 'agotamiento-rapido';
+                            velDiv.textContent = '⚡ se agota en ~' + velStr;
+                        } else if (velMin < 180) {
+                            velDiv.className = 'agotamiento-normal';
+                            velDiv.textContent = '⏱ se agota en ~' + velStr;
+                        } else {
+                            velDiv.className = 'agotamiento-lento';
+                            velDiv.textContent = '🕐 se agota en ~' + velStr;
+                        }
+                        info.appendChild(velDiv);
+                    }
+                }
 
                 const cuposDiv = document.createElement('div');
                 cuposDiv.className = 'especialidad-cupos';
