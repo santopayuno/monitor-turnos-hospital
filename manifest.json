@@ -1,0 +1,39 @@
+{
+  "name": "Monitor de Turnos - Hospital Perrupato",
+  "short_name": "Turnos Perrupato",
+  "description": "Monitor automático de disponibilidad de turnos médicos del Hospital Alfredo I. Perrupato",
+  "start_url": "/monitor-turnos-hospital/",
+  "scope": "/monitor-turnos-hospital/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8fafc",
+  "theme_color": "#0369a1",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Disponibles ahora",
+      "url": "/monitor-turnos-hospital/#disponibles",
+      "description": "Ver especialidades con cupos disponibles"
+    },
+    {
+      "name": "Solicitar turno",
+      "url": "https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
+      "description": "Ir al sistema de turnos del hospital"
+    }
+  ]
+}
