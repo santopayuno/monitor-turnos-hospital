@@ -61,14 +61,17 @@ jobs:
           from datetime import datetime
           from zoneinfo import ZoneInfo
 
-          # Test procesador con datos simulados
+          # Test procesador con datos simulados (formato real de la API)
           estado_anterior = {'PEDIATRIA': 0, 'CARDIOLOGIA': 5}
-          estado_nuevo    = {'PEDIATRIA': 10, 'CARDIOLOGIA': 2}
+          especialidades_api = [
+              {'descripcion': 'PEDIATRIA', 'cupo': 10, 'suspendido': False},
+              {'descripcion': 'CARDIOLOGIA', 'cupo': 2, 'suspendido': False},
+          ]
 
-          proc = ProcesadorEspecialidades(estado_nuevo, estado_anterior)
-          assert len(proc.cambios['nuevos']) == 1, 'Debería detectar 1 nuevo'
+          proc = ProcesadorEspecialidades(especialidades_api, estado_anterior).procesar()
+          assert len(proc.cambios['nuevos']) == 1, f'Debería detectar 1 nuevo, encontró: {proc.cambios["nuevos"]}'
           assert proc.cambios['nuevos'][0]['nombre'] == 'PEDIATRIA'
-          assert len(proc.cambios['ultimos']) == 1, 'Debería detectar últimos cupos'
+          assert len(proc.cambios['ultimos']) == 1, f'Debería detectar últimos cupos, encontró: {proc.cambios["ultimos"]}'
           print('✓ ProcesadorEspecialidades OK')
 
           # Test constructor de mensaje
