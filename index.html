@@ -956,31 +956,39 @@
         async function actualizarHeartbeat() {
             const el = document.getElementById('heartbeat-status');
             if (!el) return;
+
+            // Próxima ejecución según reloj real (múltiplos de 15)
+            const ahora = new Date();
+            const minutos = ahora.getMinutes();
+            const segundos = ahora.getSeconds();
+            const resto = minutos % 15;
+            const faltanMin = (resto === 0 && segundos < 30) ? 0 : 15 - resto;
+            const proxima = faltanMin === 0 ? '< 1 m' : faltanMin + ' m';
+
             try {
                 const res = await fetch('heartbeat.json?t=' + Date.now());
                 if (!res.ok) throw new Error('no heartbeat');
                 const data = await res.json();
                 const ultima = new Date(data.ultima_ejecucion);
-                const ahora = new Date();
                 const diffMin = Math.floor((ahora - ultima) / 60000);
-                let texto, color;
+                let textoActualizado, color;
                 if (diffMin < 20) {
                     color = '#16a34a';
-                    texto = diffMin <= 1 ? '1 m' : diffMin + ' m';
+                    textoActualizado = diffMin <= 1 ? '1 m' : diffMin + ' m';
                 } else if (diffMin < 60) {
                     color = '#ea580c';
-                    texto = diffMin + ' m';
+                    textoActualizado = diffMin + ' m';
                 } else {
                     const horas = Math.floor(diffMin / 60);
                     const mins = diffMin % 60;
                     color = '#dc2626';
-                    texto = horas + ' h ' + (mins > 0 ? mins + ' min' : '');
+                    textoActualizado = horas + ' h ' + (mins > 0 ? mins + ' min' : '');
                 }
                 el.style.color = color;
-                el.textContent = '● Actualizado hace ' + texto;
+                el.textContent = '● Actualizado hace ' + textoActualizado + ' · próxima en ' + proxima;
             } catch (e) {
                 el.style.color = '#94a3b8';
-                el.textContent = '● Sin datos de ejecución aún';
+                el.textContent = '● Sin datos · próxima en ' + proxima;
             }
         }
 
