@@ -671,7 +671,7 @@
         .modal-cerrar:hover { color: var(--color-danger); }
         .modal-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-bottom: 16px;
         }
@@ -2355,10 +2355,19 @@
                     : Math.floor(promMin / 60) + ' h ' + (promMin % 60 > 0 ? promMin % 60 + ' min' : '');
             }
 
+            // Récord histórico: máximo de cupos registrado
+            const recordHistorico = aperturas.length > 0
+                ? Math.max(...aperturas.map(e => e.cupos || 0))
+                : '-';
+
             document.getElementById('modal-stats').innerHTML = `
                 <div class="modal-stat">
                     <div class="modal-stat-valor">${cupoActual}</div>
                     <div class="modal-stat-label">Cupos ahora</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-valor">${recordHistorico}</div>
+                    <div class="modal-stat-label">🏆 Récord</div>
                 </div>
                 <div class="modal-stat">
                     <div class="modal-stat-valor">${aperturas.length}</div>
