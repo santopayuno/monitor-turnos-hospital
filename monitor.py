@@ -527,14 +527,9 @@ class ConstructorMensajeTelegram:
             lineas.append("(No hay especialidades agotadas)")
             return lineas
 
-        # Mostrar máximo 5, luego resumir
-        if len(agotadas) > 5:
-            for nombre, _ in agotadas[:5]:
-                lineas.append(f"🚫 {nombre}")
-            lineas.append(f"🚫 ... y {len(agotadas) - 5} especialidad(es) más sin cupos")
-        else:
-            for nombre, _ in agotadas:
-                lineas.append(f"🚫 {nombre}")
+        # Compacto: sin líneas vacías entre items
+        for nombre, _ in agotadas:
+            lineas.append(f"🚫 {nombre}")
 
         return lineas
 
