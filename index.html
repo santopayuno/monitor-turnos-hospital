@@ -888,6 +888,33 @@
         let chartsInstances = {};
         let lastEstadoHash = null;
         let lastStatsHash = null;
+        let primeraCargar = true;
+
+        function notificarNuevosTurnos(nuevos) {
+            if (!('Notification' in window)) return;
+            if (Notification.permission !== 'granted') return;
+            if (nuevos.length === 0) return;
+
+            const nombres = nuevos.slice(0, 3).map(([nombre]) => nombre).join(', ');
+            const extras = nuevos.length > 3 ? ` y ${nuevos.length - 3} más` : '';
+            const titulo = `🏥 Nuevos turnos disponibles`;
+            const cuerpo = nombres + extras;
+
+            const notif = new Notification(titulo, {
+                body: cuerpo,
+                icon: '/monitor-turnos-hospital/icon-192.svg',
+                badge: '/monitor-turnos-hospital/icon-192.svg',
+                tag: 'nuevos-turnos',
+                renotify: true,
+                vibrate: [200, 100, 200]
+            });
+
+            notif.onclick = () => {
+                window.focus();
+                mostrarTab('nuevos');
+                notif.close();
+            };
+        }
 
         async function cargarDatos() {
             try {
@@ -908,6 +935,19 @@
                 estadisticas = nuevasStats;
 
                 actualizarDashboard();
+
+                // Notificar si hay nuevos turnos (no en la primera carga)
+                if (!primeraCargar) {
+                    const ahora30 = new Date(Date.now() - 30 * 60 * 1000);
+                    const nuevosRecientes = (nuevasStats.eventos || [])
+                        .filter(e => e.tipo === 'nuevos' && new Date(e.fecha) >= ahora30);
+                    const unicos = {};
+                    nuevosRecientes.forEach(e => { unicos[e.especialidad] = e; });
+                    const lista = Object.entries(unicos).map(([nombre, e]) => [nombre, nuevasStats[nombre] ?? 0]);
+                    notificarNuevosTurnos(lista);
+                }
+                primeraCargar = false;
+
             } catch (e) {
                 console.error('Error cargando datos:', e);
             }
@@ -1918,6 +1958,15 @@
                 .then(() => console.log('Service Worker registrado'))
                 .catch(e => console.log('Service Worker no disponible:', e));
         }
+
+        // Notificaciones nativas: solicitar permiso después de primera interacción
+        function solicitarPermisoNotificaciones() {
+            if (!('Notification' in window)) return;
+            if (Notification.permission === 'default') {
+                Notification.requestPermission();
+            }
+        }
+        document.addEventListener('click', solicitarPermisoNotificaciones, { once: true });
         
     </script>
 </body>
