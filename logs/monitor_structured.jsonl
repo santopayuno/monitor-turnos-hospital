@@ -33,3 +33,4 @@
 {"ts": "2026-05-31T04:01:09.180020", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 220, "con_cupos": 19}
 {"ts": "2026-05-31T04:16:19.078338", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 218, "con_cupos": 19}
 {"ts": "2026-05-31T04:16:19.080701", "evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 4}
+{"ts": "2026-05-31T04:31:04.843094", "evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 218, "con_cupos": 19}
