@@ -908,10 +908,10 @@
 
         <div id="tab-disponibles" class="tab-content">
             <div class="filtro-chips" id="chips-disponibles">
-                <button class="chip active" onclick="aplicarFiltro('disponibles', 0, this)">Todos</button>
-                <button class="chip" onclick="aplicarFiltro('disponibles', 5, this)">&gt; 5</button>
-                <button class="chip" onclick="aplicarFiltro('disponibles', 20, this)">&gt; 20</button>
-                <button class="chip" onclick="aplicarFiltro('disponibles', 50, this)">&gt; 50</button>
+                <button class="chip active" onclick="aplicarFiltroMax('disponibles', 9999, this)">Todos</button>
+                <button class="chip" onclick="aplicarFiltroMax('disponibles', 5, this)">&lt; 5</button>
+                <button class="chip" onclick="aplicarFiltroMax('disponibles', 20, this)">&lt; 20</button>
+                <button class="chip" onclick="aplicarFiltroMax('disponibles', 50, this)">&lt; 50</button>
             </div>
             <div class="especialidades-list">
                 <div id="lista-disponibles"></div>
@@ -920,9 +920,9 @@
 
         <div id="tab-pocos" class="tab-content">
             <div class="filtro-chips" id="chips-pocos">
-                <button class="chip active" onclick="aplicarFiltro('pocos', 0, this)">Todos</button>
-                <button class="chip" onclick="aplicarFiltro('pocos', 2, this)">&gt; 2</button>
-                <button class="chip" onclick="aplicarFiltro('pocos', 3, this)">&gt; 3</button>
+                <button class="chip active" onclick="aplicarFiltroMax('pocos', 9999, this)">Todos</button>
+                <button class="chip" onclick="aplicarFiltroMax('pocos', 5, this)">&lt; 5</button>
+                <button class="chip" onclick="aplicarFiltroMax('pocos', 10, this)">&lt; 10</button>
             </div>
             <div class="especialidades-list">
                 <div id="lista-pocos"></div>
@@ -1265,7 +1265,7 @@
         }
 
 
-        function aplicarFiltro(lista, minCupos, chipEl) {
+        function aplicarFiltroMax(lista, maxCupos, chipEl) {
             // Marcar chip activo
             const container = chipEl.closest('.filtro-chips');
             container.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
@@ -1278,7 +1278,7 @@
                 const cuposEl = el.querySelector('.especialidad-cupos');
                 if (!cuposEl) return;
                 const cupos = parseInt(cuposEl.textContent) || 0;
-                if (minCupos === 0 || cupos > minCupos) {
+                if (cupos <= maxCupos) {
                     el.classList.remove('hidden');
                 } else {
                     el.classList.add('hidden');
