@@ -1912,6 +1912,12 @@
         "con_cupos": 15,
         "total_cupos": 136,
         "cambios": 0
+      },
+      {
+        "hora": "19:45:22",
+        "con_cupos": 15,
+        "total_cupos": 131,
+        "cambios": 2
       }
     ]
   },
@@ -2815,6 +2821,18 @@
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-05-31T19:45:22.942890-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-05-31T19:45:22.942890-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
