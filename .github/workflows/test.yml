@@ -78,7 +78,7 @@ jobs:
           ahora = datetime.now(ZoneInfo('America/Argentina/Mendoza'))
           fecha_hora = ahora.strftime('%d/%m • %H:%M hs')
           constructor = ConstructorMensajeTelegram(
-              proc.cambios, proc.clasificacion, fecha_hora, estado_nuevo, 2
+              proc.cambios, proc.clasificacion, fecha_hora, proc.estado_actual, 2
           )
           mensaje = constructor.construir()
           assert mensaje is not None, 'Mensaje no debería ser None'
