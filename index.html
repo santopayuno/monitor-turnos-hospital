@@ -722,6 +722,55 @@
             color: #64748b;
             margin-top: 6px;
         }
+
+        /* Tabla historial en modal */
+        .modal-tabla-titulo {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 8px;
+        }
+        .modal-tabla {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        .modal-tabla th {
+            background: var(--color-light);
+            color: #64748b;
+            font-weight: 600;
+            padding: 6px 8px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .modal-tabla td {
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--color-border);
+            color: #1e293b;
+        }
+        .modal-tabla tr:last-child td {
+            border-bottom: none;
+        }
+        .modal-tabla-scroll {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            margin-bottom: 4px;
+        }
+        .badge-tipo {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-nuevos { background: #dbeafe; color: #0369a1; }
+        .badge-aumentos { background: #dcfce7; color: #16a34a; }
+        .badge-ultimos { background: #fef9c3; color: #ca8a04; }
+        .badge-agotados { background: #fee2e2; color: #dc2626; }
     </style>
 </head>
 <body>
@@ -891,6 +940,13 @@
                     <canvas id="chartDisponibilidad"></canvas>
                 </div>
             </div>
+
+            <div class="chart-container">
+                <h3>📅 Aperturas por Día de la Semana</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartPorDiaSemana"></canvas>
+                </div>
+            </div>
         </div>
 
 
@@ -904,6 +960,20 @@
             <div class="modal-stats" id="modal-stats"></div>
             <div class="chart-wrapper" style="min-height:250px;">
                 <canvas id="modal-chart"></canvas>
+            </div>
+            <div class="modal-tabla-titulo">📋 Historial de eventos</div>
+            <div class="modal-tabla-scroll">
+                <table class="modal-tabla">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cupos</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modal-tabla-body"></tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -1407,6 +1477,7 @@
             renderAperturasVsCierres();
             renderActividadPorHora();
             renderDisponibilidad();
+            renderPorDiaSemana();
         }
 
         function mostrarPlaceholderAnalisis() {
@@ -1882,6 +1953,54 @@
             }
         }
 
+        function renderPorDiaSemana() {
+            const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const conteo = [0, 0, 0, 0, 0, 0, 0];
+
+            (estadisticas.eventos || []).forEach(e => {
+                if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
+                    const dia = new Date(e.fecha).getDay();
+                    conteo[dia]++;
+                }
+            });
+
+            const ctx = document.getElementById('chartPorDiaSemana');
+            if (ctx && conteo.some(v => v > 0)) {
+                chartsInstances.porDiaSemana = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: dias,
+                        datasets: [{
+                            label: 'Aperturas de turnos',
+                            data: conteo,
+                            backgroundColor: conteo.map(v => {
+                                const max = Math.max(...conteo);
+                                return v === max ? '#0369a1' : 'rgba(3,105,161,0.4)';
+                            }),
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                padding: 12,
+                                callbacks: {
+                                    label: ctx => ` ${ctx.parsed.y} aperturas`
+                                }
+                            }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            }
+        }
+
         function renderDisponibilidad() {
             const registros = estadisticas.registros || {};
             const labels = [];
@@ -2028,6 +2147,39 @@
                     scales: { y: { beginAtZero: true } }
                 }
             });
+
+            // Poblar tabla de historial
+            const tbody = document.getElementById('modal-tabla-body');
+            const eventosEsp = eventos
+                .filter(e => e.especialidad === nombre)
+                .sort((a, b) => b.fecha.localeCompare(a.fecha))
+                .slice(0, 50);
+
+            if (eventosEsp.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:12px">Sin historial disponible</td></tr>';
+            } else {
+                const badgeMap = {
+                    nuevos: 'badge-nuevos', aumentos: 'badge-aumentos',
+                    ultimos: 'badge-ultimos', agotados: 'badge-agotados'
+                };
+                const labelMap = {
+                    nuevos: 'Nuevo', aumentos: 'Aumento',
+                    ultimos: 'Últimos', agotados: 'Agotado'
+                };
+                tbody.innerHTML = eventosEsp.map(e => {
+                    const fecha = new Date(e.fecha);
+                    const fechaStr = String(fecha.getDate()).padStart(2,'0') + '/' + String(fecha.getMonth()+1).padStart(2,'0');
+                    const horaStr = String(fecha.getHours()).padStart(2,'0') + ':' + String(fecha.getMinutes()).padStart(2,'0');
+                    const badge = badgeMap[e.tipo] || '';
+                    const label = labelMap[e.tipo] || e.tipo;
+                    return `<tr>
+                        <td>${fechaStr}</td>
+                        <td>${horaStr}</td>
+                        <td>${e.cupos ?? '-'}</td>
+                        <td><span class="badge-tipo ${badge}">${label}</span></td>
+                    </tr>`;
+                }).join('');
+            }
 
             modal.classList.add('visible');
             document.body.style.overflow = 'hidden';
