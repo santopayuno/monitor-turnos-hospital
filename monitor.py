@@ -77,70 +77,46 @@ logger = logging.getLogger(__name__)
 
 
 class StructuredLogger:
-    """Escribe eventos clave en formato JSON Lines para análisis posterior."""
+    """Escribe eventos clave en formato JSON Lines usando RotatingFileHandler nativo."""
 
     LOG_PATH = "logs/monitor_structured.jsonl"
-    MAX_LINES = 5000  # máximo de líneas antes de rotar
 
-    @staticmethod
-    def _escribir(evento: dict):
+    def __init__(self):
+        os.makedirs("logs", exist_ok=True)
+        self._logger = logging.getLogger("StructuredLogger")
+        self._logger.setLevel(logging.INFO)
+        self._logger.propagate = False
+        if not self._logger.handlers:
+            from logging.handlers import RotatingFileHandler
+            handler = RotatingFileHandler(
+                self.LOG_PATH,
+                maxBytes=1024 * 1024,  # 1MB por archivo
+                backupCount=3,
+                encoding="utf-8"
+            )
+            self._logger.addHandler(handler)
+
+    def _escribir(self, evento: dict):
         try:
-            os.makedirs("logs", exist_ok=True)
-            linea = json.dumps(evento, ensure_ascii=False) + "\n"
-
-            # Rotar si supera el límite
-            if os.path.exists(StructuredLogger.LOG_PATH):
-                with open(StructuredLogger.LOG_PATH, "r", encoding="utf-8") as f:
-                    lineas = f.readlines()
-                if len(lineas) >= StructuredLogger.MAX_LINES:
-                    # Conservar últimas MAX_LINES - 1000 líneas
-                    with open(StructuredLogger.LOG_PATH, "w", encoding="utf-8") as f:
-                        f.writelines(lineas[-(StructuredLogger.MAX_LINES - 1000):])
-
-            with open(StructuredLogger.LOG_PATH, "a", encoding="utf-8") as f:
-                f.write(linea)
+            evento["ts"] = datetime.now().isoformat()
+            self._logger.info(json.dumps(evento, ensure_ascii=False))
         except Exception as e:
             logger.warning(f"StructuredLogger error: {e}")
 
-    @staticmethod
-    def ejecucion(estado: str, especialidades: int, cupos: int, con_cupos: int):
-        StructuredLogger._escribir({
-            "ts": datetime.now().isoformat(),
-            "evento": "ejecucion",
-            "estado": estado,
-            "especialidades": especialidades,
-            "cupos_total": cupos,
-            "con_cupos": con_cupos
+    def ejecucion(self, estado: str, especialidades: int, cupos: int, con_cupos: int):
+        self._escribir({
+            "evento": "ejecucion", "estado": estado,
+            "especialidades": especialidades, "cupos_total": cupos, "con_cupos": con_cupos
         })
 
-    @staticmethod
-    def cambio(tipo: str, especialidad: str, cupos: int):
-        StructuredLogger._escribir({
-            "ts": datetime.now().isoformat(),
-            "evento": "cambio",
-            "tipo": tipo,
-            "especialidad": especialidad,
-            "cupos": cupos
-        })
+    def cambio(self, tipo: str, especialidad: str, cupos: int):
+        self._escribir({"evento": "cambio", "tipo": tipo, "especialidad": especialidad, "cupos": cupos})
 
-    @staticmethod
-    def telegram(tipo: str, exito: bool, detalle: str = ""):
-        StructuredLogger._escribir({
-            "ts": datetime.now().isoformat(),
-            "evento": "telegram",
-            "tipo": tipo,
-            "exito": exito,
-            "detalle": detalle
-        })
+    def telegram(self, tipo: str, exito: bool, detalle: str = ""):
+        self._escribir({"evento": "telegram", "tipo": tipo, "exito": exito, "detalle": detalle})
 
-    @staticmethod
-    def error(contexto: str, mensaje: str):
-        StructuredLogger._escribir({
-            "ts": datetime.now().isoformat(),
-            "evento": "error",
-            "contexto": contexto,
-            "mensaje": mensaje
-        })
+    def error(self, contexto: str, mensaje: str):
+        self._escribir({"evento": "error", "contexto": contexto, "mensaje": mensaje})
 
 slog = StructuredLogger()
 
@@ -331,7 +307,7 @@ class ProcesadorEspecialidades:
             })
             logger.info(f"🆕 NUEVO: {nombre} ({cupo} cupos)")
 
-        elif cupo_anterior > 0 and cupo > cupo_anterior + 10:
+        elif cupo_anterior > 0 and cupo - cupo_anterior >= 10:
             self.cambios["aumentos"].append({
                 "nombre": nombre,
                 "cupo_anterior": cupo_anterior,
@@ -551,9 +527,14 @@ class ConstructorMensajeTelegram:
             lineas.append("(No hay especialidades agotadas)")
             return lineas
 
-        # Compacto: sin líneas vacías entre items
-        for nombre, _ in agotadas:
-            lineas.append(f"🚫 {nombre}")
+        # Mostrar máximo 5, luego resumir
+        if len(agotadas) > 5:
+            for nombre, _ in agotadas[:5]:
+                lineas.append(f"🚫 {nombre}")
+            lineas.append(f"🚫 ... y {len(agotadas) - 5} especialidad(es) más sin cupos")
+        else:
+            for nombre, _ in agotadas:
+                lineas.append(f"🚫 {nombre}")
 
         return lineas
 
@@ -725,7 +706,7 @@ def generar_reporte_diario():
                 lineas.append(f"🏥 {nombre}: {cupo} cupo{plural}")
 
         if nuevas_hoy:
-            lineas += ["", "────────────", "🆕 ABRIERON AYER", "────────────"]
+            lineas += ["", "────────────", "🆕 ABRIERON HOY", "────────────"]
             for nombre in nuevas_hoy:
                 lineas.append(f"• {nombre}")
 
@@ -785,7 +766,14 @@ def detectar_patrones_apertura(hora_objetivo):
         candidatas = []
         for esp, horas in aperturas_por_hora.items():
             frecuencia = horas.get(hora_objetivo, 0)
-            if frecuencia >= 3 and estado_actual.get(esp, 0) == 0:
+            # Verificar mínimo 5 aperturas en al menos 3 días distintos
+        dias_distintos = len(set(
+            e["fecha"][:10] for e in eventos
+            if e.get("especialidad") == esp
+            and e.get("tipo") in ("nuevos", "aumentos")
+            and datetime.fromisoformat(e["fecha"]).hour == hora_objetivo
+        ))
+        if frecuencia >= 5 and dias_distintos >= 3 and estado_actual.get(esp, 0) == 0:
                 candidatas.append((esp, frecuencia))
 
         if not candidatas:
@@ -947,13 +935,19 @@ def main():
                     f.write(reporte)
                 enviar_telegram(reporte)
 
-    # Detección de patrones: avisar UNA sola vez por hora (solo al minuto 45-59 de cada hora)
+# Detección de patrones: avisar UNA sola vez por hora (solo al minuto 45-59 de cada hora)
     if CONFIG.get("alertas_patrones", True):
         if ahora.minute >= 45:
             hora_siguiente = (ahora.hour + 1) % 24
-            alerta_patrones = detectar_patrones_apertura(hora_siguiente)
-            if alerta_patrones:
-                enviar_telegram(alerta_patrones)
+            # Flag para no repetir: guardar en heartbeat la última hora de alerta
+            hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
+            ultima_alerta_hora = hb.get("ultima_alerta_patron_hora", -1)
+            if ultima_alerta_hora != hora_siguiente:
+                alerta_patrones = detectar_patrones_apertura(hora_siguiente)
+                if alerta_patrones:
+                    enviar_telegram(alerta_patrones)
+                    hb["ultima_alerta_patron_hora"] = hora_siguiente
+                    guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
 
     logger.info("═════════════════════════════════════════════════════")
 
