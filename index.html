@@ -801,6 +801,35 @@
         }
         .tendencia-sube { color: var(--color-success); }
         .tendencia-baja { color: var(--color-danger); }
+
+        /* Filtro rápido chips */
+        .filtro-chips {
+            display: flex;
+            gap: 8px;
+            padding: 10px 0 6px;
+            flex-wrap: wrap;
+        }
+        .chip {
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            background: white;
+            color: #64748b;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .chip.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        .chip:hover:not(.active) {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
     </style>
 </head>
 <body>
@@ -878,12 +907,23 @@
         </div>
 
         <div id="tab-disponibles" class="tab-content">
+            <div class="filtro-chips" id="chips-disponibles">
+                <button class="chip active" onclick="aplicarFiltro('disponibles', 0, this)">Todos</button>
+                <button class="chip" onclick="aplicarFiltro('disponibles', 5, this)">&gt; 5</button>
+                <button class="chip" onclick="aplicarFiltro('disponibles', 20, this)">&gt; 20</button>
+                <button class="chip" onclick="aplicarFiltro('disponibles', 50, this)">&gt; 50</button>
+            </div>
             <div class="especialidades-list">
                 <div id="lista-disponibles"></div>
             </div>
         </div>
 
         <div id="tab-pocos" class="tab-content">
+            <div class="filtro-chips" id="chips-pocos">
+                <button class="chip active" onclick="aplicarFiltro('pocos', 0, this)">Todos</button>
+                <button class="chip" onclick="aplicarFiltro('pocos', 2, this)">&gt; 2</button>
+                <button class="chip" onclick="aplicarFiltro('pocos', 3, this)">&gt; 3</button>
+            </div>
             <div class="especialidades-list">
                 <div id="lista-pocos"></div>
             </div>
@@ -1224,6 +1264,37 @@
             }
         }
 
+
+        function aplicarFiltro(lista, minCupos, chipEl) {
+            // Marcar chip activo
+            const container = chipEl.closest('.filtro-chips');
+            container.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            chipEl.classList.add('active');
+
+            // Filtrar tarjetas
+            const listEl = document.getElementById('lista-' + lista);
+            if (!listEl) return;
+            listEl.querySelectorAll('.especialidad').forEach(el => {
+                const cuposEl = el.querySelector('.especialidad-cupos');
+                if (!cuposEl) return;
+                const cupos = parseInt(cuposEl.textContent) || 0;
+                if (minCupos === 0 || cupos > minCupos) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+        }
+
+        function resetearChips() {
+            // Resetear chips a "Todos" cuando se recargan los datos
+            document.querySelectorAll('.filtro-chips').forEach(container => {
+                container.querySelectorAll('.chip').forEach((c, i) => {
+                    c.classList.toggle('active', i === 0);
+                });
+            });
+        }
+
         function mostrarTab(nombre) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -1492,6 +1563,7 @@
             // Inicializar buscador
             inicializarBuscadorDespuesDeDatos();
             detectarPatronesDashboard();
+            resetearChips();
         }
 
         function renderList(elementId, items, clase) {
