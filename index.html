@@ -771,6 +771,39 @@
         .badge-aumentos { background: #dcfce7; color: #16a34a; }
         .badge-ultimos { background: #fef9c3; color: #ca8a04; }
         .badge-agotados { background: #fee2e2; color: #dc2626; }
+
+        /* Botón compartir especialidad */
+        .btn-compartir {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: color 0.2s;
+            flex-shrink: 0;
+        }
+        .btn-compartir:hover { color: var(--color-primary); }
+        .toast-copiado {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1e293b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 3000;
+            pointer-events: none;
+        }
+        .toast-copiado.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -1054,7 +1087,7 @@
                     const lista = Object.entries(unicos).map(([nombre, e]) => [nombre, nuevasStats[nombre] ?? 0]);
                     notificarNuevosTurnos(lista);
                 }
-                primeraCargar = false;
+                if (primeraCargar) { primeraCargar = false; procesarDeepLink(); } else { primeraCargar = false; }
 
             } catch (e) {
                 console.error('Error cargando datos:', e);
@@ -1144,6 +1177,39 @@
             ).join('<br>');
             horaEl.textContent = `Suelen abrir a las ${horaStr} · basado en historial`;
             banner.classList.add('visible');
+        }
+
+
+        function compartirEspecialidad(nombre) {
+            const slug = nombre.replace(/\s+/g, '-').replace(/[()]/g, '');
+            const url = window.location.origin + window.location.pathname + '#' + slug;
+            navigator.clipboard.writeText(url).then(() => {
+                const toast = document.getElementById('toast-copiado');
+                toast.classList.add('visible');
+                setTimeout(() => toast.classList.remove('visible'), 2000);
+            }).catch(() => {
+                // Fallback para navegadores sin clipboard API
+                prompt('Copiá este link:', url);
+            });
+        }
+
+        function procesarDeepLink() {
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash) return;
+            // Buscar especialidad que coincida con el slug
+            const nombre = Object.keys(estadoActual).find(n =>
+                n.replace(/\s+/g, '-').replace(/[()]/g, '') === hash
+            );
+            if (nombre) {
+                setTimeout(() => {
+                    const el = document.querySelector(`[data-especialidad="${nombre}"]`);
+                    if (el) {
+                        const tab = el.closest('[id^="tab-"]');
+                        if (tab) mostrarTab(tab.id.replace('tab-', ''));
+                        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+                    }
+                }, 300);
+            }
         }
 
         function mostrarTab(nombre) {
@@ -1431,6 +1497,7 @@
                         <div class="especialidad-nombre">🏥 ${nombre}</div>
                     </div>
                     <div class="especialidad-cupos">${cupo}</div>
+                    <button class="btn-compartir" onclick="event.stopPropagation(); compartirEspecialidad('${nombre.replace(/'/g, "\\'")}')">🔗</button>
                 </div>
             `).join('');
         }
@@ -2214,5 +2281,6 @@
         document.addEventListener('click', solicitarPermisoNotificaciones, { once: true });
         
     </script>
+    <div class="toast-copiado" id="toast-copiado">✓ Link copiado</div>
 </body>
 </html>
