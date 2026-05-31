@@ -1161,23 +1161,30 @@
                 }
             });
 
-            const hoy = new Date().toISOString().split('T')[0];
-            let nuevos = (estadisticas.eventos || []).filter(e => e.tipo === 'nuevos' && e.fecha.includes(hoy));
+            // Pestaña Nuevos: eventos tipo 'nuevos' en últimos 30 min, ampliable a 60 min
+            const ahora30 = new Date(Date.now() - 30 * 60 * 1000);
+            const ahora60 = new Date(Date.now() - 60 * 60 * 1000);
 
+            const eventosNuevos = (estadisticas.eventos || []).filter(e => e.tipo === 'nuevos');
+
+            let nuevosRecientes = eventosNuevos.filter(e => new Date(e.fecha) >= ahora30);
+            if (nuevosRecientes.length === 0) {
+                nuevosRecientes = eventosNuevos.filter(e => new Date(e.fecha) >= ahora60);
+            }
+
+            // Deduplicar por especialidad, quedarse con el más reciente
             const nuevosUnicos = {};
-            nuevos.forEach(e => {
-                if (!nuevosUnicos[e.especialidad]) {
+            nuevosRecientes.forEach(e => {
+                if (!nuevosUnicos[e.especialidad] || new Date(e.fecha) > new Date(nuevosUnicos[e.especialidad].fecha)) {
                     nuevosUnicos[e.especialidad] = e;
                 }
             });
-            nuevos = Object.values(nuevosUnicos);
 
-            // FALLBACK: Si no hay eventos (reinicio reciente), mostrar especialidades con cupos como "nuevos"
-            if (nuevos.length === 0 && Object.keys(estadisticas.eventos || []).length === 0) {
-                nuevos = Object.entries(estadoActual)
-                    .filter(([nombre, cupo]) => cupo > 0)
-                    .map(([especialidad, cupos]) => ({ especialidad, cupos }));
-            }
+            // Usar cupo actual de estadoActual, no el del momento del evento
+            let nuevos = Object.values(nuevosUnicos).map(e => ({
+                especialidad: e.especialidad,
+                cupos: estadoActual[e.especialidad] ?? e.cupos ?? 0
+            }));
 
             const totalCupos = Object.values(estadoActual).reduce((a, b) => a + b, 0);
             const conCupos = Object.values(estadoActual).filter(c => c > 0).length;
