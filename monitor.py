@@ -844,9 +844,7 @@ def main():
 
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
     guardar_json_seguro({"ultima_ejecucion": ahora.isoformat()}, ARCHIVOS["heartbeat"])
-
     total_especialidades = len(procesador.estado_actual)
-
     slog.ejecucion(
         estado="ok",
         especialidades=total_especialidades,
