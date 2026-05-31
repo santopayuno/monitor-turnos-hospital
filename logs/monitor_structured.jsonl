@@ -113,3 +113,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 131, "con_cupos": 15, "ts": "2026-05-31T22:45:22.942539"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 2, "ts": "2026-05-31T22:45:22.952423"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 4, "ts": "2026-05-31T22:45:22.952495"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 129, "con_cupos": 15, "ts": "2026-05-31T23:00:56.945304"}
