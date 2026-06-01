@@ -195,10 +195,18 @@ def formato_cupos_disponibles(cupo):
 # API
 # ═══════════════════════════════════════════════════════════════
 
+# Sesión HTTP compartida para reutilización entre reintentos
+_sesion_http = None
+
+def _get_sesion():
+    global _sesion_http
+    if _sesion_http is None:
+        _sesion_http = crear_sesion_reintentos()
+    return _sesion_http
+
 def _consultar_api_una_vez():
     """Intento único de consulta a la API. Lanza excepción si falla."""
-    session = crear_sesion_reintentos()
-    response = session.post(
+    response = _get_sesion().post(
         API_URL,
         json={"nombrePlantilla": "PLT_PUBLIC_ESPE_TURNOS_PERRUPATO", "dni": ""},
         headers={"Content-Type": "application/json; charset=utf-8"},
@@ -799,19 +807,28 @@ def detectar_patrones_apertura(hora_objetivo):
                 aperturas_por_hora[esp] = {}
             aperturas_por_hora[esp][hora] = aperturas_por_hora[esp].get(hora, 0) + 1
 
-        # Filtrar: especialidades que suelen abrir en hora_objetivo (mínimo 3 veces)
-        # y que ahora mismo NO tienen cupos (si ya tienen, no hace falta avisar)
+        # Pre-agrupar eventos por especialidad para O(N+M) en vez de O(N×M)
+        from collections import defaultdict
+        eventos_por_esp = defaultdict(list)
+        for e in eventos:
+            if e.get("tipo") in ("nuevos", "aumentos"):
+                eventos_por_esp[e["especialidad"]].append(e)
+
+        # Filtrar: especialidades que suelen abrir en hora_objetivo
+        # con mínimo 5 aperturas en al menos 3 días distintos
         candidatas = []
         for esp, horas in aperturas_por_hora.items():
             frecuencia = horas.get(hora_objetivo, 0)
-            # Verificar mínimo 5 aperturas en al menos 3 días distintos
-        dias_distintos = len(set(
-            e["fecha"][:10] for e in eventos
-            if e.get("especialidad") == esp
-            and e.get("tipo") in ("nuevos", "aumentos")
-            and datetime.fromisoformat(e["fecha"]).hour == hora_objetivo
-        ))
-        if frecuencia >= 5 and dias_distintos >= 3 and estado_actual.get(esp, 0) == 0:
+            if frecuencia < 5:
+                continue
+            if estado_actual.get(esp, 0) != 0:
+                continue
+            # Contar días distintos solo para esta especialidad (eficiente)
+            dias_distintos = len({
+                e["fecha"][:10] for e in eventos_por_esp[esp]
+                if datetime.fromisoformat(e["fecha"]).hour == hora_objetivo
+            })
+            if dias_distintos >= 3:
                 candidatas.append((esp, frecuencia))
 
         if not candidatas:
@@ -989,19 +1006,24 @@ def main():
         except Exception as e:
             logger.warning(f"Error verificando hora de reporte: {e}")
 
-# Detección de patrones: avisar UNA sola vez por hora (solo al minuto 45-59 de cada hora)
+    # Detección de patrones: usando timestamp para no depender del minuto exacto
     if CONFIG.get("alertas_patrones", True):
-        if ahora.minute >= 45:
+        hb_pat = cargar_json(ARCHIVOS["heartbeat"]) or {}
+        ultima_alerta_ts = hb_pat.get("ultima_alerta_patron_ts", "1970-01-01T00:00:00")
+        try:
+            ultima_alerta_dt = datetime.fromisoformat(ultima_alerta_ts)
+            if ultima_alerta_dt.tzinfo is None:
+                ultima_alerta_dt = ultima_alerta_dt.replace(tzinfo=ahora.tzinfo)
+        except Exception:
+            ultima_alerta_dt = datetime.min.replace(tzinfo=ahora.tzinfo)
+        minutos_desde_ultima = (ahora - ultima_alerta_dt).total_seconds() / 60
+        if minutos_desde_ultima >= 45:
             hora_siguiente = (ahora.hour + 1) % 24
-            # Flag para no repetir: guardar en heartbeat la última hora de alerta
-            hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
-            ultima_alerta_hora = hb.get("ultima_alerta_patron_hora", -1)
-            if ultima_alerta_hora != hora_siguiente:
-                alerta_patrones = detectar_patrones_apertura(hora_siguiente)
-                if alerta_patrones:
-                    enviar_telegram(alerta_patrones)
-                    hb["ultima_alerta_patron_hora"] = hora_siguiente
-                    guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
+            alerta_patrones = detectar_patrones_apertura(hora_siguiente)
+            if alerta_patrones:
+                enviar_telegram(alerta_patrones)
+                hb_pat["ultima_alerta_patron_ts"] = ahora.isoformat()
+                guardar_json_seguro(hb_pat, ARCHIVOS["heartbeat"])
 
     logger.info("═════════════════════════════════════════════════════")
 
