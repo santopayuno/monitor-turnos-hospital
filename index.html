@@ -795,9 +795,11 @@
 
         /* Indicador de tendencia */
         .tendencia {
-            font-size: 0.85rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-left: 4px;
+            margin-left: 6px;
+            line-height: 1;
+            vertical-align: middle;
         }
         .tendencia-sube { color: var(--color-success); }
         .tendencia-baja { color: var(--color-danger); }
@@ -972,7 +974,7 @@
             </div>
 
             <div class="chart-container">
-                <h3>🔄 Actividad Últimas 24 Horas</h3>
+                <h3>🕐 Actividad por Franja Horaria</h3>
                 <div class="chart-wrapper">
                     <canvas id="chartUltimas24"></canvas>
                 </div>
@@ -1899,40 +1901,38 @@
         }
 
         function renderUltimas24Horas() {
-            const ahora = new Date();
-            const hace24 = new Date(ahora.getTime() - 24 * 60 * 60 * 1000);
-
-            const cambiosPorHora = {};
-            for (let i = 23; i >= 0; i--) {
-                const fecha = new Date(ahora.getTime() - i * 60 * 60 * 1000);
-                cambiosPorHora[fecha.getHours().toString().padStart(2, '0') + ':00'] = 0;
-            }
+            // Aperturas y cierres acumulados por franja de 3 horas (más legible)
+            const franjas = ['00-03','03-06','06-09','09-12','12-15','15-18','18-21','21-24'];
+            const aperturas = new Array(8).fill(0);
+            const cierres = new Array(8).fill(0);
 
             (estadisticas.eventos || []).forEach(e => {
-                const fechaEvento = new Date(e.fecha);
-                if (fechaEvento > hace24) {
-                    const hora = fechaEvento.getHours().toString().padStart(2, '0') + ':00';
-                    cambiosPorHora[hora]++;
-                }
+                const hora = new Date(e.fecha).getHours();
+                const idx = Math.floor(hora / 3);
+                if (e.tipo === 'nuevos' || e.tipo === 'aumentos') aperturas[idx]++;
+                else if (e.tipo === 'agotados') cierres[idx]++;
             });
 
             const ctx = document.getElementById('chartUltimas24');
             if (ctx) {
                 chartsInstances.ultimas24 = new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
-                        labels: Object.keys(cambiosPorHora),
-                        datasets: [{
-                            label: 'Cambios Detectados',
-                            data: Object.values(cambiosPorHora),
-                            borderColor: '#16a34a',
-                            backgroundColor: 'rgba(22, 163, 74, 0.1)',
-                            tension: 0.3,
-                            fill: true,
-                            pointRadius: 3,
-                            pointHoverRadius: 6,
-                            pointBackgroundColor: '#16a34a'
-                        }]
+                        labels: franjas,
+                        datasets: [
+                            {
+                                label: 'Aperturas',
+                                data: aperturas,
+                                backgroundColor: 'rgba(22, 163, 74, 0.7)',
+                                borderRadius: 4
+                            },
+                            {
+                                label: 'Cierres',
+                                data: cierres,
+                                backgroundColor: 'rgba(220, 38, 38, 0.7)',
+                                borderRadius: 4
+                            }
+                        ]
                     },
                     options: {
                         responsive: true,
@@ -1942,7 +1942,8 @@
                             tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
                         },
                         scales: {
-                            y: { beginAtZero: true }
+                            x: { title: { display: true, text: 'Franja horaria', font: { size: 11 } } },
+                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
                         }
                     }
                 });
@@ -1982,8 +1983,10 @@
                             tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
                         },
                         scales: {
-                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
-                        }
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } },
+                            y: { ticks: { font: { size: 11 }, callback: (v) => v.length > 22 ? v.substring(0, 22) + '…' : v } }
+                        },
+                        layout: { padding: { left: 0 } }
                     }
                 });
             }
@@ -2022,7 +2025,8 @@
                             tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
                         },
                         scales: {
-                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } },
+                            y: { ticks: { font: { size: 11 }, callback: (v) => v.length > 22 ? v.substring(0, 22) + '…' : v } }
                         }
                     }
                 });
@@ -2119,7 +2123,8 @@
                             tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
                         },
                         scales: {
-                            x: { beginAtZero: true, ticks: { stepSize: 1 } }
+                            x: { beginAtZero: true, ticks: { stepSize: 1 } },
+                            y: { ticks: { font: { size: 11 }, callback: (v) => v.length > 22 ? v.substring(0, 22) + '…' : v } }
                         }
                     }
                 });
