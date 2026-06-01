@@ -2196,6 +2196,12 @@
         "con_cupos": 14,
         "total_cupos": 109,
         "cambios": 0
+      },
+      {
+        "hora": "07:30:11",
+        "con_cupos": 13,
+        "total_cupos": 106,
+        "cambios": 1
       }
     ]
   },
@@ -3116,6 +3122,12 @@
       "fecha": "2026-06-01T00:30:33.621858-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-01T07:30:11.211729-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
