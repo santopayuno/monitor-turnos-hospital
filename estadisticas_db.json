@@ -2028,6 +2028,12 @@
         "con_cupos": 15,
         "total_cupos": 119,
         "cambios": 0
+      },
+      {
+        "hora": "00:30:33",
+        "con_cupos": 14,
+        "total_cupos": 118,
+        "cambios": 1
       }
     ]
   },
@@ -2943,6 +2949,12 @@
       "tipo": "ultimos",
       "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-01T00:30:33.621858-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
