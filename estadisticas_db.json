@@ -2015,6 +2015,14 @@
         "total_cupos": 119,
         "cambios": 0
       }
+    ],
+    "2026-06-01": [
+      {
+        "hora": "00:01:20",
+        "con_cupos": 15,
+        "total_cupos": 119,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
