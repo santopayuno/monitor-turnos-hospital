@@ -2214,6 +2214,12 @@
         "con_cupos": 13,
         "total_cupos": 106,
         "cambios": 0
+      },
+      {
+        "hora": "08:16:22",
+        "con_cupos": 13,
+        "total_cupos": 104,
+        "cambios": 1
       }
     ]
   },
@@ -3141,6 +3147,12 @@
       "tipo": "agotados",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-01T08:16:22.486559-03:00",
+      "tipo": "ultimos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
