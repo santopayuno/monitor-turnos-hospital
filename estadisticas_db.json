@@ -1990,6 +1990,12 @@
         "con_cupos": 15,
         "total_cupos": 120,
         "cambios": 0
+      },
+      {
+        "hora": "23:00:15",
+        "con_cupos": 15,
+        "total_cupos": 120,
+        "cambios": 0
       }
     ]
   },
