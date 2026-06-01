@@ -2310,6 +2310,12 @@
         "con_cupos": 12,
         "total_cupos": 77,
         "cambios": 0
+      },
+      {
+        "hora": "12:15:47",
+        "con_cupos": 13,
+        "total_cupos": 79,
+        "cambios": 1
       }
     ]
   },
@@ -3249,6 +3255,12 @@
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-01T12:15:47.652693-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
