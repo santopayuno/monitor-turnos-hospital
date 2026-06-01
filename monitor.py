@@ -968,13 +968,26 @@ def main():
         logger.info(f"🚨 Alerta urgente enviada: {len(cambios_filtrados['ultimos'])} especialidad(es) con últimos cupos")
 
     if CONFIG.get("generar_reporte_diario"):
-        hora = ahora.strftime("%H:%M")
-        if hora == CONFIG.get("hora_reporte_diario", "23:55"):
-            reporte = generar_reporte_diario()
-            if reporte:
-                with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
-                    f.write(reporte)
-                enviar_telegram(reporte)
+        hora_config_str = CONFIG.get("hora_reporte_diario", "08:00")
+        try:
+            hora_config_min = int(hora_config_str.split(":")[0]) * 60 + int(hora_config_str.split(":")[1])
+            hora_actual_min = ahora.hour * 60 + ahora.minute
+            if abs(hora_actual_min - hora_config_min) <= 7:
+                # Verificar que no se envió ya hoy
+                hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
+                ultimo_reporte = hb.get("ultimo_reporte_fecha", "")
+                hoy = ahora.strftime("%Y-%m-%d")
+                if ultimo_reporte != hoy:
+                    reporte = generar_reporte_diario()
+                    if reporte:
+                        with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
+                            f.write(reporte)
+                        enviar_telegram(reporte)
+                        hb["ultimo_reporte_fecha"] = hoy
+                        guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
+                        logger.info("📋 Reporte matutino enviado")
+        except Exception as e:
+            logger.warning(f"Error verificando hora de reporte: {e}")
 
 # Detección de patrones: avisar UNA sola vez por hora (solo al minuto 45-59 de cada hora)
     if CONFIG.get("alertas_patrones", True):
