@@ -966,12 +966,7 @@
             <div class="metrics-grid" id="metricsContainer">
             </div>
 
-            <div class="chart-container">
-                <h3>📅 Actividad de Aperturas por Hora</h3>
-                <div class="chart-wrapper">
-                    <canvas id="chartAperturasPorHora"></canvas>
-                </div>
-            </div>
+
 
             <div class="chart-container">
                 <h3>🕐 Actividad por Franja Horaria</h3>
@@ -997,7 +992,7 @@
             <!-- NUEVOS GRÁFICOS - ANÁLISIS PROFESIONAL -->
 
             <div class="chart-container">
-                <h3>📈 Evolución Total de Cupos</h3>
+                <h3>📈 Evolución Histórica</h3>
                 <div class="chart-wrapper">
                     <canvas id="chartEvolucionCupos"></canvas>
                 </div>
@@ -1017,19 +1012,9 @@
                 </div>
             </div>
 
-            <div class="chart-container">
-                <h3>⏰ Horarios Más Activos</h3>
-                <div class="chart-wrapper">
-                    <canvas id="chartActividadPorHora"></canvas>
-                </div>
-            </div>
 
-            <div class="chart-container">
-                <h3>✨ Disponibilidad Histórica</h3>
-                <div class="chart-wrapper">
-                    <canvas id="chartDisponibilidad"></canvas>
-                </div>
-            </div>
+
+
 
             <div class="chart-container">
                 <h3>📅 Aperturas por Día de la Semana</h3>
@@ -1751,7 +1736,6 @@
             renderActividadEspecialidades();
             renderAperturasVsCierres();
             renderActividadPorHora();
-            renderDisponibilidad();
             renderPorDiaSemana();
         }
 
@@ -1984,7 +1968,7 @@
                         },
                         scales: {
                             x: { beginAtZero: true, ticks: { stepSize: 1 } },
-                            y: { ticks: { font: { size: 11 }, callback: (v) => v.length > 22 ? v.substring(0, 22) + '…' : v } }
+                            y: { ticks: { font: { size: 11 }, callback: function(val, idx) { const label = this.getLabelForValue(val); return label && label.length > 22 ? label.substring(0, 22) + '…' : label; } } }
                         },
                         layout: { padding: { left: 0 } }
                     }
@@ -2026,7 +2010,7 @@
                         },
                         scales: {
                             x: { beginAtZero: true, ticks: { stepSize: 1 } },
-                            y: { ticks: { font: { size: 11 }, callback: (v) => v.length > 22 ? v.substring(0, 22) + '…' : v } }
+                            y: { ticks: { font: { size: 11 }, callback: function(val, idx) { const label = this.getLabelForValue(val); return label && label.length > 22 ? label.substring(0, 22) + '…' : label; } } }
                         }
                     }
                 });
@@ -2040,36 +2024,49 @@
         function renderEvolucionCupos() {
             const registros = estadisticas.registros || {};
             const labels = [];
-            const datos = [];
+            const datosCupos = [];
+            const datosEsp = [];
 
-            Object.entries(registros).forEach(([fecha, eventos]) => {
+            Object.entries(registros).sort().forEach(([fecha, eventos]) => {
                 if (Array.isArray(eventos) && eventos.length > 0) {
-                    eventos.forEach((evt, idx) => {
-                        if (idx === eventos.length - 1) { // Último del día
-                            labels.push(fecha.substring(5) + ' ' + evt.hora.substring(0, 5));
-                            datos.push(evt.total_cupos || 0);
-                        }
-                    });
+                    const ultimo = eventos[eventos.length - 1];
+                    labels.push(fecha.substring(5));
+                    datosCupos.push(ultimo.total_cupos || 0);
+                    datosEsp.push(ultimo.con_cupos || 0);
                 }
             });
 
             const ctx = document.getElementById('chartEvolucionCupos');
-            if (ctx && datos.length > 0) {
+            if (ctx && datosCupos.length > 0) {
                 chartsInstances.evolucionCupos = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: labels,
-                        datasets: [{
-                            label: 'Total de Cupos',
-                            data: datos,
-                            borderColor: '#0369a1',
-                            backgroundColor: 'rgba(3, 105, 161, 0.1)',
-                            tension: 0.4,
-                            fill: true,
-                            pointRadius: 4,
-                            pointHoverRadius: 7,
-                            pointBackgroundColor: '#0369a1'
-                        }]
+                        datasets: [
+                            {
+                                label: 'Total Cupos',
+                                data: datosCupos,
+                                borderColor: '#0369a1',
+                                backgroundColor: 'rgba(3,105,161,0.08)',
+                                tension: 0.4,
+                                fill: true,
+                                pointRadius: 3,
+                                pointHoverRadius: 6,
+                                yAxisID: 'y'
+                            },
+                            {
+                                label: 'Especialidades con Cupos',
+                                data: datosEsp,
+                                borderColor: '#16a34a',
+                                backgroundColor: 'transparent',
+                                tension: 0.4,
+                                fill: false,
+                                pointRadius: 3,
+                                pointHoverRadius: 6,
+                                borderDash: [5, 3],
+                                yAxisID: 'y2'
+                            }
+                        ]
                     },
                     options: {
                         responsive: true,
@@ -2079,7 +2076,17 @@
                             tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
                         },
                         scales: {
-                            y: { beginAtZero: true }
+                            y: {
+                                beginAtZero: true,
+                                position: 'left',
+                                title: { display: true, text: 'Cupos', font: { size: 11 } }
+                            },
+                            y2: {
+                                beginAtZero: true,
+                                position: 'right',
+                                grid: { drawOnChartArea: false },
+                                title: { display: true, text: 'Especialidades', font: { size: 11 } }
+                            }
                         }
                     }
                 });
@@ -2124,7 +2131,7 @@
                         },
                         scales: {
                             x: { beginAtZero: true, ticks: { stepSize: 1 } },
-                            y: { ticks: { font: { size: 11 }, callback: (v) => v.length > 22 ? v.substring(0, 22) + '…' : v } }
+                            y: { ticks: { font: { size: 11 }, callback: function(val, idx) { const label = this.getLabelForValue(val); return label && label.length > 22 ? label.substring(0, 22) + '…' : label; } } }
                         }
                     }
                 });
