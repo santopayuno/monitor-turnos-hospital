@@ -1978,6 +1978,12 @@
         "con_cupos": 15,
         "total_cupos": 120,
         "cambios": 0
+      },
+      {
+        "hora": "22:30:14",
+        "con_cupos": 15,
+        "total_cupos": 120,
+        "cambios": 0
       }
     ]
   },
