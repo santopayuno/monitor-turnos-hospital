@@ -2226,6 +2226,12 @@
         "con_cupos": 13,
         "total_cupos": 102,
         "cambios": 0
+      },
+      {
+        "hora": "08:46:10",
+        "con_cupos": 12,
+        "total_cupos": 99,
+        "cambios": 1
       }
     ]
   },
@@ -3159,6 +3165,12 @@
       "tipo": "ultimos",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-01T08:46:10.056441-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
