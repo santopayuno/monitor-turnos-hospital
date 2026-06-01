@@ -850,6 +850,68 @@
             color: #64748b;
             margin-top: 2px;
         }
+
+        /* Ranking cards */
+        .ranking-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .ranking-card:last-child { border-bottom: none; }
+        .ranking-medal {
+            font-size: 1.2rem;
+            min-width: 28px;
+            text-align: center;
+        }
+        .ranking-info { flex: 1; min-width: 0; }
+        .ranking-nombre {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ranking-barra-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        .ranking-barra-bg {
+            flex: 1;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .ranking-barra-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+        .ranking-valor {
+            font-size: 0.78rem;
+            color: #64748b;
+            white-space: nowrap;
+        }
+        .ranking-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+        .badge-muy-alta { background: #fee2e2; color: #dc2626; }
+        .badge-alta     { background: #ffedd5; color: #ea580c; }
+        .badge-normal   { background: #fef9c3; color: #ca8a04; }
+        .ranking-sub {
+            font-size: 0.76rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
@@ -977,16 +1039,12 @@
 
             <div class="chart-container">
                 <h3>🆙 Especialidades que Más Abren Turnos</h3>
-                <div class="chart-wrapper">
-                    <canvas id="chartTopAperturas"></canvas>
-                </div>
+                <div id="rankingAperturas"></div>
             </div>
 
             <div class="chart-container">
                 <h3>⬇️ Especialidades que Más Rápido se Agotan</h3>
-                <div class="chart-wrapper">
-                    <canvas id="chartTopAgotadas"></canvas>
-                </div>
+                <div id="rankingAgotadas"></div>
             </div>
 
             <!-- NUEVOS GRÁFICOS - ANÁLISIS PROFESIONAL -->
@@ -1000,9 +1058,7 @@
 
             <div class="chart-container">
                 <h3>🔥 Especialidades Más Dinámicas</h3>
-                <div class="chart-wrapper">
-                    <canvas id="chartActividadEspecialidades"></canvas>
-                </div>
+                <div id="rankingDinamicas"></div>
             </div>
 
             <div class="chart-container">
@@ -1935,86 +1991,64 @@
         }
 
         function renderTopAperturas() {
+            const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
             const aperturas = {};
             (estadisticas.eventos || []).forEach(e => {
                 if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
                     aperturas[e.especialidad] = (aperturas[e.especialidad] || 0) + 1;
                 }
             });
-
-            const top = Object.entries(aperturas)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 10);
-
-            const ctx = document.getElementById('chartTopAperturas');
-            if (ctx && top.length > 0) {
-                chartsInstances.topAperturas = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: top.map(item => item[0].substring(0, 30)),
-                        datasets: [{
-                            label: 'Total de Aperturas',
-                            data: top.map(item => item[1]),
-                            backgroundColor: '#0369a1'
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: true, position: 'top' },
-                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
-                        },
-                        scales: {
-                            x: { beginAtZero: true, ticks: { stepSize: 1 } },
-                            y: { ticks: { font: { size: 11 }, callback: function(val, idx) { const label = this.getLabelForValue(val); return label && label.length > 22 ? label.substring(0, 22) + '…' : label; } } }
-                        },
-                        layout: { padding: { left: 0 } }
-                    }
-                });
-            }
+            const top = Object.entries(aperturas).sort((a, b) => b[1] - a[1]).slice(0, 10);
+            const container = document.getElementById('rankingAperturas');
+            if (!container || top.length === 0) return;
+            const maxVal = top[0][1];
+            container.innerHTML = top.map(([nombre, val], i) => `
+                <div class="ranking-card">
+                    <div class="ranking-medal">${medals[i] || (i+1)+'.'}</div>
+                    <div class="ranking-info">
+                        <div class="ranking-nombre">${nombre}</div>
+                        <div class="ranking-barra-wrap">
+                            <div class="ranking-barra-bg">
+                                <div class="ranking-barra-fill" style="width:${Math.round(val/maxVal*100)}%;background:#0369a1"></div>
+                            </div>
+                            <span class="ranking-valor">${val} apertura${val !== 1 ? 's' : ''}</span>
+                        </div>
+                    </div>
+                </div>`).join('');
         }
 
         function renderTopAgotadas() {
+            const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
             const agotadas = {};
             (estadisticas.eventos || []).forEach(e => {
                 if (e.tipo === 'agotados') {
                     agotadas[e.especialidad] = (agotadas[e.especialidad] || 0) + 1;
                 }
             });
-
-            const top = Object.entries(agotadas)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 10);
-
-            const ctx = document.getElementById('chartTopAgotadas');
-            if (ctx && top.length > 0) {
-                chartsInstances.topAgotadas = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: top.map(item => item[0].substring(0, 30)),
-                        datasets: [{
-                            label: 'Veces Agotada',
-                            data: top.map(item => item[1]),
-                            backgroundColor: '#dc2626'
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: true, position: 'top' },
-                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
-                        },
-                        scales: {
-                            x: { beginAtZero: true, ticks: { stepSize: 1 } },
-                            y: { ticks: { font: { size: 11 }, callback: function(val, idx) { const label = this.getLabelForValue(val); return label && label.length > 22 ? label.substring(0, 22) + '…' : label; } } }
-                        }
-                    }
-                });
-            }
+            const top = Object.entries(agotadas).sort((a, b) => b[1] - a[1]).slice(0, 10);
+            const container = document.getElementById('rankingAgotadas');
+            if (!container || top.length === 0) return;
+            const maxVal = top[0][1];
+            container.innerHTML = top.map(([nombre, val], i) => {
+                const pct = Math.round(val / maxVal * 100);
+                const badge = val >= 4 ? '<span class="ranking-badge badge-muy-alta">🔴 Muy demandada</span>'
+                            : val >= 2 ? '<span class="ranking-badge badge-alta">🟠 Alta demanda</span>'
+                            : '<span class="ranking-badge badge-normal">🟡 Demanda normal</span>';
+                return `
+                <div class="ranking-card">
+                    <div class="ranking-medal">${medals[i] || (i+1)+'.'}</div>
+                    <div class="ranking-info">
+                        <div class="ranking-nombre">⚡ ${nombre}</div>
+                        <div class="ranking-barra-wrap">
+                            <div class="ranking-barra-bg">
+                                <div class="ranking-barra-fill" style="width:${pct}%;background:#dc2626"></div>
+                            </div>
+                            <span class="ranking-valor">${val} agotamiento${val !== 1 ? 's' : ''}</span>
+                        </div>
+                        <div class="ranking-sub">${badge}</div>
+                    </div>
+                </div>`;
+            }).join('');
         }
 
         // ═══════════════════════════════════════════════════════════════
@@ -2094,48 +2128,33 @@
         }
 
         function renderActividadEspecialidades() {
+            const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
             const eventos = estadisticas.eventos || [];
             const actividad = {};
-
             eventos.forEach(e => {
-                const esp = e.especialidad;
-                if (!actividad[esp]) {
-                    actividad[esp] = 0;
-                }
-                actividad[esp]++;
+                if (!actividad[e.especialidad]) actividad[e.especialidad] = { total: 0, ap: 0, ci: 0 };
+                actividad[e.especialidad].total++;
+                if (e.tipo === 'nuevos' || e.tipo === 'aumentos') actividad[e.especialidad].ap++;
+                else if (e.tipo === 'agotados') actividad[e.especialidad].ci++;
             });
-
-            const top = Object.entries(actividad)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 10);
-
-            const ctx = document.getElementById('chartActividadEspecialidades');
-            if (ctx && top.length > 0) {
-                chartsInstances.actividadEspecialidades = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: top.map(item => item[0].substring(0, 25)),
-                        datasets: [{
-                            label: 'Total de Eventos',
-                            data: top.map(item => item[1]),
-                            backgroundColor: '#16a34a'
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: true, position: 'top' },
-                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
-                        },
-                        scales: {
-                            x: { beginAtZero: true, ticks: { stepSize: 1 } },
-                            y: { ticks: { font: { size: 11 }, callback: function(val, idx) { const label = this.getLabelForValue(val); return label && label.length > 22 ? label.substring(0, 22) + '…' : label; } } }
-                        }
-                    }
-                });
-            }
+            const top = Object.entries(actividad).sort((a, b) => b[1].total - a[1].total).slice(0, 10);
+            const container = document.getElementById('rankingDinamicas');
+            if (!container || top.length === 0) return;
+            const maxVal = top[0][1].total;
+            container.innerHTML = top.map(([nombre, d], i) => `
+                <div class="ranking-card">
+                    <div class="ranking-medal">${medals[i] || (i+1)+'.'}</div>
+                    <div class="ranking-info">
+                        <div class="ranking-nombre">🔥 ${nombre}</div>
+                        <div class="ranking-barra-wrap">
+                            <div class="ranking-barra-bg">
+                                <div class="ranking-barra-fill" style="width:${Math.round(d.total/maxVal*100)}%;background:#16a34a"></div>
+                            </div>
+                            <span class="ranking-valor">${d.total} cambios</span>
+                        </div>
+                        <div class="ranking-sub">↗ ${d.ap} aperturas &nbsp;↘ ${d.ci} cierres</div>
+                    </div>
+                </div>`).join('');
         }
 
         function renderAperturasVsCierres() {
