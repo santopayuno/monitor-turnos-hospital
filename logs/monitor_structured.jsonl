@@ -183,3 +183,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 78, "con_cupos": 12, "ts": "2026-06-01T14:46:20.728889"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 77, "con_cupos": 12, "ts": "2026-06-01T15:01:13.375295"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 79, "con_cupos": 13, "ts": "2026-06-01T15:15:47.652166"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 77, "con_cupos": 13, "ts": "2026-06-01T15:30:53.247990"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 4, "ts": "2026-06-01T15:30:53.250990"}
