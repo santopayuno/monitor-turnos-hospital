@@ -2228,8 +2228,12 @@
 
             (estadisticas.eventos || []).forEach(e => {
                 if (e.tipo === 'nuevos' || e.tipo === 'aumentos') {
-                    const dia = new Date(e.fecha).getDay();
-                    conteo[dia]++;
+                    // Extraer fecha sin depender de timezone del navegador
+                    const fechaStr = e.fecha ? e.fecha.substring(0, 10) : null;
+                    if (!fechaStr) return;
+                    const [anio, mes, diaNum] = fechaStr.split('-').map(Number);
+                    const d = new Date(anio, mes - 1, diaNum);
+                    if (!isNaN(d.getTime())) conteo[d.getDay()]++;
                 }
             });
 
