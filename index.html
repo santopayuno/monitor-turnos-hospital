@@ -1504,8 +1504,11 @@
         }
 
         function destacarTexto(texto, query) {
-            const regex = new RegExp(`(${query})`, 'gi');
-            return texto.replace(regex, '<span class="search-suggestion-highlight">$1</span>');
+            // Sanitizar query para evitar XSS en innerHTML del dropdown
+            const querySeguro = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const textoSeguro = texto.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            const regex = new RegExp(`(${querySeguro})`, 'gi');
+            return textoSeguro.replace(regex, '<span class="search-suggestion-highlight">$1</span>');
         }
 
         function actualizarSeleccion() {
@@ -2217,45 +2220,7 @@
             }
         }
 
-        function renderActividadPorHora() {
-            const horas = {};
-            for (let i = 0; i < 24; i++) {
-                horas[i.toString().padStart(2, '0') + ':00'] = 0;
-            }
 
-            (estadisticas.eventos || []).forEach(e => {
-                const hora = new Date(e.fecha).getHours().toString().padStart(2, '0') + ':00';
-                horas[hora]++;
-            });
-
-            const ctx = document.getElementById('chartActividadPorHora');
-            if (ctx) {
-                chartsInstances.actividadPorHora = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(horas),
-                        datasets: [{
-                            label: 'Eventos Detectados',
-                            data: Object.values(horas),
-                            backgroundColor: '#eab308',
-                            borderColor: '#ca8a04',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: true, position: 'top' },
-                            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12 }
-                        },
-                        scales: {
-                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
-                        }
-                    }
-                });
-            }
-        }
 
         function renderPorDiaSemana() {
             const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
