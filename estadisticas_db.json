@@ -2334,6 +2334,12 @@
         "con_cupos": 13,
         "total_cupos": 72,
         "cambios": 0
+      },
+      {
+        "hora": "13:16:27",
+        "con_cupos": 13,
+        "total_cupos": 67,
+        "cambios": 1
       }
     ]
   },
@@ -3284,6 +3290,12 @@
       "fecha": "2026-06-01T12:30:53.248412-03:00",
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-01T13:16:27.752193-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
       "cupos": 4
     }
   ],

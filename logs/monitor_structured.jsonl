@@ -187,3 +187,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 4, "ts": "2026-06-01T15:30:53.250990"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 73, "con_cupos": 13, "ts": "2026-06-01T15:46:18.125532"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 72, "con_cupos": 13, "ts": "2026-06-01T16:00:32.308232"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 67, "con_cupos": 13, "ts": "2026-06-01T16:16:27.751579"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA TORACICA", "cupos": 4, "ts": "2026-06-01T16:16:27.755088"}
