@@ -1245,8 +1245,10 @@
                 const res1 = await fetch('estado_turnos.json?t=' + Date.now());
                 const nuevoEstado = res1.ok ? await res1.json() : estadoActual;
 
-                const resAnterior = await fetch('estado_anterior.json?t=' + Date.now());
-                if (resAnterior.ok) estadoAnterior = await resAnterior.json();
+                try {
+                    const resAnterior = await fetch('estado_anterior.json?t=' + Date.now());
+                    if (resAnterior.ok) estadoAnterior = await resAnterior.json();
+                } catch(e) { /* estado_anterior opcional */ }
 
                 const res2 = await fetch('estadisticas_db.json?t=' + Date.now());
                 const nuevasStats = res2.ok ? await res2.json() : estadisticas;
@@ -2650,5 +2652,4 @@
                 };
                 tbody.innerHTML = eventosEsp.map(e => {
                     const fecha = new Date(e.fecha);
-                    const fechaStr = String(fecha.getDate()).padStart(2,'0') + '/' + String(fecha.getMonth()+1).padStart(2,'0');
-                    const horaStr = String(fecha.getHours()).padS
+                    const fechaStr = String(fecha.getDate()).padStart(2,'0') + '/' + String(fecha.getM
