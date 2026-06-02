@@ -912,6 +912,62 @@
             color: #64748b;
             margin-top: 2px;
         }
+
+        /* Heatmap especialidad */
+        .heatmap-titulo {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 16px 0 8px;
+        }
+        .heatmap-wrap {
+            overflow-x: auto;
+            margin-bottom: 4px;
+        }
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: 32px repeat(24, 1fr);
+            gap: 2px;
+            min-width: 400px;
+        }
+        .heatmap-label {
+            font-size: 0.65rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 4px;
+        }
+        .heatmap-hora {
+            font-size: 0.6rem;
+            color: #94a3b8;
+            text-align: center;
+            padding-bottom: 2px;
+        }
+        .heatmap-cell {
+            height: 14px;
+            border-radius: 2px;
+            background: #e2e8f0;
+        }
+        .heatmap-leyenda {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .heatmap-leyenda-gradiente {
+            display: flex;
+            gap: 2px;
+        }
+        .heatmap-leyenda-item {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
@@ -1105,6 +1161,21 @@
                 font-size: 0.95rem;
                 text-decoration: none;
             ">👉 Sacar Turno</a>
+            <div class="heatmap-titulo">🗓️ Mapa de aperturas por día y hora</div>
+            <div class="heatmap-wrap">
+                <div class="heatmap-grid" id="modal-heatmap"></div>
+            </div>
+            <div class="heatmap-leyenda">
+                <span>Menos</span>
+                <div class="heatmap-leyenda-gradiente">
+                    <div class="heatmap-leyenda-item" style="background:#e2e8f0"></div>
+                    <div class="heatmap-leyenda-item" style="background:#bfdbfe"></div>
+                    <div class="heatmap-leyenda-item" style="background:#60a5fa"></div>
+                    <div class="heatmap-leyenda-item" style="background:#2563eb"></div>
+                    <div class="heatmap-leyenda-item" style="background:#1e3a8a"></div>
+                </div>
+                <span>Más aperturas</span>
+            </div>
             <div class="modal-tabla-titulo">📋 Historial de eventos</div>
             <div class="modal-tabla-scroll">
                 <table class="modal-tabla">
@@ -1251,6 +1322,35 @@
         }
 
 
+        function calcularProbabilidadApertura(esp, horaSiguiente) {
+            // Probabilidad real: días que abrió en esa hora / días totales observados
+            const eventos = estadisticas.eventos || [];
+            const registros = estadisticas.registros || {};
+
+            // Días totales en el historial
+            const diasTotales = Object.keys(registros).length;
+            if (diasTotales === 0) return 0;
+
+            // Días en que esta especialidad abrió en esa hora exacta
+            const diasConApertura = new Set();
+            eventos.forEach(e => {
+                if (e.especialidad !== esp) return;
+                if (e.tipo !== 'nuevos' && e.tipo !== 'aumentos') return;
+                const fecha = new Date(e.fecha);
+                if (fecha.getHours() === horaSiguiente) {
+                    diasConApertura.add(e.fecha.substring(0, 10));
+                }
+            });
+
+            return Math.round((diasConApertura.size / diasTotales) * 100);
+        }
+
+        function colorProbabilidad(pct) {
+            if (pct >= 70) return '#16a34a';  // verde
+            if (pct >= 40) return '#ea580c';  // naranja
+            return '#0369a1';                  // azul
+        }
+
         function detectarPatronesDashboard() {
             const banner = document.getElementById('patron-banner');
             const itemsEl = document.getElementById('patron-items');
@@ -1260,7 +1360,6 @@
             const eventos = estadisticas.eventos || [];
             if (eventos.length === 0) { banner.classList.remove('visible'); return; }
 
-            // Hora siguiente
             const ahora = new Date();
             const horaSiguiente = (ahora.getHours() + 1) % 24;
 
@@ -1279,23 +1378,80 @@
             Object.entries(aperturasPorHora).forEach(([esp, horas]) => {
                 const frec = horas[horaSiguiente] || 0;
                 if (frec >= 3 && (estadoActual[esp] || 0) === 0) {
-                    candidatas.push([esp, frec]);
+                    const pct = calcularProbabilidadApertura(esp, horaSiguiente);
+                    candidatas.push([esp, frec, pct]);
                 }
             });
 
             if (candidatas.length === 0) { banner.classList.remove('visible'); return; }
 
-            candidatas.sort((a, b) => b[1] - a[1]);
+            candidatas.sort((a, b) => b[2] - a[2]); // ordenar por probabilidad
             const top = candidatas.slice(0, 5);
             const horaStr = String(horaSiguiente).padStart(2, '0') + ':00';
 
-            itemsEl.innerHTML = top.map(([esp, frec]) =>
-                `📌 <strong>${esp}</strong> <span style="color:#64748b">(${frec}x histórico)</span>`
-            ).join('<br>');
-            horaEl.textContent = `Suelen abrir a las ${horaStr} · basado en historial`;
+            itemsEl.innerHTML = top.map(([esp, frec, pct]) => {
+                const color = colorProbabilidad(pct);
+                const barra = Math.round(pct / 10); // 0-10 bloques
+                const barraFull = '█'.repeat(barra) + '░'.repeat(10 - barra);
+                return `<div style="margin-bottom:8px">
+                    📌 <strong>${esp}</strong><br>
+                    <span style="font-family:monospace;color:${color}">${barraFull}</span>
+                    <span style="color:${color};font-weight:700"> ${pct}%</span>
+                    <span style="color:#94a3b8;font-size:0.85em"> de probabilidad · ${frec}x histórico</span>
+                </div>`;
+            }).join('');
+            horaEl.textContent = `Predicción para las ${horaStr} · basado en ${Object.keys(estadisticas.registros || {}).length} días de historial`;
             banner.classList.add('visible');
         }
 
+
+
+        function renderHeatmap(nombre) {
+            const container = document.getElementById('modal-heatmap');
+            if (!container) return;
+
+            const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+            const eventos = (estadisticas.eventos || []).filter(e =>
+                e.especialidad === nombre && (e.tipo === 'nuevos' || e.tipo === 'aumentos')
+            );
+
+            // Construir matriz [dia][hora]
+            const matriz = Array.from({length: 7}, () => new Array(24).fill(0));
+            eventos.forEach(e => {
+                const d = new Date(e.fecha);
+                matriz[d.getDay()][d.getHours()]++;
+            });
+
+            const maxVal = Math.max(...matriz.flat(), 1);
+
+            const colores = (val) => {
+                if (val === 0) return '#e2e8f0';
+                const pct = val / maxVal;
+                if (pct < 0.2) return '#bfdbfe';
+                if (pct < 0.4) return '#60a5fa';
+                if (pct < 0.7) return '#2563eb';
+                return '#1e3a8a';
+            };
+
+            // Header horas
+            let html = '<div></div>'; // esquina vacía
+            for (let h = 0; h < 24; h++) {
+                html += `<div class="heatmap-hora">${h}</div>`;
+            }
+
+            // Filas por día
+            for (let d = 0; d < 7; d++) {
+                html += `<div class="heatmap-label">${dias[d]}</div>`;
+                for (let h = 0; h < 24; h++) {
+                    const val = matriz[d][h];
+                    const color = colores(val);
+                    const title = val > 0 ? `${dias[d]} ${h}:00 — ${val} apertura${val > 1 ? 's' : ''}` : '';
+                    html += `<div class="heatmap-cell" style="background:${color}" title="${title}"></div>`;
+                }
+            }
+
+            container.innerHTML = html;
+        }
 
         function compartirEspecialidad(nombre) {
             const slug = nombre
@@ -2381,7 +2537,30 @@
                 ? Math.max(...aperturas.map(e => e.cupos || 0))
                 : '-';
 
-            document.getElementById('modal-stats').innerHTML = `
+            // Probabilidad de apertura en próxima hora (solo si sin cupos)
+            const cupoActualEsp = estadoActual[nombre] || 0;
+            let prediccionHTML = '';
+            if (cupoActualEsp === 0) {
+                const ahora = new Date();
+                const horaSig = (ahora.getHours() + 1) % 24;
+                const pct = calcularProbabilidadApertura(nombre, horaSig);
+                if (pct > 0) {
+                    const color = colorProbabilidad(pct);
+                    const horaStr = String(horaSig).padStart(2, '0') + ':00';
+                    prediccionHTML = `<div style="
+                        margin: 12px 0 0;
+                        padding: 10px 12px;
+                        background: #f0f9ff;
+                        border-radius: 6px;
+                        border-left: 3px solid ${color};
+                        font-size: 0.85rem;
+                    ">
+                        🔮 <strong style="color:${color}">${pct}% de probabilidad</strong> de apertura a las ${horaStr}
+                    </div>`;
+                }
+            }
+
+            document.getElementById('modal-stats').innerHTML = prediccionHTML + `
                 <div class="modal-stat">
                     <div class="modal-stat-valor">${cupoActual}</div>
                     <div class="modal-stat-label">Cupos ahora</div>
@@ -2472,51 +2651,4 @@
                 tbody.innerHTML = eventosEsp.map(e => {
                     const fecha = new Date(e.fecha);
                     const fechaStr = String(fecha.getDate()).padStart(2,'0') + '/' + String(fecha.getMonth()+1).padStart(2,'0');
-                    const horaStr = String(fecha.getHours()).padStart(2,'0') + ':' + String(fecha.getMinutes()).padStart(2,'0');
-                    const badge = badgeMap[e.tipo] || '';
-                    const label = labelMap[e.tipo] || e.tipo;
-                    return `<tr>
-                        <td>${fechaStr}</td>
-                        <td>${horaStr}</td>
-                        <td>${e.cupos ?? '-'}</td>
-                        <td><span class="badge-tipo ${badge}">${label}</span></td>
-                    </tr>`;
-                }).join('');
-            }
-
-            modal.classList.add('visible');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function cerrarModal(event) {
-            if (event && event.target !== document.getElementById('modal-historial')) return;
-            document.getElementById('modal-historial').classList.remove('visible');
-            document.body.style.overflow = '';
-            if (modalChart) { modalChart.destroy(); modalChart = null; }
-        }
-
-        cargarDatos();
-        actualizarHeartbeat();
-        setInterval(actualizarHeartbeat, 60000);
-        setInterval(cargarDatos, 15 * 60 * 1000);
-
-        // Service Worker: soporte offline
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/monitor-turnos-hospital/sw.js')
-                .then(() => console.log('Service Worker registrado'))
-                .catch(e => console.log('Service Worker no disponible:', e));
-        }
-
-        // Notificaciones nativas: solicitar permiso después de primera interacción
-        function solicitarPermisoNotificaciones() {
-            if (!('Notification' in window)) return;
-            if (Notification.permission === 'default') {
-                Notification.requestPermission();
-            }
-        }
-        document.addEventListener('click', solicitarPermisoNotificaciones, { once: true });
-        
-    </script>
-    <div class="toast-copiado" id="toast-copiado">✓ Link copiado</div>
-</body>
-</html>
+                    const horaStr = String(fecha.getHours()).padS
