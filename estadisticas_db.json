@@ -2834,6 +2834,12 @@
         "con_cupos": 30,
         "total_cupos": 1482,
         "cambios": 25
+      },
+      {
+        "hora": "10:01:00",
+        "con_cupos": 33,
+        "total_cupos": 1394,
+        "cambios": 9
       }
     ]
   },
@@ -4012,6 +4018,60 @@
       "fecha": "2026-06-02T09:45:20.783149-03:00",
       "tipo": "agotados",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 16
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 40
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "UROLOGIA",
+      "cupos": 94
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 31
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PODOLOGIA",
+      "cupos": 85
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "aumentos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 44
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "agotados",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T10:01:00.842436-03:00",
+      "tipo": "agotados",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
