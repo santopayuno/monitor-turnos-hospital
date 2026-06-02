@@ -2822,6 +2822,12 @@
         "con_cupos": 9,
         "total_cupos": 48,
         "cambios": 2
+      },
+      {
+        "hora": "09:30:32",
+        "con_cupos": 13,
+        "total_cupos": 303,
+        "cambios": 6
       }
     ]
   },
@@ -3814,6 +3820,42 @@
       "fecha": "2026-06-02T09:15:42.024519-03:00",
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T09:30:32.443697-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-02T09:30:32.443697-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 119
+    },
+    {
+      "fecha": "2026-06-02T09:30:32.443697-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 82
+    },
+    {
+      "fecha": "2026-06-02T09:30:32.443697-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 19
+    },
+    {
+      "fecha": "2026-06-02T09:30:32.443697-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 47
+    },
+    {
+      "fecha": "2026-06-02T09:30:32.443697-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
