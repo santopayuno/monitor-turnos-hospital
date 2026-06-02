@@ -1005,6 +1005,7 @@
                 <button class="chip active" onclick="aplicarFiltroMax('pocos', 9999, this)">Todos</button>
                 <button class="chip" onclick="aplicarFiltroMax('pocos', 5, this)">&lt; 5</button>
                 <button class="chip" onclick="aplicarFiltroMax('pocos', 10, this)">&lt; 10</button>
+                <button class="chip" onclick="aplicarFiltroMax('pocos', 14, this)">&lt; 15</button>
             </div>
             <div class="especialidades-list">
                 <div id="lista-pocos"></div>
@@ -1092,6 +1093,18 @@
             <div class="chart-wrapper" style="min-height:250px;">
                 <canvas id="modal-chart"></canvas>
             </div>
+            <a href="https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328" target="_blank" style="
+                display:block;
+                margin: 16px 0 8px;
+                padding: 12px;
+                background: #0369a1;
+                color: white;
+                text-align: center;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                text-decoration: none;
+            ">👉 Sacar Turno</a>
             <div class="modal-tabla-titulo">📋 Historial de eventos</div>
             <div class="modal-tabla-scroll">
                 <table class="modal-tabla">
@@ -1604,7 +1617,7 @@
                     disponibles.push([nombre, cupo]);
 
                     // Sub-análisis dentro de disponibles
-                    if (cupo >= 5 && cupo < 20) {
+                    if (cupo >= 5 && cupo < 15) {
                         pocos.push([nombre, cupo]);
                     } else if (cupo >= 1 && cupo < 5) {
                         ultimos.push([nombre, cupo]);
@@ -1726,11 +1739,12 @@
 
                 const cuposDiv = document.createElement('div');
                 cuposDiv.className = 'especialidad-cupos';
+                const cupoTexto = cupo === 1 ? '1 Cupo Disponible' : cupo + ' Cupos Disponibles';
 
                 // Tendencia solo en disponibles y pocos cupos
                 if ((clase === 'disponible' || clase === 'pocos') && estadoAnterior[nombre] !== undefined) {
                     const anterior = estadoAnterior[nombre];
-                    cuposDiv.textContent = cupo;
+                    cuposDiv.textContent = cupoTexto;
                     if (cupo > anterior) {
                         const flecha = document.createElement('span');
                         flecha.className = 'tendencia tendencia-sube';
@@ -1743,7 +1757,7 @@
                         cuposDiv.appendChild(flecha);
                     }
                 } else {
-                    cuposDiv.textContent = cupo;
+                    cuposDiv.textContent = cupoTexto;
                 }
 
                 div.appendChild(info);
