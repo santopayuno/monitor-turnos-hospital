@@ -297,3 +297,7 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "DERMATOLOGIA GENERAL", "cupos": 1, "ts": "2026-06-02T13:15:19.055304"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 2, "ts": "2026-06-02T13:15:19.055357"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 0, "ts": "2026-06-02T13:15:19.055382"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1008, "con_cupos": 31, "ts": "2026-06-02T13:31:27.716337"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-02T13:31:27.720224"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 1, "ts": "2026-06-02T13:31:27.720286"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-02T13:31:27.720317"}
