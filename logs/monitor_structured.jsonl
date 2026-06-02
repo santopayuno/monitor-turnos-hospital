@@ -278,3 +278,13 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 303, "con_cupos": 13, "ts": "2026-06-02T12:30:32.443040"}
 {"evento": "cambio", "tipo": "nuevos", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 7, "ts": "2026-06-02T12:30:32.447421"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-02T12:30:32.447599"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1482, "con_cupos": 30, "ts": "2026-06-02T12:45:20.782555"}
+{"evento": "cambio", "tipo": "nuevos", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 1, "ts": "2026-06-02T12:45:20.786957"}
+{"evento": "cambio", "tipo": "nuevos", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 6, "ts": "2026-06-02T12:45:20.787032"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA", "cupos": 14, "ts": "2026-06-02T12:45:20.787064"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 49, "ts": "2026-06-02T12:45:20.787090"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "OBSTETRICIA BAJO RIESGO", "cupos": 163, "ts": "2026-06-02T12:45:20.787110"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA TORACICA", "cupos": 12, "ts": "2026-06-02T12:45:20.787128"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "PODOLOGIA", "cupos": 0, "ts": "2026-06-02T12:45:20.787150"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-02T12:45:20.787179"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-02T12:45:21.382077"}
