@@ -1617,10 +1617,8 @@
                     disponibles.push([nombre, cupo]);
 
                     // Sub-análisis dentro de disponibles
-                    if (cupo >= 5 && cupo < 15) {
+                    if (cupo >= 1 && cupo < 15) {
                         pocos.push([nombre, cupo]);
-                    } else if (cupo >= 1 && cupo < 5) {
-                        ultimos.push([nombre, cupo]);
                     }
                 } else {
                     // AGOTADOS: 0 cupos
@@ -1739,12 +1737,20 @@
 
                 const cuposDiv = document.createElement('div');
                 cuposDiv.className = 'especialidad-cupos';
-                const cupoTexto = cupo === 1 ? '1 Cupo Disponible' : cupo + ' Cupos Disponibles';
+                const cupoLabel = cupo === 1 ? 'Cupo Disponible' : 'Cupos Disponibles';
+
+                // Número grande + texto pequeño
+                const numSpan = document.createElement('span');
+                numSpan.textContent = cupo;
+                const labelSpan = document.createElement('span');
+                labelSpan.style.cssText = 'font-size:0.7em;font-weight:500;margin-left:5px;opacity:0.85;';
+                labelSpan.textContent = cupoLabel;
+
+                cuposDiv.appendChild(numSpan);
 
                 // Tendencia solo en disponibles y pocos cupos
                 if ((clase === 'disponible' || clase === 'pocos') && estadoAnterior[nombre] !== undefined) {
                     const anterior = estadoAnterior[nombre];
-                    cuposDiv.textContent = cupoTexto;
                     if (cupo > anterior) {
                         const flecha = document.createElement('span');
                         flecha.className = 'tendencia tendencia-sube';
@@ -1756,9 +1762,8 @@
                         flecha.textContent = ' ↓';
                         cuposDiv.appendChild(flecha);
                     }
-                } else {
-                    cuposDiv.textContent = cupoTexto;
                 }
+                cuposDiv.appendChild(labelSpan);
 
                 div.appendChild(info);
                 div.appendChild(cuposDiv);
