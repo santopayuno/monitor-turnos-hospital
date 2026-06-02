@@ -2618,6 +2618,12 @@
         "con_cupos": 12,
         "total_cupos": 45,
         "cambios": 0
+      },
+      {
+        "hora": "01:01:21",
+        "con_cupos": 11,
+        "total_cupos": 43,
+        "cambios": 1
       }
     ]
   },
@@ -3580,6 +3586,12 @@
       "fecha": "2026-06-01T22:30:59.527385-03:00",
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T01:01:21.024138-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
     }
   ],
