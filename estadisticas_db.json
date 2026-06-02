@@ -2858,6 +2858,12 @@
         "con_cupos": 30,
         "total_cupos": 905,
         "cambios": 3
+      },
+      {
+        "hora": "11:01:00",
+        "con_cupos": 28,
+        "total_cupos": 797,
+        "cambios": 2
       }
     ]
   },
@@ -4144,6 +4150,18 @@
       "fecha": "2026-06-02T10:46:13.420943-03:00",
       "tipo": "agotados",
       "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T11:01:00.306021-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T11:01:00.306021-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 0
     }
   ],
