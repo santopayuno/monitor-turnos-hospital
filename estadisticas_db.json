@@ -2556,6 +2556,12 @@
         "con_cupos": 13,
         "total_cupos": 47,
         "cambios": 0
+      },
+      {
+        "hora": "22:30:59",
+        "con_cupos": 12,
+        "total_cupos": 46,
+        "cambios": 1
       }
     ]
   },
@@ -3513,6 +3519,12 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA TORACICA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-01T22:30:59.527385-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
