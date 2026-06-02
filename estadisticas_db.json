@@ -2816,6 +2816,12 @@
         "con_cupos": 9,
         "total_cupos": 33,
         "cambios": 0
+      },
+      {
+        "hora": "09:15:42",
+        "con_cupos": 9,
+        "total_cupos": 48,
+        "cambios": 2
       }
     ]
   },
@@ -3796,6 +3802,18 @@
       "fecha": "2026-06-02T08:15:15.548633-03:00",
       "tipo": "agotados",
       "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T09:15:42.024519-03:00",
+      "tipo": "nuevos",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 17
+    },
+    {
+      "fecha": "2026-06-02T09:15:42.024519-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
       "cupos": 0
     }
   ],
