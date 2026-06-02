@@ -2798,6 +2798,12 @@
         "con_cupos": 9,
         "total_cupos": 34,
         "cambios": 1
+      },
+      {
+        "hora": "08:30:47",
+        "con_cupos": 9,
+        "total_cupos": 33,
+        "cambios": 0
       }
     ]
   },

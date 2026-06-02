@@ -269,3 +269,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 35, "con_cupos": 10, "ts": "2026-06-02T11:01:15.851779"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 34, "con_cupos": 9, "ts": "2026-06-02T11:15:15.548143"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 0, "ts": "2026-06-02T11:15:15.551732"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 33, "con_cupos": 9, "ts": "2026-06-02T11:30:47.558596"}
