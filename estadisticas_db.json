@@ -2593,6 +2593,14 @@
         "total_cupos": 46,
         "cambios": 0
       }
+    ],
+    "2026-06-02": [
+      {
+        "hora": "00:01:00",
+        "con_cupos": 12,
+        "total_cupos": 45,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
