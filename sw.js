@@ -1,4 +1,4 @@
-const CACHE_NAME = 'monitor-turnos-v1';
+const CACHE_NAME = 'monitor-turnos-v2';
 
 // Archivos estáticos: cache-first
 const CACHE_STATIC = [
