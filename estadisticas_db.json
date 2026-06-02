@@ -2894,6 +2894,12 @@
         "con_cupos": 24,
         "total_cupos": 620,
         "cambios": 0
+      },
+      {
+        "hora": "12:45:25",
+        "con_cupos": 23,
+        "total_cupos": 596,
+        "cambios": 2
       }
     ]
   },
@@ -4246,6 +4252,18 @@
       "fecha": "2026-06-02T12:00:50.653148-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T12:45:25.762411-03:00",
+      "tipo": "ultimos",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-02T12:45:25.762411-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
