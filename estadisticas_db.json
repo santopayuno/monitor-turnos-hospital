@@ -2840,6 +2840,12 @@
         "con_cupos": 33,
         "total_cupos": 1394,
         "cambios": 9
+      },
+      {
+        "hora": "10:15:19",
+        "con_cupos": 32,
+        "total_cupos": 1169,
+        "cambios": 3
       }
     ]
   },
@@ -4072,6 +4078,24 @@
       "fecha": "2026-06-02T10:01:00.842436-03:00",
       "tipo": "agotados",
       "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T10:15:19.052023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-02T10:15:19.052023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-02T10:15:19.052023-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 0
     }
   ],
