@@ -2792,6 +2792,12 @@
         "con_cupos": 10,
         "total_cupos": 35,
         "cambios": 0
+      },
+      {
+        "hora": "08:15:15",
+        "con_cupos": 9,
+        "total_cupos": 34,
+        "cambios": 1
       }
     ]
   },
@@ -3766,6 +3772,12 @@
       "fecha": "2026-06-02T07:15:45.953090-03:00",
       "tipo": "agotados",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T08:15:15.548633-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 0
     }
   ],
