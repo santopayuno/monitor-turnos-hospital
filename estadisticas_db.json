@@ -3092,6 +3092,12 @@
         "con_cupos": 19,
         "total_cupos": 457,
         "cambios": 0
+      },
+      {
+        "hora": "20:16:31",
+        "con_cupos": 19,
+        "total_cupos": 454,
+        "cambios": 1
       }
     ]
   },
@@ -4486,6 +4492,12 @@
       "fecha": "2026-06-02T19:45:05.760100-03:00",
       "tipo": "ultimos",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-02T20:16:31.743934-03:00",
+      "tipo": "ultimos",
+      "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
       "cupos": 4
     }
   ],
