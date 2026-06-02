@@ -2882,6 +2882,12 @@
         "con_cupos": 25,
         "total_cupos": 650,
         "cambios": 1
+      },
+      {
+        "hora": "12:00:50",
+        "con_cupos": 24,
+        "total_cupos": 632,
+        "cambios": 3
       }
     ]
   },
@@ -4217,6 +4223,24 @@
       "tipo": "ultimos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-02T12:00:50.653148-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-02T12:00:50.653148-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-02T12:00:50.653148-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
