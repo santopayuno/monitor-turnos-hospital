@@ -2864,6 +2864,12 @@
         "con_cupos": 28,
         "total_cupos": 797,
         "cambios": 2
+      },
+      {
+        "hora": "11:15:40",
+        "con_cupos": 26,
+        "total_cupos": 741,
+        "cambios": 2
       }
     ]
   },
@@ -4162,6 +4168,18 @@
       "fecha": "2026-06-02T11:01:00.306021-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T11:15:40.412258-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T11:15:40.412258-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
       "cupos": 0
     }
   ],

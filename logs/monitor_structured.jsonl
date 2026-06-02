@@ -308,3 +308,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 797, "con_cupos": 28, "ts": "2026-06-02T14:01:00.305346"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-02T14:01:00.309826"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-02T14:01:00.309896"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 741, "con_cupos": 26, "ts": "2026-06-02T14:15:40.411605"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NUTRICION GENERAL", "cupos": 0, "ts": "2026-06-02T14:15:40.416287"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-02T14:15:40.416366"}
