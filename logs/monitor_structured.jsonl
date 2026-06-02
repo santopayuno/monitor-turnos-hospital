@@ -326,3 +326,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 596, "con_cupos": 23, "ts": "2026-06-02T15:45:25.761911"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "COLOPROCTOLOGIA", "cupos": 4, "ts": "2026-06-02T15:45:25.765906"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-02T15:45:25.765958"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 592, "con_cupos": 22, "ts": "2026-06-02T16:01:32.983820"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-02T16:01:32.987810"}
