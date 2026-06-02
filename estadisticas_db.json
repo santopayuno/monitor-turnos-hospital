@@ -2852,6 +2852,12 @@
         "con_cupos": 31,
         "total_cupos": 1008,
         "cambios": 3
+      },
+      {
+        "hora": "10:46:13",
+        "con_cupos": 30,
+        "total_cupos": 905,
+        "cambios": 3
       }
     ]
   },
@@ -4120,6 +4126,24 @@
       "fecha": "2026-06-02T10:31:27.716826-03:00",
       "tipo": "agotados",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T10:46:13.420943-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-02T10:46:13.420943-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-02T10:46:13.420943-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
       "cupos": 0
     }
   ],
