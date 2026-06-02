@@ -2996,6 +2996,12 @@
         "con_cupos": 20,
         "total_cupos": 501,
         "cambios": 0
+      },
+      {
+        "hora": "17:00:41",
+        "con_cupos": 19,
+        "total_cupos": 496,
+        "cambios": 1
       }
     ]
   },
@@ -4378,6 +4384,12 @@
       "fecha": "2026-06-02T15:30:56.107376-03:00",
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T17:00:41.951835-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
