@@ -1005,7 +1005,7 @@
                 <button class="chip active" onclick="aplicarFiltroMax('pocos', 9999, this)">Todos</button>
                 <button class="chip" onclick="aplicarFiltroMax('pocos', 5, this)">&lt; 5</button>
                 <button class="chip" onclick="aplicarFiltroMax('pocos', 10, this)">&lt; 10</button>
-                <button class="chip" onclick="aplicarFiltroMax('pocos', 14, this)">&lt; 15</button>
+                <button class="chip" onclick="aplicarFiltroMax('pocos', 19, this)">&lt; 20</button>
             </div>
             <div class="especialidades-list">
                 <div id="lista-pocos"></div>
@@ -1617,8 +1617,11 @@
                     disponibles.push([nombre, cupo]);
 
                     // Sub-análisis dentro de disponibles
-                    if (cupo >= 1 && cupo < 15) {
+                    if (cupo > 0 && cupo < 20) {
                         pocos.push([nombre, cupo]);
+                    }
+                    if (cupo > 0 && cupo < 5) {
+                        ultimos.push([nombre, cupo]);
                     }
                 } else {
                     // AGOTADOS: 0 cupos
