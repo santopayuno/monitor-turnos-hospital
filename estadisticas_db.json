@@ -2768,6 +2768,12 @@
         "con_cupos": 11,
         "total_cupos": 40,
         "cambios": 0
+      },
+      {
+        "hora": "07:15:45",
+        "con_cupos": 10,
+        "total_cupos": 38,
+        "cambios": 1
       }
     ]
   },
@@ -3736,6 +3742,12 @@
       "fecha": "2026-06-02T01:01:21.024138-03:00",
       "tipo": "agotados",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T07:15:45.953090-03:00",
+      "tipo": "agotados",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
       "cupos": 0
     }
   ],
