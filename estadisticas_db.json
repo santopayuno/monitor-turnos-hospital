@@ -3062,6 +3062,12 @@
         "con_cupos": 19,
         "total_cupos": 467,
         "cambios": 0
+      },
+      {
+        "hora": "19:45:05",
+        "con_cupos": 19,
+        "total_cupos": 463,
+        "cambios": 1
       }
     ]
   },
@@ -4451,6 +4457,12 @@
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-02T19:45:05.760100-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
