@@ -3346,6 +3346,12 @@
         "con_cupos": 18,
         "total_cupos": 391,
         "cambios": 1
+      },
+      {
+        "hora": "06:45:41",
+        "con_cupos": 17,
+        "total_cupos": 390,
+        "cambios": 1
       }
     ]
   },
@@ -4759,6 +4765,12 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-03T06:45:41.777104-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
