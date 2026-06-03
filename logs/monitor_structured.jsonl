@@ -413,3 +413,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-03T09:45:41.781451"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 390, "con_cupos": 17, "ts": "2026-06-03T10:01:10.410644"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 389, "con_cupos": 17, "ts": "2026-06-03T10:16:26.663704"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 387, "con_cupos": 17, "ts": "2026-06-03T10:30:33.422316"}
