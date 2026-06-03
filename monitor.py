@@ -331,7 +331,7 @@ class ProcesadorEspecialidades:
                 })
                 logger.info(f"🆕 NUEVO: {nombre} ({cupo} cupos)")
 
-        elif cupo_anterior > 0 and cupo - cupo_anterior >= 10:
+        elif cupo_anterior > 0 and cupo > cupo_anterior:
             self.cambios["aumentos"].append({
                 "nombre": nombre,
                 "cupo_anterior": cupo_anterior,
@@ -934,24 +934,13 @@ def main():
     for item in procesador.cambios.get("agotados", []):
         slog.cambio("agotados", item["nombre"], 0)
 
-    # Aplicar filtro de especialidades de interés si está configurado
-    interes = [e.upper().strip() for e in CONFIG.get("especialidades_interes", [])]
-    cambios_filtrados = procesador.cambios
+    # ── FLUJO 1: Mensaje general (siempre, con todos los cambios) ──
+    hay_cambios = (procesador.cambios["nuevos"] or procesador.cambios["reaperturas"] or
+                   procesador.cambios["aumentos"] or procesador.cambios["ultimos"])
 
-    if interes:
-        cambios_filtrados = {
-            "nuevos":      [c for c in procesador.cambios["nuevos"]      if c["nombre"].upper() in interes],
-            "reaperturas": [c for c in procesador.cambios["reaperturas"] if c["nombre"].upper() in interes],
-            "aumentos":    [c for c in procesador.cambios["aumentos"]    if c["nombre"].upper() in interes],
-            "ultimos":     [c for c in procesador.cambios["ultimos"]     if c["nombre"].upper() in interes],
-            "agotados":    [c for c in procesador.cambios["agotados"]    if c["nombre"].upper() in interes],
-        }
-        logger.info(f"🎯 Filtro activo: {len(interes)} especialidades de interés")
-
-    # Enviar notificación SOLO si hay nuevos o aumentos (después de primera ejecución)
-    if cambios_filtrados["nuevos"] or cambios_filtrados["reaperturas"] or cambios_filtrados["aumentos"]:
+    if hay_cambios:
         constructor = ConstructorMensajeTelegram(
-            cambios_filtrados,
+            procesador.cambios,
             procesador.clasificacion,
             fecha_hora,
             procesador.estado_actual,
@@ -962,15 +951,48 @@ def main():
             exito = enviar_telegram(mensaje)
             slog.telegram("notificacion_principal", exito)
     else:
-        if interes:
-            logger.info("ℹ️ Sin nuevos o aumentos en especialidades de interés")
-        else:
-            logger.info("ℹ️ Sin nuevos o aumentos para notificar")
+        logger.info("ℹ️ Sin nuevos o aumentos para notificar")
 
-    # Alerta urgente separada para últimos cupos (1-4 cupos restantes)
-    if cambios_filtrados["ultimos"]:
+    # ── FLUJO 2: Mensajes individuales para especialidades de interés ──
+    interes = [e.upper().strip() for e in CONFIG.get("especialidades_interes", [])]
+    if interes and hay_cambios:
+        logger.info(f"🎯 Filtro activo: {len(interes)} especialidades de interés")
+        todas_listas = (
+            procesador.cambios["nuevos"] +
+            procesador.cambios["reaperturas"] +
+            procesador.cambios["aumentos"] +
+            procesador.cambios["ultimos"]
+        )
+        for especialidad in interes:
+            items_esp = [c for c in todas_listas if c["nombre"].upper() == especialidad]
+            if items_esp:
+                item = items_esp[0]
+                cupo = item.get("cupo_actual", 0)
+                tipo = next(
+                    t for t, lista in [
+                        ("🆕 NUEVO", procesador.cambios["nuevos"]),
+                        ("🔄 REAPERTURA", procesador.cambios["reaperturas"]),
+                        ("📈 AUMENTO", procesador.cambios["aumentos"]),
+                        ("⚠️ ÚLTIMOS CUPOS", procesador.cambios["ultimos"]),
+                    ] if item in lista
+                )
+                plural = "s" if cupo > 1 else ""
+                msg_individual = (
+                    f"🔔 ALERTA PERSONALIZADA\n"
+                    f"🏥 {item['nombre']}\n\n"
+                    f"{tipo}\n"
+                    f"🍀 {cupo} Cupo{plural} Disponible{plural}\n\n"
+                    f"🕒 {fecha_hora}\n\n"
+                    f"👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx"
+                    f"?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
+                )
+                enviar_telegram(msg_individual)
+                logger.info(f"🔔 Alerta individual enviada: {item['nombre']}")
+
+    # ── Alerta urgente: últimos cupos ──
+    if procesador.cambios["ultimos"]:
         lineas = ["🚨 ÚLTIMOS CUPOS — URGENTE", "🏥 HOSPITAL PERRUPATO", ""]
-        for item in sorted(cambios_filtrados["ultimos"], key=lambda x: x["cupo_actual"]):
+        for item in sorted(procesador.cambios["ultimos"], key=lambda x: x["cupo_actual"]):
             cupo = item["cupo_actual"]
             plural = "s" if cupo > 1 else ""
             lineas.append(f"⚠️ {item['nombre']}")
@@ -982,7 +1004,7 @@ def main():
             "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
         ]
         enviar_telegram("\n".join(lineas))
-        logger.info(f"🚨 Alerta urgente enviada: {len(cambios_filtrados['ultimos'])} especialidad(es) con últimos cupos")
+        logger.info(f"🚨 Alerta urgente enviada: {len(procesador.cambios['ultimos'])} especialidad(es) con últimos cupos")
 
     if CONFIG.get("generar_reporte_diario"):
         hora_config_str = CONFIG.get("hora_reporte_diario", "08:00")
