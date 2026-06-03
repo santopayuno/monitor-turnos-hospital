@@ -3122,6 +3122,12 @@
         "con_cupos": 19,
         "total_cupos": 441,
         "cambios": 0
+      },
+      {
+        "hora": "21:31:22",
+        "con_cupos": 18,
+        "total_cupos": 434,
+        "cambios": 1
       }
     ]
   },
@@ -4523,6 +4529,12 @@
       "tipo": "ultimos",
       "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-02T21:31:22.656752-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
