@@ -3484,6 +3484,12 @@
         "con_cupos": 17,
         "total_cupos": 324,
         "cambios": 1
+      },
+      {
+        "hora": "12:30:36",
+        "con_cupos": 19,
+        "total_cupos": 354,
+        "cambios": 2
       }
     ]
   },
@@ -4909,6 +4915,18 @@
       "tipo": "ultimos",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-03T12:30:36.496992-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 19
+    },
+    {
+      "fecha": "2026-06-03T12:30:36.496992-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 16
     }
   ],
   "es_primera_ejecucion": false
