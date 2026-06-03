@@ -3568,6 +3568,12 @@
         "con_cupos": 19,
         "total_cupos": 296,
         "cambios": 1
+      },
+      {
+        "hora": "16:00:41",
+        "con_cupos": 18,
+        "total_cupos": 290,
+        "cambios": 2
       }
     ]
   },
@@ -5017,6 +5023,18 @@
       "tipo": "ultimos",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-03T16:00:41.154276-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-03T16:00:41.154276-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
