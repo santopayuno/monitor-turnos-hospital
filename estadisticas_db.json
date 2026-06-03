@@ -3183,6 +3183,14 @@
         "total_cupos": 406,
         "cambios": 0
       }
+    ],
+    "2026-06-03": [
+      {
+        "hora": "00:01:03",
+        "con_cupos": 18,
+        "total_cupos": 404,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
