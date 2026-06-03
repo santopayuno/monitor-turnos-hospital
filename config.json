@@ -1,5 +1,5 @@
 {
-  "especialidades_interes": ["DERMATOLOGIA GENERAL"],
+  "especialidades_interes": ["ODONTOLOGIA ADULTO"],
   "generar_reporte_diario": true,
   "hora_reporte_diario": "08:00",
   "alertas_patrones": true
