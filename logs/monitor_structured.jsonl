@@ -458,3 +458,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "UROLOGIA", "cupos": 4, "ts": "2026-06-03T19:00:41.162079"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEFROLOGIA", "cupos": 0, "ts": "2026-06-03T19:00:41.162171"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-03T19:00:41.911853"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 289, "con_cupos": 18, "ts": "2026-06-03T19:15:31.336175"}
