@@ -3478,6 +3478,12 @@
         "con_cupos": 17,
         "total_cupos": 330,
         "cambios": 0
+      },
+      {
+        "hora": "12:16:07",
+        "con_cupos": 17,
+        "total_cupos": 324,
+        "cambios": 1
       }
     ]
   },
@@ -4897,6 +4903,12 @@
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-03T12:16:07.484154-03:00",
+      "tipo": "ultimos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
