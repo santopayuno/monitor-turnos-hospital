@@ -3340,6 +3340,12 @@
         "con_cupos": 18,
         "total_cupos": 393,
         "cambios": 0
+      },
+      {
+        "hora": "06:30:25",
+        "con_cupos": 18,
+        "total_cupos": 391,
+        "cambios": 1
       }
     ]
   },
@@ -4747,6 +4753,12 @@
       "tipo": "agotados",
       "especialidad": "PEDIATRIA MEDIANO RIESGO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-03T06:30:25.929349-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
