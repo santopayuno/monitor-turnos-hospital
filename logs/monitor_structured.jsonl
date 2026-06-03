@@ -371,3 +371,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 441, "con_cupos": 19, "ts": "2026-06-03T00:16:10.699945"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 434, "con_cupos": 18, "ts": "2026-06-03T00:31:22.656061"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "PEDIATRIA MEDIANO RIESGO", "cupos": 0, "ts": "2026-06-03T00:31:22.660756"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 432, "con_cupos": 18, "ts": "2026-06-03T00:45:10.975916"}
