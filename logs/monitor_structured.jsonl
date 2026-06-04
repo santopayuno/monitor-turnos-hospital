@@ -552,3 +552,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 209, "con_cupos": 12, "ts": "2026-06-04T14:30:17.726708"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 202, "con_cupos": 12, "ts": "2026-06-04T14:45:53.112906"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PEDIATRIA CONSULTA", "cupos": 2, "ts": "2026-06-04T14:45:53.117950"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 200, "con_cupos": 12, "ts": "2026-06-04T15:00:36.654274"}
