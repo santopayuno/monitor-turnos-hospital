@@ -546,3 +546,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-04T13:30:53.570886"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 210, "con_cupos": 11, "ts": "2026-06-04T13:45:53.408674"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "PEDIATRIA CONSULTA", "cupos": 0, "ts": "2026-06-04T13:45:53.414086"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 209, "con_cupos": 11, "ts": "2026-06-04T14:00:40.541235"}
