@@ -539,3 +539,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 4, "ts": "2026-06-04T12:45:09.784525"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 231, "con_cupos": 14, "ts": "2026-06-04T13:00:32.690996"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 4, "ts": "2026-06-04T13:00:32.701655"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 222, "con_cupos": 13, "ts": "2026-06-04T13:15:41.652332"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-04T13:15:41.657485"}
