@@ -565,3 +565,8 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 216, "con_cupos": 16, "ts": "2026-06-04T16:01:27.416096"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 1, "ts": "2026-06-04T16:01:27.421671"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-04T16:01:27.421736"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 215, "con_cupos": 15, "ts": "2026-06-04T16:15:20.482307"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "PEDIATRIA CONSULTA", "cupos": 4, "ts": "2026-06-04T16:15:20.487633"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 4, "ts": "2026-06-04T16:15:20.487700"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-04T16:15:20.487726"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-04T16:15:21.117305"}
