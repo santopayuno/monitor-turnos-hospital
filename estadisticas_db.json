@@ -4044,6 +4044,12 @@
         "con_cupos": 12,
         "total_cupos": 209,
         "cambios": 0
+      },
+      {
+        "hora": "11:45:53",
+        "con_cupos": 12,
+        "total_cupos": 202,
+        "cambios": 1
       }
     ]
   },
@@ -5595,6 +5601,12 @@
       "tipo": "reaperturas",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 8
+    },
+    {
+      "fecha": "2026-06-04T11:45:53.113500-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false
