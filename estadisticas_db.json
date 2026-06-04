@@ -4110,6 +4110,12 @@
         "con_cupos": 14,
         "total_cupos": 199,
         "cambios": 0
+      },
+      {
+        "hora": "14:30:52",
+        "con_cupos": 13,
+        "total_cupos": 194,
+        "cambios": 2
       }
     ]
   },
@@ -5762,6 +5768,18 @@
       "fecha": "2026-06-04T13:46:10.272566-03:00",
       "tipo": "agotados",
       "especialidad": "ORL CONSULTAS",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-04T14:30:52.531642-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-04T14:30:52.531642-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
     }
   ],
