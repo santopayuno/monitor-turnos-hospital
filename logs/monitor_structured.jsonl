@@ -554,3 +554,9 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PEDIATRIA CONSULTA", "cupos": 2, "ts": "2026-06-04T14:45:53.117950"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 200, "con_cupos": 12, "ts": "2026-06-04T15:00:36.654274"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 195, "con_cupos": 12, "ts": "2026-06-04T15:15:23.773674"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 243, "con_cupos": 18, "ts": "2026-06-04T15:31:24.869895"}
+{"evento": "cambio", "tipo": "nuevos", "especialidad": "ORL CONSULTAS", "cupos": 1, "ts": "2026-06-04T15:31:24.875164"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ORL CONSULTAS", "cupos": 1, "ts": "2026-06-04T15:31:24.875227"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 1, "ts": "2026-06-04T15:31:24.875252"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-04T15:31:24.875269"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-04T15:31:25.593018"}

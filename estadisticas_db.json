@@ -4062,6 +4062,12 @@
         "con_cupos": 12,
         "total_cupos": 195,
         "cambios": 0
+      },
+      {
+        "hora": "12:31:24",
+        "con_cupos": 18,
+        "total_cupos": 243,
+        "cambios": 9
       }
     ]
   },
@@ -5619,6 +5625,60 @@
       "tipo": "ultimos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "nuevos",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 16
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 24
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-04T12:31:24.870501-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
