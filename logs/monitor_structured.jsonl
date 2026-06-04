@@ -574,3 +574,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 205, "con_cupos": 14, "ts": "2026-06-04T16:46:10.271984"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ORL CONSULTAS", "cupos": 0, "ts": "2026-06-04T16:46:10.277251"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 202, "con_cupos": 14, "ts": "2026-06-04T17:01:04.021774"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 199, "con_cupos": 14, "ts": "2026-06-04T17:15:11.598275"}
