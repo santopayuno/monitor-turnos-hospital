@@ -3852,6 +3852,12 @@
         "con_cupos": 13,
         "total_cupos": 239,
         "cambios": 0
+      },
+      {
+        "hora": "03:45:09",
+        "con_cupos": 12,
+        "total_cupos": 238,
+        "cambios": 1
       }
     ]
   },
@@ -5342,6 +5348,12 @@
       "fecha": "2026-06-04T00:01:18.174832-03:00",
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-04T03:45:09.973472-03:00",
+      "tipo": "agotados",
+      "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
     }
   ],
