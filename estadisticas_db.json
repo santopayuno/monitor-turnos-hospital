@@ -3774,6 +3774,12 @@
         "con_cupos": 13,
         "total_cupos": 242,
         "cambios": 0
+      },
+      {
+        "hora": "00:30:45",
+        "con_cupos": 13,
+        "total_cupos": 241,
+        "cambios": 0
       }
     ]
   },
