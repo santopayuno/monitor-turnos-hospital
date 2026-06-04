@@ -4068,6 +4068,12 @@
         "con_cupos": 18,
         "total_cupos": 243,
         "cambios": 9
+      },
+      {
+        "hora": "12:45:56",
+        "con_cupos": 17,
+        "total_cupos": 224,
+        "cambios": 1
       }
     ]
   },
@@ -5679,6 +5685,12 @@
       "tipo": "ultimos",
       "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-04T12:45:56.041463-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

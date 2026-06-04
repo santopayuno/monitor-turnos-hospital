@@ -560,3 +560,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 1, "ts": "2026-06-04T15:31:24.875252"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-04T15:31:24.875269"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-04T15:31:25.593018"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 224, "con_cupos": 17, "ts": "2026-06-04T15:45:56.040884"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-04T15:45:56.045879"}
