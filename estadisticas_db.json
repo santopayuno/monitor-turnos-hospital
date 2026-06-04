@@ -4200,6 +4200,12 @@
         "con_cupos": 13,
         "total_cupos": 176,
         "cambios": 0
+      },
+      {
+        "hora": "18:15:19",
+        "con_cupos": 12,
+        "total_cupos": 173,
+        "cambios": 1
       }
     ]
   },
@@ -5864,6 +5870,12 @@
       "fecha": "2026-06-04T14:30:52.531642-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-04T18:15:19.166909-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 0
     }
   ],
