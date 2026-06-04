@@ -4020,6 +4020,12 @@
         "con_cupos": 12,
         "total_cupos": 217,
         "cambios": 2
+      },
+      {
+        "hora": "10:45:53",
+        "con_cupos": 11,
+        "total_cupos": 210,
+        "cambios": 1
       }
     ]
   },
@@ -5558,6 +5564,12 @@
       "fecha": "2026-06-04T10:30:53.565834-03:00",
       "tipo": "agotados",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-04T10:45:53.409305-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
     }
   ],
