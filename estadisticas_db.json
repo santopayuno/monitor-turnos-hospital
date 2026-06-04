@@ -4014,6 +4014,12 @@
         "con_cupos": 13,
         "total_cupos": 222,
         "cambios": 1
+      },
+      {
+        "hora": "10:30:53",
+        "con_cupos": 12,
+        "total_cupos": 217,
+        "cambios": 2
       }
     ]
   },
@@ -5540,6 +5546,18 @@
       "fecha": "2026-06-04T10:15:41.652910-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-04T10:30:53.565834-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-04T10:30:53.565834-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
