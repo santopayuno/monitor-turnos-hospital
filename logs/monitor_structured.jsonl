@@ -645,3 +645,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 148, "con_cupos": 12, "ts": "2026-06-05T09:16:23.739673"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PRE ANESTESIA PEDIATRIA", "cupos": 4, "ts": "2026-06-05T09:16:23.745934"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 148, "con_cupos": 12, "ts": "2026-06-05T09:31:18.230959"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 148, "con_cupos": 12, "ts": "2026-06-05T09:45:49.053097"}
