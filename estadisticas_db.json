@@ -4592,6 +4592,12 @@
         "con_cupos": 25,
         "total_cupos": 276,
         "cambios": 1
+      },
+      {
+        "hora": "10:30:56",
+        "con_cupos": 22,
+        "total_cupos": 267,
+        "cambios": 3
       }
     ]
   },
@@ -6503,6 +6509,24 @@
       "tipo": "ultimos",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T10:30:56.503264-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-05T10:30:56.503264-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-05T10:30:56.503264-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
