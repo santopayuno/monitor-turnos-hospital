@@ -4556,6 +4556,12 @@
         "con_cupos": 14,
         "total_cupos": 153,
         "cambios": 0
+      },
+      {
+        "hora": "09:00:16",
+        "con_cupos": 14,
+        "total_cupos": 152,
+        "cambios": 1
       }
     ]
   },
@@ -6263,6 +6269,12 @@
       "tipo": "ultimos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-05T09:00:16.713225-03:00",
+      "tipo": "aumentos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 17
     }
   ],
   "es_primera_ejecucion": false
