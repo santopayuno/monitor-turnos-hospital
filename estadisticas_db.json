@@ -4490,6 +4490,12 @@
         "con_cupos": 12,
         "total_cupos": 149,
         "cambios": 0
+      },
+      {
+        "hora": "06:16:23",
+        "con_cupos": 12,
+        "total_cupos": 148,
+        "cambios": 1
       }
     ]
   },
@@ -6166,6 +6172,12 @@
       "fecha": "2026-06-05T01:45:17.704542-03:00",
       "tipo": "ultimos",
       "especialidad": "PODOLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T06:16:23.740499-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
       "cupos": 4
     }
   ],
