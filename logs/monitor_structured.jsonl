@@ -660,3 +660,20 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 152, "con_cupos": 14, "ts": "2026-06-05T12:00:16.711046"}
 {"evento": "cambio", "tipo": "aumentos", "especialidad": "PODOLOGIA", "cupos": 17, "ts": "2026-06-05T12:00:16.727691"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-05T12:00:17.346325"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 319, "con_cupos": 27, "ts": "2026-06-05T12:15:43.794438"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA GENERAL", "cupos": 13, "ts": "2026-06-05T12:15:43.808347"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA INFANTIL", "cupos": 22, "ts": "2026-06-05T12:15:43.808602"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 12, "ts": "2026-06-05T12:15:43.808662"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 18, "ts": "2026-06-05T12:15:43.808703"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "INFECTOLOGIA PEDIATRICA", "cupos": 5, "ts": "2026-06-05T12:15:43.808815"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "ONCOLOGIA", "cupos": 25, "ts": "2026-06-05T12:15:43.808858"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "PRE ANESTESIA PEDIATRIA", "cupos": 6, "ts": "2026-06-05T12:15:43.808901"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)", "cupos": 7, "ts": "2026-06-05T12:15:43.808985"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 2, "ts": "2026-06-05T12:15:43.809027"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 2, "ts": "2026-06-05T12:15:43.809059"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEFROLOGIA", "cupos": 3, "ts": "2026-06-05T12:15:43.809093"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-05T12:15:43.809122"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-05T12:15:43.809153"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-05T12:15:43.809188"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-05T12:15:43.809217"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-05T12:15:44.424786"}
