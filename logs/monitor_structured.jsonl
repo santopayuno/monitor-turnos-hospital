@@ -683,3 +683,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 0, "ts": "2026-06-05T12:31:21.825233"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 291, "con_cupos": 25, "ts": "2026-06-05T12:46:02.277779"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-05T12:46:02.284361"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 283, "con_cupos": 25, "ts": "2026-06-05T13:00:44.455197"}
