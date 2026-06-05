@@ -4526,6 +4526,12 @@
         "con_cupos": 14,
         "total_cupos": 166,
         "cambios": 3
+      },
+      {
+        "hora": "07:45:45",
+        "con_cupos": 14,
+        "total_cupos": 157,
+        "cambios": 1
       }
     ]
   },
@@ -6227,6 +6233,12 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA PEDIATRICA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T07:45:45.773649-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
