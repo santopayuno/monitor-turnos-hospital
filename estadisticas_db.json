@@ -4652,6 +4652,12 @@
         "con_cupos": 23,
         "total_cupos": 402,
         "cambios": 0
+      },
+      {
+        "hora": "13:00:41",
+        "con_cupos": 21,
+        "total_cupos": 382,
+        "cambios": 2
       }
     ]
   },
@@ -6641,6 +6647,18 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T13:00:41.514961-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-05T13:00:41.514961-03:00",
+      "tipo": "agotados",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
