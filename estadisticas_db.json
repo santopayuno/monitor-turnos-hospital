@@ -4616,6 +4616,12 @@
         "con_cupos": 21,
         "total_cupos": 244,
         "cambios": 0
+      },
+      {
+        "hora": "11:31:12",
+        "con_cupos": 21,
+        "total_cupos": 237,
+        "cambios": 2
       }
     ]
   },
@@ -6569,6 +6575,18 @@
       "tipo": "agotados",
       "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-05T11:31:12.343923-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T11:31:12.343923-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
