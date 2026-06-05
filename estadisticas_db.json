@@ -4520,6 +4520,12 @@
         "con_cupos": 12,
         "total_cupos": 148,
         "cambios": 0
+      },
+      {
+        "hora": "07:30:13",
+        "con_cupos": 14,
+        "total_cupos": 166,
+        "cambios": 3
       }
     ]
   },
@@ -6202,6 +6208,24 @@
       "fecha": "2026-06-05T06:16:23.740499-03:00",
       "tipo": "ultimos",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T07:30:13.105846-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 14
+    },
+    {
+      "fecha": "2026-06-05T07:30:13.105846-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-05T07:30:13.105846-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
       "cupos": 4
     }
   ],
