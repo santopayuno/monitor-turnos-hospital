@@ -4628,6 +4628,12 @@
         "con_cupos": 21,
         "total_cupos": 229,
         "cambios": 0
+      },
+      {
+        "hora": "12:00:35",
+        "con_cupos": 21,
+        "total_cupos": 223,
+        "cambios": 1
       }
     ]
   },
@@ -6592,6 +6598,12 @@
       "fecha": "2026-06-05T11:31:12.343923-03:00",
       "tipo": "ultimos",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T12:00:35.844475-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
       "cupos": 4
     }
   ],
