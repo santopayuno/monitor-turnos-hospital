@@ -696,3 +696,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-05T14:00:13.130872"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-05T14:00:13.130930"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-05T14:00:13.836682"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 244, "con_cupos": 21, "ts": "2026-06-05T14:16:08.997576"}
