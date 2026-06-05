@@ -4712,6 +4712,12 @@
         "con_cupos": 19,
         "total_cupos": 304,
         "cambios": 0
+      },
+      {
+        "hora": "15:31:00",
+        "con_cupos": 19,
+        "total_cupos": 300,
+        "cambios": 1
       }
     ]
   },
@@ -6737,6 +6743,12 @@
       "tipo": "ultimos",
       "especialidad": "NEUMONOLOGIA INFANTIL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T15:31:00.611407-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
