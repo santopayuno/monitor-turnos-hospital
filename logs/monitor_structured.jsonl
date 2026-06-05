@@ -700,3 +700,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 237, "con_cupos": 21, "ts": "2026-06-05T14:31:12.343067"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA PEDIATRICA", "cupos": 4, "ts": "2026-06-05T14:31:12.349589"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-05T14:31:12.349677"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 229, "con_cupos": 21, "ts": "2026-06-05T14:46:28.741952"}
