@@ -4688,6 +4688,12 @@
         "con_cupos": 19,
         "total_cupos": 338,
         "cambios": 0
+      },
+      {
+        "hora": "14:30:46",
+        "con_cupos": 19,
+        "total_cupos": 333,
+        "cambios": 1
       }
     ]
   },
@@ -6707,6 +6713,12 @@
       "tipo": "agotados",
       "especialidad": "NEFROLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-05T14:30:46.540730-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
