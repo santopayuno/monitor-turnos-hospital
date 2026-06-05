@@ -4568,6 +4568,12 @@
         "con_cupos": 27,
         "total_cupos": 319,
         "cambios": 28
+      },
+      {
+        "hora": "09:31:21",
+        "con_cupos": 25,
+        "total_cupos": 301,
+        "cambios": 3
       }
     ]
   },
@@ -6449,6 +6455,24 @@
       "tipo": "ultimos",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-05T09:31:21.819613-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-05T09:31:21.819613-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-05T09:31:21.819613-03:00",
+      "tipo": "agotados",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
