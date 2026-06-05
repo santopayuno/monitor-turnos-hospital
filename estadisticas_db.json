@@ -4748,6 +4748,12 @@
         "con_cupos": 19,
         "total_cupos": 276,
         "cambios": 0
+      },
+      {
+        "hora": "17:01:22",
+        "con_cupos": 19,
+        "total_cupos": 271,
+        "cambios": 1
       }
     ]
   },
@@ -6779,6 +6785,12 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA GENERAL",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-05T17:01:22.299154-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false

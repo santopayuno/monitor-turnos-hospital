@@ -731,3 +731,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 284, "con_cupos": 19, "ts": "2026-06-05T19:15:31.569929"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 278, "con_cupos": 19, "ts": "2026-06-05T19:31:01.204529"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 276, "con_cupos": 19, "ts": "2026-06-05T19:45:09.563155"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 271, "con_cupos": 19, "ts": "2026-06-05T20:01:22.297384"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-05T20:01:22.310175"}
