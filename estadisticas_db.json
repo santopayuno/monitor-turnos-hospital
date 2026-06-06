@@ -5326,6 +5326,12 @@
         "con_cupos": 19,
         "total_cupos": 151,
         "cambios": 0
+      },
+      {
+        "hora": "17:01:21",
+        "con_cupos": 19,
+        "total_cupos": 149,
+        "cambios": 1
       }
     ]
   },
@@ -7405,6 +7411,12 @@
       "tipo": "reaperturas",
       "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 50
+    },
+    {
+      "fecha": "2026-06-06T17:01:21.611520-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
