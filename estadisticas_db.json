@@ -5212,6 +5212,12 @@
         "con_cupos": 18,
         "total_cupos": 169,
         "cambios": 0
+      },
+      {
+        "hora": "12:16:08",
+        "con_cupos": 19,
+        "total_cupos": 216,
+        "cambios": 1
       }
     ]
   },
@@ -7285,6 +7291,12 @@
       "tipo": "agotados",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-06T12:16:08.633092-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 50
     }
   ],
   "es_primera_ejecucion": false
