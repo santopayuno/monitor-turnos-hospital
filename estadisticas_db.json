@@ -5218,6 +5218,12 @@
         "con_cupos": 19,
         "total_cupos": 216,
         "cambios": 1
+      },
+      {
+        "hora": "12:30:57",
+        "con_cupos": 19,
+        "total_cupos": 212,
+        "cambios": 0
       }
     ]
   },
