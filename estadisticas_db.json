@@ -5332,6 +5332,12 @@
         "con_cupos": 19,
         "total_cupos": 149,
         "cambios": 1
+      },
+      {
+        "hora": "17:15:06",
+        "con_cupos": 19,
+        "total_cupos": 147,
+        "cambios": 1
       }
     ]
   },
@@ -7417,6 +7423,12 @@
       "tipo": "ultimos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-06T17:15:06.599884-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
