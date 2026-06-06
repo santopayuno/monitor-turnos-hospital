@@ -5158,6 +5158,12 @@
         "con_cupos": 19,
         "total_cupos": 189,
         "cambios": 0
+      },
+      {
+        "hora": "10:00:42",
+        "con_cupos": 18,
+        "total_cupos": 183,
+        "cambios": 2
       }
     ]
   },
@@ -7219,6 +7225,18 @@
       "tipo": "reaperturas",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 8
+    },
+    {
+      "fecha": "2026-06-06T10:00:42.268806-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-06T10:00:42.268806-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
