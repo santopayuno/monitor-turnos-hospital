@@ -5140,6 +5140,12 @@
         "con_cupos": 18,
         "total_cupos": 185,
         "cambios": 0
+      },
+      {
+        "hora": "09:16:26",
+        "con_cupos": 19,
+        "total_cupos": 192,
+        "cambios": 1
       }
     ]
   },
@@ -7195,6 +7201,12 @@
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-06T09:16:26.291211-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 8
     }
   ],
   "es_primera_ejecucion": false
