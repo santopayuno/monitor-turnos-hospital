@@ -749,3 +749,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 216, "con_cupos": 19, "ts": "2026-06-05T23:15:24.603018"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 212, "con_cupos": 19, "ts": "2026-06-05T23:31:26.701808"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 207, "con_cupos": 19, "ts": "2026-06-05T23:45:44.997119"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 205, "con_cupos": 19, "ts": "2026-06-06T00:01:30.107321"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PODOLOGIA", "cupos": 4, "ts": "2026-06-06T00:01:30.114215"}
