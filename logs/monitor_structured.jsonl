@@ -857,3 +857,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 135, "con_cupos": 17, "ts": "2026-06-07T00:00:36.916484"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CIRUGIA GENERAL", "cupos": 0, "ts": "2026-06-07T00:00:36.922979"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 135, "con_cupos": 17, "ts": "2026-06-07T00:15:45.028446"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 133, "con_cupos": 16, "ts": "2026-06-07T00:31:24.808124"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-07T00:31:24.814591"}
