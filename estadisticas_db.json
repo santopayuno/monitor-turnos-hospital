@@ -5964,6 +5964,12 @@
         "con_cupos": 12,
         "total_cupos": 108,
         "cambios": 0
+      },
+      {
+        "hora": "19:30:45",
+        "con_cupos": 11,
+        "total_cupos": 106,
+        "cambios": 1
       }
     ]
   },
@@ -8109,6 +8115,12 @@
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-07T19:30:45.964263-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
