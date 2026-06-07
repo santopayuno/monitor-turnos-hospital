@@ -5422,6 +5422,12 @@
         "con_cupos": 18,
         "total_cupos": 137,
         "cambios": 0
+      },
+      {
+        "hora": "21:00:36",
+        "con_cupos": 17,
+        "total_cupos": 135,
+        "cambios": 1
       }
     ]
   },
@@ -7518,6 +7524,12 @@
       "fecha": "2026-06-06T20:31:17.940558-03:00",
       "tipo": "agotados",
       "especialidad": "PODOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-06T21:00:36.917250-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA GENERAL",
       "cupos": 0
     }
   ],
