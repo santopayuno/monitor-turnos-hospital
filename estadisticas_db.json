@@ -5880,6 +5880,12 @@
         "con_cupos": 13,
         "total_cupos": 118,
         "cambios": 0
+      },
+      {
+        "hora": "16:01:03",
+        "con_cupos": 13,
+        "total_cupos": 117,
+        "cambios": 1
       }
     ]
   },
@@ -8007,6 +8013,12 @@
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA INFANTIL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-07T16:01:03.519378-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
