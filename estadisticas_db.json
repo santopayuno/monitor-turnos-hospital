@@ -5464,6 +5464,12 @@
         "con_cupos": 16,
         "total_cupos": 132,
         "cambios": 0
+      },
+      {
+        "hora": "22:46:28",
+        "con_cupos": 15,
+        "total_cupos": 131,
+        "cambios": 1
       }
     ]
   },
@@ -7572,6 +7578,12 @@
       "fecha": "2026-06-06T21:31:24.808909-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-06T22:46:28.530764-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 0
     }
   ],
