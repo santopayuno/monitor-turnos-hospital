@@ -5952,6 +5952,12 @@
         "con_cupos": 12,
         "total_cupos": 111,
         "cambios": 0
+      },
+      {
+        "hora": "19:00:45",
+        "con_cupos": 12,
+        "total_cupos": 110,
+        "cambios": 1
       }
     ]
   },
@@ -8091,6 +8097,12 @@
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-07T19:00:45.853385-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
