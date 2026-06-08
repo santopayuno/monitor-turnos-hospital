@@ -6500,6 +6500,12 @@
         "con_cupos": 10,
         "total_cupos": 46,
         "cambios": 0
+      },
+      {
+        "hora": "17:45:30",
+        "con_cupos": 9,
+        "total_cupos": 45,
+        "cambios": 1
       }
     ]
   },
@@ -8734,6 +8740,12 @@
       "fecha": "2026-06-08T15:46:04.268075-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-08T17:45:30.973799-03:00",
+      "tipo": "agotados",
+      "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 0
     }
   ],
