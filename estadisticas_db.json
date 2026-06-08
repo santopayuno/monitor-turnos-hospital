@@ -6428,6 +6428,12 @@
         "con_cupos": 12,
         "total_cupos": 54,
         "cambios": 0
+      },
+      {
+        "hora": "14:45:37",
+        "con_cupos": 11,
+        "total_cupos": 53,
+        "cambios": 1
       }
     ]
   },
@@ -8650,6 +8656,12 @@
       "fecha": "2026-06-08T13:46:29.955266-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-08T14:45:37.834685-03:00",
+      "tipo": "agotados",
+      "especialidad": "ONCOLOGIA",
       "cupos": 0
     }
   ],
