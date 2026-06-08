@@ -6362,6 +6362,12 @@
         "con_cupos": 12,
         "total_cupos": 66,
         "cambios": 0
+      },
+      {
+        "hora": "12:01:12",
+        "con_cupos": 11,
+        "total_cupos": 64,
+        "cambios": 1
       }
     ]
   },
@@ -8549,6 +8555,12 @@
       "tipo": "ultimos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-08T12:01:12.616809-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
