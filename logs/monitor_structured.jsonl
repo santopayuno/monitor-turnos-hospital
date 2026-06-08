@@ -1058,3 +1058,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 0, "ts": "2026-06-08T20:45:30.982221"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 44, "con_cupos": 9, "ts": "2026-06-08T21:00:38.931845"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA INFANTIL", "cupos": 4, "ts": "2026-06-08T21:00:38.944112"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 42, "con_cupos": 9, "ts": "2026-06-08T21:15:26.314112"}
