@@ -6506,6 +6506,12 @@
         "con_cupos": 9,
         "total_cupos": 45,
         "cambios": 1
+      },
+      {
+        "hora": "18:00:38",
+        "con_cupos": 9,
+        "total_cupos": 44,
+        "cambios": 1
       }
     ]
   },
@@ -8747,6 +8753,12 @@
       "tipo": "agotados",
       "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-08T18:00:38.933965-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
