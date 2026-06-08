@@ -6248,6 +6248,12 @@
         "con_cupos": 11,
         "total_cupos": 95,
         "cambios": 0
+      },
+      {
+        "hora": "07:15:38",
+        "con_cupos": 11,
+        "total_cupos": 94,
+        "cambios": 1
       }
     ]
   },
@@ -8399,6 +8405,12 @@
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-08T07:15:38.921623-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
