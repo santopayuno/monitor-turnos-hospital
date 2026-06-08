@@ -6398,6 +6398,12 @@
         "con_cupos": 11,
         "total_cupos": 57,
         "cambios": 0
+      },
+      {
+        "hora": "13:30:16",
+        "con_cupos": 13,
+        "total_cupos": 64,
+        "cambios": 3
       }
     ]
   },
@@ -8591,6 +8597,24 @@
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-08T13:30:16.878293-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-08T13:30:16.878293-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-08T13:30:16.878293-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false
