@@ -6910,6 +6910,12 @@
         "con_cupos": 24,
         "total_cupos": 440,
         "cambios": 3
+      },
+      {
+        "hora": "11:31:28",
+        "con_cupos": 19,
+        "total_cupos": 373,
+        "cambios": 5
       }
     ]
   },
@@ -9540,6 +9546,36 @@
       "fecha": "2026-06-09T10:30:23.175547-03:00",
       "tipo": "agotados",
       "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T11:31:28.771063-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T11:31:28.771063-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T11:31:28.771063-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T11:31:28.771063-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T11:31:28.771063-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
     }
   ],
