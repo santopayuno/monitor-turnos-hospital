@@ -6651,6 +6651,14 @@
         "total_cupos": 31,
         "cambios": 0
       }
+    ],
+    "2026-06-09": [
+      {
+        "hora": "00:00:41",
+        "con_cupos": 9,
+        "total_cupos": 31,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
