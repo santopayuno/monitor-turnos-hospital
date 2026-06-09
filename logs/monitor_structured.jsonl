@@ -1073,3 +1073,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 38, "con_cupos": 9, "ts": "2026-06-09T00:15:33.847156"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 38, "con_cupos": 9, "ts": "2026-06-09T00:31:29.875825"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 38, "con_cupos": 9, "ts": "2026-06-09T00:46:22.058517"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 37, "con_cupos": 9, "ts": "2026-06-09T01:00:13.678302"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)", "cupos": 4, "ts": "2026-06-09T01:00:13.685958"}
