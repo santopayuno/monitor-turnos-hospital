@@ -1109,3 +1109,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 26, "con_cupos": 9, "ts": "2026-06-09T09:01:32.106126"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 26, "con_cupos": 9, "ts": "2026-06-09T09:16:20.280189"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 26, "con_cupos": 9, "ts": "2026-06-09T09:30:45.366254"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 25, "con_cupos": 9, "ts": "2026-06-09T09:45:49.218077"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA", "cupos": 4, "ts": "2026-06-09T09:45:49.227196"}

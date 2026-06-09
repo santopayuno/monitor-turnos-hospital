@@ -6814,6 +6814,12 @@
         "con_cupos": 9,
         "total_cupos": 26,
         "cambios": 0
+      },
+      {
+        "hora": "06:45:49",
+        "con_cupos": 9,
+        "total_cupos": 25,
+        "cambios": 1
       }
     ]
   },
@@ -9066,6 +9072,12 @@
       "fecha": "2026-06-08T22:00:13.679115-03:00",
       "tipo": "ultimos",
       "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-09T06:45:49.219077-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
       "cupos": 4
     }
   ],
