@@ -6892,6 +6892,12 @@
         "con_cupos": 28,
         "total_cupos": 676,
         "cambios": 3
+      },
+      {
+        "hora": "10:00:44",
+        "con_cupos": 27,
+        "total_cupos": 542,
+        "cambios": 2
       }
     ]
   },
@@ -9462,6 +9468,18 @@
       "fecha": "2026-06-09T09:45:32.553179-03:00",
       "tipo": "agotados",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T10:00:44.389616-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-09T10:00:44.389616-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
       "cupos": 0
     }
   ],

@@ -1150,3 +1150,6 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 3, "ts": "2026-06-09T12:45:32.566252"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-09T12:45:32.566450"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-09T12:45:32.566505"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 542, "con_cupos": 27, "ts": "2026-06-09T13:00:44.388687"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 3, "ts": "2026-06-09T13:00:44.396987"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-09T13:00:44.397057"}
