@@ -7012,6 +7012,12 @@
         "con_cupos": 17,
         "total_cupos": 276,
         "cambios": 0
+      },
+      {
+        "hora": "15:45:24",
+        "con_cupos": 17,
+        "total_cupos": 275,
+        "cambios": 1
       }
     ]
   },
@@ -9697,6 +9703,12 @@
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T15:45:24.711930-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
