@@ -1172,3 +1172,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NUTRICION GENERAL", "cupos": 0, "ts": "2026-06-09T14:31:28.779967"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-09T14:31:28.779989"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-09T14:31:28.780008"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 363, "con_cupos": 19, "ts": "2026-06-09T14:46:28.745522"}
