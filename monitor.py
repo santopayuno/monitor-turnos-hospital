@@ -404,13 +404,13 @@ class ConstructorMensajeTelegram:
         # Cada sección devuelve sus líneas SIN espaciado exterior.
         # construir() inserta exactamente 2 líneas vacías entre bloques.
 
-        cambios_section = self._seccion_cambios()
-        if cambios_section:
-            secciones.append(cambios_section)
-
         reaperturas_section = self._seccion_reaperturas()
         if reaperturas_section:
             secciones.append(reaperturas_section)
+
+        cambios_section = self._seccion_cambios()
+        if cambios_section:
+            secciones.append(cambios_section)
 
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
@@ -523,11 +523,25 @@ class ConstructorMensajeTelegram:
     # SECCIÓN: DISPONIBLES AHORA
     # ─────────────────────────────────────────────────────────
 
+    def _nombres_ya_mostrados(self):
+        # Especialidades ya listadas arriba en Reaperturas o Cambios Detectados.
+        # Se usan para no repetirlas en la "foto" de estado actual.
+        nombres = set()
+        for item in self.cambios.get("reaperturas", []):
+            nombres.add(item["nombre"])
+        for item in self.cambios.get("nuevos", []):
+            nombres.add(item["nombre"])
+        for item in self.cambios.get("aumentos", []):
+            nombres.add(item["nombre"])
+        return nombres
+
     def _seccion_disponibles(self):
-        if not self.clasificacion["disponible"]:
+        ya_mostrados = self._nombres_ya_mostrados()
+        items = [(n, c) for (n, c) in self.clasificacion["disponible"] if n not in ya_mostrados]
+        if not items:
             return None
 
-        items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
+        items = sorted(items, key=lambda x: x[0])
         lineas = ["────────────", "🟢 DISPONIBLES AHORA", "────────────"]
 
         for i, (nombre, cupo) in enumerate(items):
@@ -544,7 +558,9 @@ class ConstructorMensajeTelegram:
     # ─────────────────────────────────────────────────────────
 
     def _seccion_pocos(self):
+        ya_mostrados = self._nombres_ya_mostrados()
         especiales = self.clasificacion["pocos"] + self.clasificacion["ultimos"]
+        especiales = [(n, c) for (n, c) in especiales if n not in ya_mostrados]
 
         if not especiales:
             return None
