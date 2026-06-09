@@ -6880,6 +6880,12 @@
         "con_cupos": 37,
         "total_cupos": 1209,
         "cambios": 39
+      },
+      {
+        "hora": "09:30:39",
+        "con_cupos": 30,
+        "total_cupos": 864,
+        "cambios": 8
       }
     ]
   },
@@ -9385,6 +9391,54 @@
       "tipo": "ultimos",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "aumentos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 37
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "agotados",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "agotados",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "agotados",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:30:39.935612-03:00",
+      "tipo": "agotados",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
