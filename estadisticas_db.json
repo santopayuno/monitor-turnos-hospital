@@ -6928,6 +6928,12 @@
         "con_cupos": 18,
         "total_cupos": 354,
         "cambios": 1
+      },
+      {
+        "hora": "12:15:54",
+        "con_cupos": 18,
+        "total_cupos": 346,
+        "cambios": 2
       }
     ]
   },
@@ -9595,6 +9601,18 @@
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T12:15:54.695023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-09T12:15:54.695023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
