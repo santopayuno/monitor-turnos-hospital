@@ -1159,3 +1159,7 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-09T13:15:05.513452"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-09T13:15:05.513476"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-09T13:15:05.513522"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 440, "con_cupos": 24, "ts": "2026-06-09T13:30:23.174117"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PEDIATRIA CONSULTA", "cupos": 4, "ts": "2026-06-09T13:30:23.185295"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-09T13:30:23.185385"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)", "cupos": 0, "ts": "2026-06-09T13:30:23.185418"}
