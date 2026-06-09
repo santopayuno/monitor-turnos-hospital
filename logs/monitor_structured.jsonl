@@ -1153,3 +1153,9 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 542, "con_cupos": 27, "ts": "2026-06-09T13:00:44.388687"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 3, "ts": "2026-06-09T13:00:44.396987"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-09T13:00:44.397057"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 480, "con_cupos": 25, "ts": "2026-06-09T13:15:05.501379"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEFROLOGIA", "cupos": 3, "ts": "2026-06-09T13:15:05.513335"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 2, "ts": "2026-06-09T13:15:05.513415"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-09T13:15:05.513452"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-09T13:15:05.513476"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-09T13:15:05.513522"}
