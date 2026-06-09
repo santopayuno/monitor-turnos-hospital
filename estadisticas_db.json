@@ -6886,6 +6886,12 @@
         "con_cupos": 30,
         "total_cupos": 864,
         "cambios": 8
+      },
+      {
+        "hora": "09:45:32",
+        "con_cupos": 28,
+        "total_cupos": 676,
+        "cambios": 3
       }
     ]
   },
@@ -9438,6 +9444,24 @@
       "fecha": "2026-06-09T09:30:39.935612-03:00",
       "tipo": "agotados",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:45:32.553179-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-09T09:45:32.553179-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-09T09:45:32.553179-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
