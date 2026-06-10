@@ -728,12 +728,14 @@ def generar_reporte_diario():
 
         ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
         fecha = ahora.strftime("%Y-%m-%d")
+        ayer = (ahora - timedelta(days=1)).strftime("%Y-%m-%d")
 
         if fecha not in stats["registros"]:
             return None
 
-        registros = stats["registros"][fecha]
-        eventos = [e for e in stats["eventos"] if e["fecha"].startswith(fecha)]
+        # El recap es del día anterior completo (el reporte se genera a la mañana)
+        registros_ayer = stats["registros"].get(ayer, [])
+        eventos_ayer = [e for e in stats["eventos"] if e["fecha"].startswith(ayer)]
 
         # Especialidades con cupos ahora
         estado_actual = cargar_json(ARCHIVOS["estado"]) or {}
@@ -741,9 +743,8 @@ def generar_reporte_diario():
         con_cupos.sort(key=lambda x: x[0])
         sin_cupos = [nombre for nombre, cupo in estado_actual.items() if cupo == 0]
 
-        # Aperturas del día
-        nuevas_hoy = list({e["especialidad"] for e in eventos if e["tipo"] == "nuevos"})
-        nuevas_hoy.sort()
+        # Aperturas de ayer (nuevas + reaperturas)
+        aperturas_ayer = sorted({e["especialidad"] for e in eventos_ayer if e["tipo"] in ("nuevos", "reaperturas")})
 
         # Construir mensaje
         lineas = [
@@ -766,9 +767,9 @@ def generar_reporte_diario():
                 plural = "s" if cupo > 1 else ""
                 lineas.append(f"🏥 {nombre}: {cupo} cupo{plural}")
 
-        if nuevas_hoy:
-            lineas += ["", "────────────", "🆕 ABRIERON HOY", "────────────"]
-            for nombre in nuevas_hoy:
+        if aperturas_ayer:
+            lineas += ["", "────────────", "🆕 ABRIERON AYER", "────────────"]
+            for nombre in aperturas_ayer:
                 lineas.append(f"• {nombre}")
 
         lineas += [
@@ -776,10 +777,10 @@ def generar_reporte_diario():
             "────────────",
             "📈 ACTIVIDAD DE AYER",
             "────────────",
-            f"• Monitoreos realizados: {len(registros)}",
-            f"• Cambios detectados: {len(eventos)}",
-            f"• Nuevas aperturas: {sum(1 for e in eventos if e['tipo'] == 'nuevos')}",
-            f"• Agotamientos: {sum(1 for e in eventos if e['tipo'] == 'agotados')}",
+            f"• Monitoreos realizados: {len(registros_ayer)}",
+            f"• Cambios detectados: {len(eventos_ayer)}",
+            f"• Aperturas (nuevas + reaperturas): {sum(1 for e in eventos_ayer if e['tipo'] in ('nuevos', 'reaperturas'))}",
+            f"• Agotamientos: {sum(1 for e in eventos_ayer if e['tipo'] == 'agotados')}",
             "",
             f"🕒 Generado: {ahora.strftime('%d/%m • %H:%M hs')}",
         ]
