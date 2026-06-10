@@ -7482,6 +7482,12 @@
         "con_cupos": 17,
         "total_cupos": 209,
         "cambios": 0
+      },
+      {
+        "hora": "11:16:29",
+        "con_cupos": 16,
+        "total_cupos": 179,
+        "cambios": 2
       }
     ]
   },
@@ -10214,6 +10220,18 @@
       "fecha": "2026-06-10T08:16:06.442492-03:00",
       "tipo": "agotados",
       "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-10T11:16:29.405784-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-10T11:16:29.405784-03:00",
+      "tipo": "agotados",
+      "especialidad": "PODOLOGIA",
       "cupos": 0
     }
   ],

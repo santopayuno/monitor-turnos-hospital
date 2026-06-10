@@ -1277,3 +1277,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 237, "con_cupos": 17, "ts": "2026-06-10T13:31:31.542746"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 226, "con_cupos": 17, "ts": "2026-06-10T13:45:47.018015"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 209, "con_cupos": 17, "ts": "2026-06-10T14:00:21.728356"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 179, "con_cupos": 16, "ts": "2026-06-10T14:16:29.404761"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 4, "ts": "2026-06-10T14:16:29.413670"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "PODOLOGIA", "cupos": 0, "ts": "2026-06-10T14:16:29.413741"}
