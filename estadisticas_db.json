@@ -7590,6 +7590,12 @@
         "con_cupos": 14,
         "total_cupos": 134,
         "cambios": 1
+      },
+      {
+        "hora": "15:46:24",
+        "con_cupos": 13,
+        "total_cupos": 130,
+        "cambios": 3
       }
     ]
   },
@@ -10371,6 +10377,24 @@
       "tipo": "aumentos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-10T15:46:24.941931-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-10T15:46:24.941931-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-10T15:46:24.941931-03:00",
+      "tipo": "agotados",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
