@@ -1286,3 +1286,5 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "INFECTOLOGIA", "cupos": 0, "ts": "2026-06-10T14:45:58.310411"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 157, "con_cupos": 15, "ts": "2026-06-10T15:01:19.205964"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 157, "con_cupos": 15, "ts": "2026-06-10T15:15:48.599435"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 153, "con_cupos": 14, "ts": "2026-06-10T15:30:10.664951"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-10T15:30:10.675195"}
