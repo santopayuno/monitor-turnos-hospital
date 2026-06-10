@@ -7614,6 +7614,12 @@
         "con_cupos": 13,
         "total_cupos": 125,
         "cambios": 0
+      },
+      {
+        "hora": "16:45:43",
+        "con_cupos": 12,
+        "total_cupos": 124,
+        "cambios": 1
       }
     ]
   },
@@ -10412,6 +10418,12 @@
       "fecha": "2026-06-10T15:46:24.941931-03:00",
       "tipo": "agotados",
       "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-10T16:45:43.292769-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
     }
   ],
