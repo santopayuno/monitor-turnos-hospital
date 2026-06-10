@@ -7494,6 +7494,12 @@
         "con_cupos": 16,
         "total_cupos": 173,
         "cambios": 0
+      },
+      {
+        "hora": "11:45:58",
+        "con_cupos": 15,
+        "total_cupos": 162,
+        "cambios": 2
       }
     ]
   },
@@ -10238,6 +10244,18 @@
       "fecha": "2026-06-10T11:16:29.405784-03:00",
       "tipo": "agotados",
       "especialidad": "PODOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-10T11:45:58.302456-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-10T11:45:58.302456-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
       "cupos": 0
     }
   ],
