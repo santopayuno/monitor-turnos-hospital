@@ -7186,6 +7186,12 @@
         "con_cupos": 16,
         "total_cupos": 222,
         "cambios": 0
+      },
+      {
+        "hora": "23:01:22",
+        "con_cupos": 16,
+        "total_cupos": 221,
+        "cambios": 1
       }
     ]
   },
@@ -9894,6 +9900,12 @@
       "fecha": "2026-06-09T19:45:26.504694-03:00",
       "tipo": "ultimos",
       "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-09T23:01:22.667318-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 4
     }
   ],
