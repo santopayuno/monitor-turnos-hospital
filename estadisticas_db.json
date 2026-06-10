@@ -7572,6 +7572,12 @@
         "con_cupos": 14,
         "total_cupos": 136,
         "cambios": 0
+      },
+      {
+        "hora": "15:01:34",
+        "con_cupos": 14,
+        "total_cupos": 130,
+        "cambios": 1
       }
     ]
   },
@@ -10340,6 +10346,12 @@
       "fecha": "2026-06-10T14:31:17.040760-03:00",
       "tipo": "ultimos",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-10T15:01:34.169866-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
       "cupos": 4
     }
   ],
