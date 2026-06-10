@@ -1280,3 +1280,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 179, "con_cupos": 16, "ts": "2026-06-10T14:16:29.404761"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 4, "ts": "2026-06-10T14:16:29.413670"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "PODOLOGIA", "cupos": 0, "ts": "2026-06-10T14:16:29.413741"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 173, "con_cupos": 16, "ts": "2026-06-10T14:31:03.342727"}
