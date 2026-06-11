@@ -7874,6 +7874,12 @@
         "con_cupos": 11,
         "total_cupos": 105,
         "cambios": 0
+      },
+      {
+        "hora": "03:31:13",
+        "con_cupos": 10,
+        "total_cupos": 104,
+        "cambios": 1
       }
     ]
   },
@@ -10684,6 +10690,12 @@
       "fecha": "2026-06-10T23:15:39.931945-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA MEDIANO RIESGO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T03:31:13.185612-03:00",
+      "tipo": "agotados",
+      "especialidad": "ONCOLOGIA",
       "cupos": 0
     }
   ],
