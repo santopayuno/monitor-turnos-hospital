@@ -8078,6 +8078,12 @@
         "con_cupos": 16,
         "total_cupos": 199,
         "cambios": 1
+      },
+      {
+        "hora": "12:01:05",
+        "con_cupos": 16,
+        "total_cupos": 184,
+        "cambios": 0
       }
     ]
   },
