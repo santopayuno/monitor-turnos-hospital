@@ -8090,6 +8090,12 @@
         "con_cupos": 23,
         "total_cupos": 263,
         "cambios": 12
+      },
+      {
+        "hora": "12:30:35",
+        "con_cupos": 23,
+        "total_cupos": 249,
+        "cambios": 1
       }
     ]
   },
@@ -11111,6 +11117,12 @@
       "tipo": "ultimos",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T12:30:35.926105-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
