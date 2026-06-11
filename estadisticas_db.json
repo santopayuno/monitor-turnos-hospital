@@ -8060,6 +8060,12 @@
         "con_cupos": 13,
         "total_cupos": 199,
         "cambios": 0
+      },
+      {
+        "hora": "11:16:10",
+        "con_cupos": 17,
+        "total_cupos": 215,
+        "cambios": 7
       }
     ]
   },
@@ -10943,6 +10949,48 @@
       "tipo": "agotados",
       "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T11:16:10.030732-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T11:16:10.030732-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T11:16:10.030732-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T11:16:10.030732-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 15
+    },
+    {
+      "fecha": "2026-06-11T11:16:10.030732-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T11:16:10.030732-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T11:16:10.030732-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false

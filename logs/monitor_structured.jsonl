@@ -1398,3 +1398,8 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 199, "con_cupos": 13, "ts": "2026-06-11T13:30:22.708886"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 199, "con_cupos": 13, "ts": "2026-06-11T13:45:45.190308"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 199, "con_cupos": 13, "ts": "2026-06-11T14:01:22.312125"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 215, "con_cupos": 17, "ts": "2026-06-11T14:16:10.029656"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 1, "ts": "2026-06-11T14:16:10.038996"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ORL CONSULTAS", "cupos": 1, "ts": "2026-06-11T14:16:10.039055"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 2, "ts": "2026-06-11T14:16:10.039080"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-11T14:16:10.993975"}
