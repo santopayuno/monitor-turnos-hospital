@@ -8288,6 +8288,12 @@
         "con_cupos": 16,
         "total_cupos": 114,
         "cambios": 0
+      },
+      {
+        "hora": "20:45:31",
+        "con_cupos": 16,
+        "total_cupos": 111,
+        "cambios": 1
       }
     ]
   },
@@ -11537,6 +11543,12 @@
       "tipo": "agotados",
       "especialidad": "FLEBOLOGIA (CONSULTA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T20:45:31.258354-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false
