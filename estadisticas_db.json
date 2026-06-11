@@ -8204,6 +8204,12 @@
         "con_cupos": 19,
         "total_cupos": 138,
         "cambios": 1
+      },
+      {
+        "hora": "17:15:08",
+        "con_cupos": 19,
+        "total_cupos": 136,
+        "cambios": 1
       }
     ]
   },
@@ -11411,6 +11417,12 @@
       "tipo": "agotados",
       "especialidad": "NUTRICION GENERAL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T17:15:08.549169-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
