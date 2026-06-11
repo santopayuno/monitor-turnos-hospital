@@ -1470,3 +1470,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NUTRICION GENERAL", "cupos": 0, "ts": "2026-06-11T20:00:41.334534"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 136, "con_cupos": 19, "ts": "2026-06-11T20:15:08.547955"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 4, "ts": "2026-06-11T20:15:08.558508"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 134, "con_cupos": 19, "ts": "2026-06-11T20:30:09.081999"}
