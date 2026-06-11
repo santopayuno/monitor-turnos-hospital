@@ -8126,6 +8126,12 @@
         "con_cupos": 21,
         "total_cupos": 191,
         "cambios": 2
+      },
+      {
+        "hora": "14:01:30",
+        "con_cupos": 21,
+        "total_cupos": 174,
+        "cambios": 2
       }
     ]
   },
@@ -11213,6 +11219,18 @@
       "tipo": "ultimos",
       "especialidad": "NUTRICION GENERAL",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T14:01:30.159930-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T14:01:30.159930-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false

@@ -1435,3 +1435,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 191, "con_cupos": 21, "ts": "2026-06-11T16:45:40.316912"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 3, "ts": "2026-06-11T16:45:40.329566"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 1, "ts": "2026-06-11T16:45:40.329786"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 174, "con_cupos": 21, "ts": "2026-06-11T17:01:30.158747"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 3, "ts": "2026-06-11T17:01:30.168673"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 3, "ts": "2026-06-11T17:01:30.168729"}
