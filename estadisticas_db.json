@@ -8066,6 +8066,12 @@
         "con_cupos": 17,
         "total_cupos": 215,
         "cambios": 7
+      },
+      {
+        "hora": "11:30:35",
+        "con_cupos": 16,
+        "total_cupos": 211,
+        "cambios": 3
       }
     ]
   },
@@ -10991,6 +10997,24 @@
       "tipo": "ultimos",
       "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T11:30:35.351228-03:00",
+      "tipo": "aumentos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 18
+    },
+    {
+      "fecha": "2026-06-11T11:30:35.351228-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T11:30:35.351228-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
