@@ -8006,6 +8006,12 @@
         "con_cupos": 12,
         "total_cupos": 254,
         "cambios": 0
+      },
+      {
+        "hora": "09:01:01",
+        "con_cupos": 13,
+        "total_cupos": 257,
+        "cambios": 2
       }
     ]
   },
@@ -10853,6 +10859,18 @@
       "tipo": "ultimos",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T09:01:01.438326-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 13
+    },
+    {
+      "fecha": "2026-06-11T09:01:01.438326-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
