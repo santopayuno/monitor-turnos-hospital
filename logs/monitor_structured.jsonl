@@ -1408,3 +1408,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA GENERAL", "cupos": 2, "ts": "2026-06-11T14:30:35.375361"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-11T14:30:35.375409"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-11T14:30:35.983584"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 199, "con_cupos": 16, "ts": "2026-06-11T14:45:58.047594"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA GENERAL", "cupos": 1, "ts": "2026-06-11T14:45:58.059988"}

@@ -8072,6 +8072,12 @@
         "con_cupos": 16,
         "total_cupos": 211,
         "cambios": 3
+      },
+      {
+        "hora": "11:45:58",
+        "con_cupos": 16,
+        "total_cupos": 199,
+        "cambios": 1
       }
     ]
   },
@@ -11015,6 +11021,12 @@
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T11:45:58.049248-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
