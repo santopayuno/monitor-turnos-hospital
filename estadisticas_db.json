@@ -8246,6 +8246,12 @@
         "con_cupos": 19,
         "total_cupos": 127,
         "cambios": 0
+      },
+      {
+        "hora": "19:00:34",
+        "con_cupos": 17,
+        "total_cupos": 123,
+        "cambios": 2
       }
     ]
   },
@@ -11477,6 +11483,18 @@
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T19:00:34.068370-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T19:00:34.068370-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

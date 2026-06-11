@@ -1479,3 +1479,6 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 1, "ts": "2026-06-11T21:15:09.277910"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 129, "con_cupos": 19, "ts": "2026-06-11T21:30:38.997124"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 127, "con_cupos": 19, "ts": "2026-06-11T21:45:55.437491"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 123, "con_cupos": 17, "ts": "2026-06-11T22:00:34.067155"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-11T22:00:34.077676"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-11T22:00:34.077748"}
