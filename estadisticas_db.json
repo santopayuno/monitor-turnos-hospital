@@ -8174,6 +8174,12 @@
         "con_cupos": 21,
         "total_cupos": 144,
         "cambios": 1
+      },
+      {
+        "hora": "16:01:25",
+        "con_cupos": 20,
+        "total_cupos": 142,
+        "cambios": 2
       }
     ]
   },
@@ -11363,6 +11369,18 @@
       "tipo": "ultimos",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T16:01:25.715446-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T16:01:25.715446-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
