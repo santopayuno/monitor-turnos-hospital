@@ -8156,6 +8156,12 @@
         "con_cupos": 21,
         "total_cupos": 158,
         "cambios": 1
+      },
+      {
+        "hora": "15:15:30",
+        "con_cupos": 21,
+        "total_cupos": 151,
+        "cambios": 4
       }
     ]
   },
@@ -11297,6 +11303,30 @@
       "tipo": "ultimos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T15:15:30.280023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T15:15:30.280023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T15:15:30.280023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T15:15:30.280023-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false

@@ -1449,3 +1449,8 @@
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-11T17:45:44.294575"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 158, "con_cupos": 21, "ts": "2026-06-11T18:01:26.915478"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 4, "ts": "2026-06-11T18:01:26.926868"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 151, "con_cupos": 21, "ts": "2026-06-11T18:15:30.278242"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 2, "ts": "2026-06-11T18:15:30.290501"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 3, "ts": "2026-06-11T18:15:30.290584"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 2, "ts": "2026-06-11T18:15:30.290617"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-11T18:15:30.290640"}
