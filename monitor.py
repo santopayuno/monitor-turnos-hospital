@@ -3,7 +3,7 @@
 Sistema profesional de monitoreo automático
 
 Características:
-- Consulta API cada 5 minutos
+- Consulta API cada 15 minutos
 - Notificaciones inteligentes en Telegram
 - Estadísticas históricas (90 días)
 - Dashboard web interactivo
@@ -293,8 +293,11 @@ class ProcesadorEspecialidades:
             logger.warning(f"⚠️ Cupo inválido para {nombre}: {esp.get('cupo')}, usando 0")
             cupo = 0
 
-        suspendido = esp.get("suspendido", True)
-        disponible = cupo > 0 and not suspendido
+        suspendido = esp.get("suspendido", False)
+        if suspendido:
+            cupo = 0  # Suspendida: no se puede reservar; cuenta como 0 turnos en todos lados
+
+        disponible = cupo > 0
 
         self.estado_actual[nombre] = cupo
         cupo_anterior = self.estado_anterior.get(nombre, 0)
@@ -348,7 +351,7 @@ class ProcesadorEspecialidades:
             })
             logger.info(f"📈 AUMENTO: {nombre} ({cupo_anterior} → {cupo}, +{cupo - cupo_anterior})")
 
-        elif cupo_anterior >= 5 and 1 <= cupo < 5:
+        elif cupo_anterior > cupo and 1 <= cupo < 5:
             self.cambios["ultimos"].append({
                 "nombre": nombre,
                 "cupo_actual": cupo
@@ -657,9 +660,9 @@ def enviar_telegram(mensaje):
 # ESTADÍSTICAS
 # ═══════════════════════════════════════════════════════════════
 
-def guardar_estadisticas(cambios, estado_actual):
+def guardar_estadisticas(cambios, estado_actual, es_primera_ejecucion):
     try:
-        stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}, "eventos": [], "es_primera_ejecucion": True}
+        stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}, "eventos": []}
         ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
         fecha = ahora.strftime("%Y-%m-%d")
 
@@ -681,7 +684,7 @@ def guardar_estadisticas(cambios, estado_actual):
                 evento_key = f"{ahora.isoformat()[:19]}|{cambio_tipo}|{item['nombre']}"
 
                 # Si es primera ejecución, no registrar como "nuevos" (son solo estado inicial)
-                if stats["es_primera_ejecucion"] and cambio_tipo == "nuevos":
+                if es_primera_ejecucion and cambio_tipo == "nuevos":
                     logger.info(f"ℹ️ Primera ejecución: no registrando {item['nombre']} como nuevo")
                     continue
 
@@ -705,11 +708,6 @@ def guardar_estadisticas(cambios, estado_actual):
             f: r for f, r in stats["registros"].items()
             if f >= fecha_limite_registros
         }
-
-        # Marcar que ya no es primera ejecución
-        if stats.get("es_primera_ejecucion"):
-            stats["es_primera_ejecucion"] = False
-            logger.info("✓ Primera ejecución completada")
 
         guardar_json_seguro(stats, ARCHIVOS["estadisticas"])
 
@@ -799,8 +797,10 @@ def detectar_patrones_apertura(hora_objetivo):
     """
     Analiza el historial de eventos y avisa si alguna especialidad
     suele abrir turnos en la hora_objetivo.
-    Solo notifica si hay al menos 3 aperturas históricas en esa hora
-    y la especialidad no tiene cupos ahora mismo.
+    Solo notifica si hay al menos 5 aperturas históricas en esa hora,
+    repartidas en al menos 3 días distintos, y la especialidad no
+    tiene cupos ahora mismo.
+    Cuenta como apertura: nuevos, aumentos y reaperturas.
     """
     try:
         stats = cargar_json(ARCHIVOS["estadisticas"]) or {}
@@ -813,7 +813,7 @@ def detectar_patrones_apertura(hora_objetivo):
         # Contar aperturas por especialidad y hora
         aperturas_por_hora = {}
         for e in eventos:
-            if e.get("tipo") not in ("nuevos", "aumentos"):
+            if e.get("tipo") not in ("nuevos", "aumentos", "reaperturas"):
                 continue
             try:
                 hora = datetime.fromisoformat(e["fecha"]).hour
@@ -828,7 +828,7 @@ def detectar_patrones_apertura(hora_objetivo):
         from collections import defaultdict
         eventos_por_esp = defaultdict(list)
         for e in eventos:
-            if e.get("tipo") in ("nuevos", "aumentos"):
+            if e.get("tipo") in ("nuevos", "aumentos", "reaperturas"):
                 eventos_por_esp[e["especialidad"]].append(e)
 
         # Filtrar: especialidades que suelen abrir en hora_objetivo
@@ -934,7 +934,7 @@ def main():
         cupos=sum(procesador.estado_actual.values()),
         con_cupos=len([c for c in procesador.estado_actual.values() if c > 0])
     )
-    guardar_estadisticas(procesador.cambios, procesador.estado_actual)
+    guardar_estadisticas(procesador.cambios, procesador.estado_actual, es_primera_ejecucion)
 
     # ✓ MODO PRUEBA: Forzar notificación con estado actual
     if os.environ.get("TEST_MODE") == "true":
