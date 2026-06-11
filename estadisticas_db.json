@@ -8168,6 +8168,12 @@
         "con_cupos": 21,
         "total_cupos": 145,
         "cambios": 3
+      },
+      {
+        "hora": "15:45:40",
+        "con_cupos": 21,
+        "total_cupos": 144,
+        "cambios": 1
       }
     ]
   },
@@ -11350,6 +11356,12 @@
       "fecha": "2026-06-11T15:30:11.213718-03:00",
       "tipo": "ultimos",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T15:45:40.362110-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 1
     }
   ],
