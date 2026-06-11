@@ -7976,6 +7976,12 @@
         "con_cupos": 12,
         "total_cupos": 296,
         "cambios": 0
+      },
+      {
+        "hora": "07:46:27",
+        "con_cupos": 12,
+        "total_cupos": 290,
+        "cambios": 1
       }
     ]
   },
@@ -10811,6 +10817,12 @@
       "tipo": "reaperturas",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 138
+    },
+    {
+      "fecha": "2026-06-11T07:46:27.434654-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
