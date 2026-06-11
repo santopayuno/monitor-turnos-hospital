@@ -8198,6 +8198,12 @@
         "con_cupos": 20,
         "total_cupos": 139,
         "cambios": 0
+      },
+      {
+        "hora": "17:00:41",
+        "con_cupos": 19,
+        "total_cupos": 138,
+        "cambios": 1
       }
     ]
   },
@@ -11398,6 +11404,12 @@
       "fecha": "2026-06-11T16:01:25.715446-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T17:00:41.325246-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
       "cupos": 0
     }
   ],
