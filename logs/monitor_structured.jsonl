@@ -1447,3 +1447,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-11T17:45:43.677692"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-11T17:45:43.677899"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-11T17:45:44.294575"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 158, "con_cupos": 21, "ts": "2026-06-11T18:01:26.915478"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 4, "ts": "2026-06-11T18:01:26.926868"}
