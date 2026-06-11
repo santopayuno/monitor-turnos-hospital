@@ -8102,6 +8102,12 @@
         "con_cupos": 23,
         "total_cupos": 236,
         "cambios": 3
+      },
+      {
+        "hora": "13:01:30",
+        "con_cupos": 22,
+        "total_cupos": 227,
+        "cambios": 1
       }
     ]
   },
@@ -11147,6 +11153,12 @@
       "tipo": "ultimos",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T13:01:30.990758-03:00",
+      "tipo": "agotados",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
