@@ -1358,3 +1358,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 105, "con_cupos": 11, "ts": "2026-06-11T06:15:37.496999"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 104, "con_cupos": 10, "ts": "2026-06-11T06:31:13.183938"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ONCOLOGIA", "cupos": 0, "ts": "2026-06-11T06:31:13.195574"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 104, "con_cupos": 10, "ts": "2026-06-11T06:46:20.235794"}
