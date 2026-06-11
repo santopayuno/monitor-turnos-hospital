@@ -1454,3 +1454,7 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 3, "ts": "2026-06-11T18:15:30.290584"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 2, "ts": "2026-06-11T18:15:30.290617"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-11T18:15:30.290640"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 145, "con_cupos": 21, "ts": "2026-06-11T18:30:11.211906"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 1, "ts": "2026-06-11T18:30:11.223788"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 2, "ts": "2026-06-11T18:30:11.223871"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-11T18:30:11.223907"}
