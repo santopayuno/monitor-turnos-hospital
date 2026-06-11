@@ -1464,3 +1464,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 1, "ts": "2026-06-11T19:01:25.725451"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-11T19:01:25.725545"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 142, "con_cupos": 20, "ts": "2026-06-11T19:15:34.240231"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 141, "con_cupos": 20, "ts": "2026-06-11T19:30:11.774197"}
