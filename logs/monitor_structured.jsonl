@@ -1485,3 +1485,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 122, "con_cupos": 16, "ts": "2026-06-11T22:15:23.692821"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 0, "ts": "2026-06-11T22:15:23.703003"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 121, "con_cupos": 16, "ts": "2026-06-11T22:31:17.844307"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 117, "con_cupos": 16, "ts": "2026-06-11T22:45:33.244904"}
