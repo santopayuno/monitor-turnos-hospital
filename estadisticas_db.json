@@ -8216,6 +8216,12 @@
         "con_cupos": 19,
         "total_cupos": 134,
         "cambios": 0
+      },
+      {
+        "hora": "17:45:15",
+        "con_cupos": 19,
+        "total_cupos": 133,
+        "cambios": 1
       }
     ]
   },
@@ -11429,6 +11435,12 @@
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T17:45:15.708696-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
