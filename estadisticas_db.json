@@ -8084,6 +8084,12 @@
         "con_cupos": 16,
         "total_cupos": 184,
         "cambios": 0
+      },
+      {
+        "hora": "12:15:09",
+        "con_cupos": 23,
+        "total_cupos": 263,
+        "cambios": 12
       }
     ]
   },
@@ -11033,6 +11039,78 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA GENERAL",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 15
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 17
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "aumentos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 13
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "aumentos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "aumentos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T12:15:09.619449-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
