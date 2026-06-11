@@ -8096,6 +8096,12 @@
         "con_cupos": 23,
         "total_cupos": 249,
         "cambios": 1
+      },
+      {
+        "hora": "12:46:16",
+        "con_cupos": 23,
+        "total_cupos": 236,
+        "cambios": 3
       }
     ]
   },
@@ -11123,6 +11129,24 @@
       "tipo": "ultimos",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T12:46:16.272350-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T12:46:16.272350-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T12:46:16.272350-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false

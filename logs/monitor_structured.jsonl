@@ -1420,3 +1420,7 @@
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-11T15:15:10.298046"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 249, "con_cupos": 23, "ts": "2026-06-11T15:30:35.922154"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 3, "ts": "2026-06-11T15:30:35.950442"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 236, "con_cupos": 23, "ts": "2026-06-11T15:46:16.271163"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 2, "ts": "2026-06-11T15:46:16.281033"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 4, "ts": "2026-06-11T15:46:16.281110"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 2, "ts": "2026-06-11T15:46:16.281141"}
