@@ -7988,6 +7988,12 @@
         "con_cupos": 12,
         "total_cupos": 279,
         "cambios": 0
+      },
+      {
+        "hora": "08:16:24",
+        "con_cupos": 12,
+        "total_cupos": 272,
+        "cambios": 1
       }
     ]
   },
@@ -10829,6 +10835,12 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA GENERAL",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T08:16:24.476586-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
