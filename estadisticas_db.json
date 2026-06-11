@@ -8012,6 +8012,12 @@
         "con_cupos": 13,
         "total_cupos": 257,
         "cambios": 2
+      },
+      {
+        "hora": "09:16:27",
+        "con_cupos": 13,
+        "total_cupos": 240,
+        "cambios": 1
       }
     ]
   },
@@ -10871,6 +10877,12 @@
       "tipo": "ultimos",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T09:16:27.843400-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false

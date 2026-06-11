@@ -1386,3 +1386,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 257, "con_cupos": 13, "ts": "2026-06-11T12:01:01.437107"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PRE ANESTESIA PEDIATRIA", "cupos": 3, "ts": "2026-06-11T12:01:01.447444"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-11T12:01:02.041675"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 240, "con_cupos": 13, "ts": "2026-06-11T12:16:27.842228"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 4, "ts": "2026-06-11T12:16:27.851689"}
