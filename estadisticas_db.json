@@ -8144,6 +8144,12 @@
         "con_cupos": 20,
         "total_cupos": 160,
         "cambios": 1
+      },
+      {
+        "hora": "14:45:43",
+        "con_cupos": 21,
+        "total_cupos": 160,
+        "cambios": 3
       }
     ]
   },
@@ -11261,6 +11267,24 @@
       "tipo": "ultimos",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T14:45:43.649625-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-11T14:45:43.649625-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T14:45:43.649625-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
