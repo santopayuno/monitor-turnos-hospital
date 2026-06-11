@@ -1426,3 +1426,6 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 2, "ts": "2026-06-11T15:46:16.281141"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 227, "con_cupos": 22, "ts": "2026-06-11T16:01:30.989620"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ORL CONSULTAS", "cupos": 0, "ts": "2026-06-11T16:01:30.999217"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 212, "con_cupos": 22, "ts": "2026-06-11T16:15:07.252009"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-11T16:15:07.262903"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 3, "ts": "2026-06-11T16:15:07.262989"}

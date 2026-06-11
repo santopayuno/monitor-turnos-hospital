@@ -8108,6 +8108,12 @@
         "con_cupos": 22,
         "total_cupos": 227,
         "cambios": 1
+      },
+      {
+        "hora": "13:15:07",
+        "con_cupos": 22,
+        "total_cupos": 212,
+        "cambios": 2
       }
     ]
   },
@@ -11159,6 +11165,18 @@
       "tipo": "agotados",
       "especialidad": "ORL CONSULTAS",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T13:15:07.253241-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-11T13:15:07.253241-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
