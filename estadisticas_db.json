@@ -7958,6 +7958,12 @@
         "con_cupos": 10,
         "total_cupos": 104,
         "cambios": 0
+      },
+      {
+        "hora": "07:01:19",
+        "con_cupos": 10,
+        "total_cupos": 102,
+        "cambios": 1
       }
     ]
   },
@@ -10775,6 +10781,12 @@
       "tipo": "agotados",
       "especialidad": "ONCOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T07:01:19.565462-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
