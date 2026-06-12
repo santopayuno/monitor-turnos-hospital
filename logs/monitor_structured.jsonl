@@ -1578,3 +1578,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA", "cupos": 0, "ts": "2026-06-12T14:31:18.592986"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 248, "con_cupos": 11, "ts": "2026-06-12T14:46:29.482827"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-12T14:46:30.108510"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 240, "con_cupos": 11, "ts": "2026-06-12T15:00:48.475879"}
