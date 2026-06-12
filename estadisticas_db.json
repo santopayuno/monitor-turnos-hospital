@@ -8354,6 +8354,12 @@
         "con_cupos": 15,
         "total_cupos": 99,
         "cambios": 0
+      },
+      {
+        "hora": "23:30:43",
+        "con_cupos": 15,
+        "total_cupos": 98,
+        "cambios": 1
       }
     ]
   },
@@ -11644,6 +11650,12 @@
       "fecha": "2026-06-11T21:30:23.464559-03:00",
       "tipo": "ultimos",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-11T23:30:43.090505-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
       "cupos": 3
     }
   ],
