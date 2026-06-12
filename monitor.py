@@ -29,7 +29,7 @@ from urllib3.util.retry import Retry
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 CHAT_ID = os.environ.get("CHAT_ID", "")
-HEALTHCHECKS_URL = os.environ.get("HEALTHCHECKS_URL", "")
+HEALTHCHECKS_URL = os.environ.get("HEALTHCHECK_URL", "")
 
 # Debug: Verificar que se reciben los valores
 if not BOT_TOKEN:
