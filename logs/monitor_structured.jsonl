@@ -1598,3 +1598,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 191, "con_cupos": 10, "ts": "2026-06-12T19:01:16.147606"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA INFANTIL", "cupos": 4, "ts": "2026-06-12T19:01:16.159877"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 188, "con_cupos": 10, "ts": "2026-06-12T19:16:13.097716"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 187, "con_cupos": 10, "ts": "2026-06-12T19:30:22.330760"}
