@@ -8367,6 +8367,14 @@
         "total_cupos": 98,
         "cambios": 0
       }
+    ],
+    "2026-06-12": [
+      {
+        "hora": "00:01:07",
+        "con_cupos": 15,
+        "total_cupos": 96,
+        "cambios": 1
+      }
     ]
   },
   "eventos": [
@@ -11663,6 +11671,12 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-12T00:01:07.628538-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
