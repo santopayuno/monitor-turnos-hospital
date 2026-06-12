@@ -8800,6 +8800,12 @@
         "con_cupos": 10,
         "total_cupos": 175,
         "cambios": 0
+      },
+      {
+        "hora": "17:45:12",
+        "con_cupos": 10,
+        "total_cupos": 173,
+        "cambios": 0
       }
     ]
   },
