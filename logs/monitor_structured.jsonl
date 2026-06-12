@@ -1519,3 +1519,7 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 96, "con_cupos": 15, "ts": "2026-06-12T04:16:24.173680"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 96, "con_cupos": 15, "ts": "2026-06-12T04:31:31.822893"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 96, "con_cupos": 15, "ts": "2026-06-12T04:45:58.388819"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 93, "con_cupos": 12, "ts": "2026-06-12T05:01:16.861371"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "PEDIATRIA CONSULTA", "cupos": 0, "ts": "2026-06-12T05:01:16.871618"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CIRUGIA GENERAL", "cupos": 0, "ts": "2026-06-12T05:01:16.871685"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "INFECTOLOGIA", "cupos": 0, "ts": "2026-06-12T05:01:16.871712"}

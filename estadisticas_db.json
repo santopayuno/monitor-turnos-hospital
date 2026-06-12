@@ -8416,6 +8416,12 @@
         "con_cupos": 15,
         "total_cupos": 96,
         "cambios": 0
+      },
+      {
+        "hora": "02:01:16",
+        "con_cupos": 12,
+        "total_cupos": 93,
+        "cambios": 3
       }
     ]
   },
@@ -11719,6 +11725,24 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-12T02:01:16.862580-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-12T02:01:16.862580-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-12T02:01:16.862580-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
