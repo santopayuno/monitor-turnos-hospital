@@ -8300,6 +8300,12 @@
         "con_cupos": 15,
         "total_cupos": 107,
         "cambios": 3
+      },
+      {
+        "hora": "21:15:25",
+        "con_cupos": 15,
+        "total_cupos": 105,
+        "cambios": 2
       }
     ]
   },
@@ -11573,6 +11579,18 @@
       "tipo": "agotados",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-11T21:15:25.880423-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-11T21:15:25.880423-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false
