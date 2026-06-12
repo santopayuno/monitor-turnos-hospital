@@ -8554,6 +8554,12 @@
         "con_cupos": 12,
         "total_cupos": 91,
         "cambios": 0
+      },
+      {
+        "hora": "07:15:33",
+        "con_cupos": 14,
+        "total_cupos": 139,
+        "cambios": 2
       }
     ]
   },
@@ -11875,6 +11881,18 @@
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-12T07:15:33.606256-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-06-12T07:15:33.606256-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 42
     }
   ],
   "es_primera_ejecucion": false
