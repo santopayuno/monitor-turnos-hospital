@@ -1580,3 +1580,4 @@
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-12T14:46:30.108510"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 240, "con_cupos": 11, "ts": "2026-06-12T15:00:48.475879"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 238, "con_cupos": 11, "ts": "2026-06-12T15:15:31.600039"}
+{"evento": "error", "contexto": "api", "mensaje": "Error de red: HTTPSConnectionPool(host='sganotti.mendoza.gov.ar', port=443): Max retries exceeded with url: /digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular (Caused by ResponseError('too many 503 error responses'))", "ts": "2026-06-12T15:31:36.120111"}
