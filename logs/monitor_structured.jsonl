@@ -1566,3 +1566,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 87, "con_cupos": 12, "ts": "2026-06-12T12:48:17.011478"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 3, "ts": "2026-06-12T12:48:17.021543"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-12T12:48:17.021605"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 81, "con_cupos": 10, "ts": "2026-06-12T13:01:16.378104"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "PEDIATRIA CONSULTA", "cupos": 0, "ts": "2026-06-12T13:01:16.390487"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-12T13:01:16.390570"}
