@@ -8632,6 +8632,12 @@
         "con_cupos": 13,
         "total_cupos": 91,
         "cambios": 0
+      },
+      {
+        "hora": "09:48:17",
+        "con_cupos": 12,
+        "total_cupos": 87,
+        "cambios": 2
       }
     ]
   },
@@ -11988,6 +11994,18 @@
       "fecha": "2026-06-12T08:46:27.616698-03:00",
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-12T09:48:17.012602-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-12T09:48:17.012602-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
