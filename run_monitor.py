@@ -145,20 +145,7 @@ try:
         print("⚠️  Push falló, pero monitor ejecutó correctamente\n")
 
     # ============================================================
-    # PASO 9: Señal de vida a Healthchecks (solo si el monitor corrió OK)
-    # ============================================================
-    hc_url = os.getenv('HEALTHCHECKS_URL', '')
-    if hc_url and result.returncode == 0:
-        try:
-            import urllib.request
-            print("📡 Enviando señal a Healthchecks...")
-            urllib.request.urlopen(hc_url, timeout=10)
-            print("✅ Señal enviada a Healthchecks\n")
-        except Exception as e:
-            print(f"⚠️  No se pudo enviar la señal a Healthchecks: {e}\n")
-
-    # ============================================================
-    # PASO 10: Log final
+    # PASO 9: Log final
     # ============================================================
     print("=" * 60)
     print("🎉 EJECUCIÓN COMPLETADA")
