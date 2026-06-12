@@ -1498,3 +1498,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 105, "con_cupos": 15, "ts": "2026-06-12T00:15:25.879271"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PRE ANESTESIA PEDIATRIA", "cupos": 4, "ts": "2026-06-12T00:15:25.889458"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA TORACICA", "cupos": 2, "ts": "2026-06-12T00:15:25.889531"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 104, "con_cupos": 15, "ts": "2026-06-12T00:30:23.463063"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PRE ANESTESIA PEDIATRIA", "cupos": 3, "ts": "2026-06-12T00:30:23.479720"}

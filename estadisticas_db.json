@@ -8306,6 +8306,12 @@
         "con_cupos": 15,
         "total_cupos": 105,
         "cambios": 2
+      },
+      {
+        "hora": "21:30:23",
+        "con_cupos": 15,
+        "total_cupos": 104,
+        "cambios": 1
       }
     ]
   },
@@ -11591,6 +11597,12 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA TORACICA",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-11T21:30:23.464559-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
