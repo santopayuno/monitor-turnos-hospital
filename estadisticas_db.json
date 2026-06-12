@@ -8674,6 +8674,12 @@
         "con_cupos": 10,
         "total_cupos": 76,
         "cambios": 0
+      },
+      {
+        "hora": "11:31:18",
+        "con_cupos": 9,
+        "total_cupos": 74,
+        "cambios": 1
       }
     ]
   },
@@ -12054,6 +12060,12 @@
       "fecha": "2026-06-12T10:01:16.379857-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-12T11:31:18.583987-03:00",
+      "tipo": "agotados",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
       "cupos": 0
     }
   ],
