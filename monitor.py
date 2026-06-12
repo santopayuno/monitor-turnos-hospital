@@ -45,8 +45,13 @@ ARCHIVOS = {
     "logs": "monitor.log",
     "reporte": "reporte_diario.txt",
     "heartbeat": "heartbeat.json",
-    "estado_anterior": "estado_anterior.json"
+    "estado_anterior": "estado_anterior.json",
+    "historial": "historial_cupos.json"
 }
+
+# Cuántas lecturas recientes de cupos guardar por especialidad (8 ≈ 2 horas).
+# El dashboard usa estas lecturas para estimar la velocidad de agotamiento reciente.
+MAX_LECTURAS_HISTORIAL = 8
 
 REEMPLAZOS_NOMBRES = {
     "DIABETOLOGIA GENERAL(CON DERIVACIÓN)": "DIABETOLOGIA GENERAL",
@@ -179,6 +184,27 @@ def guardar_json_seguro(datos, archivo):
         os.replace(tmp_path, archivo)
     except Exception as e:
         logger.error(f"Error guardando {archivo}: {e}")
+
+def guardar_historial_cupos(estado_actual, ahora):
+    """Agrega la lectura actual de cupos por especialidad al historial reciente.
+
+    Guarda, por cada especialidad, las últimas MAX_LECTURAS_HISTORIAL lecturas
+    como {"t": <timestamp ISO>, "c": <cupos>}. No toca eventos ni estadísticas:
+    es solo dato crudo para que el dashboard estime la velocidad reciente de
+    agotamiento. Patrón seguro: leer, agregar, recortar, guardar.
+    """
+    try:
+        historial_previo = cargar_json(ARCHIVOS["historial"]) or {}
+        ts = ahora.isoformat()
+        historial = {}
+        for nombre, cupos in estado_actual.items():
+            lecturas = historial_previo.get(nombre, [])
+            lecturas.append({"t": ts, "c": int(cupos)})
+            # conservar solo las lecturas más recientes
+            historial[nombre] = lecturas[-MAX_LECTURAS_HISTORIAL:]
+        guardar_json_seguro(historial, ARCHIVOS["historial"])
+    except Exception as e:
+        logger.error(f"Error actualizando historial de cupos: {e}")
 
 # ═══════════════════════════════════════════════════════════════
 # UTILIDADES DE FORMATO
@@ -924,6 +950,7 @@ def main():
 
     guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
+    guardar_historial_cupos(procesador.estado_actual, ahora)
     hb_estado = cargar_json(ARCHIVOS["heartbeat"]) or {}
     hb_estado["ultima_ejecucion"] = ahora.isoformat()
     guardar_json_seguro(hb_estado, ARCHIVOS["heartbeat"])
