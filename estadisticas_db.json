@@ -8758,6 +8758,12 @@
         "con_cupos": 10,
         "total_cupos": 193,
         "cambios": 0
+      },
+      {
+        "hora": "16:01:16",
+        "con_cupos": 10,
+        "total_cupos": 191,
+        "cambios": 1
       }
     ]
   },
@@ -12163,6 +12169,12 @@
       "tipo": "agotados",
       "especialidad": "ONCOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-12T16:01:16.149284-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
