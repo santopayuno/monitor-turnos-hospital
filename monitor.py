@@ -29,6 +29,7 @@ from urllib3.util.retry import Retry
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 CHAT_ID = os.environ.get("CHAT_ID", "")
+HEALTHCHECKS_URL = os.environ.get("HEALTHCHECKS_URL", "")
 
 # Debug: Verificar que se reciben los valores
 if not BOT_TOKEN:
@@ -205,6 +206,21 @@ def guardar_historial_cupos(estado_actual, ahora):
         guardar_json_seguro(historial, ARCHIVOS["historial"])
     except Exception as e:
         logger.error(f"Error actualizando historial de cupos: {e}")
+
+def ping_healthchecks(suffix=""):
+    """Envía la señal de vida a Healthchecks.
+
+    suffix="/start" al iniciar, "" (vacío) al terminar bien, "/fail" si hubo error.
+    Si no hay URL configurada (HEALTHCHECKS_URL), no hace nada. Nunca interrumpe
+    el monitor: si el envío falla, solo lo registra.
+    """
+    if not HEALTHCHECKS_URL:
+        return
+    try:
+        import urllib.request
+        urllib.request.urlopen(HEALTHCHECKS_URL.rstrip("/") + suffix, timeout=10)
+    except Exception as e:
+        logger.warning(f"No se pudo enviar señal a Healthchecks ({suffix or 'éxito'}): {e}")
 
 # ═══════════════════════════════════════════════════════════════
 # UTILIDADES DE FORMATO
@@ -929,7 +945,7 @@ def main():
             logger.warning("📴 API caída: alerta enviada (no se repetirá hasta la recuperación)")
         else:
             logger.warning("📴 API sigue caída: no se reenvía la alerta")
-        return
+        raise RuntimeError("No se pudo obtener datos de la API")
 
     # API respondió OK: si veníamos de una caída previa, avisar la recuperación
     hb_api = cargar_json(ARCHIVOS["heartbeat"]) or {}
@@ -1115,10 +1131,13 @@ def main():
     logger.info("═════════════════════════════════════════════════════")
 
 if __name__ == "__main__":
+    ping_healthchecks("/start")
     try:
         main()
+        ping_healthchecks()  # señal de éxito
     except KeyboardInterrupt:
         logger.info("Interrumpido por usuario")
     except Exception as e:
         logger.critical(f"Error crítico: {e}", exc_info=True)
-        enviar_telegram(f"🚨 Error crítico: {str(e)[:100]}")
+        ping_healthchecks("/fail")
+        raise
