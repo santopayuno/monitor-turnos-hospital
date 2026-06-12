@@ -99,22 +99,6 @@ try:
     print()
 
     # ============================================================
-    # PASO 3.5: Avisar al guardián externo (healthchecks.io)
-    # Si este "latido" no llega a tiempo, healthchecks.io te avisa
-    # de que el sistema dejó de ejecutarse. Es opcional: solo se
-    # activa si está configurada la variable HEALTHCHECK_URL.
-    # ============================================================
-    hc_url = os.getenv('HEALTHCHECK_URL', '')
-    if hc_url:
-        try:
-            import urllib.request
-            ping_url = hc_url if result.returncode == 0 else hc_url.rstrip('/') + '/fail'
-            urllib.request.urlopen(ping_url, timeout=10)
-            print(f"💓 Latido enviado a healthchecks.io ({'ok' if result.returncode == 0 else 'fail'})")
-        except Exception as e:
-            print(f"ℹ️ No se pudo enviar el latido a healthchecks.io ({e})")
-
-    # ============================================================
     # PASO 3: Git config (por si acaso)
     # ============================================================
     run_cmd(['git', 'config', 'user.email', 'railway@monitor.local'], ignore_error=True)
@@ -131,7 +115,7 @@ try:
     # PASO 5: Git add - Solo archivos específicos
     # ============================================================
     print("📝 Agregando archivos cambios...")
-    run_cmd(['git', 'add', 'estado_turnos.json', 'estado_anterior.json', 'estadisticas_db.json', 'heartbeat.json'], ignore_error=True)
+    run_cmd(['git', 'add', 'estado_turnos.json', 'estado_anterior.json', 'estadisticas_db.json', 'heartbeat.json', 'historial_cupos.json'], ignore_error=True)
     run_cmd(['git', 'add', 'logs/'], ignore_error=True)
 
     # ============================================================
