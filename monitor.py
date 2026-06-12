@@ -211,16 +211,20 @@ def ping_healthchecks(suffix=""):
     """Envía la señal de vida a Healthchecks.
 
     suffix="/start" al iniciar, "" (vacío) al terminar bien, "/fail" si hubo error.
-    Si no hay URL configurada (HEALTHCHECKS_URL), no hace nada. Nunca interrumpe
-    el monitor: si el envío falla, solo lo registra.
+    Escribe en el log qué hace, para poder diagnosticar. Si no hay URL configurada
+    (HEALTHCHECKS_URL), lo avisa y no hace nada. Nunca interrumpe el monitor.
     """
+    etiqueta = suffix or "éxito"
     if not HEALTHCHECKS_URL:
+        print(f"📡 Healthchecks: HEALTHCHECKS_URL está VACÍA, no se envía señal ({etiqueta})")
         return
+    url = HEALTHCHECKS_URL.rstrip("/") + suffix
     try:
         import urllib.request
-        urllib.request.urlopen(HEALTHCHECKS_URL.rstrip("/") + suffix, timeout=10)
+        urllib.request.urlopen(url, timeout=10)
+        print(f"📡 Healthchecks OK ({etiqueta}) -> {url}")
     except Exception as e:
-        logger.warning(f"No se pudo enviar señal a Healthchecks ({suffix or 'éxito'}): {e}")
+        print(f"⚠️ Healthchecks ERROR ({etiqueta}) -> {url} : {e}")
 
 # ═══════════════════════════════════════════════════════════════
 # UTILIDADES DE FORMATO
