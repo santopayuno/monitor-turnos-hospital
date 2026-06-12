@@ -1548,3 +1548,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 139, "con_cupos": 14, "ts": "2026-06-12T10:15:33.602640"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-12T10:15:34.204515"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 135, "con_cupos": 14, "ts": "2026-06-12T10:30:53.037258"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 130, "con_cupos": 14, "ts": "2026-06-12T10:46:11.596149"}
