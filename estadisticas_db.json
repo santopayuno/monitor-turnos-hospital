@@ -8698,6 +8698,12 @@
         "con_cupos": 11,
         "total_cupos": 238,
         "cambios": 0
+      },
+      {
+        "hora": "12:45:21",
+        "con_cupos": 10,
+        "total_cupos": 224,
+        "cambios": 1
       }
     ]
   },
@@ -12097,6 +12103,12 @@
       "tipo": "reaperturas",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 96
+    },
+    {
+      "fecha": "2026-06-12T12:45:21.052144-03:00",
+      "tipo": "agotados",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

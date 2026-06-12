@@ -1,6 +1,6 @@
 {
-  "ultima_ejecucion": "2026-06-12T12:15:30.491731-03:00",
+  "ultima_ejecucion": "2026-06-12T12:45:19.342633-03:00",
   "ultima_alerta_patron_ts": "2026-06-12T08:46:26.429911-03:00",
   "ultimo_reporte_fecha": "2026-06-12",
-  "api_caida": true
+  "api_caida": false
 }
