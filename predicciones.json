@@ -1,0 +1,182 @@
+{
+  "generado": "2026-06-13T09:02:00.280327-03:00",
+  "version": 1,
+  "especialidades": {
+    "CARDIOLOGIA ADULTO": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "CARDIOLOGIA INFANTIL": {
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja"
+    },
+    "CIRUGIA GENERAL": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta"
+    },
+    "CIRUGIA INFANTIL": {
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja"
+    },
+    "CIRUGIA TORACICA": {
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja"
+    },
+    "CLINICA MEDICA CONSULTA": {
+      "cuando": "Viene apareciendo casi todos los días alrededor de las 7:15 hs.",
+      "confianza": "alta",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "COLOPROCTOLOGIA": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta"
+    },
+    "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": {
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja"
+    },
+    "DERMATOLOGIA GENERAL": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media",
+      "duracion": "Cuando aparece, suele durar poco"
+    },
+    "DIABETOLOGIA GENERAL": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta"
+    },
+    "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media",
+      "duracion": "Cuando aparece, suele durar poco"
+    },
+    "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
+      "cuando": "Suele abrir los martes y viernes cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta"
+    },
+    "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media"
+    },
+    "FLEBOLOGIA (CONSULTA)": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media",
+      "duracion": "Cuando aparece, suele durar poco"
+    },
+    "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media",
+      "duracion": "Cuando aparece, suele durar poco"
+    },
+    "HEMATOLOGIA CLINICA": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media"
+    },
+    "INFECTOLOGIA": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "INFECTOLOGIA PEDIATRICA": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media"
+    },
+    "NEFROLOGIA": {
+      "cuando": "Suele abrir por la mañana",
+      "confianza": "media",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "NEUMONOLOGIA INFANTIL": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
+      "cuando": "Suele abrir por la mañana",
+      "confianza": "media",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "NUTRICION GENERAL": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "duracion": "Cuando aparece, suele durar poco"
+    },
+    "OBSTETRICIA BAJO RIESGO": {
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja"
+    },
+    "ODONTOLOGIA ADULTO": {
+      "cuando": "Suele abrir los martes y sábados cerca de las 9:45 hs.",
+      "confianza": "alta",
+      "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "ODONTOLOGÍA PEDIATRICA": {
+      "cuando": "Suele abrir los martes por la mañana",
+      "confianza": "media",
+      "duracion": "Cuando aparece, suele durar poco"
+    },
+    "ONCOLOGIA": {
+      "cuando": "Suele abrir los martes y viernes cerca de las 9:15 hs.",
+      "confianza": "media"
+    },
+    "ORL CONSULTAS": {
+      "cuando": "Suele abrir los martes y jueves cerca de las 9:15 hs.",
+      "confianza": "media"
+    },
+    "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": {
+      "cuando": "Suele abrir por la mañana",
+      "confianza": "media"
+    },
+    "PEDIATRIA CONSULTA": {
+      "cuando": "Viene apareciendo casi todos los días alrededor de las 7:15 hs.",
+      "confianza": "media",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "PEDIATRIA MEDIANO RIESGO": {
+      "cuando": "Suele abrir los martes alrededor de las 9:45 hs.",
+      "confianza": "alta"
+    },
+    "PODOLOGIA": {
+      "cuando": "Suele abrir los martes alrededor de las 9:45 hs.",
+      "confianza": "alta"
+    },
+    "PRE ANESTESIA PEDIATRIA": {
+      "cuando": "Suele abrir los martes y sábados cerca de las 10:15 hs.",
+      "confianza": "media"
+    },
+    "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
+      "cuando": "Suele abrir los martes, miércoles y viernes cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "frecuencia": "Últimamente aparece con frecuencia"
+    },
+    "TRAUMATOLOGIA ADULTO": {
+      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "duracion": "Cuando aparece, suele durar poco"
+    },
+    "TRAUMATOLOGIA INFANTIL": {
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja"
+    },
+    "UROLOGIA": {
+      "cuando": "Suele abrir los martes alrededor de las 9:45 hs.",
+      "confianza": "alta"
+    },
+    "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)": {
+      "cuando": "Suele abrir los martes y viernes cerca de las 9:45 hs.",
+      "confianza": "media"
+    }
+  }
+}
