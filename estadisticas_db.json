@@ -9126,6 +9126,12 @@
         "con_cupos": 10,
         "total_cupos": 103,
         "cambios": 0
+      },
+      {
+        "hora": "07:16:13",
+        "con_cupos": 10,
+        "total_cupos": 102,
+        "cambios": 1
       }
     ]
   },
@@ -12561,6 +12567,12 @@
       "tipo": "ultimos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-13T07:16:13.588650-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
