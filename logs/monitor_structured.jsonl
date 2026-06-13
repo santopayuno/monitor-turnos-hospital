@@ -1636,3 +1636,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 112, "con_cupos": 10, "ts": "2026-06-13T04:01:19.997124"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 4, "ts": "2026-06-13T04:01:20.008371"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 112, "con_cupos": 10, "ts": "2026-06-13T04:15:46.044436"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 111, "con_cupos": 10, "ts": "2026-06-13T04:30:13.266384"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 3, "ts": "2026-06-13T04:30:13.277296"}
