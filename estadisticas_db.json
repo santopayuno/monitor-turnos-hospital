@@ -9204,6 +9204,12 @@
         "con_cupos": 9,
         "total_cupos": 97,
         "cambios": 0
+      },
+      {
+        "hora": "11:01:04",
+        "con_cupos": 14,
+        "total_cupos": 204,
+        "cambios": 11
       }
     ]
   },
@@ -12651,6 +12657,72 @@
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 15
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 12
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "aumentos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "aumentos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 88
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-13T11:01:04.582034-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false

@@ -1677,3 +1677,11 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 98, "con_cupos": 9, "ts": "2026-06-13T13:15:13.020463"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 98, "con_cupos": 9, "ts": "2026-06-13T13:31:13.540304"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 97, "con_cupos": 9, "ts": "2026-06-13T13:45:17.774944"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 204, "con_cupos": 14, "ts": "2026-06-13T14:01:04.580279"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA INFANTIL", "cupos": 12, "ts": "2026-06-13T14:01:04.600311"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 9, "ts": "2026-06-13T14:01:04.600363"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "OBSTETRICIA BAJO RIESGO", "cupos": 88, "ts": "2026-06-13T14:01:04.600390"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA TORACICA", "cupos": 5, "ts": "2026-06-13T14:01:04.600411"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-13T14:01:04.600434"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 3, "ts": "2026-06-13T14:01:04.600453"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-13T14:01:05.170355"}
