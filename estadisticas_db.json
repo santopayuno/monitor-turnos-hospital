@@ -9258,6 +9258,12 @@
         "con_cupos": 13,
         "total_cupos": 152,
         "cambios": 0
+      },
+      {
+        "hora": "13:15:22",
+        "con_cupos": 12,
+        "total_cupos": 149,
+        "cambios": 1
       }
     ]
   },
@@ -12782,6 +12788,12 @@
       "fecha": "2026-06-13T12:01:31.734143-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-13T13:15:22.998172-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
     }
   ],
