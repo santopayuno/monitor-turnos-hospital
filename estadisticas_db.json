@@ -9330,6 +9330,12 @@
         "con_cupos": 12,
         "total_cupos": 137,
         "cambios": 0
+      },
+      {
+        "hora": "16:16:20",
+        "con_cupos": 11,
+        "total_cupos": 136,
+        "cambios": 1
       }
     ]
   },
@@ -12867,6 +12873,12 @@
       "tipo": "ultimos",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-13T16:16:20.682932-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
