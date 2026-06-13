@@ -9210,6 +9210,12 @@
         "con_cupos": 14,
         "total_cupos": 204,
         "cambios": 11
+      },
+      {
+        "hora": "11:16:00",
+        "con_cupos": 14,
+        "total_cupos": 202,
+        "cambios": 1
       }
     ]
   },
@@ -12723,6 +12729,12 @@
       "tipo": "ultimos",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-13T11:16:00.597895-03:00",
+      "tipo": "ultimos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
