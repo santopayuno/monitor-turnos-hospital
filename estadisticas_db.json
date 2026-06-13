@@ -8914,6 +8914,12 @@
         "con_cupos": 10,
         "total_cupos": 138,
         "cambios": 0
+      },
+      {
+        "hora": "22:31:02",
+        "con_cupos": 10,
+        "total_cupos": 135,
+        "cambios": 1
       }
     ]
   },
@@ -12325,6 +12331,12 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA INFANTIL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-12T22:31:02.012142-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
