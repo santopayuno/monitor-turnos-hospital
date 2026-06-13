@@ -9228,6 +9228,12 @@
         "con_cupos": 14,
         "total_cupos": 195,
         "cambios": 0
+      },
+      {
+        "hora": "12:01:31",
+        "con_cupos": 13,
+        "total_cupos": 157,
+        "cambios": 1
       }
     ]
   },
@@ -12747,6 +12753,12 @@
       "tipo": "ultimos",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-13T12:01:31.734143-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
