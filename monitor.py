@@ -3,7 +3,7 @@
 Sistema profesional de monitoreo automático
 
 Características:
-- Consulta API cada 15 minutos
+- Consulta API cada 5 minutos
 - Notificaciones inteligentes en Telegram
 - Estadísticas históricas (90 días)
 - Dashboard web interactivo
@@ -29,7 +29,6 @@ from urllib3.util.retry import Retry
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 CHAT_ID = os.environ.get("CHAT_ID", "")
-HEALTHCHECKS_URL = os.environ.get("HEALTHCHECK_URL", "")
 
 # Debug: Verificar que se reciben los valores
 if not BOT_TOKEN:
@@ -47,12 +46,8 @@ ARCHIVOS = {
     "reporte": "reporte_diario.txt",
     "heartbeat": "heartbeat.json",
     "estado_anterior": "estado_anterior.json",
-    "historial": "historial_cupos.json"
+    "predicciones": "predicciones.json"
 }
-
-# Cuántas lecturas recientes de cupos guardar por especialidad (8 ≈ 2 horas).
-# El dashboard usa estas lecturas para estimar la velocidad de agotamiento reciente.
-MAX_LECTURAS_HISTORIAL = 8
 
 REEMPLAZOS_NOMBRES = {
     "DIABETOLOGIA GENERAL(CON DERIVACIÓN)": "DIABETOLOGIA GENERAL",
@@ -186,46 +181,6 @@ def guardar_json_seguro(datos, archivo):
     except Exception as e:
         logger.error(f"Error guardando {archivo}: {e}")
 
-def guardar_historial_cupos(estado_actual, ahora):
-    """Agrega la lectura actual de cupos por especialidad al historial reciente.
-
-    Guarda, por cada especialidad, las últimas MAX_LECTURAS_HISTORIAL lecturas
-    como {"t": <timestamp ISO>, "c": <cupos>}. No toca eventos ni estadísticas:
-    es solo dato crudo para que el dashboard estime la velocidad reciente de
-    agotamiento. Patrón seguro: leer, agregar, recortar, guardar.
-    """
-    try:
-        historial_previo = cargar_json(ARCHIVOS["historial"]) or {}
-        ts = ahora.isoformat()
-        historial = {}
-        for nombre, cupos in estado_actual.items():
-            lecturas = historial_previo.get(nombre, [])
-            lecturas.append({"t": ts, "c": int(cupos)})
-            # conservar solo las lecturas más recientes
-            historial[nombre] = lecturas[-MAX_LECTURAS_HISTORIAL:]
-        guardar_json_seguro(historial, ARCHIVOS["historial"])
-    except Exception as e:
-        logger.error(f"Error actualizando historial de cupos: {e}")
-
-def ping_healthchecks(suffix=""):
-    """Envía la señal de vida a Healthchecks.
-
-    suffix="/start" al iniciar, "" (vacío) al terminar bien, "/fail" si hubo error.
-    Escribe en el log qué hace, para poder diagnosticar. Si no hay URL configurada
-    (HEALTHCHECKS_URL), lo avisa y no hace nada. Nunca interrumpe el monitor.
-    """
-    etiqueta = suffix or "éxito"
-    if not HEALTHCHECKS_URL:
-        print(f"📡 Healthchecks: HEALTHCHECKS_URL está VACÍA, no se envía señal ({etiqueta})")
-        return
-    url = HEALTHCHECKS_URL.rstrip("/") + suffix
-    try:
-        import urllib.request
-        urllib.request.urlopen(url, timeout=10)
-        print(f"📡 Healthchecks OK ({etiqueta}) -> {url}")
-    except Exception as e:
-        print(f"⚠️ Healthchecks ERROR ({etiqueta}) -> {url} : {e}")
-
 # ═══════════════════════════════════════════════════════════════
 # UTILIDADES DE FORMATO
 # ═══════════════════════════════════════════════════════════════
@@ -339,11 +294,8 @@ class ProcesadorEspecialidades:
             logger.warning(f"⚠️ Cupo inválido para {nombre}: {esp.get('cupo')}, usando 0")
             cupo = 0
 
-        suspendido = esp.get("suspendido", False)
-        if suspendido:
-            cupo = 0  # Suspendida: no se puede reservar; cuenta como 0 turnos en todos lados
-
-        disponible = cupo > 0
+        suspendido = esp.get("suspendido", True)
+        disponible = cupo > 0 and not suspendido
 
         self.estado_actual[nombre] = cupo
         cupo_anterior = self.estado_anterior.get(nombre, 0)
@@ -397,7 +349,7 @@ class ProcesadorEspecialidades:
             })
             logger.info(f"📈 AUMENTO: {nombre} ({cupo_anterior} → {cupo}, +{cupo - cupo_anterior})")
 
-        elif cupo_anterior > cupo and 1 <= cupo < 5:
+        elif cupo_anterior >= 5 and 1 <= cupo < 5:
             self.cambios["ultimos"].append({
                 "nombre": nombre,
                 "cupo_actual": cupo
@@ -453,13 +405,13 @@ class ConstructorMensajeTelegram:
         # Cada sección devuelve sus líneas SIN espaciado exterior.
         # construir() inserta exactamente 2 líneas vacías entre bloques.
 
-        reaperturas_section = self._seccion_reaperturas()
-        if reaperturas_section:
-            secciones.append(reaperturas_section)
-
         cambios_section = self._seccion_cambios()
         if cambios_section:
             secciones.append(cambios_section)
+
+        reaperturas_section = self._seccion_reaperturas()
+        if reaperturas_section:
+            secciones.append(reaperturas_section)
 
         disponibles_section = self._seccion_disponibles()
         if disponibles_section:
@@ -572,25 +524,11 @@ class ConstructorMensajeTelegram:
     # SECCIÓN: DISPONIBLES AHORA
     # ─────────────────────────────────────────────────────────
 
-    def _nombres_ya_mostrados(self):
-        # Especialidades ya listadas arriba en Reaperturas o Cambios Detectados.
-        # Se usan para no repetirlas en la "foto" de estado actual.
-        nombres = set()
-        for item in self.cambios.get("reaperturas", []):
-            nombres.add(item["nombre"])
-        for item in self.cambios.get("nuevos", []):
-            nombres.add(item["nombre"])
-        for item in self.cambios.get("aumentos", []):
-            nombres.add(item["nombre"])
-        return nombres
-
     def _seccion_disponibles(self):
-        ya_mostrados = self._nombres_ya_mostrados()
-        items = [(n, c) for (n, c) in self.clasificacion["disponible"] if n not in ya_mostrados]
-        if not items:
+        if not self.clasificacion["disponible"]:
             return None
 
-        items = sorted(items, key=lambda x: x[0])
+        items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
         lineas = ["────────────", "🟢 DISPONIBLES AHORA", "────────────"]
 
         for i, (nombre, cupo) in enumerate(items):
@@ -607,9 +545,7 @@ class ConstructorMensajeTelegram:
     # ─────────────────────────────────────────────────────────
 
     def _seccion_pocos(self):
-        ya_mostrados = self._nombres_ya_mostrados()
         especiales = self.clasificacion["pocos"] + self.clasificacion["ultimos"]
-        especiales = [(n, c) for (n, c) in especiales if n not in ya_mostrados]
 
         if not especiales:
             return None
@@ -706,9 +642,9 @@ def enviar_telegram(mensaje):
 # ESTADÍSTICAS
 # ═══════════════════════════════════════════════════════════════
 
-def guardar_estadisticas(cambios, estado_actual, es_primera_ejecucion):
+def guardar_estadisticas(cambios, estado_actual):
     try:
-        stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}, "eventos": []}
+        stats = cargar_json(ARCHIVOS["estadisticas"]) or {"registros": {}, "eventos": [], "es_primera_ejecucion": True}
         ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
         fecha = ahora.strftime("%Y-%m-%d")
 
@@ -730,7 +666,7 @@ def guardar_estadisticas(cambios, estado_actual, es_primera_ejecucion):
                 evento_key = f"{ahora.isoformat()[:19]}|{cambio_tipo}|{item['nombre']}"
 
                 # Si es primera ejecución, no registrar como "nuevos" (son solo estado inicial)
-                if es_primera_ejecucion and cambio_tipo == "nuevos":
+                if stats["es_primera_ejecucion"] and cambio_tipo == "nuevos":
                     logger.info(f"ℹ️ Primera ejecución: no registrando {item['nombre']} como nuevo")
                     continue
 
@@ -755,6 +691,11 @@ def guardar_estadisticas(cambios, estado_actual, es_primera_ejecucion):
             if f >= fecha_limite_registros
         }
 
+        # Marcar que ya no es primera ejecución
+        if stats.get("es_primera_ejecucion"):
+            stats["es_primera_ejecucion"] = False
+            logger.info("✓ Primera ejecución completada")
+
         guardar_json_seguro(stats, ARCHIVOS["estadisticas"])
 
     except Exception as e:
@@ -772,15 +713,12 @@ def generar_reporte_diario():
 
         ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
         fecha = ahora.strftime("%Y-%m-%d")
-        ayer = (ahora - timedelta(days=1)).strftime("%Y-%m-%d")
 
         if fecha not in stats["registros"]:
-            logger.warning(f"⚠️ No hay registros de hoy ({fecha}); reporte matutino omitido")
             return None
 
-        # El recap es del día anterior completo (el reporte se genera a la mañana)
-        registros_ayer = stats["registros"].get(ayer, [])
-        eventos_ayer = [e for e in stats["eventos"] if e["fecha"].startswith(ayer)]
+        registros = stats["registros"][fecha]
+        eventos = [e for e in stats["eventos"] if e["fecha"].startswith(fecha)]
 
         # Especialidades con cupos ahora
         estado_actual = cargar_json(ARCHIVOS["estado"]) or {}
@@ -788,8 +726,9 @@ def generar_reporte_diario():
         con_cupos.sort(key=lambda x: x[0])
         sin_cupos = [nombre for nombre, cupo in estado_actual.items() if cupo == 0]
 
-        # Aperturas de ayer (nuevas + reaperturas)
-        aperturas_ayer = sorted({e["especialidad"] for e in eventos_ayer if e["tipo"] in ("nuevos", "reaperturas")})
+        # Aperturas del día
+        nuevas_hoy = list({e["especialidad"] for e in eventos if e["tipo"] == "nuevos"})
+        nuevas_hoy.sort()
 
         # Construir mensaje
         lineas = [
@@ -812,9 +751,9 @@ def generar_reporte_diario():
                 plural = "s" if cupo > 1 else ""
                 lineas.append(f"🏥 {nombre}: {cupo} cupo{plural}")
 
-        if aperturas_ayer:
-            lineas += ["", "────────────", "🆕 ABRIERON AYER", "────────────"]
-            for nombre in aperturas_ayer:
+        if nuevas_hoy:
+            lineas += ["", "────────────", "🆕 ABRIERON HOY", "────────────"]
+            for nombre in nuevas_hoy:
                 lineas.append(f"• {nombre}")
 
         lineas += [
@@ -822,10 +761,10 @@ def generar_reporte_diario():
             "────────────",
             "📈 ACTIVIDAD DE AYER",
             "────────────",
-            f"• Monitoreos realizados: {len(registros_ayer)}",
-            f"• Cambios detectados: {len(eventos_ayer)}",
-            f"• Aperturas (nuevas + reaperturas): {sum(1 for e in eventos_ayer if e['tipo'] in ('nuevos', 'reaperturas'))}",
-            f"• Agotamientos: {sum(1 for e in eventos_ayer if e['tipo'] == 'agotados')}",
+            f"• Monitoreos realizados: {len(registros)}",
+            f"• Cambios detectados: {len(eventos)}",
+            f"• Nuevas aperturas: {sum(1 for e in eventos if e['tipo'] == 'nuevos')}",
+            f"• Agotamientos: {sum(1 for e in eventos if e['tipo'] == 'agotados')}",
             "",
             f"🕒 Generado: {ahora.strftime('%d/%m • %H:%M hs')}",
         ]
@@ -843,10 +782,8 @@ def detectar_patrones_apertura(hora_objetivo):
     """
     Analiza el historial de eventos y avisa si alguna especialidad
     suele abrir turnos en la hora_objetivo.
-    Solo notifica si hay al menos 5 aperturas históricas en esa hora,
-    repartidas en al menos 3 días distintos, y la especialidad no
-    tiene cupos ahora mismo.
-    Cuenta como apertura: nuevos, aumentos y reaperturas.
+    Solo notifica si hay al menos 3 aperturas históricas en esa hora
+    y la especialidad no tiene cupos ahora mismo.
     """
     try:
         stats = cargar_json(ARCHIVOS["estadisticas"]) or {}
@@ -859,7 +796,7 @@ def detectar_patrones_apertura(hora_objetivo):
         # Contar aperturas por especialidad y hora
         aperturas_por_hora = {}
         for e in eventos:
-            if e.get("tipo") not in ("nuevos", "aumentos", "reaperturas"):
+            if e.get("tipo") not in ("nuevos", "aumentos"):
                 continue
             try:
                 hora = datetime.fromisoformat(e["fecha"]).hour
@@ -874,7 +811,7 @@ def detectar_patrones_apertura(hora_objetivo):
         from collections import defaultdict
         eventos_por_esp = defaultdict(list)
         for e in eventos:
-            if e.get("tipo") in ("nuevos", "aumentos", "reaperturas"):
+            if e.get("tipo") in ("nuevos", "aumentos"):
                 eventos_por_esp[e["especialidad"]].append(e)
 
         # Filtrar: especialidades que suelen abrir en hora_objetivo
@@ -924,6 +861,283 @@ def detectar_patrones_apertura(hora_objetivo):
 
 
 # ═══════════════════════════════════════════════════════════════
+# MOTOR PREDICTIVO  (capa nueva, AISLADA)
+# Genera predicciones.json con frases ya cocinadas + confianza interna.
+# No usa red. No modifica ningún archivo existente. Si algo falla,
+# main() la atrapa con try/except y el resto del monitor sigue igual.
+# ═══════════════════════════════════════════════════════════════
+import statistics  # (json, datetime y timedelta ya están importados arriba)
+
+DIAS_SEM = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']
+
+# ── Umbrales (tuneables) ──
+CLUSTER_WIN = 45            # min: ventana para agrupar horarios parecidos
+VENT_RECIENTE_D = 21        # días: ventana "reciente" para detectar cambios
+DIAS_MIN_ALTA = 3          # días distintos en un mismo día de semana para afirmar hora exacta (alta)
+NOBS_MIN_CASI_TODOS = 8    # observaciones para "casi todos los días" con confianza alta
+DUR_POCO_MIN = 120         # min: mediana de agotamiento por debajo de esto => "suele durar poco"
+DUR_POCO_PARES = 3         # pares apertura->agotado mínimos para afirmar duración
+FREC_DIAS_VENTANA = 14     # días para medir "últimamente"
+FREC_DIAS_MIN = 4          # días distintos con apertura en la ventana => "aparece con frecuencia"
+AUSENCIA_DIAS = 7          # días sin abrir (y en 0 ahora) => "hace varios días que no abre"
+AUSENCIA_SEMANAS = 21      # días => "hace semanas que no abre"
+
+
+def _ev_dt(fecha):
+    """ISO con offset -03:00 (Mendoza) -> datetime aware. Los campos locales ya son hora Mendoza."""
+    return datetime.fromisoformat(fecha)
+
+
+def _peso_edad(dt, ahora):
+    dias = (ahora - dt).total_seconds() / 86400.0
+    if dias <= 30: return 1.0
+    if dias <= 60: return 0.7
+    if dias <= 120: return 0.4
+    return 0.2
+
+
+def _hhmm(minu):
+    mm = (round(minu / 15) * 15) % 1440
+    return f"{mm // 60}:{mm % 60:02d}"  # hora sin cero a la izquierda, minutos con dos dígitos
+
+
+def _franja(minu):
+    h = minu // 60
+    return 'por la mañana' if h < 12 else ('por la tarde' if h < 19 else 'por la noche')
+
+
+def _plural_dia(d):
+    return 'sábados' if d == 'sábado' else ('domingos' if d == 'domingo' else d)
+
+
+def _unir(arr):
+    if len(arr) == 1: return arr[0]
+    return ', '.join(arr[:-1]) + ' y ' + arr[-1]
+
+
+def _clusters(items):
+    """items: lista de (min, peso). Agrupa horarios dentro de CLUSTER_WIN. -> [{rep,peso,n}] por peso desc."""
+    ordenado = sorted(items, key=lambda x: x[0])
+    cl = []
+    for minu, peso in ordenado:
+        if cl and minu - cl[-1]['lastMin'] <= CLUSTER_WIN:
+            cl[-1]['mins'].append(minu); cl[-1]['pesos'].append(peso); cl[-1]['lastMin'] = minu
+        else:
+            cl.append({'mins': [minu], 'pesos': [peso], 'lastMin': minu})
+    out = []
+    for c in cl:
+        wtot = sum(c['pesos'])
+        wavg = sum(m * p for m, p in zip(c['mins'], c['pesos'])) / wtot
+        out.append({'rep': wavg, 'peso': wtot, 'n': len(c['mins'])})
+    out.sort(key=lambda x: x['peso'], reverse=True)
+    return out
+
+
+def _es_consecutivo(arr):
+    return len(arr) >= 3 and all(i == 0 or v == arr[i - 1] + 1 for i, v in enumerate(arr))
+
+
+def _obs_de(nombre, eventos, ahora):
+    """Una observación por día (solo nuevos+reaperturas), con todos los horarios de ese día."""
+    porDia = {}
+    for e in eventos:
+        if e.get('especialidad') != nombre: continue
+        if e.get('tipo') not in ('nuevos', 'reaperturas'): continue
+        dt = _ev_dt(e['fecha'])
+        fecha = e['fecha'][:10]
+        minu = dt.hour * 60 + dt.minute
+        if fecha not in porDia:
+            porDia[fecha] = {'dow': (dt.weekday() + 1) % 7, 'mins': [],
+                             'peso': _peso_edad(dt, ahora), 'ts': dt,
+                             'domMes': dt.day, 'mes': fecha[:7]}
+        porDia[fecha]['mins'].append(minu)
+    obs = list(porDia.values())
+    for o in obs:
+        o['min'] = min(o['mins'])
+    return obs
+
+
+def generar_frase_cuando(nombre, eventos, ahora):
+    """Devuelve (frase, confianza). confianza in {'baja','media','alta'}."""
+    obs = _obs_de(nombre, eventos, ahora)
+    nObs = len(obs)
+    if nObs == 0:
+        return ("Todavía no hay suficiente historial", "baja")
+    if nObs == 1:
+        return ("No hay patrón claro todavía", "baja")
+
+    pesoTotal = sum(o['peso'] for o in obs) or 1.0
+
+    # agregados por día de semana
+    dowPeso, dowCount, dowMins = {}, {}, {}
+    for o in obs:
+        dowPeso[o['dow']] = dowPeso.get(o['dow'], 0) + o['peso']
+        dowCount[o['dow']] = dowCount.get(o['dow'], 0) + 1
+        dowMins.setdefault(o['dow'], []).extend((m, o['peso']) for m in o['mins'])
+    dowsOrden = sorted(dowPeso.keys(), key=lambda d: dowPeso[d], reverse=True)
+    distintosDows = len(dowsOrden)
+    topPeso = dowPeso[dowsOrden[0]]
+    habituales = [d for d in dowsOrden if dowCount[d] >= 2 and dowPeso[d] >= 0.5 * topPeso]
+    if not habituales:
+        habituales = [d for d in dowsOrden if dowPeso[d] >= 0.6 * topPeso]
+    pesoHab = sum(dowPeso[d] for d in habituales)
+    habituales.sort()
+
+    def horaDeDows(arr):
+        it = []
+        for d in arr:
+            it.extend(dowMins.get(d, []))
+        return _clusters(it)
+
+    def baja():
+        return ("No hay patrón claro todavía", "baja")
+
+    # PRIORIDAD 1 — cambio reciente (requiere viejo y reciente que difieran)
+    vent = timedelta(days=VENT_RECIENTE_D)
+    rec = [o for o in obs if ahora - o['ts'] <= vent]
+    vie = [o for o in obs if ahora - o['ts'] > vent]
+    if len(rec) >= 3 and len(vie) >= 3:
+        pr, pv = {}, {}
+        for o in rec: pr[o['dow']] = pr.get(o['dow'], 0) + o['peso']
+        for o in vie: pv[o['dow']] = pv.get(o['dow'], 0) + o['peso']
+        topR = max(pr, key=pr.get); topV = max(pv, key=pv.get)
+        pesoRec = sum(o['peso'] for o in rec) or 1.0
+        if topR != topV and pr[topR] >= 0.6 * pesoRec:
+            cl = horaDeDows([topR])
+            return (f"Últimamente viene abriendo los {_plural_dia(DIAS_SEM[topR])} "
+                    f"alrededor de las {_hhmm(cl[0]['rep'])} hs.", "media")
+
+    # PRIORIDAD 5 — casi todos los días
+    if distintosDows >= 5 and (topPeso / pesoTotal) < 0.45:
+        cl = horaDeDows(dowsOrden)
+        conf = "alta" if nObs >= NOBS_MIN_CASI_TODOS else "media"
+        if cl and cl[0]['peso'] / pesoTotal >= 0.5:
+            return (f"Viene apareciendo casi todos los días alrededor de las {_hhmm(cl[0]['rep'])} hs.", conf)
+        return ("Viene apareciendo casi todos los días", conf)
+
+    # ¿Patrón de día de semana? (los días habituales concentran la mayoría)
+    if pesoHab / pesoTotal >= 0.6:
+        nombresHab = [_plural_dia(DIAS_SEM[d]) for d in habituales]
+        clHab = horaDeDows(habituales)
+        clTot = sum(c['peso'] for c in clHab) or 1.0
+
+        if len(habituales) == 1:
+            d = habituales[0]
+            diasD = dowCount[d]  # días distintos observados en ese día de semana
+            # dos horarios (segundo cluster con peso y separado)
+            if (len(clHab) >= 2 and clHab[0]['n'] >= 2 and clHab[1]['n'] >= 2 and
+                    clHab[1]['peso'] / clTot >= 0.30 and abs(clHab[0]['rep'] - clHab[1]['rep']) >= 90):
+                dos = sorted([clHab[0]['rep'], clHab[1]['rep']])
+                conf = "alta" if diasD >= DIAS_MIN_ALTA else "media"
+                return (f"Suele abrir los {nombresHab[0]} cerca de las {_hhmm(dos[0])} hs "
+                        f"y nuevamente alrededor de las {_hhmm(dos[1])} hs.", conf)
+            # día + hora exacta — exige >=3 días distintos para hora exacta (honestidad)
+            if clHab[0]['n'] >= 2 and clHab[0]['peso'] / clTot >= 0.6:
+                if diasD >= DIAS_MIN_ALTA:
+                    return (f"Suele abrir los {nombresHab[0]} alrededor de las {_hhmm(clHab[0]['rep'])} hs.", "alta")
+                # solo 2 días: NO afirmamos hora exacta, bajamos a franja
+                return (f"Suele abrir los {nombresHab[0]} {_franja(clHab[0]['rep'])}", "media")
+            # día claro, hora dispersa
+            if diasD >= 2:
+                return (f"Viene abriendo los {nombresHab[0]} {_franja(clHab[0]['rep'])}", "media")
+            return baja()
+
+        if 2 <= len(habituales) <= 4:
+            diasHab = sum(dowCount[d] for d in habituales)
+            if clHab and clHab[0]['peso'] / clTot >= 0.5:
+                conf = "alta" if diasHab >= DIAS_MIN_ALTA else "media"
+                if _es_consecutivo(habituales):
+                    return (f"Suele abrir de {DIAS_SEM[habituales[0]]} a {DIAS_SEM[habituales[-1]]} "
+                            f"cerca de las {_hhmm(clHab[0]['rep'])} hs.", conf)
+                return (f"Suele abrir los {_unir(nombresHab)} cerca de las {_hhmm(clHab[0]['rep'])} hs.", conf)
+            if diasHab >= 3:
+                return (f"Viene abriendo los {_unir(nombresHab)} {_franja(clHab[0]['rep'])}", "media")
+            return baja()
+
+    # PRIORIDAD 7 — mensual (>=2 meses)
+    meses = {o['mes'] for o in obs}
+    if len(meses) >= 2:
+        pIni = sum(o['peso'] for o in obs if o['domMes'] <= 7)
+        pFin = sum(o['peso'] for o in obs if o['domMes'] >= 23)
+        if pIni / pesoTotal >= 0.6:
+            return ("Suele habilitar turnos durante los primeros días del mes", "media")
+        if pFin / pesoTotal >= 0.6:
+            return ("Generalmente reaparece hacia fin de mes", "media")
+
+    # PRIORIDAD 8 — franja horaria (sin día claro pero hora concentrada)
+    clTodos = _clusters([(m, p) for o in obs for (m, p) in [(o['min'], o['peso'])]])
+    if clTodos and clTodos[0]['peso'] / pesoTotal >= 0.6 and nObs >= 3:
+        return (f"Suele abrir {_franja(clTodos[0]['rep'])}", "media")
+
+    return baja()
+
+
+def generar_frase_duracion(nombre, eventos):
+    items = sorted([e for e in eventos if e.get('especialidad') == nombre], key=lambda x: x['fecha'])
+    aps = [_ev_dt(e['fecha']) for e in items if e['tipo'] in ('nuevos', 'reaperturas')]
+    agos = [_ev_dt(e['fecha']) for e in items if e['tipo'] == 'agotados']
+    dur = []
+    for a in aps:
+        post = [g for g in agos if 0 <= (g - a).total_seconds() <= 24 * 3600]
+        if post:
+            dur.append((min(post) - a).total_seconds() / 60.0)
+    if len(dur) >= DUR_POCO_PARES and statistics.median(dur) <= DUR_POCO_MIN:
+        return "Cuando aparece, suele durar poco"
+    return None
+
+
+def generar_frase_frecuencia(nombre, eventos, ahora):
+    aps_dias = {e['fecha'][:10] for e in eventos
+                if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas')
+                and (ahora - _ev_dt(e['fecha'])).total_seconds() <= FREC_DIAS_VENTANA * 86400}
+    if len(aps_dias) >= FREC_DIAS_MIN:
+        return "Últimamente aparece con frecuencia"
+    return None
+
+
+def generar_frase_ausencia(nombre, eventos, estado_actual, ahora):
+    # Solo si hoy está en 0 cupos y hubo aperturas antes
+    if estado_actual is None or estado_actual.get(nombre, 0) != 0:
+        return None
+    aps = [_ev_dt(e['fecha']) for e in eventos
+           if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas')]
+    if not aps:
+        return None
+    dias = (ahora - max(aps)).total_seconds() / 86400.0
+    if dias >= AUSENCIA_SEMANAS:
+        return "Hace semanas que no abre"
+    if dias >= AUSENCIA_DIAS:
+        return "Hace varios días que no abre"
+    return None
+
+
+def generar_predicciones(stats, estado_actual, ahora):
+    eventos = stats.get('eventos', [])
+    # Universo: especialidades con eventos + las que estén en estado actual
+    universo = {e['especialidad'] for e in eventos}
+    if estado_actual:
+        universo |= set(estado_actual.keys())
+
+    especialidades = {}
+    for nombre in sorted(universo):
+        frase, conf = generar_frase_cuando(nombre, eventos, ahora)
+        entrada = {"cuando": frase, "confianza": conf}
+        dur = generar_frase_duracion(nombre, eventos)
+        if dur: entrada["duracion"] = dur
+        frec = generar_frase_frecuencia(nombre, eventos, ahora)
+        if frec: entrada["frecuencia"] = frec
+        aus = generar_frase_ausencia(nombre, eventos, estado_actual, ahora)
+        if aus: entrada["ausencia"] = aus
+        especialidades[nombre] = entrada
+
+    return {
+        "generado": ahora.isoformat(),
+        "version": 1,
+        "especialidades": especialidades,
+    }
+
+
+# ═══════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════
 
@@ -940,27 +1154,8 @@ def main():
 
     if not especialidades:
         logger.critical("✗ No se pudo obtener datos de la API")
-        # Anti-spam: avisar solo en la PRIMERA falla, no en cada ciclo de 15 min
-        hb_api = cargar_json(ARCHIVOS["heartbeat"]) or {}
-        if not hb_api.get("api_caida"):
-            enviar_telegram("🚨 Error: No se pudo conectar con la API del hospital")
-            hb_api["api_caida"] = True
-            guardar_json_seguro(hb_api, ARCHIVOS["heartbeat"])
-            logger.warning("📴 API caída: alerta enviada (no se repetirá hasta la recuperación)")
-        else:
-            logger.warning("📴 API sigue caída: no se reenvía la alerta")
-        raise RuntimeError("No se pudo obtener datos de la API")
-
-    # API respondió OK: si veníamos de una caída previa, avisar la recuperación
-    hb_api = cargar_json(ARCHIVOS["heartbeat"]) or {}
-    if hb_api.get("api_caida"):
-        enviar_telegram(
-            "✅ La API del hospital volvió a responder\n\n"
-            "El monitor retomó la vigilancia normal de turnos."
-        )
-        hb_api["api_caida"] = False
-        guardar_json_seguro(hb_api, ARCHIVOS["heartbeat"])
-        logger.info("✅ API recuperada: alerta de recuperación enviada")
+        enviar_telegram("🚨 Error: No se pudo conectar con la API del hospital")
+        return
 
     # VERIFICAR si es primera ejecución
     es_primera_ejecucion = len(estado_anterior) == 0
@@ -970,10 +1165,7 @@ def main():
 
     guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
-    guardar_historial_cupos(procesador.estado_actual, ahora)
-    hb_estado = cargar_json(ARCHIVOS["heartbeat"]) or {}
-    hb_estado["ultima_ejecucion"] = ahora.isoformat()
-    guardar_json_seguro(hb_estado, ARCHIVOS["heartbeat"])
+    guardar_json_seguro({"ultima_ejecucion": ahora.isoformat()}, ARCHIVOS["heartbeat"])
     total_especialidades = len(procesador.estado_actual)
     slog.ejecucion(
         estado="ok",
@@ -981,7 +1173,16 @@ def main():
         cupos=sum(procesador.estado_actual.values()),
         con_cupos=len([c for c in procesador.estado_actual.values() if c > 0])
     )
-    guardar_estadisticas(procesador.cambios, procesador.estado_actual, es_primera_ejecucion)
+    guardar_estadisticas(procesador.cambios, procesador.estado_actual)
+
+    # ── CAPA PREDICTIVA (nueva, aislada): escribe predicciones.json. Nunca rompe el flujo. ──
+    try:
+        _stats_pred = cargar_json(ARCHIVOS["estadisticas"]) or {"eventos": [], "registros": {}}
+        _predicciones = generar_predicciones(_stats_pred, procesador.estado_actual, ahora)
+        guardar_json_seguro(_predicciones, ARCHIVOS["predicciones"])
+        logger.info(f"🧠 predicciones.json generado ({len(_predicciones['especialidades'])} especialidades)")
+    except Exception as e:
+        logger.error(f"Capa predictiva falló (no crítico, se ignora): {e}")
 
     # ✓ MODO PRUEBA: Forzar notificación con estado actual
     if os.environ.get("TEST_MODE") == "true":
@@ -1135,13 +1336,10 @@ def main():
     logger.info("═════════════════════════════════════════════════════")
 
 if __name__ == "__main__":
-    ping_healthchecks("/start")
     try:
         main()
-        ping_healthchecks()  # señal de éxito
     except KeyboardInterrupt:
         logger.info("Interrumpido por usuario")
     except Exception as e:
         logger.critical(f"Error crítico: {e}", exc_info=True)
-        ping_healthchecks("/fail")
-        raise
+        enviar_telegram(f"🚨 Error crítico: {str(e)[:100]}")
