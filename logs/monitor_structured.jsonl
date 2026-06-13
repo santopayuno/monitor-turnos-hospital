@@ -1693,3 +1693,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "PEDIATRIA CONSULTA", "cupos": 0, "ts": "2026-06-13T15:01:31.752108"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 156, "con_cupos": 13, "ts": "2026-06-13T15:15:51.777004"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 156, "con_cupos": 13, "ts": "2026-06-13T15:30:13.639267"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 153, "con_cupos": 13, "ts": "2026-06-13T15:45:54.901450"}
