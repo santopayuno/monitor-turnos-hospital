@@ -1701,3 +1701,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 145, "con_cupos": 12, "ts": "2026-06-13T16:46:19.177077"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-13T16:46:19.201617"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 143, "con_cupos": 12, "ts": "2026-06-13T17:00:36.898293"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 139, "con_cupos": 12, "ts": "2026-06-13T17:16:20.932795"}
