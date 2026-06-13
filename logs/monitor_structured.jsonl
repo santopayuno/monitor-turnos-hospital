@@ -1668,3 +1668,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 101, "con_cupos": 10, "ts": "2026-06-13T11:00:17.781833"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 100, "con_cupos": 9, "ts": "2026-06-13T11:15:17.711358"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-13T11:15:17.724258"}
+{"evento": "error", "contexto": "api", "mensaje": "Error de red: HTTPSConnectionPool(host='sganotti.mendoza.gov.ar', port=443): Max retries exceeded with url: /digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular (Caused by ResponseError('too many 503 error responses'))", "ts": "2026-06-13T11:31:57.451375"}
