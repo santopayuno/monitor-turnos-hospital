@@ -9270,6 +9270,12 @@
         "con_cupos": 12,
         "total_cupos": 148,
         "cambios": 0
+      },
+      {
+        "hora": "13:46:19",
+        "con_cupos": 12,
+        "total_cupos": 145,
+        "cambios": 1
       }
     ]
   },
@@ -12801,6 +12807,12 @@
       "tipo": "agotados",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-13T13:46:19.178945-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
