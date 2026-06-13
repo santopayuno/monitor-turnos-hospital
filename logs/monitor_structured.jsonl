@@ -1687,3 +1687,4 @@
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-13T14:01:05.170355"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 202, "con_cupos": 14, "ts": "2026-06-13T14:16:00.596575"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 4, "ts": "2026-06-13T14:16:00.612803"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 201, "con_cupos": 14, "ts": "2026-06-13T14:30:38.142443"}
