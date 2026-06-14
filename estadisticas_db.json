@@ -9806,6 +9806,12 @@
         "con_cupos": 9,
         "total_cupos": 118,
         "cambios": 1
+      },
+      {
+        "hora": "12:16:20",
+        "con_cupos": 9,
+        "total_cupos": 116,
+        "cambios": 1
       }
     ]
   },
@@ -13361,6 +13367,12 @@
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-14T12:16:20.050928-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
