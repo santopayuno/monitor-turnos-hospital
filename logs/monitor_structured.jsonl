@@ -1731,3 +1731,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-13T23:30:54.865021"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 130, "con_cupos": 10, "ts": "2026-06-13T23:45:49.620790"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 130, "con_cupos": 10, "ts": "2026-06-14T00:00:49.105314"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 130, "con_cupos": 10, "ts": "2026-06-14T00:16:14.411296"}
