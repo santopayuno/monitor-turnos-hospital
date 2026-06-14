@@ -46,7 +46,8 @@ ARCHIVOS = {
     "reporte": "reporte_diario.txt",
     "heartbeat": "heartbeat.json",
     "estado_anterior": "estado_anterior.json",
-    "predicciones": "predicciones.json"
+    "predicciones": "predicciones.json",
+    "historial_cupos": "historial_cupos.json"
 }
 
 REEMPLAZOS_NOMBRES = {
@@ -1086,6 +1087,43 @@ def generar_predicciones(stats, estado_actual, ahora):
 
 
 # ═══════════════════════════════════════════════════════════════
+# HISTORIAL DE CUPOS (velocidad reciente)
+# ═══════════════════════════════════════════════════════════════
+# Mantiene historial_cupos.json: por especialidad, lecturas recientes {t, c}.
+# El Index lo usa para detectar si una especialidad "se está agotando rápido".
+# Solo guarda especialidades con cupos > 0 y conserva una ventana corta (acotado).
+
+def guardar_historial_cupos(estado_actual, ahora):
+    VENTANA_MIN = 180   # conservar lecturas de las últimas 3 horas
+    MAX_LECTURAS = 40   # tope duro de lecturas por especialidad
+    hist = cargar_json(ARCHIVOS["historial_cupos"]) or {}
+    t_iso = ahora.isoformat()
+
+    # 1) Agregar la lectura actual (solo especialidades con cupos disponibles)
+    for nombre, cupos in estado_actual.items():
+        if cupos and cupos > 0:
+            hist.setdefault(nombre, []).append({"t": t_iso, "c": cupos})
+
+    # 2) Podar lecturas viejas y descartar especialidades sin lecturas recientes
+    limpio = {}
+    for nombre, lecturas in hist.items():
+        recientes = []
+        for l in lecturas:
+            try:
+                t = datetime.fromisoformat(l["t"])
+                if (ahora - t).total_seconds() <= VENTANA_MIN * 60:
+                    recientes.append(l)
+            except Exception:
+                continue
+        recientes = recientes[-MAX_LECTURAS:]
+        if recientes:
+            limpio[nombre] = recientes
+
+    guardar_json_seguro(limpio, ARCHIVOS["historial_cupos"])
+    return limpio
+
+
+# ═══════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════
 
@@ -1131,6 +1169,13 @@ def main():
         logger.info(f"🧠 predicciones.json generado ({len(_predicciones['especialidades'])} especialidades)")
     except Exception as e:
         logger.error(f"Capa predictiva falló (no crítico, se ignora): {e}")
+
+    # ── HISTORIAL DE CUPOS (nuevo, aislado): escribe historial_cupos.json para la velocidad. ──
+    try:
+        _hist = guardar_historial_cupos(procesador.estado_actual, ahora)
+        logger.info(f"📉 historial_cupos.json actualizado ({len(_hist)} especialidades con cupos)")
+    except Exception as e:
+        logger.error(f"Historial de cupos falló (no crítico, se ignora): {e}")
 
     # ✓ MODO PRUEBA: Forzar notificación con estado actual
     if os.environ.get("TEST_MODE") == "true":
