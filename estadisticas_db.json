@@ -9517,6 +9517,14 @@
         "total_cupos": 129,
         "cambios": 0
       }
+    ],
+    "2026-06-14": [
+      {
+        "hora": "00:00:52",
+        "con_cupos": 10,
+        "total_cupos": 129,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
