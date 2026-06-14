@@ -9986,6 +9986,12 @@
         "con_cupos": 9,
         "total_cupos": 105,
         "cambios": 0
+      },
+      {
+        "hora": "20:00:44",
+        "con_cupos": 8,
+        "total_cupos": 103,
+        "cambios": 1
       }
     ]
   },
@@ -13547,6 +13553,12 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA PEDIATRICA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-14T20:00:44.754133-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
