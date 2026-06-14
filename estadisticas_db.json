@@ -9800,6 +9800,12 @@
         "con_cupos": 10,
         "total_cupos": 119,
         "cambios": 0
+      },
+      {
+        "hora": "12:00:16",
+        "con_cupos": 9,
+        "total_cupos": 118,
+        "cambios": 1
       }
     ]
   },
@@ -13348,6 +13354,12 @@
       "fecha": "2026-06-13T20:30:54.846803-03:00",
       "tipo": "agotados",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-14T12:00:16.741718-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
