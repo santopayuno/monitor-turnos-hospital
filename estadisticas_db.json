@@ -10234,6 +10234,12 @@
         "con_cupos": 8,
         "total_cupos": 95,
         "cambios": 0
+      },
+      {
+        "hora": "06:15:34",
+        "con_cupos": 8,
+        "total_cupos": 94,
+        "cambios": 1
       }
     ]
   },
@@ -13806,6 +13812,12 @@
       "fecha": "2026-06-14T23:00:57.648355-03:00",
       "tipo": "ultimos",
       "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-15T06:15:34.206513-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
       "cupos": 4
     }
   ],
