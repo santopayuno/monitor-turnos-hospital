@@ -5,7 +5,7 @@ Sistema profesional de monitoreo automático
 Características:
 - Consulta API cada 5 minutos
 - Notificaciones inteligentes en Telegram
-- Estadísticas históricas (90 días)
+- Estadísticas históricas (180 días)
 - Dashboard web interactivo
 - Diseño profesional y moderno
 - Todos los cambios estéticos finales
@@ -681,12 +681,12 @@ def guardar_estadisticas(cambios, estado_actual):
                     })
                     eventos_existentes.add(evento_key)
 
-        # Limpiar eventos antiguos (90 días)
-        fecha_limite = (ahora - timedelta(days=90)).isoformat()
+        # Limpiar eventos antiguos (180 días)
+        fecha_limite = (ahora - timedelta(days=180)).isoformat()
         stats["eventos"] = [e for e in stats["eventos"] if e["fecha"] > fecha_limite]
 
-        # Limpiar registros diarios antiguos (90 días)
-        fecha_limite_registros = (ahora - timedelta(days=90)).strftime("%Y-%m-%d")
+        # Limpiar registros diarios antiguos (180 días)
+        fecha_limite_registros = (ahora - timedelta(days=180)).strftime("%Y-%m-%d")
         stats["registros"] = {
             f: r for f, r in stats["registros"].items()
             if f >= fecha_limite_registros
