@@ -10058,6 +10058,12 @@
         "con_cupos": 8,
         "total_cupos": 100,
         "cambios": 0
+      },
+      {
+        "hora": "23:00:57",
+        "con_cupos": 8,
+        "total_cupos": 99,
+        "cambios": 1
       }
     ]
   },
@@ -13625,6 +13631,12 @@
       "tipo": "agotados",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-14T23:00:57.648355-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
