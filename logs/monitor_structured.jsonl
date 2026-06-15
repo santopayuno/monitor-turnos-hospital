@@ -1867,3 +1867,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 95, "con_cupos": 8, "ts": "2026-06-15T09:00:49.843665"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 94, "con_cupos": 8, "ts": "2026-06-15T09:15:34.204541"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA GENERAL", "cupos": 4, "ts": "2026-06-15T09:15:34.229407"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 93, "con_cupos": 8, "ts": "2026-06-15T09:31:11.803605"}
