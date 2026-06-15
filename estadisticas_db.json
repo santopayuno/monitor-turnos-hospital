@@ -10396,6 +10396,12 @@
         "con_cupos": 8,
         "total_cupos": 89,
         "cambios": 0
+      },
+      {
+        "hora": "13:00:57",
+        "con_cupos": 7,
+        "total_cupos": 87,
+        "cambios": 1
       }
     ]
   },
@@ -13975,6 +13981,12 @@
       "tipo": "ultimos",
       "especialidad": "CIRUGIA GENERAL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-15T13:00:57.448258-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
