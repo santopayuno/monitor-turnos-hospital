@@ -11010,6 +11010,12 @@
         "con_cupos": 24,
         "total_cupos": 621,
         "cambios": 3
+      },
+      {
+        "hora": "15:00:50",
+        "con_cupos": 22,
+        "total_cupos": 590,
+        "cambios": 4
       }
     ]
   },
@@ -14978,6 +14984,30 @@
       "fecha": "2026-06-16T14:45:36.201342-03:00",
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T15:00:50.590195-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-16T15:00:50.590195-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-16T15:00:50.590195-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T15:00:50.590195-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
