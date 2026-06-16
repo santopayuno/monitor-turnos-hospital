@@ -1962,3 +1962,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-16T07:45:29.061504"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 76, "con_cupos": 7, "ts": "2026-06-16T08:00:14.138628"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 76, "con_cupos": 7, "ts": "2026-06-16T08:15:12.159773"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 76, "con_cupos": 7, "ts": "2026-06-16T08:30:24.253893"}
