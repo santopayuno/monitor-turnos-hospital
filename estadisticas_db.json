@@ -10836,6 +10836,12 @@
         "con_cupos": 9,
         "total_cupos": 284,
         "cambios": 2
+      },
+      {
+        "hora": "07:16:19",
+        "con_cupos": 8,
+        "total_cupos": 272,
+        "cambios": 1
       }
     ]
   },
@@ -14445,6 +14451,12 @@
       "tipo": "reaperturas",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 138
+    },
+    {
+      "fecha": "2026-06-16T07:16:19.654856-03:00",
+      "tipo": "agotados",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

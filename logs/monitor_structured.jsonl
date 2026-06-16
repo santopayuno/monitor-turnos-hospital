@@ -1970,3 +1970,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 74, "con_cupos": 7, "ts": "2026-06-16T09:46:13.318093"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 284, "con_cupos": 9, "ts": "2026-06-16T10:00:46.781288"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-16T10:00:47.800173"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 272, "con_cupos": 8, "ts": "2026-06-16T10:16:19.652151"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 0, "ts": "2026-06-16T10:16:19.683803"}
