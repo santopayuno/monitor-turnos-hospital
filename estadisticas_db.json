@@ -11124,6 +11124,12 @@
         "con_cupos": 19,
         "total_cupos": 444,
         "cambios": 0
+      },
+      {
+        "hora": "19:46:11",
+        "con_cupos": 19,
+        "total_cupos": 437,
+        "cambios": 1
       }
     ]
   },
@@ -15164,6 +15170,12 @@
       "fecha": "2026-06-16T18:30:25.786666-03:00",
       "tipo": "ultimos",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-16T19:46:11.005592-03:00",
+      "tipo": "ultimos",
+      "especialidad": "COLOPROCTOLOGIA",
       "cupos": 4
     }
   ],
