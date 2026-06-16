@@ -2011,3 +2011,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 964, "con_cupos": 29, "ts": "2026-06-16T13:31:24.353818"}
 {"evento": "error", "contexto": "api", "mensaje": "Error de red: HTTPSConnectionPool(host='sganotti.mendoza.gov.ar', port=443): Max retries exceeded with url: /digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular (Caused by ResponseError('too many 503 error responses'))", "ts": "2026-06-16T13:46:29.461881"}
 {"evento": "error", "contexto": "api", "mensaje": "Error de red: HTTPSConnectionPool(host='sganotti.mendoza.gov.ar', port=443): Max retries exceeded with url: /digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular (Caused by ResponseError('too many 503 error responses'))", "ts": "2026-06-16T14:01:31.688103"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 964, "con_cupos": 29, "ts": "2026-06-16T14:16:08.316768"}
