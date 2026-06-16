@@ -11034,6 +11034,12 @@
         "con_cupos": 22,
         "total_cupos": 540,
         "cambios": 0
+      },
+      {
+        "hora": "16:00:52",
+        "con_cupos": 21,
+        "total_cupos": 532,
+        "cambios": 1
       }
     ]
   },
@@ -15039,6 +15045,12 @@
       "tipo": "ultimos",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-16T16:00:52.063305-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
