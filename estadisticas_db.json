@@ -10986,6 +10986,12 @@
         "con_cupos": 28,
         "total_cupos": 936,
         "cambios": 1
+      },
+      {
+        "hora": "14:00:41",
+        "con_cupos": 27,
+        "total_cupos": 822,
+        "cambios": 3
       }
     ]
   },
@@ -14906,6 +14912,24 @@
       "fecha": "2026-06-16T13:46:10.394599-03:00",
       "tipo": "agotados",
       "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T14:00:41.779311-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-16T14:00:41.779311-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-16T14:00:41.779311-03:00",
+      "tipo": "agotados",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
