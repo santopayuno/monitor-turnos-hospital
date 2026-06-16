@@ -11016,6 +11016,12 @@
         "con_cupos": 22,
         "total_cupos": 590,
         "cambios": 4
+      },
+      {
+        "hora": "15:15:26",
+        "con_cupos": 22,
+        "total_cupos": 571,
+        "cambios": 1
       }
     ]
   },
@@ -15009,6 +15015,12 @@
       "tipo": "agotados",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T15:15:26.279497-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
