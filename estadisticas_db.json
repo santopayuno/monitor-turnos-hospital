@@ -10980,6 +10980,12 @@
         "con_cupos": 29,
         "total_cupos": 963,
         "cambios": 0
+      },
+      {
+        "hora": "13:46:10",
+        "con_cupos": 28,
+        "total_cupos": 936,
+        "cambios": 1
       }
     ]
   },
@@ -14894,6 +14900,12 @@
       "fecha": "2026-06-16T10:16:03.412088-03:00",
       "tipo": "agotados",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T13:46:10.394599-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
       "cupos": 0
     }
   ],
