@@ -11082,6 +11082,12 @@
         "con_cupos": 20,
         "total_cupos": 481,
         "cambios": 0
+      },
+      {
+        "hora": "18:00:41",
+        "con_cupos": 19,
+        "total_cupos": 473,
+        "cambios": 1
       }
     ]
   },
@@ -15111,6 +15117,12 @@
       "tipo": "ultimos",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-16T18:00:41.668253-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
