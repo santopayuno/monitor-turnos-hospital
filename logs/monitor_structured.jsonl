@@ -1957,3 +1957,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 76, "con_cupos": 7, "ts": "2026-06-16T07:01:19.627947"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 76, "con_cupos": 7, "ts": "2026-06-16T07:15:30.896774"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 76, "con_cupos": 7, "ts": "2026-06-16T07:30:41.886536"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 76, "con_cupos": 7, "ts": "2026-06-16T07:45:29.041751"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 1, "ts": "2026-06-16T07:45:29.061431"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-16T07:45:29.061504"}

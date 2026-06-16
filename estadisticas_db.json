@@ -10776,6 +10776,12 @@
         "con_cupos": 7,
         "total_cupos": 76,
         "cambios": 0
+      },
+      {
+        "hora": "04:45:29",
+        "con_cupos": 7,
+        "total_cupos": 76,
+        "cambios": 2
       }
     ]
   },
@@ -14361,6 +14367,18 @@
       "tipo": "agotados",
       "especialidad": "CIRUGIA GENERAL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T04:45:29.043267-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-16T04:45:29.043267-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
