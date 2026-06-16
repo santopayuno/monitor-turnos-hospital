@@ -10992,6 +10992,12 @@
         "con_cupos": 27,
         "total_cupos": 822,
         "cambios": 3
+      },
+      {
+        "hora": "14:15:54",
+        "con_cupos": 26,
+        "total_cupos": 725,
+        "cambios": 2
       }
     ]
   },
@@ -14930,6 +14936,18 @@
       "fecha": "2026-06-16T14:00:41.779311-03:00",
       "tipo": "agotados",
       "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T14:15:54.948300-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-16T14:15:54.948300-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
       "cupos": 0
     }
   ],

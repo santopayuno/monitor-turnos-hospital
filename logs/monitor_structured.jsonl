@@ -2027,3 +2027,6 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-16T17:00:41.798662"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 4, "ts": "2026-06-16T17:00:41.798725"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-16T17:00:41.798752"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 725, "con_cupos": 26, "ts": "2026-06-16T17:15:54.946227"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-16T17:15:54.970266"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NUTRICION GENERAL", "cupos": 0, "ts": "2026-06-16T17:15:54.970317"}
