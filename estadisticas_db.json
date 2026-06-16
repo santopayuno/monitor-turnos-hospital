@@ -10908,6 +10908,12 @@
         "con_cupos": 33,
         "total_cupos": 1104,
         "cambios": 3
+      },
+      {
+        "hora": "10:16:03",
+        "con_cupos": 29,
+        "total_cupos": 964,
+        "cambios": 6
       }
     ]
   },
@@ -14786,6 +14792,42 @@
       "fecha": "2026-06-16T10:00:43.454918-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T10:16:03.412088-03:00",
+      "tipo": "ultimos",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-16T10:16:03.412088-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-16T10:16:03.412088-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T10:16:03.412088-03:00",
+      "tipo": "agotados",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T10:16:03.412088-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T10:16:03.412088-03:00",
+      "tipo": "agotados",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
