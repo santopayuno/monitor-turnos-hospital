@@ -10661,6 +10661,14 @@
         "total_cupos": 77,
         "cambios": 0
       }
+    ],
+    "2026-06-16": [
+      {
+        "hora": "00:01:01",
+        "con_cupos": 7,
+        "total_cupos": 76,
+        "cambios": 0
+      }
     ]
   },
   "eventos": [
