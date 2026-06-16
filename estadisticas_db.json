@@ -10890,6 +10890,12 @@
         "con_cupos": 8,
         "total_cupos": 172,
         "cambios": 0
+      },
+      {
+        "hora": "09:30:38",
+        "con_cupos": 8,
+        "total_cupos": 126,
+        "cambios": 4
       }
     ]
   },
@@ -14504,6 +14510,30 @@
       "fecha": "2026-06-16T07:16:19.654856-03:00",
       "tipo": "agotados",
       "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T09:30:38.690352-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-16T09:30:38.690352-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T09:30:38.690352-03:00",
+      "tipo": "agotados",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T09:30:38.690352-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 0
     }
   ],

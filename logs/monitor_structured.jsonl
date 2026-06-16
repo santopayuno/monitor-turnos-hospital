@@ -1980,3 +1980,8 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 199, "con_cupos": 8, "ts": "2026-06-16T11:45:11.994658"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 185, "con_cupos": 8, "ts": "2026-06-16T12:00:33.860600"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 172, "con_cupos": 8, "ts": "2026-06-16T12:15:23.634988"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 126, "con_cupos": 8, "ts": "2026-06-16T12:30:38.688973"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA TORACICA", "cupos": 4, "ts": "2026-06-16T12:30:38.707068"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 0, "ts": "2026-06-16T12:30:38.707126"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 0, "ts": "2026-06-16T12:30:38.707146"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-16T12:30:38.707172"}
