@@ -10902,6 +10902,12 @@
         "con_cupos": 36,
         "total_cupos": 1335,
         "cambios": 37
+      },
+      {
+        "hora": "10:00:43",
+        "con_cupos": 33,
+        "total_cupos": 1104,
+        "cambios": 3
       }
     ]
   },
@@ -14763,6 +14769,24 @@
       "tipo": "ultimos",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-16T10:00:43.454918-03:00",
+      "tipo": "agotados",
+      "especialidad": "OFTALMOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T10:00:43.454918-03:00",
+      "tipo": "agotados",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T10:00:43.454918-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

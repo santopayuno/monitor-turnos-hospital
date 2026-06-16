@@ -1997,3 +1997,7 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 3, "ts": "2026-06-16T12:46:04.869110"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 3, "ts": "2026-06-16T12:46:04.869124"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-16T12:46:05.525276"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1104, "con_cupos": 33, "ts": "2026-06-16T13:00:43.453540"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "OFTALMOLOGIA", "cupos": 0, "ts": "2026-06-16T13:00:43.477425"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ORL CONSULTAS", "cupos": 0, "ts": "2026-06-16T13:00:43.477492"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-16T13:00:43.477515"}
