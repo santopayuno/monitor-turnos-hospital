@@ -935,7 +935,7 @@ def _obs_de(nombre, eventos, ahora):
     porDia = {}
     for e in eventos:
         if e.get('especialidad') != nombre: continue
-        if e.get('tipo') not in ('nuevos', 'reaperturas'): continue
+        if e.get('tipo') not in ('nuevos', 'reaperturas', 'aumentos'): continue
         dt = _ev_dt(e['fecha']); fecha = e['fecha'][:10]; minu = dt.hour * 60 + dt.minute
         if fecha not in porDia:
             porDia[fecha] = {'dow': (dt.weekday() + 1) % 7, 'mins': [], 'peso': _peso_edad(dt, ahora),
@@ -984,14 +984,14 @@ def generar_frase_cuando(nombre, eventos, ahora):
         pesoRec = sum(o['peso'] for o in rec) or 1.0
         if topR != topV and pr[topR] >= 0.6 * pesoRec:
             cl = horaDeDows([topR])
-            return (f"Últimamente viene abriendo los {_plural_dia(DIAS_SEM[topR])} alrededor de las {_hhmm(cl[0]['rep'])} hs.", "media", "reciente")
+            return (f"Últimamente vienen apareciendo turnos los {_plural_dia(DIAS_SEM[topR])} alrededor de las {_hhmm(cl[0]['rep'])} hs.", "media", "reciente")
 
     if distintosDows >= 5 and (topPeso / pesoTotal) < 0.45:
         cl = horaDeDows(dowsOrden)
         conf = "alta" if nObs >= NOBS_MIN_CASI_TODOS else "media"
         if cl and cl[0]['peso'] / pesoTotal >= 0.5:
-            return (f"Viene apareciendo casi todos los días alrededor de las {_hhmm(cl[0]['rep'])} hs.", conf, "abundancia")
-        return ("Viene apareciendo casi todos los días", conf, "abundancia")
+            return (f"Suele haber turnos casi todos los días alrededor de las {_hhmm(cl[0]['rep'])} hs.", conf, "abundancia")
+        return ("Suele haber turnos casi todos los días", conf, "abundancia")
 
     if pesoHab / pesoTotal >= 0.6:
         nombresHab = [_plural_dia(DIAS_SEM[d]) for d in habituales]
@@ -1002,23 +1002,23 @@ def generar_frase_cuando(nombre, eventos, ahora):
                     clHab[1]['peso'] / clTot >= 0.30 and abs(clHab[0]['rep'] - clHab[1]['rep']) >= 90):
                 dos = sorted([clHab[0]['rep'], clHab[1]['rep']])
                 conf = "alta" if diasD >= DIAS_MIN_ALTA else "media"
-                return (f"Suele abrir los {nombresHab[0]} cerca de las {_hhmm(dos[0])} hs y nuevamente alrededor de las {_hhmm(dos[1])} hs.", conf, "certero")
+                return (f"Suele haber turnos los {nombresHab[0]} cerca de las {_hhmm(dos[0])} hs y nuevamente alrededor de las {_hhmm(dos[1])} hs.", conf, "certero")
             if clHab[0]['n'] >= 2 and clHab[0]['peso'] / clTot >= 0.6:
                 if diasD >= DIAS_MIN_ALTA:
-                    return (f"Suele abrir los {nombresHab[0]} alrededor de las {_hhmm(clHab[0]['rep'])} hs.", "alta", "certero")
-                return (f"Suele abrir los {nombresHab[0]} {_franja(clHab[0]['rep'])}", "media", "atencion")
+                    return (f"Suele haber turnos los {nombresHab[0]} alrededor de las {_hhmm(clHab[0]['rep'])} hs.", "alta", "certero")
+                return (f"Suele haber turnos los {nombresHab[0]} {_franja(clHab[0]['rep'])}", "media", "atencion")
             if diasD >= 2:
-                return (f"Viene abriendo los {nombresHab[0]} {_franja(clHab[0]['rep'])}", "media", "atencion")
+                return (f"Suele haber turnos los {nombresHab[0]} {_franja(clHab[0]['rep'])}", "media", "atencion")
             return baja()
         if 2 <= len(habituales) <= 4:
             diasHab = sum(dowCount[d] for d in habituales)
             if clHab and clHab[0]['peso'] / clTot >= 0.5:
                 conf = "alta" if diasHab >= DIAS_MIN_ALTA else "media"
                 if _es_consecutivo(habituales):
-                    return (f"Suele abrir de {DIAS_SEM[habituales[0]]} a {DIAS_SEM[habituales[-1]]} cerca de las {_hhmm(clHab[0]['rep'])} hs.", conf, "certero")
-                return (f"Suele abrir los {_unir(nombresHab)} cerca de las {_hhmm(clHab[0]['rep'])} hs.", conf, "certero")
+                    return (f"Suele haber turnos de {DIAS_SEM[habituales[0]]} a {DIAS_SEM[habituales[-1]]} cerca de las {_hhmm(clHab[0]['rep'])} hs.", conf, "certero")
+                return (f"Suele haber turnos los {_unir(nombresHab)} cerca de las {_hhmm(clHab[0]['rep'])} hs.", conf, "certero")
             if diasHab >= 3:
-                return (f"Viene abriendo los {_unir(nombresHab)} {_franja(clHab[0]['rep'])}", "media", "atencion")
+                return (f"Suele haber turnos los {_unir(nombresHab)} {_franja(clHab[0]['rep'])}", "media", "atencion")
             return baja()
 
     meses = {o['mes'] for o in obs}
@@ -1026,20 +1026,20 @@ def generar_frase_cuando(nombre, eventos, ahora):
         pIni = sum(o['peso'] for o in obs if o['domMes'] <= 7)
         pFin = sum(o['peso'] for o in obs if o['domMes'] >= 23)
         if pIni / pesoTotal >= 0.6:
-            return ("Suele habilitar turnos durante los primeros días del mes", "media", "mensual")
+            return ("Suele haber turnos durante los primeros días del mes", "media", "mensual")
         if pFin / pesoTotal >= 0.6:
-            return ("Generalmente reaparece hacia fin de mes", "media", "mensual")
+            return ("Suele haber turnos hacia fin de mes", "media", "mensual")
 
     clTodos = _clusters([(o['min'], o['peso']) for o in obs])
     if clTodos and clTodos[0]['peso'] / pesoTotal >= 0.6 and nObs >= 3:
-        return (f"Suele abrir {_franja(clTodos[0]['rep'])}", "media", _cat_franja(clTodos[0]['rep']))
+        return (f"Suele haber turnos {_franja(clTodos[0]['rep'])}", "media", _cat_franja(clTodos[0]['rep']))
 
     return baja()
 
 
 def generar_frase_duracion(nombre, eventos):
     items = sorted([e for e in eventos if e.get('especialidad') == nombre], key=lambda x: x['fecha'])
-    aps = [_ev_dt(e['fecha']) for e in items if e['tipo'] in ('nuevos', 'reaperturas')]
+    aps = [_ev_dt(e['fecha']) for e in items if e['tipo'] in ('nuevos', 'reaperturas', 'aumentos')]
     agos = [_ev_dt(e['fecha']) for e in items if e['tipo'] == 'agotados']
     dur = []
     for a in aps:
@@ -1051,7 +1051,7 @@ def generar_frase_duracion(nombre, eventos):
 
 def generar_frase_frecuencia(nombre, eventos, ahora):
     aps_dias = {e['fecha'][:10] for e in eventos
-                if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas')
+                if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas', 'aumentos')
                 and (ahora - _ev_dt(e['fecha'])).total_seconds() <= FREC_DIAS_VENTANA * 86400}
     if len(aps_dias) >= FREC_DIAS_MIN:
         return "Últimamente aparece con frecuencia"
@@ -1060,11 +1060,11 @@ def generar_frase_frecuencia(nombre, eventos, ahora):
 def generar_frase_ausencia(nombre, eventos, estado_actual, ahora):
     if estado_actual is None or estado_actual.get(nombre, 0) != 0: return None
     aps = [_ev_dt(e['fecha']) for e in eventos
-           if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas')]
+           if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas', 'aumentos')]
     if not aps: return None
     dias = (ahora - max(aps)).total_seconds() / 86400.0
-    if dias >= AUSENCIA_SEMANAS: return "Hace semanas que no abre"
-    if dias >= AUSENCIA_DIAS: return "Hace varios días que no abre"
+    if dias >= AUSENCIA_SEMANAS: return "Hace semanas sin turnos nuevos"
+    if dias >= AUSENCIA_DIAS: return "Hace varios días sin turnos nuevos"
     return None
 
 
