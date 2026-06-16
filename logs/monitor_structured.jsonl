@@ -2054,3 +2054,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 500, "con_cupos": 20, "ts": "2026-06-16T20:00:57.608556"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 492, "con_cupos": 20, "ts": "2026-06-16T20:15:13.253881"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 2, "ts": "2026-06-16T20:15:13.277872"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 486, "con_cupos": 20, "ts": "2026-06-16T20:31:07.299913"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-16T20:31:07.324233"}
