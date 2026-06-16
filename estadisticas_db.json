@@ -11094,6 +11094,12 @@
         "con_cupos": 19,
         "total_cupos": 466,
         "cambios": 0
+      },
+      {
+        "hora": "18:30:25",
+        "con_cupos": 19,
+        "total_cupos": 463,
+        "cambios": 1
       }
     ]
   },
@@ -15129,6 +15135,12 @@
       "tipo": "agotados",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T18:30:25.786666-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false

@@ -2060,3 +2060,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 473, "con_cupos": 19, "ts": "2026-06-16T21:00:41.666009"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-16T21:00:41.692010"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 466, "con_cupos": 19, "ts": "2026-06-16T21:16:21.032457"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 463, "con_cupos": 19, "ts": "2026-06-16T21:30:25.785136"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-16T21:30:25.805789"}
