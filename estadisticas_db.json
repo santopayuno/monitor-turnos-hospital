@@ -11022,6 +11022,12 @@
         "con_cupos": 22,
         "total_cupos": 571,
         "cambios": 1
+      },
+      {
+        "hora": "15:30:54",
+        "con_cupos": 22,
+        "total_cupos": 549,
+        "cambios": 1
       }
     ]
   },
@@ -15020,6 +15026,12 @@
       "fecha": "2026-06-16T15:15:26.279497-03:00",
       "tipo": "ultimos",
       "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-16T15:30:54.295664-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 3
     }
   ],
