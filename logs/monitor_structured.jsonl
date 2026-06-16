@@ -2008,3 +2008,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 0, "ts": "2026-06-16T13:16:03.429863"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-16T13:16:03.429878"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-16T13:16:03.429895"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 964, "con_cupos": 29, "ts": "2026-06-16T13:31:24.353818"}
