@@ -11004,6 +11004,12 @@
         "con_cupos": 26,
         "total_cupos": 670,
         "cambios": 0
+      },
+      {
+        "hora": "14:45:36",
+        "con_cupos": 24,
+        "total_cupos": 621,
+        "cambios": 3
       }
     ]
   },
@@ -14954,6 +14960,24 @@
       "fecha": "2026-06-16T14:15:54.948300-03:00",
       "tipo": "agotados",
       "especialidad": "NUTRICION GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T14:45:36.201342-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-16T14:45:36.201342-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-16T14:45:36.201342-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
