@@ -11522,6 +11522,12 @@
         "con_cupos": 20,
         "total_cupos": 314,
         "cambios": 1
+      },
+      {
+        "hora": "12:00:47",
+        "con_cupos": 19,
+        "total_cupos": 301,
+        "cambios": 2
       }
     ]
   },
@@ -15629,6 +15635,18 @@
       "tipo": "ultimos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-17T12:00:47.358165-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-17T12:00:47.358165-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

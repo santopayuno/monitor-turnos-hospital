@@ -2143,3 +2143,6 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-17T14:31:22.449395"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 314, "con_cupos": 20, "ts": "2026-06-17T14:46:23.723400"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 2, "ts": "2026-06-17T14:46:23.744211"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 301, "con_cupos": 19, "ts": "2026-06-17T15:00:47.356033"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-17T15:00:47.386111"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-17T15:00:47.386196"}
