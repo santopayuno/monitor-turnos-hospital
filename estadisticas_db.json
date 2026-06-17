@@ -11480,6 +11480,12 @@
         "con_cupos": 20,
         "total_cupos": 420,
         "cambios": 0
+      },
+      {
+        "hora": "10:22:32",
+        "con_cupos": 21,
+        "total_cupos": 434,
+        "cambios": 1
       }
     ]
   },
@@ -15569,6 +15575,12 @@
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-17T10:22:32.582018-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 19
     }
   ],
   "es_primera_ejecucion": false
