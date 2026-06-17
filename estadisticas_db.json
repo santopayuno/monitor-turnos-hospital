@@ -11444,6 +11444,12 @@
         "con_cupos": 21,
         "total_cupos": 493,
         "cambios": 0
+      },
+      {
+        "hora": "09:00:53",
+        "con_cupos": 20,
+        "total_cupos": 478,
+        "cambios": 1
       }
     ]
   },
@@ -15527,6 +15533,12 @@
       "tipo": "ultimos",
       "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-17T09:00:53.591112-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
