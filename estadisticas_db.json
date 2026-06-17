@@ -11636,6 +11636,12 @@
         "con_cupos": 19,
         "total_cupos": 242,
         "cambios": 0
+      },
+      {
+        "hora": "16:46:14",
+        "con_cupos": 18,
+        "total_cupos": 239,
+        "cambios": 1
       }
     ]
   },
@@ -15767,6 +15773,12 @@
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-17T16:46:14.887830-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
