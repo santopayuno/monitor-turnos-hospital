@@ -2127,3 +2127,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 493, "con_cupos": 21, "ts": "2026-06-17T11:45:40.415556"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 478, "con_cupos": 20, "ts": "2026-06-17T12:00:53.589055"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "INFECTOLOGIA", "cupos": 0, "ts": "2026-06-17T12:00:53.618374"}
+{"evento": "error", "contexto": "api", "mensaje": "Error de red: HTTPSConnectionPool(host='sganotti.mendoza.gov.ar', port=443): Max retries exceeded with url: /digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular (Caused by NameResolutionError(\"HTTPSConnection(host='sganotti.mendoza.gov.ar', port=443): Failed to resolve 'sganotti.mendoza.gov.ar' ([Errno -2] Name or service not known)\"))", "ts": "2026-06-17T12:16:59.395605"}
