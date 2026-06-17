@@ -11642,6 +11642,12 @@
         "con_cupos": 18,
         "total_cupos": 239,
         "cambios": 1
+      },
+      {
+        "hora": "17:01:36",
+        "con_cupos": 18,
+        "total_cupos": 236,
+        "cambios": 1
       }
     ]
   },
@@ -15779,6 +15785,12 @@
       "tipo": "agotados",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-17T17:01:36.000326-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
