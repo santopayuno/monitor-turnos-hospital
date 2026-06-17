@@ -11402,6 +11402,12 @@
         "con_cupos": 19,
         "total_cupos": 372,
         "cambios": 0
+      },
+      {
+        "hora": "07:15:49",
+        "con_cupos": 21,
+        "total_cupos": 556,
+        "cambios": 2
       }
     ]
   },
@@ -15467,6 +15473,18 @@
       "tipo": "ultimos",
       "especialidad": "NEUMONOLOGIA INFANTIL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-17T07:15:49.036879-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 65
+    },
+    {
+      "fecha": "2026-06-17T07:15:49.036879-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 122
     }
   ],
   "es_primera_ejecucion": false
