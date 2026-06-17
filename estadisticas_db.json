@@ -11178,6 +11178,12 @@
         "con_cupos": 19,
         "total_cupos": 411,
         "cambios": 0
+      },
+      {
+        "hora": "22:00:45",
+        "con_cupos": 19,
+        "total_cupos": 406,
+        "cambios": 1
       }
     ]
   },
@@ -15225,6 +15231,12 @@
       "tipo": "ultimos",
       "especialidad": "COLOPROCTOLOGIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-16T22:00:45.161325-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
