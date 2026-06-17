@@ -2146,3 +2146,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 301, "con_cupos": 19, "ts": "2026-06-17T15:00:47.356033"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-17T15:00:47.386111"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-17T15:00:47.386196"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 293, "con_cupos": 19, "ts": "2026-06-17T15:15:41.442440"}
