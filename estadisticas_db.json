@@ -11426,6 +11426,12 @@
         "con_cupos": 21,
         "total_cupos": 527,
         "cambios": 0
+      },
+      {
+        "hora": "08:15:31",
+        "con_cupos": 21,
+        "total_cupos": 514,
+        "cambios": 1
       }
     ]
   },
@@ -15503,6 +15509,12 @@
       "tipo": "reaperturas",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 122
+    },
+    {
+      "fecha": "2026-06-17T08:15:31.588216-03:00",
+      "tipo": "ultimos",
+      "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
