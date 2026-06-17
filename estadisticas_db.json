@@ -11510,6 +11510,12 @@
         "con_cupos": 21,
         "total_cupos": 349,
         "cambios": 0
+      },
+      {
+        "hora": "11:31:22",
+        "con_cupos": 20,
+        "total_cupos": 326,
+        "cambios": 1
       }
     ]
   },
@@ -15605,6 +15611,12 @@
       "tipo": "reaperturas",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 19
+    },
+    {
+      "fecha": "2026-06-17T11:31:22.429493-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
