@@ -117,6 +117,7 @@ try:
     print("📝 Agregando archivos cambios...")
     run_cmd(['git', 'add', 'estado_turnos.json', 'estado_anterior.json', 'estadisticas_db.json', 'heartbeat.json'], ignore_error=True)
     run_cmd(['git', 'add', 'historial_cupos.json'], ignore_error=True)
+    run_cmd(['git', 'add', 'predicciones.json'], ignore_error=True)
     run_cmd(['git', 'add', 'logs/'], ignore_error=True)
 
     # ============================================================
