@@ -1,182 +1,239 @@
 {
-  "generado": "2026-06-13T09:02:00.280327-03:00",
+  "generado": "2026-06-17T09:45:47.651525-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
       "confianza": "alta",
+      "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "CARDIOLOGIA INFANTIL": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja"
+      "cuando": "Suele haber turnos los martes por la mañana",
+      "confianza": "media",
+      "categoria": "atencion"
     },
     "CIRUGIA GENERAL": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
-      "confianza": "alta"
+      "cuando": "Suele haber turnos los martes, viernes y sábados cerca de las 10:00 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "CIRUGIA INFANTIL": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja"
+      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "CIRUGIA TORACICA": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "CLINICA MEDICA CONSULTA": {
-      "cuando": "Viene apareciendo casi todos los días alrededor de las 7:15 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
       "confianza": "alta",
+      "categoria": "abundancia",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "COLOPROCTOLOGIA": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
-      "confianza": "alta"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja"
+      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:45 hs.",
+      "confianza": "media",
+      "categoria": "certero",
+      "ausencia": "Hace varios días sin turnos nuevos"
     },
     "DERMATOLOGIA GENERAL": {
-      "cuando": "Suele abrir los martes por la mañana",
-      "confianza": "media",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "DIABETOLOGIA GENERAL": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
-      "confianza": "alta"
+      "cuando": "Suele haber turnos los martes, jueves y viernes cerca de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele abrir los martes por la mañana",
-      "confianza": "media",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
-      "cuando": "Suele abrir los martes y viernes cerca de las 9:30 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
       "confianza": "alta",
+      "categoria": "abundancia",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
-      "confianza": "alta"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)": {
-      "cuando": "Suele abrir los martes por la mañana",
-      "confianza": "media"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "FLEBOLOGIA (CONSULTA)": {
-      "cuando": "Suele abrir los martes por la mañana",
-      "confianza": "media",
-      "duracion": "Cuando aparece, suele durar poco"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)": {
-      "cuando": "Suele abrir los martes por la mañana",
-      "confianza": "media",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "HEMATOLOGIA CLINICA": {
-      "cuando": "Suele abrir los martes por la mañana",
-      "confianza": "media"
+      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "INFECTOLOGIA": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "INFECTOLOGIA PEDIATRICA": {
-      "cuando": "Suele abrir los martes por la mañana",
-      "confianza": "media"
-    },
-    "NEFROLOGIA": {
-      "cuando": "Suele abrir por la mañana",
-      "confianza": "media",
+      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
+    "NEFROLOGIA": {
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana"
+    },
     "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "NEUMONOLOGIA INFANTIL": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
-      "cuando": "Suele abrir por la mañana",
-      "confianza": "media",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "abundancia",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "NUTRICION GENERAL": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
-      "duracion": "Cuando aparece, suele durar poco"
+      "categoria": "certero"
     },
     "OBSTETRICIA BAJO RIESGO": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele abrir los martes y sábados cerca de las 9:45 hs.",
+      "cuando": "Suele haber turnos los martes, jueves y sábados cerca de las 9:45 hs.",
       "confianza": "alta",
+      "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "Suele abrir los martes por la mañana",
+      "cuando": "Suele haber turnos los martes por la mañana",
       "confianza": "media",
-      "duracion": "Cuando aparece, suele durar poco"
+      "categoria": "atencion",
+      "duracion": "Cuando aparece, suele durar poco",
+      "ausencia": "Hace varios días sin turnos nuevos"
+    },
+    "OFTALMOLOGIA": {
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron"
     },
     "ONCOLOGIA": {
-      "cuando": "Suele abrir los martes y viernes cerca de las 9:15 hs.",
-      "confianza": "media"
+      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ORL CONSULTAS": {
-      "cuando": "Suele abrir los martes y jueves cerca de las 9:15 hs.",
-      "confianza": "media"
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele abrir por la mañana",
-      "confianza": "media"
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PEDIATRIA CONSULTA": {
-      "cuando": "Viene apareciendo casi todos los días alrededor de las 7:15 hs.",
-      "confianza": "media",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
+      "confianza": "alta",
+      "categoria": "abundancia",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PEDIATRIA MEDIANO RIESGO": {
-      "cuando": "Suele abrir los martes alrededor de las 9:45 hs.",
-      "confianza": "alta"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "ausencia": "Hace varios días sin turnos nuevos"
     },
     "PODOLOGIA": {
-      "cuando": "Suele abrir los martes alrededor de las 9:45 hs.",
-      "confianza": "alta"
+      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "PRE ANESTESIA PEDIATRIA": {
-      "cuando": "Suele abrir los martes y sábados cerca de las 10:15 hs.",
-      "confianza": "media"
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele abrir los martes, miércoles y viernes cerca de las 9:30 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:45 hs.",
       "confianza": "alta",
+      "categoria": "abundancia",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "TRAUMATOLOGIA ADULTO": {
-      "cuando": "Suele abrir los martes alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
+      "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "TRAUMATOLOGIA INFANTIL": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "UROLOGIA": {
-      "cuando": "Suele abrir los martes alrededor de las 9:45 hs.",
-      "confianza": "alta"
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     },
     "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)": {
-      "cuando": "Suele abrir los martes y viernes cerca de las 9:45 hs.",
-      "confianza": "media"
+      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero"
     }
   }
 }
