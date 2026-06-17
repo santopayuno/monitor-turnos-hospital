@@ -2086,3 +2086,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA", "cupos": 3, "ts": "2026-06-17T02:15:54.977862"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 4, "ts": "2026-06-17T02:15:54.977955"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 392, "con_cupos": 19, "ts": "2026-06-17T02:31:08.845626"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 391, "con_cupos": 19, "ts": "2026-06-17T02:46:28.806135"}
