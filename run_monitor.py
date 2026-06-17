@@ -99,6 +99,20 @@ try:
     print()
 
     # ============================================================
+    # PASO 3b: Avisar a Healthchecks que el monitor corrió bien
+    # (dead-man's-switch: si este ping no llega, Healthchecks alerta)
+    # ============================================================
+    if result.returncode == 0:
+        hc_url = os.getenv('HEALTHCHECK_URL', '')
+        if hc_url:
+            try:
+                import urllib.request
+                urllib.request.urlopen(hc_url, timeout=10)
+                print("✅ Healthchecks: ping de 'estoy vivo' enviado")
+            except Exception as e:
+                print(f"ℹ️ Healthchecks: no se pudo pingear ({e})")
+
+    # ============================================================
     # PASO 3: Git config (por si acaso)
     # ============================================================
     run_cmd(['git', 'config', 'user.email', 'railway@monitor.local'], ignore_error=True)
