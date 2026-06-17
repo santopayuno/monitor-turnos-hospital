@@ -2082,3 +2082,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 401, "con_cupos": 19, "ts": "2026-06-17T01:30:30.470115"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 400, "con_cupos": 19, "ts": "2026-06-17T01:45:08.671967"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 397, "con_cupos": 19, "ts": "2026-06-17T02:01:23.206169"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 394, "con_cupos": 19, "ts": "2026-06-17T02:15:54.956533"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA", "cupos": 3, "ts": "2026-06-17T02:15:54.977862"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 4, "ts": "2026-06-17T02:15:54.977955"}
