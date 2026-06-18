@@ -12094,6 +12094,12 @@
         "con_cupos": 30,
         "total_cupos": 298,
         "cambios": 0
+      },
+      {
+        "hora": "11:45:21",
+        "con_cupos": 30,
+        "total_cupos": 284,
+        "cambios": 1
       }
     ]
   },
@@ -16393,6 +16399,12 @@
       "tipo": "ultimos",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:45:21.606945-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
