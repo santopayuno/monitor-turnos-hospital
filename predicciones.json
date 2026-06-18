@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-18T12:30:50.238731-03:00",
+  "generado": "2026-06-18T12:45:44.344134-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -180,8 +180,7 @@
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
-      "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "duracion": "Cuando aparece, suele durar poco"
     },
     "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
