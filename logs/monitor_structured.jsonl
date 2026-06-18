@@ -2295,3 +2295,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-18T18:45:23.431873"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 140, "con_cupos": 19, "ts": "2026-06-18T19:00:24.446059"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 0, "ts": "2026-06-18T19:00:24.470804"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 140, "con_cupos": 19, "ts": "2026-06-18T19:15:09.466970"}
