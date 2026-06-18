@@ -2306,3 +2306,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 132, "con_cupos": 17, "ts": "2026-06-18T21:00:52.974380"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEFROLOGIA", "cupos": 0, "ts": "2026-06-18T21:00:52.995951"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 131, "con_cupos": 17, "ts": "2026-06-18T21:15:14.850681"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 131, "con_cupos": 17, "ts": "2026-06-18T21:30:26.602241"}
