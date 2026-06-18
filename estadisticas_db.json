@@ -11992,6 +11992,12 @@
         "con_cupos": 19,
         "total_cupos": 383,
         "cambios": 0
+      },
+      {
+        "hora": "07:30:20",
+        "con_cupos": 19,
+        "total_cupos": 385,
+        "cambios": 1
       }
     ]
   },
@@ -16153,6 +16159,12 @@
       "tipo": "aumentos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 61
+    },
+    {
+      "fecha": "2026-06-18T07:30:20.296017-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 131
     }
   ],
   "es_primera_ejecucion": false
