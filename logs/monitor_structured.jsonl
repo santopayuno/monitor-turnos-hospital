@@ -2270,3 +2270,6 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-18T15:00:49.318160"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-18T15:00:49.318177"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 238, "con_cupos": 26, "ts": "2026-06-18T15:16:31.533383"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 223, "con_cupos": 24, "ts": "2026-06-18T15:30:51.332356"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-18T15:30:51.360112"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "PODOLOGIA", "cupos": 0, "ts": "2026-06-18T15:30:51.360213"}

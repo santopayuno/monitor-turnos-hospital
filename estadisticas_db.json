@@ -12112,6 +12112,12 @@
         "con_cupos": 26,
         "total_cupos": 238,
         "cambios": 0
+      },
+      {
+        "hora": "12:30:51",
+        "con_cupos": 24,
+        "total_cupos": 223,
+        "cambios": 2
       }
     ]
   },
@@ -16452,6 +16458,18 @@
       "fecha": "2026-06-18T12:00:49.297472-03:00",
       "tipo": "agotados",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T12:30:51.334833-03:00",
+      "tipo": "agotados",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T12:30:51.334833-03:00",
+      "tipo": "agotados",
+      "especialidad": "PODOLOGIA",
       "cupos": 0
     }
   ],
