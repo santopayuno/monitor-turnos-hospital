@@ -12130,6 +12130,12 @@
         "con_cupos": 24,
         "total_cupos": 203,
         "cambios": 1
+      },
+      {
+        "hora": "13:15:39",
+        "con_cupos": 24,
+        "total_cupos": 194,
+        "cambios": 1
       }
     ]
   },
@@ -16489,6 +16495,12 @@
       "tipo": "ultimos",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-18T13:15:39.088696-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
