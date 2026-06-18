@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-18T11:01:30.392118-03:00",
+  "generado": "2026-06-18T11:15:07.379134-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -64,7 +64,8 @@
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
-      "duracion": "Cuando aparece, suele durar poco"
+      "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
       "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
@@ -83,7 +84,7 @@
       "categoria": "certero"
     },
     "FLEBOLOGIA (CONSULTA)": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco",
@@ -93,7 +94,8 @@
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
-      "duracion": "Cuando aparece, suele durar poco"
+      "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "HEMATOLOGIA CLINICA": {
       "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
@@ -102,9 +104,9 @@
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "INFECTOLOGIA": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -132,15 +134,16 @@
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:45 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 10:00 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "NUTRICION GENERAL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "OBSTETRICIA BAJO RIESGO": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
@@ -181,9 +184,9 @@
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PEDIATRIA CONSULTA": {
@@ -210,7 +213,7 @@
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:45 hs.",
+      "cuando": "Suele haber turnos casi todos los días",
       "confianza": "alta",
       "categoria": "abundancia",
       "frecuencia": "Últimamente aparece con frecuencia"
@@ -222,7 +225,7 @@
       "duracion": "Cuando aparece, suele durar poco"
     },
     "TRAUMATOLOGIA INFANTIL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
       "confianza": "alta",
       "categoria": "certero"
     },

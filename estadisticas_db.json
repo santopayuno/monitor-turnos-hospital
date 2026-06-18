@@ -12082,6 +12082,12 @@
         "con_cupos": 18,
         "total_cupos": 240,
         "cambios": 0
+      },
+      {
+        "hora": "11:15:08",
+        "con_cupos": 30,
+        "total_cupos": 299,
+        "cambios": 20
       }
     ]
   },
@@ -16261,6 +16267,126 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA PEDIATRICA",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "aumentos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 16
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-18T11:15:08.437690-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false

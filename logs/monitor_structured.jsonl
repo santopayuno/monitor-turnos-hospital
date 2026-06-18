@@ -2249,3 +2249,13 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 255, "con_cupos": 18, "ts": "2026-06-18T13:46:29.486043"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA PEDIATRICA", "cupos": 3, "ts": "2026-06-18T13:46:29.536041"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 240, "con_cupos": 18, "ts": "2026-06-18T14:01:31.467493"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 299, "con_cupos": 30, "ts": "2026-06-18T14:15:08.436049"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 16, "ts": "2026-06-18T14:15:08.462951"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 1, "ts": "2026-06-18T14:15:08.463042"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-18T14:15:08.463070"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 4, "ts": "2026-06-18T14:15:08.463089"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 1, "ts": "2026-06-18T14:15:08.463106"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-18T14:15:08.463136"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 1, "ts": "2026-06-18T14:15:08.463158"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-18T14:15:08.463187"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-18T14:15:09.055300"}
