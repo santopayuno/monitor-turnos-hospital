@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-18T15:15:41.171505-03:00",
+  "generado": "2026-06-18T15:30:14.487812-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -12,7 +12,8 @@
     "CARDIOLOGIA INFANTIL": {
       "cuando": "Suele haber turnos los martes por la mañana",
       "confianza": "media",
-      "categoria": "atencion"
+      "categoria": "atencion",
+      "duracion": "Cuando aparece, suele durar poco"
     },
     "CIRUGIA GENERAL": {
       "cuando": "Suele haber turnos los martes, viernes y sábados cerca de las 10:00 hs.",

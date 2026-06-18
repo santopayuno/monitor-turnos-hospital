@@ -12184,6 +12184,12 @@
         "con_cupos": 23,
         "total_cupos": 149,
         "cambios": 0
+      },
+      {
+        "hora": "15:30:16",
+        "con_cupos": 22,
+        "total_cupos": 146,
+        "cambios": 1
       }
     ]
   },
@@ -16560,6 +16566,12 @@
       "fecha": "2026-06-18T15:01:30.936867-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T15:30:16.071810-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
