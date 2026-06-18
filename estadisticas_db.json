@@ -12244,6 +12244,12 @@
         "con_cupos": 18,
         "total_cupos": 134,
         "cambios": 0
+      },
+      {
+        "hora": "18:00:52",
+        "con_cupos": 17,
+        "total_cupos": 132,
+        "cambios": 1
       }
     ]
   },
@@ -16650,6 +16656,12 @@
       "fecha": "2026-06-18T17:00:38.944496-03:00",
       "tipo": "agotados",
       "especialidad": "NUTRICION GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T18:00:52.976273-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
       "cupos": 0
     }
   ],
