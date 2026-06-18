@@ -12100,6 +12100,12 @@
         "con_cupos": 30,
         "total_cupos": 284,
         "cambios": 1
+      },
+      {
+        "hora": "12:00:49",
+        "con_cupos": 26,
+        "total_cupos": 255,
+        "cambios": 6
       }
     ]
   },
@@ -16405,6 +16411,42 @@
       "tipo": "ultimos",
       "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-18T12:00:49.297472-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-18T12:00:49.297472-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-18T12:00:49.297472-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T12:00:49.297472-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T12:00:49.297472-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T12:00:49.297472-03:00",
+      "tipo": "agotados",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

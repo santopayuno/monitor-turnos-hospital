@@ -2262,3 +2262,10 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 298, "con_cupos": 30, "ts": "2026-06-18T14:30:43.277479"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 284, "con_cupos": 30, "ts": "2026-06-18T14:45:21.604622"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-18T14:45:21.630886"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 255, "con_cupos": 26, "ts": "2026-06-18T15:00:49.295953"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA", "cupos": 3, "ts": "2026-06-18T15:00:49.318041"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 2, "ts": "2026-06-18T15:00:49.318102"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-18T15:00:49.318124"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-18T15:00:49.318144"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-18T15:00:49.318160"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-18T15:00:49.318177"}
