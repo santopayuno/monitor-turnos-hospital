@@ -12220,6 +12220,12 @@
         "con_cupos": 19,
         "total_cupos": 140,
         "cambios": 0
+      },
+      {
+        "hora": "17:00:38",
+        "con_cupos": 18,
+        "total_cupos": 138,
+        "cambios": 1
       }
     ]
   },
@@ -16620,6 +16626,12 @@
       "fecha": "2026-06-18T16:00:24.448200-03:00",
       "tipo": "agotados",
       "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T17:00:38.944496-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
       "cupos": 0
     }
   ],
