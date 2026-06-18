@@ -12190,6 +12190,12 @@
         "con_cupos": 22,
         "total_cupos": 146,
         "cambios": 1
+      },
+      {
+        "hora": "15:45:23",
+        "con_cupos": 20,
+        "total_cupos": 143,
+        "cambios": 2
       }
     ]
   },
@@ -16572,6 +16578,18 @@
       "fecha": "2026-06-18T15:30:16.071810-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T15:45:23.407810-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T15:45:23.407810-03:00",
+      "tipo": "agotados",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
     }
   ],

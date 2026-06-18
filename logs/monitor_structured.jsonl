@@ -2290,3 +2290,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 149, "con_cupos": 23, "ts": "2026-06-18T18:15:43.023873"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 146, "con_cupos": 22, "ts": "2026-06-18T18:30:16.069912"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-18T18:30:16.093223"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 143, "con_cupos": 20, "ts": "2026-06-18T18:45:23.405224"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-18T18:45:23.431821"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-18T18:45:23.431873"}
