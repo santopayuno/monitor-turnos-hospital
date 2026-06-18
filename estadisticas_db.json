@@ -12064,6 +12064,12 @@
         "con_cupos": 19,
         "total_cupos": 288,
         "cambios": 0
+      },
+      {
+        "hora": "10:30:16",
+        "con_cupos": 18,
+        "total_cupos": 277,
+        "cambios": 1
       }
     ]
   },
@@ -16231,6 +16237,12 @@
       "tipo": "aumentos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 131
+    },
+    {
+      "fecha": "2026-06-18T10:30:16.355150-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
