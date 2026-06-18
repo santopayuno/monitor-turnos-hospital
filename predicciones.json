@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-18T08:45:16.199981-03:00",
+  "generado": "2026-06-18T09:01:26.433689-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -152,7 +152,8 @@
       "confianza": "alta",
       "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "frecuencia": "Últimamente aparece con frecuencia",
+      "ausencia": "Hace varios días sin turnos nuevos"
     },
     "ODONTOLOGÍA PEDIATRICA": {
       "cuando": "Suele haber turnos los martes por la mañana",
