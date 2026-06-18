@@ -12070,6 +12070,12 @@
         "con_cupos": 18,
         "total_cupos": 277,
         "cambios": 1
+      },
+      {
+        "hora": "10:46:29",
+        "con_cupos": 18,
+        "total_cupos": 255,
+        "cambios": 1
       }
     ]
   },
@@ -16243,6 +16249,12 @@
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-18T10:46:29.491538-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
