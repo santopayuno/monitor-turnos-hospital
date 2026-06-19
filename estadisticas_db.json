@@ -12702,6 +12702,12 @@
         "con_cupos": 15,
         "total_cupos": 221,
         "cambios": 1
+      },
+      {
+        "hora": "13:00:39",
+        "con_cupos": 14,
+        "total_cupos": 216,
+        "cambios": 1
       }
     ]
   },
@@ -17234,6 +17240,12 @@
       "fecha": "2026-06-19T12:45:36.769481-03:00",
       "tipo": "agotados",
       "especialidad": "ONCOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-19T13:00:39.720940-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
       "cupos": 0
     }
   ],
