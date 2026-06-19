@@ -12402,6 +12402,12 @@
         "con_cupos": 16,
         "total_cupos": 112,
         "cambios": 1
+      },
+      {
+        "hora": "00:31:21",
+        "con_cupos": 15,
+        "total_cupos": 108,
+        "cambios": 1
       }
     ]
   },
@@ -16832,6 +16838,12 @@
       "fecha": "2026-06-19T00:15:21.917997-03:00",
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-19T00:31:21.037976-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],

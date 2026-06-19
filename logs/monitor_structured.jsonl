@@ -2333,3 +2333,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 113, "con_cupos": 17, "ts": "2026-06-19T03:00:35.321033"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 112, "con_cupos": 16, "ts": "2026-06-19T03:15:21.915061"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-19T03:15:21.945915"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 108, "con_cupos": 15, "ts": "2026-06-19T03:31:21.036130"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-19T03:31:21.060024"}
