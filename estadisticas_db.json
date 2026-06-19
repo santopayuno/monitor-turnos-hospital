@@ -12780,6 +12780,12 @@
         "con_cupos": 11,
         "total_cupos": 70,
         "cambios": 2
+      },
+      {
+        "hora": "16:15:10",
+        "con_cupos": 11,
+        "total_cupos": 69,
+        "cambios": 0
       }
     ]
   },
