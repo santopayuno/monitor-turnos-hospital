@@ -12678,6 +12678,12 @@
         "con_cupos": 16,
         "total_cupos": 242,
         "cambios": 1
+      },
+      {
+        "hora": "12:00:34",
+        "con_cupos": 17,
+        "total_cupos": 239,
+        "cambios": 2
       }
     ]
   },
@@ -17187,6 +17193,18 @@
       "tipo": "agotados",
       "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-19T12:00:34.704736-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-19T12:00:34.704736-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false

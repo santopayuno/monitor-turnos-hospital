@@ -2390,3 +2390,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 250, "con_cupos": 17, "ts": "2026-06-19T14:31:28.589500"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 242, "con_cupos": 16, "ts": "2026-06-19T14:46:09.758988"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "COLOPROCTOLOGIA", "cupos": 0, "ts": "2026-06-19T14:46:09.782080"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 239, "con_cupos": 17, "ts": "2026-06-19T15:00:34.702941"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-19T15:00:34.724189"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-19T15:00:35.334044"}
