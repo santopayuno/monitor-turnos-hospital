@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-19T06:31:23.410999-03:00",
+  "generado": "2026-06-19T06:46:02.036363-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -152,19 +152,17 @@
       "categoria": "certero"
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos los martes, jueves y sábados cerca de las 9:45 hs.",
+      "cuando": "Suele haber turnos los martes, jueves, viernes y sábados cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
-      "ausencia": "Hace varios días sin turnos nuevos"
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "Suele haber turnos los martes por la mañana",
+      "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
-      "categoria": "atencion",
-      "duracion": "Cuando aparece, suele durar poco",
-      "ausencia": "Hace varios días sin turnos nuevos"
+      "categoria": "franja_manana",
+      "duracion": "Cuando aparece, suele durar poco"
     },
     "OFTALMOLOGIA": {
       "cuando": "No hay patrón claro todavía",

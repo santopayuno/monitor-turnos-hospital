@@ -12552,6 +12552,12 @@
         "con_cupos": 15,
         "total_cupos": 107,
         "cambios": 0
+      },
+      {
+        "hora": "06:46:03",
+        "con_cupos": 19,
+        "total_cupos": 438,
+        "cambios": 4
       }
     ]
   },
@@ -16989,6 +16995,30 @@
       "tipo": "agotados",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-19T06:46:03.190875-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 102
+    },
+    {
+      "fecha": "2026-06-19T06:46:03.190875-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 65
+    },
+    {
+      "fecha": "2026-06-19T06:46:03.190875-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 152
+    },
+    {
+      "fecha": "2026-06-19T06:46:03.190875-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 12
     }
   ],
   "es_primera_ejecucion": false
