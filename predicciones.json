@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-19T09:01:07.174545-03:00",
+  "generado": "2026-06-19T09:16:10.908985-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -18,14 +18,12 @@
     "CIRUGIA GENERAL": {
       "cuando": "Suele haber turnos los martes, viernes y sábados cerca de las 10:00 hs.",
       "confianza": "alta",
-      "categoria": "certero",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "categoria": "certero"
     },
     "CIRUGIA INFANTIL": {
       "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
       "confianza": "alta",
-      "categoria": "certero",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "categoria": "certero"
     },
     "CIRUGIA TORACICA": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
@@ -95,8 +93,7 @@
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
-      "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "duracion": "Cuando aparece, suele durar poco"
     },
     "HEMATOLOGIA CLINICA": {
       "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
@@ -113,8 +110,7 @@
     "INFECTOLOGIA PEDIATRICA": {
       "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
       "confianza": "alta",
-      "categoria": "certero",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "categoria": "certero"
     },
     "NEFROLOGIA": {
       "cuando": "Suele haber turnos por la mañana",
@@ -125,14 +121,12 @@
       "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
       "categoria": "franja_manana",
-      "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "duracion": "Cuando aparece, suele durar poco"
     },
     "NEUMONOLOGIA INFANTIL": {
       "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
-      "categoria": "franja_manana",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "categoria": "franja_manana"
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
       "cuando": "Suele haber turnos casi todos los días alrededor de las 10:00 hs.",
@@ -172,8 +166,7 @@
     "ONCOLOGIA": {
       "cuando": "Suele haber turnos los martes y viernes cerca de las 9:45 hs.",
       "confianza": "alta",
-      "categoria": "certero",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "categoria": "certero"
     },
     "ORL CONSULTAS": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
@@ -207,8 +200,7 @@
     "PRE ANESTESIA PEDIATRIA": {
       "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
-      "categoria": "franja_manana",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "categoria": "franja_manana"
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
       "cuando": "Suele haber turnos casi todos los días",
