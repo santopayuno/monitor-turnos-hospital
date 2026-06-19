@@ -12774,6 +12774,12 @@
         "con_cupos": 13,
         "total_cupos": 172,
         "cambios": 0
+      },
+      {
+        "hora": "16:01:19",
+        "con_cupos": 11,
+        "total_cupos": 70,
+        "cambios": 2
       }
     ]
   },
@@ -17318,6 +17324,18 @@
       "fecha": "2026-06-19T14:31:00.745364-03:00",
       "tipo": "agotados",
       "especialidad": "CIRUGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-19T16:01:19.703146-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-19T16:01:19.703146-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 0
     }
   ],
