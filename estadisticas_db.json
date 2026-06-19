@@ -12672,6 +12672,12 @@
         "con_cupos": 17,
         "total_cupos": 250,
         "cambios": 0
+      },
+      {
+        "hora": "11:46:09",
+        "con_cupos": 16,
+        "total_cupos": 242,
+        "cambios": 1
       }
     ]
   },
@@ -17175,6 +17181,12 @@
       "tipo": "ultimos",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-19T11:46:09.760897-03:00",
+      "tipo": "agotados",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
