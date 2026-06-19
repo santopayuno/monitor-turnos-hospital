@@ -12738,6 +12738,12 @@
         "con_cupos": 14,
         "total_cupos": 193,
         "cambios": 0
+      },
+      {
+        "hora": "14:31:00",
+        "con_cupos": 13,
+        "total_cupos": 189,
+        "cambios": 1
       }
     ]
   },
@@ -17276,6 +17282,12 @@
       "fecha": "2026-06-19T13:00:39.720940-03:00",
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-19T14:31:00.745364-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA GENERAL",
       "cupos": 0
     }
   ],
