@@ -12624,6 +12624,12 @@
         "con_cupos": 18,
         "total_cupos": 306,
         "cambios": 0
+      },
+      {
+        "hora": "09:46:21",
+        "con_cupos": 17,
+        "total_cupos": 294,
+        "cambios": 2
       }
     ]
   },
@@ -17109,6 +17115,18 @@
       "tipo": "ultimos",
       "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-19T09:46:21.507818-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-19T09:46:21.507818-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
