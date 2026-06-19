@@ -12576,6 +12576,12 @@
         "con_cupos": 19,
         "total_cupos": 415,
         "cambios": 0
+      },
+      {
+        "hora": "07:46:13",
+        "con_cupos": 19,
+        "total_cupos": 403,
+        "cambios": 1
       }
     ]
   },
@@ -17043,6 +17049,12 @@
       "tipo": "aumentos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 148
+    },
+    {
+      "fecha": "2026-06-19T07:46:13.638343-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false
