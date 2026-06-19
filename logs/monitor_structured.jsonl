@@ -2362,3 +2362,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 438, "con_cupos": 19, "ts": "2026-06-19T09:46:03.188290"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-19T09:46:03.986490"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 418, "con_cupos": 19, "ts": "2026-06-19T10:01:14.986826"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 419, "con_cupos": 19, "ts": "2026-06-19T10:16:02.654880"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 148, "ts": "2026-06-19T10:16:02.682276"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-19T10:16:03.261865"}
