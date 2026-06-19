@@ -12762,6 +12762,12 @@
         "con_cupos": 13,
         "total_cupos": 177,
         "cambios": 0
+      },
+      {
+        "hora": "15:30:30",
+        "con_cupos": 13,
+        "total_cupos": 175,
+        "cambios": 0
       }
     ]
   },
