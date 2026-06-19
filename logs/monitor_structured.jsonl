@@ -2325,3 +2325,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 116, "con_cupos": 17, "ts": "2026-06-19T01:16:15.633789"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 116, "con_cupos": 17, "ts": "2026-06-19T01:31:19.248186"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 115, "con_cupos": 17, "ts": "2026-06-19T01:45:36.083309"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 114, "con_cupos": 17, "ts": "2026-06-19T02:01:07.112505"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 4, "ts": "2026-06-19T02:01:07.140173"}

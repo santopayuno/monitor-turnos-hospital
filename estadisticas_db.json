@@ -12364,6 +12364,12 @@
         "con_cupos": 17,
         "total_cupos": 115,
         "cambios": 0
+      },
+      {
+        "hora": "23:01:07",
+        "con_cupos": 17,
+        "total_cupos": 114,
+        "cambios": 1
       }
     ]
   },
@@ -16782,6 +16788,12 @@
       "fecha": "2026-06-18T20:45:43.169167-03:00",
       "tipo": "ultimos",
       "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-18T23:01:07.114764-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 4
     }
   ],
