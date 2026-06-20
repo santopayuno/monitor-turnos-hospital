@@ -848,7 +848,7 @@ def detectar_patrones_apertura(hora_objetivo):
 
         lineas += [
             "",
-            f"🕒 Próxima verificación en 15 minutos",
+            f"🕒 Próxima verificación en 5 minutos",
             "",
             "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
         ]
