@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-20T12:15:33.020392-03:00",
+  "generado": "2026-06-20T12:20:07.491144-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -148,8 +148,7 @@
       "cuando": "Suele haber turnos los martes, jueves, viernes y sábados cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
-      "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia"
+      "duracion": "Cuando aparece, suele durar poco"
     },
     "ODONTOLOGÍA PEDIATRICA": {
       "cuando": "Suele haber turnos por la mañana",
