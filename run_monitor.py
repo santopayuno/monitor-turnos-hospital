@@ -66,7 +66,7 @@ try:
             ultima = ultima.replace(tzinfo=timezone.utc)
         minutos_desde_ultima = (ahora_utc - ultima).total_seconds() / 60
 
-        if minutos_desde_ultima > 30:
+        if minutos_desde_ultima > 15:
             horas = int(minutos_desde_ultima // 60)
             mins = int(minutos_desde_ultima % 60)
             tiempo_str = f"{horas} h {mins} min" if horas > 0 else f"{int(minutos_desde_ultima)} min"
@@ -166,7 +166,7 @@ try:
     print("🎉 EJECUCIÓN COMPLETADA")
     print("=" * 60)
     print(f"Timestamp: {datetime.datetime.now()}")
-    print("Próxima ejecución: en 15 minutos")
+    print("Próxima ejecución: en 5 minutos")
 
     sys.exit(result.returncode)
 
