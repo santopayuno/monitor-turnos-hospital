@@ -1,11 +1,15 @@
 {
-  "generado": "2026-06-21T06:50:08.717742-03:00",
+  "generado": "2026-06-21T06:55:28.967612-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "11:15",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
@@ -13,78 +17,131 @@
       "cuando": "Suele haber turnos los martes por la mañana",
       "confianza": "media",
       "categoria": "atencion",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "11:15",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "CIRUGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes, viernes y sábados cerca de las 10:00 hs.",
+      "cuando": "Suele haber turnos los martes y sábados cerca de las 10:00 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "10:00",
+      "texto_sin_hora": "Suele haber turnos los martes y sábados",
+      "ultima_apertura": "9:45"
     },
     "CIRUGIA INFANTIL": {
-      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero"
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "20:00"
     },
     "CIRUGIA TORACICA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero"
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "20:00"
     },
     "CLINICA MEDICA CONSULTA": {
       "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "7:15",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "6:45",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "COLOPROCTOLOGIA": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45"
     },
     "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": {
-      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:45 hs.",
-      "confianza": "media",
-      "categoria": "certero",
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "20:00",
       "ausencia": "Hace varios días sin turnos nuevos"
     },
     "DERMATOLOGIA GENERAL": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "DIABETOLOGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes, jueves y viernes cerca de las 9:45 hs.",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "9:45",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "11:15",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
       "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "11:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45"
     },
     "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45"
     },
     "FLEBOLOGIA (CONSULTA)": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "11:15",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
@@ -92,140 +149,236 @@
       "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "11:15",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "HEMATOLOGIA CLINICA": {
-      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "INFECTOLOGIA": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "11:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "INFECTOLOGIA PEDIATRICA": {
-      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero"
+      "cuando": "Suele haber turnos los martes por la mañana",
+      "confianza": "media",
+      "categoria": "atencion",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45"
     },
     "NEFROLOGIA": {
       "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
-      "categoria": "franja_manana"
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "9:45"
     },
     "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": {
       "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
       "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "9:45",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "NEUMONOLOGIA INFANTIL": {
       "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
-      "categoria": "franja_manana"
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "9:45"
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
       "cuando": "Suele haber turnos casi todos los días alrededor de las 10:00 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "10:00",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "11:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "NUTRICION GENERAL": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "11:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "OBSTETRICIA BAJO RIESGO": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero"
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "20:00"
     },
     "ODONTOLOGIA ADULTO": {
       "cuando": "Suele haber turnos los martes, jueves, viernes y sábados cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes, jueves, viernes y sábados",
+      "ultima_apertura": "12:00",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "ODONTOLOGÍA PEDIATRICA": {
       "cuando": "Suele haber turnos por la mañana",
       "confianza": "media",
       "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "OFTALMOLOGIA": {
       "cuando": "No hay patrón claro todavía",
       "confianza": "baja",
-      "categoria": "sinPatron"
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "9:45"
     },
     "ONCOLOGIA": {
-      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero"
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "9:45"
     },
     "ORL CONSULTAS": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "9:45",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "11:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PEDIATRIA CONSULTA": {
       "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "7:15",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "6:45",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PEDIATRIA MEDIANO RIESGO": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:15",
       "ausencia": "Hace varios días sin turnos nuevos"
     },
     "PODOLOGIA": {
-      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45"
     },
     "PRE ANESTESIA PEDIATRIA": {
-      "cuando": "Suele haber turnos por la mañana",
+      "cuando": "Suele haber turnos los martes y sábados cerca de las 10:15 hs.",
       "confianza": "media",
-      "categoria": "franja_manana"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "10:15",
+      "texto_sin_hora": "Suele haber turnos los martes y sábados",
+      "ultima_apertura": "10:00"
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
       "cuando": "Suele haber turnos casi todos los días",
       "confianza": "alta",
       "categoria": "abundancia",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "11:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "TRAUMATOLOGIA ADULTO": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
       "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "TRAUMATOLOGIA INFANTIL": {
       "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "11:15"
     },
     "UROLOGIA": {
       "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
       "confianza": "alta",
-      "categoria": "certero"
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:45",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45"
     },
     "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)": {
-      "cuando": "Suele haber turnos los martes y viernes cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero"
+      "cuando": "Suele haber turnos los martes por la mañana",
+      "confianza": "media",
+      "categoria": "atencion",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:45"
     }
   }
 }
