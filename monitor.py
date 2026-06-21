@@ -15,6 +15,7 @@ import requests
 import os
 import time
 import json
+import re
 import logging
 import tempfile
 import sys
@@ -935,7 +936,9 @@ def _obs_de(nombre, eventos, ahora):
     porDia = {}
     for e in eventos:
         if e.get('especialidad') != nombre: continue
-        if e.get('tipo') not in ('nuevos', 'reaperturas', 'aumentos'): continue
+        # Solo nuevos y reaperturas: un 'aumento' suma cupos a una ventana ya abierta,
+        # no inicia una apertura, y contaminaría la hora probable (condición acordada).
+        if e.get('tipo') not in ('nuevos', 'reaperturas'): continue
         dt = _ev_dt(e['fecha']); fecha = e['fecha'][:10]; minu = dt.hour * 60 + dt.minute
         if fecha not in porDia:
             porDia[fecha] = {'dow': (dt.weekday() + 1) % 7, 'mins': [], 'peso': _peso_edad(dt, ahora),
@@ -1037,6 +1040,48 @@ def generar_frase_cuando(nombre, eventos, ahora):
     return baja()
 
 
+def _estructura_modal(frase):
+    """Deriva (hora_probable, tipo_hora_modal, texto_sin_hora) DESDE la frase que
+    ya generó generar_frase_cuando. Misma fuente única: la 3ª card del modal y la
+    sección 'Cuándo suele haber turnos' nunca pueden contradecirse.
+
+    tipo_hora_modal:
+      'probable' -> hay hora exacta (hora_probable = "9:30")
+      'franja'   -> solo franja      (hora_probable = "mañana" | "tarde" | "noche")
+      'sin_hora' -> ni hora ni franja (hora_probable = None)
+
+    texto_sin_hora: la misma frase pero sin la hora ni la franja, para mostrar
+    abajo cuando NO hay cupos sin repetir lo que ya va en la card.
+    """
+    m = re.search(r'las (\d{1,2}:\d{2}) hs', frase)
+    if m:
+        hora, tipo = m.group(1), 'probable'
+    else:
+        fr = re.search(r'por la (mañana|tarde|noche)', frase)
+        if fr:
+            hora, tipo = fr.group(1), 'franja'
+        else:
+            hora, tipo = None, 'sin_hora'
+    txt = re.sub(
+        r'\s*(?:cerca de las|alrededor de las)\s*\d{1,2}:\d{2}\s*hs'
+        r'(?:\s*y nuevamente alrededor de las\s*\d{1,2}:\d{2}\s*hs)?',
+        '', frase)
+    txt = re.sub(r'\s*por la (?:mañana|tarde|noche)', '', txt)
+    txt = txt.strip().rstrip('.').strip()
+    return hora, tipo, txt
+
+
+def _ultima_apertura(nombre, eventos):
+    """Hora (redondeada a 15 min) de la última apertura real registrada
+    (solo nuevos/reaperturas). None si la especialidad nunca abrió."""
+    aps = [_ev_dt(e['fecha']) for e in eventos
+           if e.get('especialidad') == nombre and e.get('tipo') in ('nuevos', 'reaperturas')]
+    if not aps:
+        return None
+    dt = max(aps)
+    return _hhmm(dt.hour * 60 + dt.minute)
+
+
 def generar_frase_duracion(nombre, eventos):
     items = sorted([e for e in eventos if e.get('especialidad') == nombre], key=lambda x: x['fecha'])
     aps = [_ev_dt(e['fecha']) for e in items if e['tipo'] in ('nuevos', 'reaperturas', 'aumentos')]
@@ -1076,6 +1121,14 @@ def generar_predicciones(stats, estado_actual, ahora):
     for nombre in sorted(universo):
         frase, conf, cat = generar_frase_cuando(nombre, eventos, ahora)
         entrada = {"cuando": frase, "confianza": conf, "categoria": cat}
+        # Campos estructurados para la 3ª card del modal (derivados de la MISMA frase,
+        # así la card y la sección 'Cuándo suele haber turnos' nunca se contradicen).
+        hora_p, tipo_h, texto_sh = _estructura_modal(frase)
+        entrada["tipo_hora_modal"] = tipo_h
+        if hora_p: entrada["hora_probable"] = hora_p
+        entrada["texto_sin_hora"] = texto_sh
+        ult = _ultima_apertura(nombre, eventos)
+        if ult: entrada["ultima_apertura"] = ult
         dur = generar_frase_duracion(nombre, eventos)
         if dur: entrada["duracion"] = dur
         frec = generar_frase_frecuencia(nombre, eventos, ahora)
