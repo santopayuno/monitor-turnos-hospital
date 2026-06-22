@@ -784,7 +784,7 @@ def detectar_patrones_apertura(hora_objetivo):
     """
     Analiza el historial de eventos y avisa si alguna especialidad
     suele abrir turnos en la hora_objetivo.
-    Solo notifica si hay al menos 3 aperturas históricas en esa hora
+    Solo notifica si hay al menos 5 aperturas históricas en esa hora
     y la especialidad no tiene cupos ahora mismo.
     """
     try:
@@ -1113,6 +1113,133 @@ def generar_frase_ausencia(nombre, eventos, estado_actual, ahora):
     return None
 
 
+# ═══════════════════════════════════════════════════════════════
+# BANNER PREDICTIVO — probabilidad CONDICIONAL de apertura próxima
+# ═══════════════════════════════════════════════════════════════
+# Pregunta que responde: "De las veces que era día hábil, a esta hora,
+# esta especialidad estaba agotada... ¿cuántas veces abrió (nuevos/
+# reaperturas, NO aumentos) dentro de los próximos 90 min?".
+# Modelo escalonado: Nivel 1 (mismo día de semana) si hay evidencia
+# suficiente; si no, Nivel 2 (cualquier día hábil); si tampoco, no se
+# muestra. El Nivel 1 queda implementado pero "duerme" hasta tener
+# ≥5 casos comparables, y se activa solo cuando el historial crece.
+
+# Feriados nacionales AR (editable). Se excluyen como "día hábil" tanto
+# para el bloqueo de hoy como para los casos comparables del historial.
+FERIADOS_AR = {
+    "2026-01-01", "2026-02-16", "2026-02-17", "2026-03-24", "2026-04-02",
+    "2026-04-03", "2026-05-01", "2026-05-25", "2026-06-17", "2026-06-20",
+    "2026-07-09", "2026-08-17", "2026-10-12", "2026-11-23", "2026-12-08",
+    "2026-12-25",
+}
+VENTANA_BANNER_MIN = 90   # ventana de apertura tras estar agotada
+MIN_CASOS_BANNER   = 5    # casos comparables mínimos para confiar
+PROB_MIN_BANNER    = 30   # piso de probabilidad para mostrar
+MAX_BANNER         = 5    # tope de especialidades en el banner
+
+
+def _es_dia_habil(fecha):
+    """fecha: datetime.date → True si es lun-vie y no feriado nacional."""
+    return fecha.weekday() < 5 and fecha.isoformat() not in FERIADOS_AR
+
+
+def _timeline_estado(nombre, eventos):
+    """Reconstruye el estado (agotada/concupos) de una especialidad como
+    función escalonada a partir de las transiciones guardadas."""
+    tl = []
+    for e in eventos:
+        if e.get("especialidad") != nombre:
+            continue
+        t = e.get("tipo")
+        if t == "agotados":
+            st = "agotada"
+        elif t in ("nuevos", "reaperturas", "aumentos", "ultimos"):
+            st = "concupos"
+        else:
+            continue
+        try:
+            tl.append((datetime.fromisoformat(e["fecha"]), st))
+        except Exception:
+            continue
+    tl.sort(key=lambda x: x[0])
+    return tl
+
+
+def _estado_en(tl, momento):
+    """Estado vigente en 'momento' = el de la última transición previa.
+    None si no hay transición previa (estado desconocido → no se cuenta)."""
+    last = None
+    for t, st in tl:
+        if t <= momento:
+            last = st
+        else:
+            break
+    return last
+
+
+def calcular_chance_apertura_proxima(nombre, eventos, ahora):
+    """Probabilidad condicional de que una especialidad AGOTADA abra pronto.
+    Devuelve dict {especialidad, probabilidad, confianza, nivel, casos} o None.
+    No bloquea por franja horaria fija: las horas sin actividad dan ~0% y el
+    piso de probabilidad las descarta solas."""
+    if not _es_dia_habil(ahora.date()):
+        return None  # hoy no es día hábil
+
+    H = ahora.hour
+    wd = ahora.weekday()
+    ventana = timedelta(minutes=VENTANA_BANNER_MIN)
+
+    tl = _timeline_estado(nombre, eventos)
+    if not tl:
+        return None
+
+    aperturas = []
+    for e in eventos:
+        if e.get("especialidad") == nombre and e.get("tipo") in ("nuevos", "reaperturas"):
+            try:
+                aperturas.append(datetime.fromisoformat(e["fecha"]))
+            except Exception:
+                pass
+
+    dias = sorted({datetime.fromisoformat(e["fecha"]).date() for e in eventos})
+    dias_habil = [d for d in dias if _es_dia_habil(d)]
+
+    def evaluar(solo_wd):
+        casos = aciertos = 0
+        for d in dias_habil:
+            if solo_wd is not None and d.weekday() != solo_wd:
+                continue
+            mom = datetime(d.year, d.month, d.day, H, 0, 0, tzinfo=ahora.tzinfo)
+            if _estado_en(tl, mom) == "agotada":
+                casos += 1
+                if any(mom <= a < mom + ventana for a in aperturas):
+                    aciertos += 1
+        return casos, aciertos
+
+    # Nivel 1: mismo día de semana (si hay evidencia suficiente)
+    casos, aciertos = evaluar(wd)
+    nivel = 1
+    if casos < MIN_CASOS_BANNER:
+        # Nivel 2: cualquier día hábil
+        casos, aciertos = evaluar(None)
+        nivel = 2
+        if casos < MIN_CASOS_BANNER:
+            return None  # Nivel 3: sin evidencia → no mostrar
+
+    prob = round(100 * aciertos / casos)
+    if prob < PROB_MIN_BANNER:
+        return None
+
+    return {
+        "especialidad": nombre,
+        "probabilidad": prob,
+        "confianza": "alta" if prob >= 60 else "media",
+        "nivel": nivel,
+        "casos": casos,
+        "aciertos": aciertos,
+    }
+
+
 def generar_predicciones(stats, estado_actual, ahora):
     eventos = stats.get('eventos', [])
     universo = {e['especialidad'] for e in eventos}
@@ -1136,7 +1263,40 @@ def generar_predicciones(stats, estado_actual, ahora):
         aus = generar_frase_ausencia(nombre, eventos, estado_actual, ahora)
         if aus: entrada["ausencia"] = aus
         especialidades[nombre] = entrada
-    return {"generado": ahora.isoformat(), "version": 1, "especialidades": especialidades}
+
+    # ── BANNER PREDICTIVO: especialidades agotadas AHORA con chance real de abrir pronto ──
+    banner_items = []
+    for nombre in sorted(universo):
+        cupo_now = (estado_actual or {}).get(nombre, 0)
+        if cupo_now and cupo_now > 0:
+            continue  # solo las que están agotadas ahora
+        chance = calcular_chance_apertura_proxima(nombre, eventos, ahora)
+        if chance:
+            # adjuntar al detalle de la especialidad (lo usa el modal)
+            if nombre in especialidades:
+                especialidades[nombre]["chance"] = {
+                    "hora": ahora.strftime("%H:00"),
+                    "probabilidad": chance["probabilidad"],
+                    "confianza": chance["confianza"],
+                    "casos": chance["casos"],
+                    "aciertos": chance["aciertos"],
+                }
+            banner_items.append(chance)
+    banner_items.sort(key=lambda x: -x["probabilidad"])
+    banner_items = banner_items[:MAX_BANNER]
+
+    # días hábiles del historial (para el pie del banner)
+    _dias = sorted({datetime.fromisoformat(e["fecha"]).date() for e in eventos})
+    dias_habil_n = len([d for d in _dias if _es_dia_habil(d)])
+
+    banner = {
+        "hora": ahora.strftime("%H:00"),
+        "dias": dias_habil_n,
+        "items": banner_items,
+    }
+
+    return {"generado": ahora.isoformat(), "version": 1,
+            "especialidades": especialidades, "banner": banner}
 
 
 # ═══════════════════════════════════════════════════════════════
