@@ -1240,8 +1240,46 @@ def calcular_chance_apertura_proxima(nombre, eventos, ahora):
     }
 
 
+def calcular_prob_apertura(nombre, eventos, registros, ahora):
+    """Indicador de actividad de la tarjeta 'Prob. de Apertura' del modal.
+    Misma métrica que venía calculando el Index: de los días monitoreados de
+    los últimos 30 (sin feriados), en cuántos hubo alguna apertura.
+    Devuelve {emoji, txt}."""
+    hace30 = (ahora - timedelta(days=30)).date()
+    aperturas = [e for e in eventos
+                 if e.get("especialidad") == nombre
+                 and e.get("tipo") in ("nuevos", "reaperturas", "aumentos")]
+    dias_con_apertura = set()
+    for e in aperturas:
+        fstr = (e.get("fecha") or "")[:10]
+        try:
+            fd = datetime.fromisoformat(fstr).date()
+        except Exception:
+            continue
+        if fd >= hace30 and fstr not in FERIADOS_AR:
+            dias_con_apertura.add(fstr)
+    dias_monit = 0
+    for f in (registros or {}):
+        fstr = f[:10]
+        try:
+            fd = datetime.fromisoformat(fstr).date()
+        except Exception:
+            continue
+        if fd >= hace30 and fstr not in FERIADOS_AR:
+            dias_monit += 1
+    if not aperturas or dias_monit == 0:
+        return {"emoji": "🧮", "txt": "s/datos"}
+    pct = min(100, round(100 * len(dias_con_apertura) / dias_monit))
+    if pct >= 40:
+        return {"emoji": "🟢", "txt": "Alta"}
+    elif pct >= 15:
+        return {"emoji": "🟡", "txt": "Media"}
+    return {"emoji": "🔴", "txt": "Baja"}
+
+
 def generar_predicciones(stats, estado_actual, ahora):
     eventos = stats.get('eventos', [])
+    registros = stats.get('registros', {})
     universo = {e['especialidad'] for e in eventos}
     if estado_actual: universo |= set(estado_actual.keys())
     especialidades = {}
@@ -1262,6 +1300,7 @@ def generar_predicciones(stats, estado_actual, ahora):
         if frec: entrada["frecuencia"] = frec
         aus = generar_frase_ausencia(nombre, eventos, estado_actual, ahora)
         if aus: entrada["ausencia"] = aus
+        entrada["prob_apertura"] = calcular_prob_apertura(nombre, eventos, registros, ahora)
         especialidades[nombre] = entrada
 
     # ── BANNER PREDICTIVO: especialidades agotadas AHORA con chance real de abrir pronto ──
