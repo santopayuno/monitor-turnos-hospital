@@ -3137,3 +3137,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 294, "con_cupos": 13, "ts": "2026-06-22T10:50:04.789288"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "OBSTETRICIA BAJO RIESGO", "cupos": 4, "ts": "2026-06-22T10:50:04.819406"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 287, "con_cupos": 13, "ts": "2026-06-22T10:55:03.682885"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 273, "con_cupos": 13, "ts": "2026-06-22T11:00:22.558678"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 2, "ts": "2026-06-22T11:00:22.593234"}
