@@ -17040,6 +17040,12 @@
         "con_cupos": 9,
         "total_cupos": 35,
         "cambios": 0
+      },
+      {
+        "hora": "07:15:24",
+        "con_cupos": 13,
+        "total_cupos": 319,
+        "cambios": 4
       }
     ]
   },
@@ -21609,6 +21615,30 @@
       "tipo": "agotados",
       "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-22T07:15:24.332768-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 98
+    },
+    {
+      "fecha": "2026-06-22T07:15:24.332768-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 64
+    },
+    {
+      "fecha": "2026-06-22T07:15:24.332768-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 108
+    },
+    {
+      "fecha": "2026-06-22T07:15:24.332768-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 14
     }
   ],
   "es_primera_ejecucion": false

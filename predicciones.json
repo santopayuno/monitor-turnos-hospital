@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-22T07:10:31.143773-03:00",
+  "generado": "2026-06-22T07:15:23.238352-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -55,7 +55,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:15",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "6:45",
+      "ultima_apertura": "7:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "COLOPROCTOLOGIA": {
@@ -241,14 +241,15 @@
       "ultima_apertura": "20:00"
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos los martes, jueves, viernes y sábados cerca de las 9:30 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
       "confianza": "alta",
-      "categoria": "certero",
+      "categoria": "abundancia",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes, jueves, viernes y sábados",
-      "ultima_apertura": "12:00",
-      "duracion": "Cuando aparece, suele durar poco"
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "7:15",
+      "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia"
     },
     "ODONTOLOGÍA PEDIATRICA": {
       "cuando": "Suele haber turnos por la mañana",
@@ -257,7 +258,7 @@
       "tipo_hora_modal": "franja",
       "hora_probable": "mañana",
       "texto_sin_hora": "Suele haber turnos",
-      "ultima_apertura": "6:45",
+      "ultima_apertura": "7:15",
       "duracion": "Cuando aparece, suele durar poco"
     },
     "OFTALMOLOGIA": {
@@ -303,7 +304,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:15",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "6:45",
+      "ultima_apertura": "7:15",
       "frecuencia": "Últimamente aparece con frecuencia"
     },
     "PEDIATRIA MEDIANO RIESGO": {
