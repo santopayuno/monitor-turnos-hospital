@@ -3190,3 +3190,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 4, "ts": "2026-06-22T14:45:23.801320"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 82, "con_cupos": 10, "ts": "2026-06-22T14:50:08.213058"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 79, "con_cupos": 10, "ts": "2026-06-22T14:55:10.740184"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 78, "con_cupos": 10, "ts": "2026-06-22T15:00:05.521986"}
