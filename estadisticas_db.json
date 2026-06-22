@@ -1,0 +1,14 @@
+{
+  "registros": {
+    "2026-06-22": [
+      {
+        "hora": "17:30:08",
+        "con_cupos": 8,
+        "total_cupos": 27,
+        "cambios": 0
+      }
+    ]
+  },
+  "eventos": [],
+  "es_primera_ejecucion": false
+}

@@ -1,550 +1,451 @@
 {
-  "generado": "2026-06-22T17:25:26.420381-03:00",
+  "generado": "2026-06-22T17:30:07.243754-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "11:15",
-      "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "CARDIOLOGIA INFANTIL": {
-      "cuando": "Suele haber turnos los martes por la mañana",
-      "confianza": "media",
-      "categoria": "atencion",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "11:15",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "CIRUGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes y sábados cerca de las 10:00 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "10:00",
-      "texto_sin_hora": "Suele haber turnos los martes y sábados",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "CIRUGIA INFANTIL": {
-      "cuando": "No hay patrón claro todavía",
+      "cuando": "Todavía no hay suficiente historial",
       "confianza": "baja",
-      "categoria": "sinPatron",
+      "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
-      "ultima_apertura": "20:00",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "CIRUGIA TORACICA": {
-      "cuando": "No hay patrón claro todavía",
+      "cuando": "Todavía no hay suficiente historial",
       "confianza": "baja",
-      "categoria": "sinPatron",
+      "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
-      "ultima_apertura": "20:00",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "CLINICA MEDICA CONSULTA": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "7:15",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟢",
-        "txt": "Alta"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "COLOPROCTOLOGIA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": {
-      "cuando": "No hay patrón claro todavía",
+      "cuando": "Todavía no hay suficiente historial",
       "confianza": "baja",
-      "categoria": "sinPatron",
+      "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
-      "ultima_apertura": "20:00",
-      "ausencia": "Hace varios días sin turnos nuevos",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "DERMATOLOGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "DIABETOLOGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "9:45",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "11:15",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "11:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "FLEBOLOGIA (CONSULTA)": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "11:15",
-      "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "11:15",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "HEMATOLOGIA CLINICA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "INFECTOLOGIA": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "11:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
-      "cuando": "Suele haber turnos los martes por la mañana",
-      "confianza": "media",
-      "categoria": "atencion",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "NEFROLOGIA": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos",
-      "ultima_apertura": "9:45",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "NEUMONOLOGIA INFANTIL": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 10:00 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "10:00",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "11:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "NUTRICION GENERAL": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "11:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "OBSTETRICIA BAJO RIESGO": {
-      "cuando": "No hay patrón claro todavía",
+      "cuando": "Todavía no hay suficiente historial",
       "confianza": "baja",
-      "categoria": "sinPatron",
+      "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
-      "ultima_apertura": "20:00",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:15",
-      "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos",
-      "ultima_apertura": "7:15",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "OFTALMOLOGIA": {
-      "cuando": "No hay patrón claro todavía",
+      "cuando": "Todavía no hay suficiente historial",
       "confianza": "baja",
-      "categoria": "sinPatron",
+      "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
-      "ultima_apertura": "9:45",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ONCOLOGIA": {
-      "cuando": "No hay patrón claro todavía",
+      "cuando": "Todavía no hay suficiente historial",
       "confianza": "baja",
-      "categoria": "sinPatron",
+      "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
-      "ultima_apertura": "9:45",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "ORL CONSULTAS": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "9:45",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos",
-      "ultima_apertura": "11:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "PEDIATRIA CONSULTA": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "7:15",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟢",
-        "txt": "Alta"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
-      "ausencia": "Hace varios días sin turnos nuevos",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "PODOLOGIA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "PRE ANESTESIA PEDIATRIA": {
-      "cuando": "Suele haber turnos los martes y sábados cerca de las 10:15 hs.",
-      "confianza": "media",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "10:15",
-      "texto_sin_hora": "Suele haber turnos los martes y sábados",
-      "ultima_apertura": "10:00",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos casi todos los días",
-      "confianza": "alta",
-      "categoria": "abundancia",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "11:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "TRAUMATOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
-      "duracion": "Cuando aparece, suele durar poco",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "TRAUMATOLOGIA INFANTIL": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "11:15",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "UROLOGIA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     },
     "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)": {
-      "cuando": "Suele haber turnos los martes por la mañana",
-      "confianza": "media",
-      "categoria": "atencion",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "cuando": "Todavía no hay suficiente historial",
+      "confianza": "baja",
+      "categoria": "aprendiendo",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Todavía no hay suficiente historial",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🧮",
+        "txt": "s/datos"
       }
     }
   },
   "banner": {
     "hora": "17:00",
-    "dias": 19,
+    "dias": 0,
     "items": []
   }
 }
