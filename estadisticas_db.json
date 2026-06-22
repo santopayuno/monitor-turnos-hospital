@@ -17082,6 +17082,12 @@
         "con_cupos": 13,
         "total_cupos": 299,
         "cambios": 0
+      },
+      {
+        "hora": "07:50:04",
+        "con_cupos": 13,
+        "total_cupos": 294,
+        "cambios": 1
       }
     ]
   },
@@ -21675,6 +21681,12 @@
       "tipo": "reaperturas",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 14
+    },
+    {
+      "fecha": "2026-06-22T07:50:04.791786-03:00",
+      "tipo": "ultimos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
