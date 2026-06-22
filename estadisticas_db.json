@@ -17118,6 +17118,12 @@
         "con_cupos": 13,
         "total_cupos": 248,
         "cambios": 0
+      },
+      {
+        "hora": "08:20:26",
+        "con_cupos": 12,
+        "total_cupos": 243,
+        "cambios": 1
       }
     ]
   },
@@ -21723,6 +21729,12 @@
       "tipo": "ultimos",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-06-22T08:20:26.524821-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
