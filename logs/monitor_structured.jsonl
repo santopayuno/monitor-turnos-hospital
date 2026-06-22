@@ -3230,3 +3230,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 54, "con_cupos": 9, "ts": "2026-06-22T18:00:35.329770"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 54, "con_cupos": 9, "ts": "2026-06-22T18:05:18.233447"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 52, "con_cupos": 9, "ts": "2026-06-22T18:10:11.587851"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 51, "con_cupos": 9, "ts": "2026-06-22T18:15:05.140026"}
