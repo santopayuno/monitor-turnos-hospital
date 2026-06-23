@@ -3475,3 +3475,8 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "OFTALMOLOGIA", "cupos": 0, "ts": "2026-06-23T12:35:31.560894"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ORL CONSULTAS", "cupos": 0, "ts": "2026-06-23T12:35:31.560929"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-23T12:35:31.560945"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1258, "con_cupos": 33, "ts": "2026-06-23T12:40:23.376490"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "DERMATOLOGIA GENERAL", "cupos": 4, "ts": "2026-06-23T12:40:23.453283"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-23T12:40:23.453386"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 3, "ts": "2026-06-23T12:40:23.453434"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 0, "ts": "2026-06-23T12:40:23.453487"}
