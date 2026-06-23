@@ -3521,3 +3521,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PEDIATRIA CONSULTA", "cupos": 4, "ts": "2026-06-23T14:20:10.096445"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-23T14:20:10.096530"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-23T14:20:10.096586"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 649, "con_cupos": 22, "ts": "2026-06-23T14:25:29.781173"}
