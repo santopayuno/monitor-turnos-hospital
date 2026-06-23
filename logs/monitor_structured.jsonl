@@ -3466,3 +3466,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1740, "con_cupos": 37, "ts": "2026-06-23T12:20:30.985476"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1637, "con_cupos": 37, "ts": "2026-06-23T12:25:26.590494"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-23T12:25:26.624768"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1480, "con_cupos": 37, "ts": "2026-06-23T12:30:25.547837"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ORL CONSULTAS", "cupos": 3, "ts": "2026-06-23T12:30:25.593275"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 3, "ts": "2026-06-23T12:30:25.593388"}

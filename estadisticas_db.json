@@ -18914,6 +18914,12 @@
         "con_cupos": 37,
         "total_cupos": 1637,
         "cambios": 1
+      },
+      {
+        "hora": "09:30:25",
+        "con_cupos": 37,
+        "total_cupos": 1480,
+        "cambios": 2
       }
     ]
   },
@@ -23717,6 +23723,18 @@
       "tipo": "ultimos",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-23T09:30:25.550905-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-23T09:30:25.550905-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
