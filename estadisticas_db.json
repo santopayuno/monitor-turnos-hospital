@@ -19046,6 +19046,12 @@
         "con_cupos": 24,
         "total_cupos": 662,
         "cambios": 0
+      },
+      {
+        "hora": "11:20:10",
+        "con_cupos": 22,
+        "total_cupos": 653,
+        "cambios": 3
       }
     ]
   },
@@ -24023,6 +24029,24 @@
       "tipo": "ultimos",
       "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-23T11:20:10.049333-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-23T11:20:10.049333-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T11:20:10.049333-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
