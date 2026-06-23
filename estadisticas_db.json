@@ -18932,6 +18932,12 @@
         "con_cupos": 33,
         "total_cupos": 1258,
         "cambios": 4
+      },
+      {
+        "hora": "09:45:11",
+        "con_cupos": 30,
+        "total_cupos": 1158,
+        "cambios": 3
       }
     ]
   },
@@ -23800,6 +23806,24 @@
       "fecha": "2026-06-23T09:40:23.383508-03:00",
       "tipo": "agotados",
       "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T09:45:11.274007-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T09:45:11.274007-03:00",
+      "tipo": "agotados",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T09:45:11.274007-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA INFANTIL",
       "cupos": 0
     }
   ],

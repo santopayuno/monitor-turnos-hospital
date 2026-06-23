@@ -3480,3 +3480,7 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-23T12:40:23.453386"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 3, "ts": "2026-06-23T12:40:23.453434"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 0, "ts": "2026-06-23T12:40:23.453487"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1158, "con_cupos": 30, "ts": "2026-06-23T12:45:11.268409"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "DERMATOLOGIA GENERAL", "cupos": 0, "ts": "2026-06-23T12:45:11.346516"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-23T12:45:11.346666"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-23T12:45:11.346731"}
