@@ -3484,3 +3484,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "DERMATOLOGIA GENERAL", "cupos": 0, "ts": "2026-06-23T12:45:11.346516"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-23T12:45:11.346666"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-23T12:45:11.346731"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1092, "con_cupos": 30, "ts": "2026-06-23T12:50:12.574571"}
