@@ -18950,6 +18950,12 @@
         "con_cupos": 29,
         "total_cupos": 1038,
         "cambios": 2
+      },
+      {
+        "hora": "10:00:16",
+        "con_cupos": 29,
+        "total_cupos": 1002,
+        "cambios": 1
       }
     ]
   },
@@ -23849,6 +23855,12 @@
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T10:00:16.388702-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
