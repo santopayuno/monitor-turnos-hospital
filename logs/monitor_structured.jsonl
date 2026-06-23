@@ -3512,3 +3512,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-23T13:55:33.645512"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-23T13:55:33.645616"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 695, "con_cupos": 25, "ts": "2026-06-23T14:00:29.255885"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 679, "con_cupos": 24, "ts": "2026-06-23T14:05:29.259730"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-23T14:05:29.296739"}
