@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-23T08:55:28.499125-03:00",
+  "generado": "2026-06-23T09:00:26.357939-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -42,6 +42,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 80,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 4
       }
     },
     "CIRUGIA INFANTIL": {
@@ -185,6 +192,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 30,
+        "confianza": "media",
+        "casos": 10,
+        "aciertos": 3
       }
     },
     "FLEBOLOGIA (CONSULTA)": {
@@ -228,6 +242,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 60,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 3
       }
     },
     "INFECTOLOGIA": {
@@ -242,6 +263,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 80,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 4
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -268,6 +296,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 80,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 4
       }
     },
     "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": {
@@ -388,6 +423,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 33,
+        "confianza": "media",
+        "casos": 6,
+        "aciertos": 2
       }
     },
     "ORL CONSULTAS": {
@@ -542,8 +584,49 @@
     }
   },
   "banner": {
-    "hora": "08:00",
+    "hora": "09:00",
     "dias": 20,
-    "items": []
+    "items": [
+      {
+        "especialidad": "CIRUGIA GENERAL",
+        "probabilidad": 80,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 4
+      },
+      {
+        "especialidad": "INFECTOLOGIA",
+        "probabilidad": 80,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 4
+      },
+      {
+        "especialidad": "NEFROLOGIA",
+        "probabilidad": 80,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 4
+      },
+      {
+        "especialidad": "HEMATOLOGIA CLINICA",
+        "probabilidad": 60,
+        "confianza": "alta",
+        "nivel": 2,
+        "casos": 5,
+        "aciertos": 3
+      },
+      {
+        "especialidad": "ONCOLOGIA",
+        "probabilidad": 33,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 6,
+        "aciertos": 2
+      }
+    ]
   }
 }
