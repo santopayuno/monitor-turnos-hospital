@@ -3490,3 +3490,5 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-23T12:55:24.655777"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1002, "con_cupos": 29, "ts": "2026-06-23T13:00:16.385137"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-23T13:00:16.427828"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 966, "con_cupos": 28, "ts": "2026-06-23T13:05:15.064713"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-23T13:05:15.102265"}
