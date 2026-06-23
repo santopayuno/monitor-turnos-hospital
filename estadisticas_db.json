@@ -18782,6 +18782,12 @@
         "con_cupos": 11,
         "total_cupos": 230,
         "cambios": 0
+      },
+      {
+        "hora": "07:40:16",
+        "con_cupos": 10,
+        "total_cupos": 221,
+        "cambios": 1
       }
     ]
   },
@@ -23351,6 +23357,12 @@
       "tipo": "ultimos",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-23T07:40:16.369345-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
