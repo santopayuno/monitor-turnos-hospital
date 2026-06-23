@@ -19094,6 +19094,12 @@
         "con_cupos": 21,
         "total_cupos": 620,
         "cambios": 0
+      },
+      {
+        "hora": "12:00:15",
+        "con_cupos": 20,
+        "total_cupos": 611,
+        "cambios": 1
       }
     ]
   },
@@ -24100,6 +24106,12 @@
       "fecha": "2026-06-23T11:30:37.550434-03:00",
       "tipo": "agotados",
       "especialidad": "NUTRICION GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T12:00:15.916924-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-23T11:55:17.301666-03:00",
+  "generado": "2026-06-23T12:00:14.789272-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -430,6 +430,13 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "12:00",
+        "probabilidad": 33,
+        "confianza": "media",
+        "casos": 6,
+        "aciertos": 2
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -541,8 +548,17 @@
     }
   },
   "banner": {
-    "hora": "11:00",
+    "hora": "12:00",
     "dias": 20,
-    "items": []
+    "items": [
+      {
+        "especialidad": "PEDIATRIA CONSULTA",
+        "probabilidad": 33,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 6,
+        "aciertos": 2
+      }
+    ]
   }
 }
