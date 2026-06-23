@@ -18920,6 +18920,12 @@
         "con_cupos": 37,
         "total_cupos": 1480,
         "cambios": 2
+      },
+      {
+        "hora": "09:35:31",
+        "con_cupos": 34,
+        "total_cupos": 1351,
+        "cambios": 5
       }
     ]
   },
@@ -23735,6 +23741,36 @@
       "tipo": "ultimos",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-23T09:35:31.530385-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-23T09:35:31.530385-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-23T09:35:31.530385-03:00",
+      "tipo": "agotados",
+      "especialidad": "OFTALMOLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T09:35:31.530385-03:00",
+      "tipo": "agotados",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T09:35:31.530385-03:00",
+      "tipo": "agotados",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
