@@ -3527,3 +3527,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NUTRICION GENERAL", "cupos": 0, "ts": "2026-06-23T14:30:37.644706"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 643, "con_cupos": 21, "ts": "2026-06-23T14:35:13.212422"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 638, "con_cupos": 21, "ts": "2026-06-23T14:40:18.263377"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 635, "con_cupos": 21, "ts": "2026-06-23T14:45:05.864742"}
