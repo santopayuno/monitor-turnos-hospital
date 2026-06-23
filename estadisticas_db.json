@@ -18222,6 +18222,12 @@
         "con_cupos": 8,
         "total_cupos": 27,
         "cambios": 0
+      },
+      {
+        "hora": "23:55:07",
+        "con_cupos": 7,
+        "total_cupos": 26,
+        "cambios": 1
       }
     ]
   },
@@ -22754,6 +22760,12 @@
       "fecha": "2026-06-22T15:20:33.239884-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-22T23:55:07.309387-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
