@@ -3456,3 +3456,10 @@
 {"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA INFANTIL", "cupos": 60, "ts": "2026-06-23T12:10:04.829658"}
 {"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA TORACICA", "cupos": 11, "ts": "2026-06-23T12:10:04.829737"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-23T12:10:05.552543"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1760, "con_cupos": 37, "ts": "2026-06-23T12:15:10.678079"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "INFECTOLOGIA PEDIATRICA", "cupos": 17, "ts": "2026-06-23T12:15:10.710716"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "OBSTETRICIA BAJO RIESGO", "cupos": 193, "ts": "2026-06-23T12:15:10.710799"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "PRE ANESTESIA PEDIATRIA", "cupos": 20, "ts": "2026-06-23T12:15:10.710823"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)", "cupos": 10, "ts": "2026-06-23T12:15:10.710840"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)", "cupos": 11, "ts": "2026-06-23T12:15:10.710856"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-23T12:15:11.332909"}

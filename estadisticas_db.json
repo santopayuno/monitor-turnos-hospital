@@ -18896,6 +18896,12 @@
         "con_cupos": 15,
         "total_cupos": 508,
         "cambios": 8
+      },
+      {
+        "hora": "09:15:10",
+        "con_cupos": 37,
+        "total_cupos": 1760,
+        "cambios": 27
       }
     ]
   },
@@ -23530,6 +23536,168 @@
       "fecha": "2026-06-23T09:10:04.793852-03:00",
       "tipo": "aumentos",
       "especialidad": "CIRUGIA TORACICA",
+      "cupos": 11
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 58
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 85
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 14
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 24
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 60
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 35
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 26
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 19
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 18
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 23
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+      "cupos": 36
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 24
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "OFTALMOLOGIA",
+      "cupos": 92
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 53
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 34
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 52
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 193
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 32
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "UROLOGIA",
+      "cupos": 35
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PODOLOGIA",
+      "cupos": 87
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "aumentos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 17
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "aumentos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 193
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "aumentos",
+      "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 20
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "aumentos",
+      "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-06-23T09:15:10.680414-03:00",
+      "tipo": "aumentos",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 11
     }
   ],
