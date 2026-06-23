@@ -19106,6 +19106,12 @@
         "con_cupos": 20,
         "total_cupos": 604,
         "cambios": 1
+      },
+      {
+        "hora": "12:10:06",
+        "con_cupos": 20,
+        "total_cupos": 601,
+        "cambios": 0
       }
     ]
   },
