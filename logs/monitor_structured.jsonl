@@ -3464,3 +3464,5 @@
 {"evento": "cambio", "tipo": "aumentos", "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)", "cupos": 11, "ts": "2026-06-23T12:15:10.710856"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-23T12:15:11.332909"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1740, "con_cupos": 37, "ts": "2026-06-23T12:20:30.985476"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 1637, "con_cupos": 37, "ts": "2026-06-23T12:25:26.590494"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-23T12:25:26.624768"}

@@ -18908,6 +18908,12 @@
         "con_cupos": 37,
         "total_cupos": 1740,
         "cambios": 0
+      },
+      {
+        "hora": "09:25:26",
+        "con_cupos": 37,
+        "total_cupos": 1637,
+        "cambios": 1
       }
     ]
   },
@@ -23705,6 +23711,12 @@
       "tipo": "aumentos",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
       "cupos": 11
+    },
+    {
+      "fecha": "2026-06-23T09:25:26.593256-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
