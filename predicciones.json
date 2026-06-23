@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-23T09:15:09.367792-03:00",
+  "generado": "2026-06-23T09:20:29.864208-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -39,7 +39,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -51,7 +50,6 @@
       "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
       "texto_sin_hora": "Todavía no hay suficiente historial",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -63,7 +61,6 @@
       "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
       "texto_sin_hora": "Todavía no hay suficiente historial",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -145,7 +142,6 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -215,7 +211,6 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -257,7 +252,6 @@
       "hora_probable": "mañana",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:45",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -285,7 +279,6 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -299,7 +292,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -339,7 +331,6 @@
       "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
       "texto_sin_hora": "Todavía no hay suficiente historial",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -368,7 +359,6 @@
       "texto_sin_hora": "No hay patrón claro todavía",
       "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -395,7 +385,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -410,7 +399,6 @@
       "texto_sin_hora": "Suele haber turnos los martes y jueves",
       "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -479,7 +467,6 @@
       "hora_probable": "10:15",
       "texto_sin_hora": "Suele haber turnos los martes y sábados",
       "ultima_apertura": "10:00",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
