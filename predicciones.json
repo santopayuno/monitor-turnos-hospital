@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-23T10:55:32.440568-03:00",
+  "generado": "2026-06-23T11:00:27.977935-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -541,7 +541,7 @@
     }
   },
   "banner": {
-    "hora": "10:00",
+    "hora": "11:00",
     "dias": 20,
     "items": []
   }
