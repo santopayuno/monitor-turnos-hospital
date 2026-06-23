@@ -19304,6 +19304,12 @@
         "con_cupos": 19,
         "total_cupos": 510,
         "cambios": 0
+      },
+      {
+        "hora": "14:55:06",
+        "con_cupos": 18,
+        "total_cupos": 509,
+        "cambios": 1
       }
     ]
   },
@@ -24341,6 +24347,12 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-23T14:55:06.052944-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
