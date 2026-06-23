@@ -3494,3 +3494,5 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-23T13:05:15.102265"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 931, "con_cupos": 28, "ts": "2026-06-23T13:10:25.241777"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 4, "ts": "2026-06-23T13:10:25.280914"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 892, "con_cupos": 28, "ts": "2026-06-23T13:15:14.433107"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 3, "ts": "2026-06-23T13:15:14.468993"}
