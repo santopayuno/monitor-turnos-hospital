@@ -3633,3 +3633,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 464, "con_cupos": 18, "ts": "2026-06-23T22:50:18.163447"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 463, "con_cupos": 18, "ts": "2026-06-23T22:55:15.667146"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 461, "con_cupos": 18, "ts": "2026-06-23T23:00:13.114170"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 460, "con_cupos": 17, "ts": "2026-06-23T23:05:18.967813"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "INFECTOLOGIA", "cupos": 0, "ts": "2026-06-23T23:05:19.059343"}

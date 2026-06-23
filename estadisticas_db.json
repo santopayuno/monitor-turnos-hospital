@@ -19676,6 +19676,12 @@
         "con_cupos": 18,
         "total_cupos": 461,
         "cambios": 0
+      },
+      {
+        "hora": "20:05:18",
+        "con_cupos": 17,
+        "total_cupos": 460,
+        "cambios": 1
       }
     ]
   },
@@ -24718,6 +24724,12 @@
       "fecha": "2026-06-23T14:55:06.052944-03:00",
       "tipo": "agotados",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T20:05:18.974170-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
       "cupos": 0
     }
   ],
