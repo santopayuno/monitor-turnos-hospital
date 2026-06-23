@@ -3554,3 +3554,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 550, "con_cupos": 20, "ts": "2026-06-23T16:35:31.611021"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 548, "con_cupos": 20, "ts": "2026-06-23T16:40:10.944411"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 542, "con_cupos": 20, "ts": "2026-06-23T16:45:09.286823"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 536, "con_cupos": 19, "ts": "2026-06-23T16:50:07.634781"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-23T16:50:07.675131"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "UROLOGIA", "cupos": 0, "ts": "2026-06-23T16:50:07.675187"}
