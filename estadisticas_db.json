@@ -18890,6 +18890,12 @@
         "con_cupos": 9,
         "total_cupos": 133,
         "cambios": 0
+      },
+      {
+        "hora": "09:10:04",
+        "con_cupos": 15,
+        "total_cupos": 508,
+        "cambios": 8
       }
     ]
   },
@@ -23477,6 +23483,54 @@
       "tipo": "agotados",
       "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 132
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 90
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 20
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 20
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 14
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 50
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 60
+    },
+    {
+      "fecha": "2026-06-23T09:10:04.793852-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 11
     }
   ],
   "es_primera_ejecucion": false

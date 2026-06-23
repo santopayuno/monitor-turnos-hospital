@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-23T09:05:10.743867-03:00",
+  "generado": "2026-06-23T09:10:03.835138-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -9,7 +9,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "11:15",
+      "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
@@ -18,13 +18,13 @@
       }
     },
     "CARDIOLOGIA INFANTIL": {
-      "cuando": "Suele haber turnos los martes por la mañana",
-      "confianza": "media",
-      "categoria": "atencion",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "certero",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "11:15",
+      "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
       "prob_apertura": {
         "emoji": "🔴",
@@ -32,23 +32,17 @@
       }
     },
     "CIRUGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes y sábados cerca de las 10:00 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "tipo_hora_modal": "probable",
-      "hora_probable": "10:00",
-      "texto_sin_hora": "Suele haber turnos los martes y sábados",
-      "ultima_apertura": "9:45",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos los martes",
+      "ultima_apertura": "9:15",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 4
       }
     },
     "CIRUGIA INFANTIL": {
@@ -57,6 +51,7 @@
       "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
       "texto_sin_hora": "Todavía no hay suficiente historial",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -68,9 +63,10 @@
       "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
       "texto_sin_hora": "Todavía no hay suficiente historial",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "CLINICA MEDICA CONSULTA": {
@@ -94,10 +90,10 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:45",
+      "ultima_apertura": "9:15",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": {
@@ -147,21 +143,22 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "11:15",
+      "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
       }
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "11:15",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "9:15",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
@@ -588,14 +585,6 @@
     "dias": 20,
     "items": [
       {
-        "especialidad": "CIRUGIA GENERAL",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 4
-      },
-      {
         "especialidad": "INFECTOLOGIA",
         "probabilidad": 80,
         "confianza": "alta",
@@ -626,6 +615,14 @@
         "nivel": 2,
         "casos": 6,
         "aciertos": 2
+      },
+      {
+        "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+        "probabilidad": 30,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 10,
+        "aciertos": 3
       }
     ]
   }

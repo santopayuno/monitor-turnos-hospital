@@ -3452,3 +3452,7 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 142, "con_cupos": 9, "ts": "2026-06-23T11:55:29.610206"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 137, "con_cupos": 9, "ts": "2026-06-23T12:00:27.481402"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 133, "con_cupos": 9, "ts": "2026-06-23T12:05:12.041983"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 508, "con_cupos": 15, "ts": "2026-06-23T12:10:04.791450"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA INFANTIL", "cupos": 60, "ts": "2026-06-23T12:10:04.829658"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CIRUGIA TORACICA", "cupos": 11, "ts": "2026-06-23T12:10:04.829737"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-23T12:10:05.552543"}
