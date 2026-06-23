@@ -18944,6 +18944,12 @@
         "con_cupos": 30,
         "total_cupos": 1092,
         "cambios": 0
+      },
+      {
+        "hora": "09:55:24",
+        "con_cupos": 29,
+        "total_cupos": 1038,
+        "cambios": 2
       }
     ]
   },
@@ -23830,6 +23836,18 @@
       "fecha": "2026-06-23T09:45:11.274007-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T09:55:24.613294-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-23T09:55:24.613294-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
