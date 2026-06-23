@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-23T06:45:25.817233-03:00",
+  "generado": "2026-06-23T06:50:28.864424-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -73,18 +73,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:15",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:15",
+      "ultima_apertura": "6:45",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 56,
-        "confianza": "media",
-        "casos": 18,
-        "aciertos": 10
       }
     },
     "COLOPROCTOLOGIA": {
@@ -350,7 +343,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:15",
+      "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
@@ -359,14 +352,14 @@
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "Suele haber turnos por la mañana",
-      "confianza": "media",
-      "categoria": "franja_manana",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos",
-      "ultima_apertura": "7:15",
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -432,18 +425,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:15",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:15",
+      "ultima_apertura": "6:45",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 53,
-        "confianza": "media",
-        "casos": 17,
-        "aciertos": 9
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -557,24 +543,7 @@
   },
   "banner": {
     "hora": "06:00",
-    "dias": 19,
-    "items": [
-      {
-        "especialidad": "CLINICA MEDICA CONSULTA",
-        "probabilidad": 56,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 18,
-        "aciertos": 10
-      },
-      {
-        "especialidad": "PEDIATRIA CONSULTA",
-        "probabilidad": 53,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 17,
-        "aciertos": 9
-      }
-    ]
+    "dias": 20,
+    "items": []
   }
 }

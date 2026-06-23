@@ -18722,6 +18722,12 @@
         "con_cupos": 7,
         "total_cupos": 25,
         "cambios": 0
+      },
+      {
+        "hora": "06:50:30",
+        "con_cupos": 11,
+        "total_cupos": 299,
+        "cambios": 4
       }
     ]
   },
@@ -23261,6 +23267,30 @@
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA INFANTIL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T06:50:30.147827-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 72
+    },
+    {
+      "fecha": "2026-06-23T06:50:30.147827-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 50
+    },
+    {
+      "fecha": "2026-06-23T06:50:30.147827-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 138
+    },
+    {
+      "fecha": "2026-06-23T06:50:30.147827-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 14
     }
   ],
   "es_primera_ejecucion": false
