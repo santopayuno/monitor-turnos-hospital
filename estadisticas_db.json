@@ -19034,6 +19034,12 @@
         "con_cupos": 24,
         "total_cupos": 679,
         "cambios": 1
+      },
+      {
+        "hora": "11:10:13",
+        "con_cupos": 24,
+        "total_cupos": 669,
+        "cambios": 1
       }
     ]
   },
@@ -24005,6 +24011,12 @@
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA INFANTIL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T11:10:13.680785-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
