@@ -19286,6 +19286,12 @@
         "con_cupos": 19,
         "total_cupos": 517,
         "cambios": 0
+      },
+      {
+        "hora": "14:40:31",
+        "con_cupos": 19,
+        "total_cupos": 515,
+        "cambios": 1
       }
     ]
   },
@@ -24317,6 +24323,12 @@
       "tipo": "agotados",
       "especialidad": "UROLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T14:40:31.591395-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
