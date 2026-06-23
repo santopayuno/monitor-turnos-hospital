@@ -3522,3 +3522,6 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-23T14:20:10.096530"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-23T14:20:10.096586"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 649, "con_cupos": 22, "ts": "2026-06-23T14:25:29.781173"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 646, "con_cupos": 21, "ts": "2026-06-23T14:30:37.541953"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEFROLOGIA", "cupos": 4, "ts": "2026-06-23T14:30:37.644550"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NUTRICION GENERAL", "cupos": 0, "ts": "2026-06-23T14:30:37.644706"}

@@ -19058,6 +19058,12 @@
         "con_cupos": 22,
         "total_cupos": 649,
         "cambios": 0
+      },
+      {
+        "hora": "11:30:37",
+        "con_cupos": 21,
+        "total_cupos": 646,
+        "cambios": 2
       }
     ]
   },
@@ -24052,6 +24058,18 @@
       "fecha": "2026-06-23T11:20:10.049333-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-23T11:30:37.550434-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-23T11:30:37.550434-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
       "cupos": 0
     }
   ],
