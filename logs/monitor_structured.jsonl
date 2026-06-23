@@ -3439,3 +3439,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-23T10:55:34.332133"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 192, "con_cupos": 10, "ts": "2026-06-23T11:02:09.104906"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 192, "con_cupos": 10, "ts": "2026-06-23T11:05:22.966949"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 186, "con_cupos": 9, "ts": "2026-06-23T11:10:27.096857"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-23T11:10:27.164218"}
