@@ -21028,6 +21028,12 @@
         "con_cupos": 23,
         "total_cupos": 390,
         "cambios": 0
+      },
+      {
+        "hora": "14:50:28",
+        "con_cupos": 23,
+        "total_cupos": 386,
+        "cambios": 1
       }
     ]
   },
@@ -26232,6 +26238,12 @@
       "fecha": "2026-06-24T14:20:26.375271-03:00",
       "tipo": "ultimos",
       "especialidad": "UROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-24T14:50:28.724414-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 4
     }
   ],
