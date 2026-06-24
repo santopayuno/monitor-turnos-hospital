@@ -20902,6 +20902,12 @@
         "con_cupos": 24,
         "total_cupos": 447,
         "cambios": 1
+      },
+      {
+        "hora": "13:05:11",
+        "con_cupos": 24,
+        "total_cupos": 443,
+        "cambios": 0
       }
     ]
   },
