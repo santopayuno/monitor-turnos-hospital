@@ -3836,3 +3836,7 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 414, "con_cupos": 19, "ts": "2026-06-24T14:45:28.257190"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 410, "con_cupos": 19, "ts": "2026-06-24T14:50:27.199880"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 404, "con_cupos": 19, "ts": "2026-06-24T14:55:19.976903"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 433, "con_cupos": 21, "ts": "2026-06-24T15:00:22.534227"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 19, "ts": "2026-06-24T15:00:22.574272"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA ADULTO", "cupos": 2, "ts": "2026-06-24T15:00:22.574352"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-24T15:00:23.333420"}

@@ -20824,6 +20824,12 @@
         "con_cupos": 19,
         "total_cupos": 404,
         "cambios": 0
+      },
+      {
+        "hora": "12:00:22",
+        "con_cupos": 21,
+        "total_cupos": 433,
+        "cambios": 4
       }
     ]
   },
@@ -25945,6 +25951,30 @@
       "tipo": "ultimos",
       "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-24T12:00:22.536757-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-24T12:00:22.536757-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 13
+    },
+    {
+      "fecha": "2026-06-24T12:00:22.536757-03:00",
+      "tipo": "aumentos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 19
+    },
+    {
+      "fecha": "2026-06-24T12:00:22.536757-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false
