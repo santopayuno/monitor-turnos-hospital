@@ -20608,6 +20608,12 @@
         "con_cupos": 20,
         "total_cupos": 541,
         "cambios": 0
+      },
+      {
+        "hora": "09:00:10",
+        "con_cupos": 20,
+        "total_cupos": 533,
+        "cambios": 1
       }
     ]
   },
@@ -25711,6 +25717,12 @@
       "tipo": "ultimos",
       "especialidad": "COLOPROCTOLOGIA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-24T09:00:10.625349-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
