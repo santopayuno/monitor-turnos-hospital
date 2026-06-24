@@ -21052,6 +21052,12 @@
         "con_cupos": 22,
         "total_cupos": 380,
         "cambios": 1
+      },
+      {
+        "hora": "15:10:25",
+        "con_cupos": 21,
+        "total_cupos": 369,
+        "cambios": 1
       }
     ]
   },
@@ -26268,6 +26274,12 @@
       "fecha": "2026-06-24T15:05:25.530116-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-24T15:10:25.714663-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
     }
   ],
