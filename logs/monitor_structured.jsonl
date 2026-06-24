@@ -3869,3 +3869,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 424, "con_cupos": 24, "ts": "2026-06-24T16:40:27.395292"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 422, "con_cupos": 23, "ts": "2026-06-24T16:45:06.078195"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-24T16:45:06.123777"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 421, "con_cupos": 23, "ts": "2026-06-24T16:50:23.539601"}
