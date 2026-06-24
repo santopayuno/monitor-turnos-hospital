@@ -20992,6 +20992,12 @@
         "con_cupos": 23,
         "total_cupos": 406,
         "cambios": 0
+      },
+      {
+        "hora": "14:20:26",
+        "con_cupos": 23,
+        "total_cupos": 403,
+        "cambios": 1
       }
     ]
   },
@@ -26191,6 +26197,12 @@
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-24T14:20:26.375271-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
