@@ -20590,6 +20590,12 @@
         "con_cupos": 20,
         "total_cupos": 564,
         "cambios": 0
+      },
+      {
+        "hora": "08:45:17",
+        "con_cupos": 20,
+        "total_cupos": 555,
+        "cambios": 1
       }
     ]
   },
@@ -25687,6 +25693,12 @@
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-24T08:45:17.930210-03:00",
+      "tipo": "ultimos",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
