@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-24T06:40:17.980781-03:00",
+  "generado": "2026-06-24T06:45:29.592408-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -347,18 +347,20 @@
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🟢",
+        "txt": "Alta"
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja",
-      "categoria": "sinPatron",
-      "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:00 hs.",
+      "confianza": "media",
+      "categoria": "abundancia",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "7:00",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
       "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
