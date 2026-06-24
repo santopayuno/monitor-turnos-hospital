@@ -20836,6 +20836,12 @@
         "con_cupos": 22,
         "total_cupos": 460,
         "cambios": 1
+      },
+      {
+        "hora": "12:10:27",
+        "con_cupos": 21,
+        "total_cupos": 455,
+        "cambios": 1
       }
     ]
   },
@@ -25987,6 +25993,12 @@
       "tipo": "reaperturas",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 30
+    },
+    {
+      "fecha": "2026-06-24T12:10:27.285946-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
