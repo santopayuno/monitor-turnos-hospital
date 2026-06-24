@@ -21460,6 +21460,12 @@
         "con_cupos": 18,
         "total_cupos": 309,
         "cambios": 1
+      },
+      {
+        "hora": "20:50:06",
+        "con_cupos": 17,
+        "total_cupos": 307,
+        "cambios": 1
       }
     ]
   },
@@ -26712,6 +26718,12 @@
       "fecha": "2026-06-24T20:45:12.974333-03:00",
       "tipo": "agotados",
       "especialidad": "UROLOGIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-24T20:50:06.856638-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
