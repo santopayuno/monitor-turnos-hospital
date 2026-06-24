@@ -20926,6 +20926,12 @@
         "con_cupos": 24,
         "total_cupos": 435,
         "cambios": 0
+      },
+      {
+        "hora": "13:25:32",
+        "con_cupos": 24,
+        "total_cupos": 430,
+        "cambios": 1
       }
     ]
   },
@@ -26112,6 +26118,12 @@
       "fecha": "2026-06-24T13:00:19.049956-03:00",
       "tipo": "ultimos",
       "especialidad": "NUTRICION GENERAL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-24T13:25:32.075831-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 4
     }
   ],
