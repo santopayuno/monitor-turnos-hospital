@@ -20896,6 +20896,12 @@
         "con_cupos": 24,
         "total_cupos": 452,
         "cambios": 0
+      },
+      {
+        "hora": "13:00:19",
+        "con_cupos": 24,
+        "total_cupos": 447,
+        "cambios": 1
       }
     ]
   },
@@ -26077,6 +26083,12 @@
       "tipo": "reaperturas",
       "especialidad": "UROLOGIA",
       "cupos": 9
+    },
+    {
+      "fecha": "2026-06-24T13:00:19.049956-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
