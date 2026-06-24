@@ -20500,6 +20500,12 @@
         "con_cupos": 21,
         "total_cupos": 663,
         "cambios": 0
+      },
+      {
+        "hora": "07:30:26",
+        "con_cupos": 21,
+        "total_cupos": 656,
+        "cambios": 1
       }
     ]
   },
@@ -25585,6 +25591,12 @@
       "tipo": "aumentos",
       "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 66
+    },
+    {
+      "fecha": "2026-06-24T07:30:26.281639-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false
