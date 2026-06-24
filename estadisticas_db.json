@@ -21070,6 +21070,12 @@
         "con_cupos": 21,
         "total_cupos": 365,
         "cambios": 0
+      },
+      {
+        "hora": "15:25:27",
+        "con_cupos": 21,
+        "total_cupos": 364,
+        "cambios": 0
       }
     ]
   },
