@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-24T12:25:26.510795-03:00",
+  "generado": "2026-06-24T12:30:14.606437-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -311,13 +311,13 @@
       }
     },
     "NUTRICION GENERAL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "12:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
@@ -474,16 +474,17 @@
       }
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja",
-      "categoria": "sinPatron",
-      "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
-      "ultima_apertura": "9:15",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
+      "confianza": "alta",
+      "categoria": "abundancia",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "12:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🟢",
+        "txt": "Alta"
       }
     },
     "TRAUMATOLOGIA ADULTO": {

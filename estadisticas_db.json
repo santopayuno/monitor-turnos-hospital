@@ -20860,6 +20860,12 @@
         "con_cupos": 21,
         "total_cupos": 448,
         "cambios": 0
+      },
+      {
+        "hora": "12:30:15",
+        "con_cupos": 23,
+        "total_cupos": 467,
+        "cambios": 2
       }
     ]
   },
@@ -26023,6 +26029,18 @@
       "tipo": "ultimos",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-24T12:30:15.780023-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-06-24T12:30:15.780023-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 13
     }
   ],
   "es_primera_ejecucion": false
