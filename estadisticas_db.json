@@ -20716,6 +20716,12 @@
         "con_cupos": 19,
         "total_cupos": 474,
         "cambios": 0
+      },
+      {
+        "hora": "10:30:30",
+        "con_cupos": 19,
+        "total_cupos": 467,
+        "cambios": 1
       }
     ]
   },
@@ -25831,6 +25837,12 @@
       "tipo": "agotados",
       "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-24T10:30:30.637479-03:00",
+      "tipo": "ultimos",
+      "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
