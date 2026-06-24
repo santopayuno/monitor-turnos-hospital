@@ -20440,6 +20440,12 @@
         "con_cupos": 17,
         "total_cupos": 418,
         "cambios": 0
+      },
+      {
+        "hora": "06:40:19",
+        "con_cupos": 19,
+        "total_cupos": 609,
+        "cambios": 2
       }
     ]
   },
@@ -25495,6 +25501,18 @@
       "tipo": "ultimos",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-24T06:40:19.803421-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 68
+    },
+    {
+      "fecha": "2026-06-24T06:40:19.803421-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 123
     }
   ],
   "es_primera_ejecucion": false
