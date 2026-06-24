@@ -21226,6 +21226,12 @@
         "con_cupos": 21,
         "total_cupos": 337,
         "cambios": 0
+      },
+      {
+        "hora": "17:35:24",
+        "con_cupos": 21,
+        "total_cupos": 336,
+        "cambios": 1
       }
     ]
   },
@@ -26454,6 +26460,12 @@
       "fecha": "2026-06-24T16:35:08.293449-03:00",
       "tipo": "ultimos",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-24T17:35:24.685922-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 4
     }
   ],
