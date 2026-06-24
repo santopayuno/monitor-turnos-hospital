@@ -3846,3 +3846,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-24T15:10:27.345144"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 452, "con_cupos": 21, "ts": "2026-06-24T15:15:20.981054"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 4, "ts": "2026-06-24T15:15:21.024416"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 448, "con_cupos": 21, "ts": "2026-06-24T15:20:27.141582"}
