@@ -1,5 +1,5 @@
 {
-  "especialidades_interes": ["CARDIOLOGIA ADULTO", "ODONTOLOGIA ADULTO", "OFTALMOLOGIA", "TRAUMATOLOGIA ADULTO"],
+  "especialidades_interes": ["OFTALMOLOGIA"],
   "generar_reporte_diario": true,
   "hora_reporte_diario": "08:00",
   "alertas_patrones": true
