@@ -3859,3 +3859,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 447, "con_cupos": 24, "ts": "2026-06-24T16:00:19.042792"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 4, "ts": "2026-06-24T16:00:19.130273"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 443, "con_cupos": 24, "ts": "2026-06-24T16:05:11.233576"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 438, "con_cupos": 24, "ts": "2026-06-24T16:10:13.495053"}
