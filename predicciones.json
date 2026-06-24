@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-24T09:55:27.657317-03:00",
+  "generado": "2026-06-24T10:00:31.621550-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -242,13 +242,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 43,
-        "confianza": "media",
-        "casos": 14,
-        "aciertos": 6
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -316,13 +309,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 32,
-        "confianza": "media",
-        "casos": 19,
-        "aciertos": 6
       }
     },
     "NUTRICION GENERAL": {
@@ -432,13 +418,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 30,
-        "confianza": "media",
-        "casos": 10,
-        "aciertos": 3
       }
     },
     "PEDIATRIA CONSULTA": {
@@ -564,33 +543,8 @@
     }
   },
   "banner": {
-    "hora": "09:00",
+    "hora": "10:00",
     "dias": 21,
-    "items": [
-      {
-        "especialidad": "INFECTOLOGIA",
-        "probabilidad": 43,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 14,
-        "aciertos": 6
-      },
-      {
-        "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
-        "probabilidad": 32,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 19,
-        "aciertos": 6
-      },
-      {
-        "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
-        "probabilidad": 30,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 10,
-        "aciertos": 3
-      }
-    ]
+    "items": []
   }
 }
