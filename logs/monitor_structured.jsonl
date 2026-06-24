@@ -3910,3 +3910,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-24T19:35:08.336721"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 349, "con_cupos": 21, "ts": "2026-06-24T19:40:21.974835"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 349, "con_cupos": 21, "ts": "2026-06-24T19:45:34.259106"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 349, "con_cupos": 21, "ts": "2026-06-24T19:50:19.717216"}
