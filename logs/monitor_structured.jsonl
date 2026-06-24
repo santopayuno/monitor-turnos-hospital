@@ -3884,3 +3884,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 390, "con_cupos": 23, "ts": "2026-06-24T17:45:18.427022"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 386, "con_cupos": 23, "ts": "2026-06-24T17:50:28.720492"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-24T17:50:28.771703"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 384, "con_cupos": 23, "ts": "2026-06-24T17:55:28.300450"}
