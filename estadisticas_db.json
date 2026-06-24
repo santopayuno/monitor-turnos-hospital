@@ -20872,6 +20872,12 @@
         "con_cupos": 23,
         "total_cupos": 467,
         "cambios": 0
+      },
+      {
+        "hora": "12:40:09",
+        "con_cupos": 24,
+        "total_cupos": 470,
+        "cambios": 1
       }
     ]
   },
@@ -26047,6 +26053,12 @@
       "tipo": "reaperturas",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 13
+    },
+    {
+      "fecha": "2026-06-24T12:40:09.269107-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "UROLOGIA",
+      "cupos": 9
     }
   ],
   "es_primera_ejecucion": false
