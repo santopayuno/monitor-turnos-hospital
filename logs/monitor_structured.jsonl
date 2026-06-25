@@ -3987,3 +3987,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 295, "con_cupos": 17, "ts": "2026-06-25T01:35:26.768282"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 295, "con_cupos": 17, "ts": "2026-06-25T01:40:09.796745"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 295, "con_cupos": 17, "ts": "2026-06-25T01:45:19.204024"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 294, "con_cupos": 16, "ts": "2026-06-25T01:50:29.395539"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NEUMONOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-25T01:50:29.449761"}
