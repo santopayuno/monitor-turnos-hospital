@@ -4161,3 +4161,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 4, "ts": "2026-06-25T14:50:25.477125"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 357, "con_cupos": 17, "ts": "2026-06-25T14:55:08.441541"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 356, "con_cupos": 17, "ts": "2026-06-25T15:00:38.559413"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 354, "con_cupos": 17, "ts": "2026-06-25T15:05:07.596867"}
