@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T06:40:07.709264-03:00",
+  "generado": "2026-06-25T06:45:31.788122-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -67,24 +67,17 @@
       }
     },
     "CLINICA MEDICA CONSULTA": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:00 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
       "tipo_hora_modal": "probable",
-      "hora_probable": "7:15",
+      "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
       "ultima_apertura": "6:45",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 4
       }
     },
     "COLOPROCTOLOGIA": {
@@ -343,12 +336,11 @@
       }
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos varios días de la semana",
       "confianza": "media",
       "categoria": "atencion",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana",
       "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
@@ -427,24 +419,17 @@
       }
     },
     "PEDIATRIA CONSULTA": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:15 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:00 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
       "tipo_hora_modal": "probable",
-      "hora_probable": "7:15",
+      "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
       "ultima_apertura": "6:45",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 55,
-        "confianza": "media",
-        "casos": 20,
-        "aciertos": 11
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -559,23 +544,6 @@
   "banner": {
     "hora": "06:00",
     "dias": 22,
-    "items": [
-      {
-        "especialidad": "CLINICA MEDICA CONSULTA",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 4
-      },
-      {
-        "especialidad": "PEDIATRIA CONSULTA",
-        "probabilidad": 55,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 20,
-        "aciertos": 11
-      }
-    ]
+    "items": []
   }
 }

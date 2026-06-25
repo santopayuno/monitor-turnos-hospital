@@ -22176,6 +22176,12 @@
         "con_cupos": 15,
         "total_cupos": 278,
         "cambios": 0
+      },
+      {
+        "hora": "06:45:33",
+        "con_cupos": 18,
+        "total_cupos": 569,
+        "cambios": 3
       }
     ]
   },
@@ -27459,6 +27465,24 @@
       "tipo": "ultimos",
       "especialidad": "DIABETOLOGIA GENERAL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-25T06:45:33.199008-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 78
+    },
+    {
+      "fecha": "2026-06-25T06:45:33.199008-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 52
+    },
+    {
+      "fecha": "2026-06-25T06:45:33.199008-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 161
     }
   ],
   "es_primera_ejecucion": false
