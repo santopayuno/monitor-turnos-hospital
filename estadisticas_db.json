@@ -22476,6 +22476,12 @@
         "con_cupos": 16,
         "total_cupos": 379,
         "cambios": 0
+      },
+      {
+        "hora": "10:55:33",
+        "con_cupos": 16,
+        "total_cupos": 376,
+        "cambios": 1
       }
     ]
   },
@@ -27819,6 +27825,12 @@
       "tipo": "agotados",
       "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-25T10:55:33.902555-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
