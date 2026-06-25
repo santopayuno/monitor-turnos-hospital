@@ -4212,3 +4212,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 211, "con_cupos": 14, "ts": "2026-06-25T18:55:08.415030"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "PEDIATRIA CONSULTA", "cupos": 0, "ts": "2026-06-25T18:55:08.474534"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-25T18:55:08.474615"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 209, "con_cupos": 14, "ts": "2026-06-25T19:00:33.742815"}
