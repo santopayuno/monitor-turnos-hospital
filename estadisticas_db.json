@@ -22638,6 +22638,12 @@
         "con_cupos": 17,
         "total_cupos": 325,
         "cambios": 0
+      },
+      {
+        "hora": "13:10:18",
+        "con_cupos": 17,
+        "total_cupos": 318,
+        "cambios": 1
       }
     ]
   },
@@ -27999,6 +28005,12 @@
       "tipo": "ultimos",
       "especialidad": "CARDIOLOGIA INFANTIL",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-25T13:10:18.771526-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
