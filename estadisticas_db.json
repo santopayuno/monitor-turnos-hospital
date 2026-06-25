@@ -22404,6 +22404,12 @@
         "con_cupos": 17,
         "total_cupos": 421,
         "cambios": 0
+      },
+      {
+        "hora": "09:55:27",
+        "con_cupos": 16,
+        "total_cupos": 419,
+        "cambios": 1
       }
     ]
   },
@@ -27740,6 +27746,12 @@
       "fecha": "2026-06-25T09:10:06.506155-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-25T09:55:27.460607-03:00",
+      "tipo": "agotados",
+      "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
     }
   ],

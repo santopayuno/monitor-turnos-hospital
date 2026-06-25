@@ -4131,3 +4131,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 427, "con_cupos": 17, "ts": "2026-06-25T12:40:25.320487"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 425, "con_cupos": 17, "ts": "2026-06-25T12:45:20.878159"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 421, "con_cupos": 17, "ts": "2026-06-25T12:50:23.555547"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 419, "con_cupos": 16, "ts": "2026-06-25T12:55:27.457604"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "COLOPROCTOLOGIA", "cupos": 0, "ts": "2026-06-25T12:55:27.504910"}

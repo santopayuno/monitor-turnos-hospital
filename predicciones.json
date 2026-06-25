@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T09:50:22.470252-03:00",
+  "generado": "2026-06-25T09:55:26.482763-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -148,11 +148,12 @@
       }
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja",
-      "categoria": "sinPatron",
-      "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:30 hs.",
+      "confianza": "media",
+      "categoria": "atencion",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:30",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "12:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
@@ -461,11 +462,11 @@
       }
     },
     "PODOLOGIA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
+      "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
       "prob_apertura": {
@@ -487,12 +488,11 @@
       }
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos varios días de la semana",
       "confianza": "media",
       "categoria": "atencion",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana",
       "ultima_apertura": "12:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
@@ -529,11 +529,11 @@
       }
     },
     "UROLOGIA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:45 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "tipo_hora_modal": "probable",
-      "hora_probable": "9:45",
+      "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "12:45",
       "prob_apertura": {
