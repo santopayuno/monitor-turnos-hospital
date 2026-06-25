@@ -21508,6 +21508,12 @@
         "con_cupos": 17,
         "total_cupos": 300,
         "cambios": 0
+      },
+      {
+        "hora": "21:30:19",
+        "con_cupos": 17,
+        "total_cupos": 299,
+        "cambios": 0
       }
     ]
   },
