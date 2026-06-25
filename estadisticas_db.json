@@ -22524,6 +22524,12 @@
         "con_cupos": 16,
         "total_cupos": 361,
         "cambios": 0
+      },
+      {
+        "hora": "11:35:07",
+        "con_cupos": 17,
+        "total_cupos": 367,
+        "cambios": 1
       }
     ]
   },
@@ -27873,6 +27879,12 @@
       "tipo": "ultimos",
       "especialidad": "INFECTOLOGIA PEDIATRICA",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-06-25T11:35:07.713943-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 6
     }
   ],
   "es_primera_ejecucion": false

@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T11:30:26.653447-03:00",
+  "generado": "2026-06-25T11:35:06.496565-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -25,17 +25,18 @@
       }
     },
     "CARDIOLOGIA INFANTIL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
+      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "ultima_apertura": "11:30",
       "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "CIRUGIA GENERAL": {
@@ -237,7 +238,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"

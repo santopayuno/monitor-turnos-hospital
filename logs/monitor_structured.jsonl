@@ -4153,3 +4153,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 362, "con_cupos": 16, "ts": "2026-06-25T14:20:21.147482"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 361, "con_cupos": 16, "ts": "2026-06-25T14:25:24.315535"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 361, "con_cupos": 16, "ts": "2026-06-25T14:30:28.112857"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 367, "con_cupos": 17, "ts": "2026-06-25T14:35:07.705000"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-25T14:35:08.427395"}
