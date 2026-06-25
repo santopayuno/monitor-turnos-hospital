@@ -4157,3 +4157,5 @@
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-25T14:35:08.427395"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 366, "con_cupos": 17, "ts": "2026-06-25T14:40:06.745541"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 363, "con_cupos": 17, "ts": "2026-06-25T14:45:08.565172"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 359, "con_cupos": 17, "ts": "2026-06-25T14:50:25.352278"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 4, "ts": "2026-06-25T14:50:25.477125"}
