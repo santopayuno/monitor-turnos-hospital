@@ -21714,6 +21714,12 @@
         "con_cupos": 16,
         "total_cupos": 287,
         "cambios": 0
+      },
+      {
+        "hora": "00:20:27",
+        "con_cupos": 15,
+        "total_cupos": 284,
+        "cambios": 1
       }
     ]
   },
@@ -26978,6 +26984,12 @@
       "fecha": "2026-06-24T22:50:29.399878-03:00",
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-25T00:20:27.081454-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
       "cupos": 0
     }
   ],
