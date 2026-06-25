@@ -21984,6 +21984,12 @@
         "con_cupos": 15,
         "total_cupos": 280,
         "cambios": 0
+      },
+      {
+        "hora": "04:05:14",
+        "con_cupos": 15,
+        "total_cupos": 279,
+        "cambios": 1
       }
     ]
   },
@@ -27255,6 +27261,12 @@
       "tipo": "agotados",
       "especialidad": "NUTRICION GENERAL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-25T04:05:14.833152-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
