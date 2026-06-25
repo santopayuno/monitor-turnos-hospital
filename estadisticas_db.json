@@ -22326,6 +22326,12 @@
         "con_cupos": 18,
         "total_cupos": 465,
         "cambios": 0
+      },
+      {
+        "hora": "08:50:29",
+        "con_cupos": 18,
+        "total_cupos": 461,
+        "cambios": 1
       }
     ]
   },
@@ -27645,6 +27651,12 @@
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-25T08:50:29.031113-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
