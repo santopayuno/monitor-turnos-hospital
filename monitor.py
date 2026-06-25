@@ -876,6 +876,7 @@ CLUSTER_WIN = 45
 VENT_RECIENTE_D = 21
 DIAS_MIN_ALTA = 3
 NOBS_MIN_CASI_TODOS = 8
+FREQ_CASI_TODOS = 0.60
 DUR_POCO_MIN = 120
 DUR_POCO_PARES = 3
 FREC_DIAS_VENTANA = 14
@@ -949,6 +950,17 @@ def _obs_de(nombre, eventos, ahora):
     return obs
 
 
+def _frecuencia_diaria(obs, ahora):
+    """Fracción de días hábiles (lun-vie) del período observado en los que hubo apertura."""
+    if not obs:
+        return 0.0
+    d0 = min(o['ts'] for o in obs).date()
+    d1 = ahora.date()
+    habiles = sum(1 for i in range((d1 - d0).days + 1)
+                  if (d0 + timedelta(days=i)).weekday() < 5)
+    return (len(obs) / habiles) if habiles else 0.0
+
+
 def generar_frase_cuando(nombre, eventos, ahora):
     """Devuelve (frase, confianza, categoria)."""
     obs = _obs_de(nombre, eventos, ahora)
@@ -991,10 +1003,18 @@ def generar_frase_cuando(nombre, eventos, ahora):
 
     if distintosDows >= 5 and (topPeso / pesoTotal) < 0.45:
         cl = horaDeDows(dowsOrden)
-        conf = "alta" if nObs >= NOBS_MIN_CASI_TODOS else "media"
-        if cl and cl[0]['peso'] / pesoTotal >= 0.5:
-            return (f"Suele haber turnos casi todos los días alrededor de las {_hhmm(cl[0]['rep'])} hs.", conf, "abundancia")
-        return ("Suele haber turnos casi todos los días", conf, "abundancia")
+        tieneHora = bool(cl and cl[0]['peso'] / pesoTotal >= 0.5)
+        hora = _hhmm(cl[0]['rep']) if tieneHora else None
+        if _frecuencia_diaria(obs, ahora) >= FREQ_CASI_TODOS:
+            # Abre de verdad casi a diario
+            conf = "alta" if nObs >= NOBS_MIN_CASI_TODOS else "media"
+            if tieneHora:
+                return (f"Suele haber turnos casi todos los días alrededor de las {hora} hs.", conf, "abundancia")
+            return ("Suele haber turnos casi todos los días", conf, "abundancia")
+        # Aparece en muchos días de semana, pero no casi a diario → frase honesta sin exagerar
+        if tieneHora:
+            return (f"Suele haber turnos varios días de la semana, alrededor de las {hora} hs.", "media", "atencion")
+        return ("Suele haber turnos varios días de la semana", "media", "atencion")
 
     if pesoHab / pesoTotal >= 0.6:
         nombresHab = [_plural_dia(DIAS_SEM[d]) for d in habituales]
