@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T09:55:26.482763-03:00",
+  "generado": "2026-06-25T10:00:09.754287-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -15,6 +15,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "10:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "CARDIOLOGIA INFANTIL": {
@@ -159,6 +166,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "10:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
@@ -185,13 +199,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 36,
-        "confianza": "media",
-        "casos": 11,
-        "aciertos": 4
       }
     },
     "FLEBOLOGIA (CONSULTA)": {
@@ -249,13 +256,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 40,
-        "confianza": "media",
-        "casos": 15,
-        "aciertos": 6
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -556,24 +556,24 @@
     }
   },
   "banner": {
-    "hora": "09:00",
+    "hora": "10:00",
     "dias": 22,
     "items": [
       {
-        "especialidad": "INFECTOLOGIA",
+        "especialidad": "CARDIOLOGIA ADULTO",
         "probabilidad": 40,
         "confianza": "media",
-        "nivel": 2,
-        "casos": 15,
-        "aciertos": 6
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
       },
       {
-        "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
-        "probabilidad": 36,
+        "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+        "probabilidad": 40,
         "confianza": "media",
-        "nivel": 2,
-        "casos": 11,
-        "aciertos": 4
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
       }
     ]
   }
