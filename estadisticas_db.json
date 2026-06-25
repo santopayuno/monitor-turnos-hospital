@@ -22254,6 +22254,12 @@
         "con_cupos": 19,
         "total_cupos": 543,
         "cambios": 0
+      },
+      {
+        "hora": "07:50:31",
+        "con_cupos": 19,
+        "total_cupos": 532,
+        "cambios": 1
       }
     ]
   },
@@ -27561,6 +27567,12 @@
       "tipo": "reaperturas",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 14
+    },
+    {
+      "fecha": "2026-06-25T07:50:31.328552-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
