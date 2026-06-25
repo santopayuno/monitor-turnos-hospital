@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T02:45:28.534337-03:00",
+  "generado": "2026-06-25T02:50:14.607404-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -297,12 +297,12 @@
       }
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 10:00 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 10:00 hs.",
+      "confianza": "media",
+      "categoria": "atencion",
       "tipo_hora_modal": "probable",
       "hora_probable": "10:00",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "9:15",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
@@ -336,12 +336,12 @@
       }
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:30 hs.",
+      "confianza": "media",
+      "categoria": "atencion",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
@@ -351,12 +351,12 @@
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:00 hs.",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 7:00 hs.",
       "confianza": "media",
-      "categoria": "abundancia",
+      "categoria": "atencion",
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
@@ -474,12 +474,12 @@
       }
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "abundancia",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:30 hs.",
+      "confianza": "media",
+      "categoria": "atencion",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "12:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
