@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T08:55:27.220018-03:00",
+  "generado": "2026-06-25T09:00:04.168211-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -184,6 +184,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 36,
+        "confianza": "media",
+        "casos": 11,
+        "aciertos": 4
       }
     },
     "FLEBOLOGIA (CONSULTA)": {
@@ -241,6 +248,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 15,
+        "aciertos": 6
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -542,8 +556,25 @@
     }
   },
   "banner": {
-    "hora": "08:00",
+    "hora": "09:00",
     "dias": 22,
-    "items": []
+    "items": [
+      {
+        "especialidad": "INFECTOLOGIA",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 15,
+        "aciertos": 6
+      },
+      {
+        "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+        "probabilidad": 36,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 11,
+        "aciertos": 4
+      }
+    ]
   }
 }

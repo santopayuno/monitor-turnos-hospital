@@ -22338,6 +22338,12 @@
         "con_cupos": 18,
         "total_cupos": 459,
         "cambios": 0
+      },
+      {
+        "hora": "09:00:05",
+        "con_cupos": 18,
+        "total_cupos": 454,
+        "cambios": 1
       }
     ]
   },
@@ -27662,6 +27668,12 @@
       "fecha": "2026-06-25T08:50:29.031113-03:00",
       "tipo": "ultimos",
       "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-25T09:00:05.594582-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 4
     }
   ],
