@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T11:15:10.035740-03:00",
+  "generado": "2026-06-25T11:20:20.001893-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -210,7 +210,6 @@
       "texto_sin_hora": "Suele haber turnos los martes y jueves",
       "ultima_apertura": "9:15",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
