@@ -49,7 +49,8 @@ ARCHIVOS = {
     "heartbeat": "heartbeat.json",
     "estado_anterior": "estado_anterior.json",
     "predicciones": "predicciones.json",
-    "historial_cupos": "historial_cupos.json"
+    "historial_cupos": "historial_cupos.json",
+    "velocidad": "velocidad_estado.json"
 }
 
 REEMPLAZOS_NOMBRES = {
@@ -844,86 +845,32 @@ def generar_reporte_diario():
 # DETECCIÓN DE PATRONES
 # ═══════════════════════════════════════════════════════════════
 
-def detectar_patrones_apertura(hora_objetivo):
-    """
-    Analiza el historial de eventos y avisa si alguna especialidad
-    suele abrir turnos en la hora_objetivo.
-    Solo notifica si hay al menos 5 aperturas históricas en esa hora
-    y la especialidad no tiene cupos ahora mismo.
-    """
-    try:
-        stats = cargar_json(ARCHIVOS["estadisticas"]) or {}
-        eventos = stats.get("eventos", [])
-        estado_actual = cargar_json(ARCHIVOS["estado"]) or {}
-
-        if not eventos:
-            return None
-
-        # Contar aperturas por especialidad y hora
-        aperturas_por_hora = {}
-        for e in eventos:
-            if e.get("tipo") not in ("nuevos", "aumentos"):
-                continue
-            try:
-                hora = datetime.fromisoformat(e["fecha"]).hour
-            except Exception:
-                continue
-            esp = e["especialidad"]
-            if esp not in aperturas_por_hora:
-                aperturas_por_hora[esp] = {}
-            aperturas_por_hora[esp][hora] = aperturas_por_hora[esp].get(hora, 0) + 1
-
-        # Pre-agrupar eventos por especialidad para O(N+M) en vez de O(N×M)
-        from collections import defaultdict
-        eventos_por_esp = defaultdict(list)
-        for e in eventos:
-            if e.get("tipo") in ("nuevos", "aumentos"):
-                eventos_por_esp[e["especialidad"]].append(e)
-
-        # Filtrar: especialidades que suelen abrir en hora_objetivo
-        # con mínimo 5 aperturas en al menos 3 días distintos
-        candidatas = []
-        for esp, horas in aperturas_por_hora.items():
-            frecuencia = horas.get(hora_objetivo, 0)
-            if frecuencia < 5:
-                continue
-            if estado_actual.get(esp, 0) != 0:
-                continue
-            # Contar días distintos solo para esta especialidad (eficiente)
-            dias_distintos = len({
-                e["fecha"][:10] for e in eventos_por_esp[esp]
-                if datetime.fromisoformat(e["fecha"]).hour == hora_objetivo
-            })
-            if dias_distintos >= 3:
-                candidatas.append((esp, frecuencia))
-
-        if not candidatas:
-            return None
-
-        candidatas.sort(key=lambda x: x[1], reverse=True)
-
-        hora_str = f"{hora_objetivo:02d}:00"
-        lineas = [
-            "🔮 PATRÓN DETECTADO",
-            f"Estas especialidades suelen abrir turnos a las {hora_str}:",
-            ""
-        ]
-        for esp, frec in candidatas[:5]:  # máximo 5 para no saturar
-            lineas.append(f"📌 {esp} ({frec}x histórico)")
-
-        lineas += [
-            "",
-            f"🕒 Próxima verificación en 5 minutos",
-            "",
-            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
-        ]
-
-        logger.info(f"🔮 Patrón detectado: {len(candidatas)} especialidad(es) suelen abrir a las {hora_str}")
-        return "\n".join(lineas)
-
-    except Exception as e:
-        logger.error(f"Error detectando patrones: {e}")
+def construir_alerta_patron(banner, fecha_hora):
+    """Alerta anticipatoria (uso personal), alineada con el banner del dashboard.
+    Reusa el modelo condicional: especialidades agotadas AHORA con probabilidad
+    real de abrir pronto (probabilidad + confianza), no la frecuencia cruda."""
+    if not banner or not banner.get("items"):
         return None
+
+    hora = banner.get("hora", "")
+    dias = banner.get("dias", 0)
+    lineas = [
+        "🔮 PATRÓN DE APERTURAS DETECTADO",
+        f"Suelen abrir cerca de las {hora} hs y ahora están agotadas:",
+        "",
+    ]
+    for it in banner["items"]:
+        nombre = it["especialidad"]
+        nivel = "Alta" if it.get("confianza") == "alta" else "Media"
+        lineas.append(f"{emoji_de(nombre)} {nombre}")
+        lineas.append(f"   Probabilidad {nivel} · {it['aciertos']} de {it['casos']} días similares")
+        lineas.append("")
+    lineas += [
+        f"🕒 Basado en {dias} días de historial · {fecha_hora}",
+        "",
+        "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
+    ]
+    return "\n".join(lineas)
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -1459,6 +1406,104 @@ def guardar_historial_cupos(estado_actual, ahora):
     return limpio
 
 
+# ── VELOCIDAD DE AGOTAMIENTO (portado del dashboard, lógica idéntica) ──
+VEL_VENTANA_MIN = 75    # ventana reciente para medir el ritmo
+VEL_ELAPSED_MIN = 10    # span mínimo de lecturas para confiar
+VEL_CONSUMO_MIN = 3     # caída mínima de cupos para considerar riesgo
+VEL_UMBRAL_BASE = 30    # se agota en <= 30 min → riesgo (lo modula el histórico)
+
+def _velocidad_historica(nombre, eventos, limite_ms=7 * 24 * 60 * 60 * 1000):
+    """Promedio en minutos que dura una especialidad desde que abre hasta agotarse.
+    Solo modula la sensibilidad del umbral; None si no hay ciclos suficientes."""
+    relevantes = sorted(
+        (e for e in eventos if e.get("especialidad") == nombre
+         and e.get("tipo") in ("nuevos", "reaperturas", "agotados")),
+        key=lambda e: e.get("fecha", "")
+    )
+    pares, inicio = [], None
+    for e in relevantes:
+        try:
+            t = datetime.fromisoformat(e["fecha"])
+        except Exception:
+            continue
+        if e["tipo"] == "agotados":
+            if inicio is not None:
+                dur_ms = (t - inicio).total_seconds() * 1000
+                if 0 < dur_ms < limite_ms:
+                    pares.append(dur_ms / 60000)
+                inicio = None
+        elif inicio is None:
+            inicio = t
+    if len(pares) < 2:
+        return None
+    return round(sum(pares) / len(pares))
+
+def _proyeccion_agotamiento(lecturas, cupo_actual):
+    """Minutos estimados hasta agotarse al ritmo reciente. None si no hay confianza."""
+    if not isinstance(lecturas, list) or len(lecturas) < 2:
+        return None
+    try:
+        t_ult = datetime.fromisoformat(lecturas[-1]["t"])
+    except Exception:
+        return None
+    recientes = []
+    for l in lecturas:
+        try:
+            t = datetime.fromisoformat(l["t"])
+            if (t_ult - t).total_seconds() <= VEL_VENTANA_MIN * 60:
+                recientes.append((t, l["c"]))
+        except Exception:
+            continue
+    if len(recientes) < 2:
+        return None
+    elapsed_min = (recientes[-1][0] - recientes[0][0]).total_seconds() / 60
+    if elapsed_min < VEL_ELAPSED_MIN:
+        return None
+    consumo = 0
+    for i in range(1, len(recientes)):
+        delta = recientes[i - 1][1] - recientes[i][1]
+        if delta > 0:
+            consumo += delta
+    if consumo < VEL_CONSUMO_MIN:
+        return None
+    ritmo = consumo / elapsed_min
+    if ritmo <= 0:
+        return None
+    return cupo_actual / ritmo
+
+def _se_agota_rapido(nombre, lecturas, eventos, cupo_actual):
+    """Minutos proyectados si se está agotando rápido AHORA; None si no aplica."""
+    proy = _proyeccion_agotamiento(lecturas, cupo_actual)
+    if proy is None:
+        return None
+    umbral = VEL_UMBRAL_BASE
+    vel_hist = _velocidad_historica(nombre, eventos)
+    if vel_hist is not None:
+        if vel_hist < 60:
+            umbral = 45        # suele agotarse rápido → más sensible
+        elif vel_hist > 180:
+            umbral = 15        # suele durar mucho → exigir más evidencia
+    return proy if proy <= umbral else None
+
+def construir_alerta_velocidad(items, fecha_hora):
+    """items: lista de (nombre, cupo_actual, proy_min)."""
+    if not items:
+        return None
+    lineas = ["⚡ SE ESTÁ AGOTANDO RÁPIDO", ""]
+    for nombre, cupo, proy in items:
+        mins = max(1, round(proy))
+        plural = "s" if cupo != 1 else ""
+        lineas.append(f"{emoji_de(nombre)} {nombre}")
+        lineas.append(f"   Quedan {cupo} cupo{plural} · se agotaría en ~{mins} min")
+        lineas.append("")
+    lineas += [
+        f"🕒 {fecha_hora}",
+        "",
+        "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
+    ]
+    return "\n".join(lineas)
+
+
 # ═══════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════
@@ -1500,6 +1545,7 @@ def main():
     guardar_estadisticas(procesador.cambios, procesador.estado_actual)
 
     # ── CAPA PREDICTIVA (nueva, aislada): escribe predicciones.json. Nunca rompe el flujo. ──
+    _predicciones = None
     try:
         _stats_pred = cargar_json(ARCHIVOS["estadisticas"]) or {"eventos": [], "registros": {}}
         _predicciones = generar_predicciones(_stats_pred, procesador.estado_actual, ahora)
@@ -1509,11 +1555,39 @@ def main():
         logger.error(f"Capa predictiva falló (no crítico, se ignora): {e}")
 
     # ── HISTORIAL DE CUPOS (nuevo, aislado): escribe historial_cupos.json para la velocidad. ──
+    _hist = {}
     try:
         _hist = guardar_historial_cupos(procesador.estado_actual, ahora)
         logger.info(f"📉 historial_cupos.json actualizado ({len(_hist)} especialidades con cupos)")
     except Exception as e:
         logger.error(f"Historial de cupos falló (no crítico, se ignora): {e}")
+
+    # ── ALERTA DE VELOCIDAD: especialidades que se están agotando rápido (uso personal) ──
+    try:
+        if CONFIG.get("alertas_velocidad", True):
+            estado_vel = procesador.estado_actual or {}
+            eventos_vel = (cargar_json(ARCHIVOS["estadisticas"]) or {}).get("eventos", [])
+            vel_estado = cargar_json(ARCHIVOS["velocidad"]) or {}
+            ya = set(vel_estado.get("alertadas", []))
+            # Cerrar episodios: las ya agotadas salen de la lista y pueden volver a alertar luego
+            ya = {n for n in ya if estado_vel.get(n, 0) and estado_vel[n] > 0}
+            nuevas = []
+            for nombre, cupo in estado_vel.items():
+                if not cupo or cupo <= 0 or nombre in ya:
+                    continue
+                proy = _se_agota_rapido(nombre, _hist.get(nombre), eventos_vel, cupo)
+                if proy is not None:
+                    nuevas.append((nombre, cupo, proy))
+                    ya.add(nombre)
+            if nuevas:
+                msg_vel = construir_alerta_velocidad(nuevas, fecha_hora)
+                if msg_vel:
+                    enviar_telegram(msg_vel)
+                    logger.info(f"⚡ Alerta de velocidad enviada: {len(nuevas)} especialidad(es)")
+            vel_estado["alertadas"] = sorted(ya)
+            guardar_json_seguro(vel_estado, ARCHIVOS["velocidad"])
+    except Exception as e:
+        logger.error(f"Alerta de velocidad falló (no crítico, se ignora): {e}")
 
     # ✓ MODO PRUEBA: Forzar notificación con estado actual
     if os.environ.get("TEST_MODE") == "true":
@@ -1640,8 +1714,7 @@ def main():
             ultima_alerta_dt = datetime.min.replace(tzinfo=ahora.tzinfo)
         minutos_desde_ultima = (ahora - ultima_alerta_dt).total_seconds() / 60
         if minutos_desde_ultima >= 45:
-            hora_siguiente = (ahora.hour + 1) % 24
-            alerta_patrones = detectar_patrones_apertura(hora_siguiente)
+            alerta_patrones = construir_alerta_patron(_predicciones["banner"], fecha_hora) if _predicciones else None
             if alerta_patrones:
                 enviar_telegram(alerta_patrones)
                 hb_pat["ultima_alerta_patron_ts"] = ahora.isoformat()
