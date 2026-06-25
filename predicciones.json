@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-25T10:55:32.636894-03:00",
+  "generado": "2026-06-25T11:00:08.021788-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -17,7 +17,7 @@
         "txt": "Media"
       },
       "chance": {
-        "hora": "10:00",
+        "hora": "11:00",
         "probabilidad": 40,
         "confianza": "media",
         "casos": 5,
@@ -168,7 +168,7 @@
         "txt": "Media"
       },
       "chance": {
-        "hora": "10:00",
+        "hora": "11:00",
         "probabilidad": 40,
         "confianza": "media",
         "casos": 5,
@@ -323,6 +323,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "11:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "NUTRICION GENERAL": {
@@ -337,6 +344,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "11:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "OBSTETRICIA BAJO RIESGO": {
@@ -498,6 +512,13 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "11:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "TRAUMATOLOGIA ADULTO": {
@@ -556,7 +577,7 @@
     }
   },
   "banner": {
-    "hora": "10:00",
+    "hora": "11:00",
     "dias": 22,
     "items": [
       {
@@ -569,6 +590,30 @@
       },
       {
         "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
+        "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
+        "especialidad": "NUTRICION GENERAL",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
+        "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
         "probabilidad": 40,
         "confianza": "media",
         "nivel": 1,
