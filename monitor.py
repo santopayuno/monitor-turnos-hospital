@@ -60,8 +60,8 @@ REEMPLAZOS_NOMBRES = {
 
 CLASIFICACION_CUPOS = {
     "disponible": lambda c: c >= 20,
-    "pocos": lambda c: 5 <= c < 20,
-    "ultimos": lambda c: 1 <= c < 5,
+    "pocos": lambda c: 6 <= c < 20,
+    "ultimos": lambda c: 1 <= c <= 5,
     "agotado": lambda c: c == 0
 }
 
@@ -262,9 +262,10 @@ def consultar_api(max_intentos=3, espera_segundos=10):
 # ═══════════════════════════════════════════════════════════════
 
 class ProcesadorEspecialidades:
-    def __init__(self, especialidades, estado_anterior, stats_db=None):
+    def __init__(self, especialidades, estado_anterior, stats_db=None, sin_baseline=False):
         self.especialidades = especialidades
         self.estado_anterior = estado_anterior or {}
+        self.sin_baseline = sin_baseline
         self.stats_db = stats_db or {"eventos": [], "registros": {}}
         self.estado_actual = {}
         self.cambios = {
@@ -314,6 +315,11 @@ class ProcesadorEspecialidades:
         return REEMPLAZOS_NOMBRES.get(nombre, nombre)
 
     def _detectar_cambios(self, nombre, cupo, cupo_anterior, disponible):
+        # Sin estado anterior (primer arranque o reinicio que perdió el baseline):
+        # no se puede comparar contra nada, así que NO se emite ningún evento de cambio.
+        # Este ciclo solo sirve para fijar el baseline; el próximo ya detecta cambios reales.
+        if self.sin_baseline:
+            return
         if cupo_anterior == 0 and disponible:
             # Verificar si alguna vez estuvo disponible (reapertura vs primera vez)
             agotamientos_historicos = [
@@ -334,8 +340,8 @@ class ProcesadorEspecialidades:
                 })
                 logger.info(f"🆕 NUEVO: {nombre} ({cupo} cupos)")
 
-            # Si aparece directamente con 1-4 cupos, también alertar como últimos
-            if 1 <= cupo < 5:
+            # Si aparece directamente con 1-5 cupos, también alertar como últimos
+            if 1 <= cupo <= 5:
                 self.cambios["ultimos"].append({
                     "nombre": nombre,
                     "cupo_actual": cupo
@@ -351,7 +357,7 @@ class ProcesadorEspecialidades:
             })
             logger.info(f"📈 AUMENTO: {nombre} ({cupo_anterior} → {cupo}, +{cupo - cupo_anterior})")
 
-        elif cupo_anterior >= 5 and 1 <= cupo < 5:
+        elif cupo_anterior > 5 and 1 <= cupo <= 5:
             self.cambios["ultimos"].append({
                 "nombre": nombre,
                 "cupo_actual": cupo
@@ -1419,7 +1425,7 @@ def main():
     es_primera_ejecucion = len(estado_anterior) == 0
 
     stats_db = cargar_json(ARCHIVOS["estadisticas"]) or {"eventos": [], "registros": {}}
-    procesador = ProcesadorEspecialidades(especialidades, estado_anterior, stats_db).procesar()
+    procesador = ProcesadorEspecialidades(especialidades, estado_anterior, stats_db, sin_baseline=es_primera_ejecucion).procesar()
 
     guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
@@ -1541,23 +1547,6 @@ def main():
                 )
                 enviar_telegram(msg_individual)
                 logger.info(f"🔔 Alerta individual enviada: {item['nombre']}")
-
-    # ── Alerta urgente: últimos cupos ──
-    if procesador.cambios["ultimos"]:
-        lineas = ["🚨 ÚLTIMOS CUPOS — URGENTE", "🏥 HOSPITAL PERRUPATO", ""]
-        for item in sorted(procesador.cambios["ultimos"], key=lambda x: x["cupo_actual"]):
-            cupo = item["cupo_actual"]
-            plural = "s" if cupo > 1 else ""
-            lineas.append(f"⚠️ {item['nombre']}")
-            lineas.append(f"   Solo {cupo} cupo{plural} disponible{plural}")
-            lineas.append("")
-        lineas += [
-            f"🕒 {fecha_hora}",
-            "",
-            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
-        ]
-        enviar_telegram("\n".join(lineas))
-        logger.info(f"🚨 Alerta urgente enviada: {len(procesador.cambios['ultimos'])} especialidad(es) con últimos cupos")
 
     if CONFIG.get("generar_reporte_diario"):
         hora_config_str = CONFIG.get("hora_reporte_diario", "08:00")
