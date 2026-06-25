@@ -22716,6 +22716,12 @@
         "con_cupos": 17,
         "total_cupos": 276,
         "cambios": 0
+      },
+      {
+        "hora": "14:15:25",
+        "con_cupos": 16,
+        "total_cupos": 271,
+        "cambios": 1
       }
     ]
   },
@@ -28083,6 +28089,12 @@
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-25T14:15:25.504740-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
