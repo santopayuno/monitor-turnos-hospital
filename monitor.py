@@ -16,6 +16,7 @@ import os
 import time
 import json
 import re
+import unicodedata
 import logging
 import tempfile
 import sys
@@ -64,6 +65,63 @@ CLASIFICACION_CUPOS = {
     "ultimos": lambda c: 1 <= c <= 5,
     "agotado": lambda c: c == 0
 }
+
+
+def _norm_esp(s):
+    """Normaliza un nombre de especialidad: mayúsculas, sin tildes, sin espacios extra."""
+    base = unicodedata.normalize('NFD', (s or '').upper().strip())
+    sin_tildes = ''.join(c for c in base if unicodedata.category(c) != 'Mn')
+    return ' '.join(sin_tildes.split())
+
+# Emoji propio de cada especialidad (catálogo provisto). Las claves se normalizan
+# para que el match no dependa de tildes ni espacios. Si una especialidad no está, usa el genérico.
+_EMOJI_CATALOGO = {
+    "CARDIOLOGIA ADULTO": "🫀",
+    "CARDIOLOGIA INFANTIL": "🫀",
+    "CIRUGIA GENERAL": "🔪",
+    "CIRUGIA INFANTIL": "🔪",
+    "CIRUGIA TORACICA": "🔪",
+    "CLINICA MEDICA CONSULTA": "🩺",
+    "COLOPROCTOLOGIA": "💩",
+    "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": "🕊️",
+    "DERMATOLOGIA GENERAL": "🧴",
+    "DIABETOLOGIA GENERAL": "🍬",
+    "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": "🫀",
+    "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": "🫀",
+    "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": "🫁",
+    "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)": "🫁",
+    "FLEBOLOGIA (CONSULTA)": "🦵",
+    "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)": "🦻",
+    "HEMATOLOGIA CLINICA": "🩸",
+    "INFECTOLOGIA": "🦠",
+    "INFECTOLOGIA PEDIATRICA": "🦠",
+    "NEFROLOGIA": "🫘",
+    "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": "🫁",
+    "NEUMONOLOGIA INFANTIL": "🫁",
+    "NEUROLOGIA NUEVO (CON DERIVACIÓN)": "🧠",
+    "NUTRICION GENERAL": "🥗",
+    "OBSTETRICIA BAJO RIESGO": "🤰",
+    "ODONTOLOGIA ADULTO": "🦷",
+    "ODONTOLOGÍA PEDIATRICA": "🦷",
+    "OFTALMOLOGIA": "👁️",
+    "ONCOLOGIA": "🎗️",
+    "ORL CONSULTAS": "🗣️",
+    "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": "🎀",
+    "PEDIATRIA CONSULTA": "👶",
+    "PEDIATRIA MEDIANO RIESGO": "👶",
+    "PODOLOGIA": "🦶",
+    "PRE ANESTESIA PEDIATRIA": "💉",
+    "REUMATOLOGIA (DERIVACION OBLIGATORIA)": "🦴",
+    "TRAUMATOLOGIA ADULTO": "🦴",
+    "TRAUMATOLOGIA INFANTIL": "🦴",
+    "UROLOGIA": "🚻",
+    "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)": "🦵",
+}
+EMOJI_ESPECIALIDAD = {_norm_esp(k): v for k, v in _EMOJI_CATALOGO.items()}
+EMOJI_DEFAULT = "🏥"
+
+def emoji_de(nombre):
+    return EMOJI_ESPECIALIDAD.get(_norm_esp(nombre), EMOJI_DEFAULT)
 
 # ═══════════════════════════════════════════════════════════════
 # LOGGING
@@ -483,7 +541,7 @@ class ConstructorMensajeTelegram:
             cupo = item['cupo_actual']
             plural = "s" if cupo > 1 else ""
             todos_items.append([
-                f"🏥 {item['nombre']}",
+                f"{emoji_de(item['nombre'])} {item['nombre']}",
                 f"🍀 {formato_cupos_disponibles(cupo)}",
                 f"📈 +{cupo} nuevo{plural}",
             ])
@@ -493,7 +551,7 @@ class ConstructorMensajeTelegram:
             aumento = item['aumento']
             plural = "s" if aumento > 1 else ""
             todos_items.append([
-                f"🏥 {item['nombre']}",
+                f"{emoji_de(item['nombre'])} {item['nombre']}",
                 f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}",
                 f"📈 +{aumento} nuevo{plural}",
             ])
@@ -520,7 +578,7 @@ class ConstructorMensajeTelegram:
             cupo = item["cupo_actual"]
             veces = item["veces_agotada"]
             plural = "s" if cupo > 1 else ""
-            lineas.append(f"🏥 {item['nombre']}")
+            lineas.append(f"{emoji_de(item['nombre'])} {item['nombre']}")
             lineas.append(f"🍀 {formato_cupos_disponibles(cupo)}")
             lineas.append(f"⚡ Reabre · agotada {veces}x antes")
             if i < len(items) - 1:
@@ -541,7 +599,7 @@ class ConstructorMensajeTelegram:
 
         for i, (nombre, cupo) in enumerate(items):
             plural = "s" if cupo > 1 else ""
-            lineas.append(f"🏥 {nombre}")
+            lineas.append(f"{emoji_de(nombre)} {nombre}")
             lineas.append(f"✅ {cupo} Cupo{plural}")
             if i < len(items) - 1:
                 lineas.append("")
@@ -563,7 +621,7 @@ class ConstructorMensajeTelegram:
 
         for i, (nombre, cupo) in enumerate(items):
             plural = "s" if cupo > 1 else ""
-            lineas.append(f"🏥 {nombre}")
+            lineas.append(f"{emoji_de(nombre)} {nombre}")
             lineas.append(f"⚠️ {cupo} Cupo{plural}")
             if i < len(items) - 1:
                 lineas.append("")
@@ -747,7 +805,7 @@ def generar_reporte_diario():
             "────────────",
             "📊 ESTADO ACTUAL",
             "────────────",
-            f"• Especializades monitoreadas: {len(estado_actual)}",
+            f"• Especialidades monitoreadas: {len(estado_actual)}",
             f"• Con cupos disponibles: {len(con_cupos)}",
             f"• Sin cupos: {len(sin_cupos)}",
             f"• Total cupos: {sum(cupo for _, cupo in con_cupos)}",
@@ -757,7 +815,7 @@ def generar_reporte_diario():
             lineas += ["", "────────────", "✅ DISPONIBLES AHORA", "────────────"]
             for nombre, cupo in con_cupos:
                 plural = "s" if cupo > 1 else ""
-                lineas.append(f"🏥 {nombre}: {cupo} cupo{plural}")
+                lineas.append(f"{emoji_de(nombre)} {nombre}: {cupo} cupo{plural}")
 
         if nuevas_hoy:
             lineas += ["", "────────────", "🆕 ABRIERON HOY", "────────────"]
@@ -1538,7 +1596,7 @@ def main():
                 plural = "s" if cupo > 1 else ""
                 msg_individual = (
                     f"🔔 ALERTA PERSONALIZADA\n"
-                    f"🏥 {item['nombre']}\n\n"
+                    f"{emoji_de(item['nombre'])} {item['nombre']}\n\n"
                     f"{tipo}\n"
                     f"🍀 {cupo} Cupo{plural} Disponible{plural}\n\n"
                     f"🕒 {fecha_hora}\n\n"
