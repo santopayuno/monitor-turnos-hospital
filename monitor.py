@@ -50,7 +50,8 @@ ARCHIVOS = {
     "estado_anterior": "estado_anterior.json",
     "predicciones": "predicciones.json",
     "historial_cupos": "historial_cupos.json",
-    "velocidad": "velocidad_estado.json"
+    "velocidad": "velocidad_estado.json",
+    "encargos": "encargos.json"
 }
 
 REEMPLAZOS_NOMBRES = {
@@ -1508,6 +1509,105 @@ def construir_alerta_velocidad(items, fecha_hora):
 # MAIN
 # ═══════════════════════════════════════════════════════════════
 
+# ── COMANDOS POR TELEGRAM: manejar la lista de encargos desde el chat ──
+# El bot lee mensajes nuevos en cada ciclo (getUpdates). No depende de un
+# marcador frágil: guarda el offset en encargos.json (que se respalda por git)
+# y además descarta mensajes más viejos que 1 h, para acotar cualquier reproceso
+# tras un reinicio de Railway. Todo es no crítico: si falla, el ciclo sigue igual.
+
+COMANDOS_VENTANA_SEG = 3600  # ignorar comandos más viejos que 1 hora
+
+def _cargar_encargos():
+    data = cargar_json(ARCHIVOS["encargos"]) or {}
+    palabras = data.get("palabras", [])
+    if not isinstance(palabras, list):
+        palabras = []
+    return data, palabras
+
+def leer_y_procesar_comandos():
+    if not BOT_TOKEN or not CHAT_ID:
+        return
+    data, palabras = _cargar_encargos()
+    offset = data.get("ultimo_update_id", 0)
+    try:
+        resp = requests.get(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates",
+            params={"offset": offset + 1, "timeout": 0},
+            timeout=10,
+        )
+        if resp.status_code != 200:
+            logger.warning(f"getUpdates devolvió {resp.status_code} (no crítico)")
+            return
+        updates = resp.json().get("result", [])
+    except Exception as e:
+        logger.warning(f"No se pudieron leer comandos de Telegram (no crítico): {e}")
+        return
+    if not updates:
+        return
+
+    import time
+    ahora_ts = time.time()
+    max_id = offset
+    respuestas = []
+    cambió = False
+
+    def _ya_esta(arg):
+        return arg in [_norm_esp(p) for p in palabras]
+
+    for upd in updates:
+        uid = upd.get("update_id", 0)
+        if uid > max_id:
+            max_id = uid
+        msg = upd.get("message") or {}
+        chat = str((msg.get("chat") or {}).get("id", ""))
+        texto = (msg.get("text") or "").strip()
+        fecha_msg = msg.get("date", 0)
+        if chat != str(CHAT_ID):            # seguridad: solo tu chat
+            continue
+        if ahora_ts - fecha_msg > COMANDOS_VENTANA_SEG:   # descartar viejos
+            continue
+        if not texto.startswith("/"):
+            continue
+        partes = texto.split(maxsplit=1)
+        cmd = partes[0].lower().lstrip("/").split("@")[0]
+        arg = _norm_esp(partes[1]) if len(partes) > 1 else ""
+        if cmd in ("encargo", "agregar", "add") and arg:
+            if not _ya_esta(arg):
+                palabras.append(arg); cambió = True
+                respuestas.append(f"✓ Anotada: {arg.lower()}. Te aviso cuando aparezca.")
+            else:
+                respuestas.append(f"Ya la tenías anotada: {arg.lower()}.")
+        elif cmd in ("sacar", "quitar", "borrar", "remove") and arg:
+            nuevas = [p for p in palabras if _norm_esp(p) != arg]
+            if len(nuevas) != len(palabras):
+                palabras = nuevas; cambió = True
+                respuestas.append(f"✓ Saqué: {arg.lower()}.")
+            else:
+                respuestas.append(f"No estaba en la lista: {arg.lower()}.")
+        elif cmd in ("lista", "encargos", "list"):
+            if palabras:
+                respuestas.append("📋 Tus encargos:\n" + "\n".join(f"• {p.lower()}" for p in palabras))
+            else:
+                respuestas.append("No tenés encargos cargados.\nAgregá con: /encargo oftalmo")
+        elif cmd in ("ayuda", "help", "start"):
+            respuestas.append(
+                "Comandos:\n"
+                "/encargo <palabra> — anotar (ej: /encargo oftalmo)\n"
+                "/sacar <palabra> — quitar\n"
+                "/lista — ver lo anotado"
+            )
+
+    # Guardar SIEMPRE el offset (aunque no cambie la lista) para no reprocesar
+    data["palabras"] = palabras
+    data["ultimo_update_id"] = max_id
+    guardar_json_seguro(data, ARCHIVOS["encargos"])
+
+    for r in respuestas:
+        enviar_telegram(r)
+    if cambió:
+        logger.info(f"📋 Lista de encargos actualizada: {palabras}")
+
+
 def main():
     ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
     fecha_hora = ahora.strftime("%d/%m • %H:%M hs")
@@ -1515,6 +1615,9 @@ def main():
     logger.info("╔════════════════════════════════════════════════════╗")
     logger.info(f"║ 🏥 MONITOR PROFESIONAL - {ahora.strftime('%d/%m/%Y %H:%M:%S')} ║")
     logger.info("╚════════════════════════════════════════════════════╝")
+
+    # Leer comandos del bot (/encargo, /sacar, /lista) antes de procesar
+    leer_y_procesar_comandos()
 
     estado_anterior = cargar_json(ARCHIVOS["estado"]) or {}
     especialidades = consultar_api()
@@ -1666,40 +1769,47 @@ def main():
         logger.info("ℹ️ Sin nuevos o aumentos para notificar")
 
     # ── FLUJO 2: Mensajes individuales para especialidades de interés ──
-    interes = [e.upper().strip() for e in CONFIG.get("especialidades_interes", [])]
+    interes = [_norm_esp(e) for e in CONFIG.get("especialidades_interes", [])] + \
+              [_norm_esp(p) for _d, plist in [_cargar_encargos()] for p in plist]
+    interes = [k for k in dict.fromkeys(interes) if k]   # dedup, sin vacíos
     if interes and hay_cambios:
-        logger.info(f"🎯 Filtro activo: {len(interes)} especialidades de interés")
+        logger.info(f"⭐ Encargos activos: {interes}")
         todas_listas = (
             procesador.cambios["nuevos"] +
             procesador.cambios["reaperturas"] +
             procesador.cambios["aumentos"] +
             procesador.cambios["ultimos"]
         )
-        for especialidad in interes:
-            items_esp = [c for c in todas_listas if c["nombre"].upper() == especialidad]
-            if items_esp:
-                item = items_esp[0]
-                cupo = item.get("cupo_actual", 0)
-                tipo = next(
-                    t for t, lista in [
-                        ("🆕 NUEVO", procesador.cambios["nuevos"]),
-                        ("🔄 REAPERTURA", procesador.cambios["reaperturas"]),
-                        ("📈 AUMENTO", procesador.cambios["aumentos"]),
-                        ("⚠️ ÚLTIMOS CUPOS", procesador.cambios["ultimos"]),
-                    ] if item in lista
-                )
-                plural = "s" if cupo > 1 else ""
-                msg_individual = (
-                    f"🔔 ALERTA PERSONALIZADA\n"
-                    f"{emoji_de(item['nombre'])} {item['nombre']}\n\n"
-                    f"{tipo}\n"
-                    f"🍀 {cupo} Cupo{plural} Disponible{plural}\n\n"
-                    f"🕒 {fecha_hora}\n\n"
-                    f"👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx"
-                    f"?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
-                )
-                enviar_telegram(msg_individual)
-                logger.info(f"🔔 Alerta individual enviada: {item['nombre']}")
+        avisadas = set()
+        for item in todas_listas:
+            nom = item["nombre"]
+            if nom in avisadas:
+                continue
+            nom_norm = _norm_esp(nom)
+            if not any(kw in nom_norm for kw in interes):
+                continue
+            cupo = item.get("cupo_actual", 0)
+            tipo = next(
+                t for t, lista in [
+                    ("🆕 NUEVO", procesador.cambios["nuevos"]),
+                    ("🔄 REAPERTURA", procesador.cambios["reaperturas"]),
+                    ("📈 AUMENTO", procesador.cambios["aumentos"]),
+                    ("⚠️ ÚLTIMOS CUPOS", procesador.cambios["ultimos"]),
+                ] if item in lista
+            )
+            plural = "s" if cupo > 1 else ""
+            msg_individual = (
+                f"⭐ ENCARGO DISPONIBLE\n"
+                f"{emoji_de(nom)} {nom}\n\n"
+                f"{tipo}\n"
+                f"🍀 {cupo} Cupo{plural} Disponible{plural}\n\n"
+                f"🕒 {fecha_hora}\n\n"
+                f"👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx"
+                f"?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
+            )
+            enviar_telegram(msg_individual)
+            avisadas.add(nom)
+            logger.info(f"⭐ Aviso de encargo enviado: {nom}")
 
     if CONFIG.get("generar_reporte_diario"):
         hora_config_str = CONFIG.get("hora_reporte_diario", "08:00")
