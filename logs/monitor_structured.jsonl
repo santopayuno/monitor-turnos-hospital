@@ -4421,3 +4421,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 457, "con_cupos": 17, "ts": "2026-06-26T11:50:15.716456"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 451, "con_cupos": 16, "ts": "2026-06-26T11:55:18.699453"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-26T11:55:18.754339"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 443, "con_cupos": 16, "ts": "2026-06-26T12:00:41.957188"}

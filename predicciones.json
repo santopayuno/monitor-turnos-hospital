@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-26T08:55:17.170240-03:00",
+  "generado": "2026-06-26T09:00:40.360626-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -132,6 +132,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 33,
+        "confianza": "media",
+        "casos": 15,
+        "aciertos": 5
       }
     },
     "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
@@ -186,6 +193,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 33,
+        "confianza": "media",
+        "casos": 12,
+        "aciertos": 4
       }
     },
     "FLEBOLOGIA (CONSULTA)": {
@@ -240,6 +254,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 38,
+        "confianza": "media",
+        "casos": 16,
+        "aciertos": 6
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -539,8 +560,33 @@
     }
   },
   "banner": {
-    "hora": "08:00",
+    "hora": "09:00",
     "dias": 23,
-    "items": []
+    "items": [
+      {
+        "especialidad": "INFECTOLOGIA",
+        "probabilidad": 38,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 16,
+        "aciertos": 6
+      },
+      {
+        "especialidad": "DIABETOLOGIA GENERAL",
+        "probabilidad": 33,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 15,
+        "aciertos": 5
+      },
+      {
+        "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+        "probabilidad": 33,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 12,
+        "aciertos": 4
+      }
+    ]
   }
 }
