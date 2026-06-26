@@ -4403,3 +4403,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 5, "ts": "2026-06-26T10:25:16.399915"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 525, "con_cupos": 18, "ts": "2026-06-26T10:30:22.894375"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 521, "con_cupos": 18, "ts": "2026-06-26T10:35:17.169726"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 514, "con_cupos": 17, "ts": "2026-06-26T10:40:25.103225"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 0, "ts": "2026-06-26T10:40:25.160634"}
