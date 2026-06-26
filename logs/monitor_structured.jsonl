@@ -4426,3 +4426,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 437, "con_cupos": 16, "ts": "2026-06-26T12:10:20.693138"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 434, "con_cupos": 15, "ts": "2026-06-26T12:15:18.314098"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ONCOLOGIA", "cupos": 0, "ts": "2026-06-26T12:15:18.368863"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 429, "con_cupos": 15, "ts": "2026-06-26T12:20:14.592842"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 5, "ts": "2026-06-26T12:20:14.646655"}
