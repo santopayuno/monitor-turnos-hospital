@@ -24068,6 +24068,12 @@
         "con_cupos": 17,
         "total_cupos": 457,
         "cambios": 0
+      },
+      {
+        "hora": "08:55:18",
+        "con_cupos": 16,
+        "total_cupos": 451,
+        "cambios": 1
       }
     ]
   },
@@ -29488,6 +29494,12 @@
       "fecha": "2026-06-26T07:40:25.106880-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-26T08:55:18.702862-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
