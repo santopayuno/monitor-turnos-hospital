@@ -133,6 +133,7 @@ try:
     run_cmd(['git', 'add', 'historial_cupos.json'], ignore_error=True)
     run_cmd(['git', 'add', 'predicciones.json'], ignore_error=True)
     run_cmd(['git', 'add', 'velocidad_estado.json'], ignore_error=True)
+    run_cmd(['git', 'add', 'encargos.json'], ignore_error=True)
     run_cmd(['git', 'add', 'logs/'], ignore_error=True)
 
     # ============================================================
