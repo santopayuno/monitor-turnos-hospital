@@ -550,3 +550,12 @@
 2026-05-29 20:45:44,017 [INFO] Consultando API del Hospital Perrupato...
 2026-05-29 20:45:44,127 [ERROR] Fallo al conectar con la API: HTTPSConnectionPool(host='mendoza.bahiayasociados.com', port=443): Max retries exceeded with url: /turnos/hospital-perrupato/especialidades (Caused by NameResolutionError("HTTPSConnection(host='mendoza.bahiayasociados.com', port=443): Failed to resolve 'mendoza.bahiayasociados.com' ([Errno -2] Name or service not known)"))
 2026-05-29 20:45:44,127 [ERROR] No se pudieron recopilar datos legibles de la API externa.
+2026-06-26 04:44:50,295 | INFO     | ╔════════════════════════════════════════════════════╗
+2026-06-26 04:44:50,296 | INFO     | ║ 🏥 MONITOR PROFESIONAL - 26/06/2026 01:44:50 ║
+2026-06-26 04:44:50,296 | INFO     | ╚════════════════════════════════════════════════════╝
+2026-06-26 04:44:50,296 | INFO     | → Consultando API...
+2026-06-26 04:44:52,003 | INFO     | ✓ API: 40 especialidades recibidas
+2026-06-26 04:44:52,087 | INFO     | 🧠 predicciones.json generado (40 especialidades)
+2026-06-26 04:44:52,091 | INFO     | 📉 historial_cupos.json actualizado (14 especialidades con cupos)
+2026-06-26 04:44:52,096 | INFO     | ℹ️ Sin nuevos o aumentos para notificar
+2026-06-26 04:44:52,096 | INFO     | ═════════════════════════════════════════════════════
