@@ -24290,6 +24290,12 @@
         "con_cupos": 14,
         "total_cupos": 323,
         "cambios": 0
+      },
+      {
+        "hora": "12:00:10",
+        "con_cupos": 14,
+        "total_cupos": 321,
+        "cambios": 0
       }
     ]
   },
