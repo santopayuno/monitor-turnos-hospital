@@ -24092,6 +24092,12 @@
         "con_cupos": 16,
         "total_cupos": 437,
         "cambios": 0
+      },
+      {
+        "hora": "09:15:18",
+        "con_cupos": 15,
+        "total_cupos": 434,
+        "cambios": 1
       }
     ]
   },
@@ -29518,6 +29524,12 @@
       "fecha": "2026-06-26T08:55:18.702862-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-26T09:15:18.317164-03:00",
+      "tipo": "agotados",
+      "especialidad": "ONCOLOGIA",
       "cupos": 0
     }
   ],
