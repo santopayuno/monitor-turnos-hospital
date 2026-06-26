@@ -357,18 +357,48 @@ class ProcesadorEspecialidades:
             logger.warning(f"⚠️ Cupo inválido para {nombre}: {esp.get('cupo')}, usando 0")
             cupo = 0
 
-        suspendido = esp.get("suspendido", True)
-        disponible = cupo > 0 and not suspendido
+        # "Disponible" con la MISMA regla que usa la página oficial del hospital:
+        # no suspendida + tiene cupos + la fecha tope no venció.
+        # suspendido por defecto False (igual que la web, que hace !esp.suspendido):
+        # así no se pierde una apertura si la API omitiera el campo.
+        suspendido = bool(esp.get("suspendido", False))
+        vigente = self._fechatope_vigente(esp.get("fechatope"))
+        disponible = cupo > 0 and not suspendido and vigente
 
-        self.estado_actual[nombre] = cupo
+        # cupo_efectivo = 0 si NO está realmente disponible (suspendida con cupos,
+        # o fecha vencida). Así, cuando se libera, la transición 0→N se detecta
+        # como apertura limpia; y si una abierta se suspende/vence, se ve como agotada.
+        cupo_efectivo = cupo if disponible else 0
+
+        self.estado_actual[nombre] = cupo_efectivo
         cupo_anterior = self.estado_anterior.get(nombre, 0)
 
-        self._detectar_cambios(nombre, cupo, cupo_anterior, disponible)
+        self._detectar_cambios(nombre, cupo_efectivo, cupo_anterior, disponible)
 
         if disponible:
-            self._clasificar(nombre, cupo)
-        elif cupo == 0:
+            self._clasificar(nombre, cupo_efectivo)
+        else:
             self.clasificacion["agotado"].append((nombre, 0))
+
+    def _fechatope_vigente(self, fechatope):
+        """True si la fecha tope no venció (o no hay fecha). Falla en seguro:
+        si no se puede interpretar, asume vigente (no peor que ignorarla)."""
+        if not fechatope:
+            return True
+        try:
+            txt = str(fechatope).strip()
+            m = re.match(r"/Date\((\d+)", txt)        # formato .NET /Date(ms)/
+            if m:
+                tope = datetime.fromtimestamp(int(m.group(1)) / 1000,
+                                              ZoneInfo("America/Argentina/Mendoza"))
+            else:
+                tope = datetime.fromisoformat(txt)
+                if tope.tzinfo is None:
+                    tope = tope.replace(tzinfo=ZoneInfo("America/Argentina/Mendoza"))
+            ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
+            return ahora <= tope
+        except Exception:
+            return True   # formato inesperado → no excluimos (sin regresión)
 
     def _normalizar_nombre(self, nombre):
         nombre = nombre.strip().upper()
@@ -468,55 +498,73 @@ class ConstructorMensajeTelegram:
         if not self._hay_contenido():
             return None
 
-        secciones = []
+        def linea(nombre, cupo, extra=""):
+            alerta = " ⚠️" if 1 <= cupo <= 5 else ""
+            unidad = "cupo" if cupo == 1 else "cupos"
+            return f"{emoji_de(nombre)} {nombre} — {cupo} {unidad}{alerta}{extra}"
 
-        # Cada sección devuelve sus líneas SIN espaciado exterior.
-        # construir() inserta exactamente 2 líneas vacías entre bloques.
+        # Cada especialidad aparece en UN SOLO cajón, por prioridad de arriba a abajo.
+        ya = set()
+        cajones = []
 
-        cambios_section = self._seccion_cambios()
-        if cambios_section:
-            secciones.append(cambios_section)
+        def agregar(titulo, items, arma_linea):
+            grupo = []
+            for it in sorted(items, key=lambda x: x["nombre"]):
+                n = it["nombre"]
+                if n in ya:
+                    continue
+                ya.add(n)
+                grupo.append(arma_linea(it))
+            if grupo:
+                cajones.append([titulo] + grupo)
 
-        reaperturas_section = self._seccion_reaperturas()
-        if reaperturas_section:
-            secciones.append(reaperturas_section)
+        # 1) Nuevos  2) Reaperturas  3) Aumentos  (la novedad de esta pasada)
+        agregar("🆕 NUEVOS", self.cambios.get("nuevos", []),
+                lambda it: linea(it["nombre"], it.get("cupo_actual", 0)))
+        agregar("🔄 REABRIERON", self.cambios.get("reaperturas", []),
+                lambda it: linea(it["nombre"], it.get("cupo_actual", 0),
+                                 (f" · reabrió (agotada {it['veces_agotada']}x)"
+                                  if it.get("veces_agotada") else " · reabrió")))
+        agregar("📈 SUMARON CUPOS", self.cambios.get("aumentos", []),
+                lambda it: linea(it["nombre"], it.get("cupo_actual", 0),
+                                 f" (+{it.get('aumento', 0)})"))
 
-        disponibles_section = self._seccion_disponibles()
-        if disponibles_section:
-            secciones.append(disponibles_section)
+        # 4) Disponibles (con cupos, sin novedad)  5) Sin cupos  — el resto, una vez
+        disponibles, agotados = [], []
+        for nombre, cupo in sorted(self.estado_actual.items()):
+            if nombre in ya:
+                continue
+            if cupo > 0:
+                disponibles.append(linea(nombre, cupo))
+            else:
+                agotados.append(f"🚫 {nombre}")
+        if disponibles:
+            cajones.append(["🟢 DISPONIBLES"] + disponibles)
+        if agotados:
+            cajones.append(["‼️ SIN CUPOS"] + agotados)
 
-        pocos_section = self._seccion_pocos()
-        if pocos_section:
-            secciones.append(pocos_section)
+        # Encabezado honesto: "nuevos" solo si de verdad hubo novedad en esta pasada
+        hubo_novedad = bool(self.cambios.get("nuevos") or
+                            self.cambios.get("reaperturas") or
+                            self.cambios.get("aumentos"))
+        encabezado = "🚨 NUEVOS TURNOS DISPONIBLES" if hubo_novedad else "📋 ESTADO DE TURNOS"
 
-        agotados_section = self._seccion_agotados()
-        if agotados_section:
-            secciones.append(agotados_section)
+        lineas = [encabezado, "🏥 HOSPITAL PERRUPATO"]
+        for caj in cajones:
+            lineas.append("")
+            lineas.extend(caj)
 
-        stats_section = self._seccion_estadisticas()
-        if stats_section:
-            secciones.append(stats_section)
-
-        # Encabezado
-        lineas = [
-            "🚨 NUEVOS TURNOS DISPONIBLES",
-            "🏥 HOSPITAL PERRUPATO",
+        total_con = len([c for c in self.estado_actual.values() if c > 0])
+        total_cupos = sum(self.estado_actual.values())
+        lineas += [
             "",
-            "",  # 2 líneas vacías antes de primera sección
+            f"📊 {total_con} con cupos · {total_cupos} cupos · {self.total_especialidades} monitoreadas",
+            f"🕒 {self.fecha_hora}",
+            "",
+            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
         ]
-
-        # Unir secciones con exactamente 2 líneas vacías entre ellas
-        for i, seccion in enumerate(secciones):
-            lineas.extend(seccion)
-            if i < len(secciones) - 1:
-                lineas.append("")
-                lineas.append("")  # 2 líneas vacías entre secciones
-
-        # Limpiar líneas vacías finales
-        while lineas and lineas[-1] == "":
-            lineas.pop()
-
         return "\n".join(lineas)
+
 
     def _hay_contenido(self):
         return (
@@ -1628,15 +1676,23 @@ def main():
         return
 
     # VERIFICAR si es primera ejecución
+    # Re-fijar la base SIN emitir eventos: en el primer arranque, o la primera vez
+    # tras adoptar el modelo de "cupo efectivo" (suspendido/fechatope). Evita
+    # agotados falsos de transición que ensuciarían el historial.
+    hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
     es_primera_ejecucion = len(estado_anterior) == 0
+    migrar_efectivo = not hb.get("modelo_efectivo", False)
+    sin_baseline = es_primera_ejecucion or migrar_efectivo
+    if migrar_efectivo and not es_primera_ejecucion:
+        logger.info("🔁 Re-fijando base por nuevo modelo de cupo efectivo (sin emitir eventos)")
 
     stats_db = cargar_json(ARCHIVOS["estadisticas"]) or {"eventos": [], "registros": {}}
-    procesador = ProcesadorEspecialidades(especialidades, estado_anterior, stats_db, sin_baseline=es_primera_ejecucion).procesar()
+    procesador = ProcesadorEspecialidades(especialidades, estado_anterior, stats_db, sin_baseline=sin_baseline).procesar()
 
     guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
-    hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
     hb["ultima_ejecucion"] = ahora.isoformat()
+    hb["modelo_efectivo"] = True
     guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
     total_especialidades = len(procesador.estado_actual)
     slog.ejecucion(
@@ -1732,11 +1788,11 @@ def main():
             enviar_telegram("🧪 EJEMPLO — ALERTA DE VELOCIDAD (simulada, nada agotándose ahora)\n\n" + _ej)
         return
 
-    # ✓ PRIMERA EJECUCIÓN: NO enviar Telegram, solo guardar estado
-    if es_primera_ejecucion:
-        logger.info("🎯 PRIMERA EJECUCIÓN")
+    # ✓ PRIMERA EJECUCIÓN o RE-BASELINE: NO enviar Telegram, solo guardar estado
+    if sin_baseline:
+        logger.info("🎯 BASE FIJADA (primera ejecución o migración)")
         logger.info(f"   ✓ Estado base guardado ({total_especialidades} especialidades)")
-        logger.info("   ℹ️ NO se envía notificación en primera ejecución")
+        logger.info("   ℹ️ No se envía notificación en este ciclo")
         return
 
     # Log estructurado de cambios detectados
