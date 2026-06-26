@@ -23912,6 +23912,12 @@
         "con_cupos": 14,
         "total_cupos": 178,
         "cambios": 0
+      },
+      {
+        "hora": "06:45:34",
+        "con_cupos": 18,
+        "total_cupos": 560,
+        "cambios": 4
       }
     ]
   },
@@ -29297,6 +29303,30 @@
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-26T06:45:34.175511-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 118
+    },
+    {
+      "fecha": "2026-06-26T06:45:34.175511-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 78
+    },
+    {
+      "fecha": "2026-06-26T06:45:34.175511-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 172
+    },
+    {
+      "fecha": "2026-06-26T06:45:34.175511-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 14
     }
   ],
   "es_primera_ejecucion": false

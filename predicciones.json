@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-26T06:40:07.167044-03:00",
+  "generado": "2026-06-26T06:45:32.609000-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -79,13 +79,6 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 62,
-        "confianza": "alta",
-        "casos": 21,
-        "aciertos": 13
       }
     },
     "COLOPROCTOLOGIA": {
@@ -356,11 +349,11 @@
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 7:00 hs.",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 6:45 hs.",
       "confianza": "media",
       "categoria": "atencion",
       "tipo_hora_modal": "probable",
-      "hora_probable": "7:00",
+      "hora_probable": "6:45",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
@@ -435,13 +428,6 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 60,
-        "confianza": "alta",
-        "casos": 20,
-        "aciertos": 12
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -554,24 +540,7 @@
   },
   "banner": {
     "hora": "06:00",
-    "dias": 22,
-    "items": [
-      {
-        "especialidad": "CLINICA MEDICA CONSULTA",
-        "probabilidad": 62,
-        "confianza": "alta",
-        "nivel": 2,
-        "casos": 21,
-        "aciertos": 13
-      },
-      {
-        "especialidad": "PEDIATRIA CONSULTA",
-        "probabilidad": 60,
-        "confianza": "alta",
-        "nivel": 2,
-        "casos": 20,
-        "aciertos": 12
-      }
-    ]
+    "dias": 23,
+    "items": []
   }
 }
