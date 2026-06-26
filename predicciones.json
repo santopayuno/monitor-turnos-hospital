@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-26T09:55:06.699771-03:00",
+  "generado": "2026-06-26T10:00:36.067854-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -132,13 +132,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 33,
-        "confianza": "media",
-        "casos": 15,
-        "aciertos": 5
       }
     },
     "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
@@ -193,13 +186,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 33,
-        "confianza": "media",
-        "casos": 12,
-        "aciertos": 4
       }
     },
     "FLEBOLOGIA (CONSULTA)": {
@@ -254,13 +240,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 38,
-        "confianza": "media",
-        "casos": 16,
-        "aciertos": 6
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -408,13 +387,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 50,
-        "confianza": "media",
-        "casos": 6,
-        "aciertos": 3
       }
     },
     "ORL CONSULTAS": {
@@ -567,41 +539,8 @@
     }
   },
   "banner": {
-    "hora": "09:00",
+    "hora": "10:00",
     "dias": 23,
-    "items": [
-      {
-        "especialidad": "ONCOLOGIA",
-        "probabilidad": 50,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 6,
-        "aciertos": 3
-      },
-      {
-        "especialidad": "INFECTOLOGIA",
-        "probabilidad": 38,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 16,
-        "aciertos": 6
-      },
-      {
-        "especialidad": "DIABETOLOGIA GENERAL",
-        "probabilidad": 33,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 15,
-        "aciertos": 5
-      },
-      {
-        "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
-        "probabilidad": 33,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 12,
-        "aciertos": 4
-      }
-    ]
+    "items": []
   }
 }
