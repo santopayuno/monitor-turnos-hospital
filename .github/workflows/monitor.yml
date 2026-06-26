@@ -1,0 +1,65 @@
+name: Monitor de Turnos Hospital Perrupato
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor-turnos
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install requests --quiet
+
+      - name: Ejecutar Monitor
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python monitor.py
+
+      - name: Configurar Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Agregar cambios
+        run: |
+          git add -A
+
+      - name: Commit cambios
+        run: |
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualizar estado $(date +'%Y-%m-%d %H:%M:%S')"
+          fi
+
+      - name: Pull antes de push
+        run: git pull --rebase origin main || true
+
+      - name: Push cambios
+        run: |
+          for i in 1 2 3; do
+            if git push; then
+              echo "✓ Push exitoso"
+              exit 0
+            else
+              sleep 2
+              git pull --rebase origin main || true
+            fi
+          done
+          exit 1
