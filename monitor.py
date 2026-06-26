@@ -1606,6 +1606,27 @@ def main():
             enviar_telegram("🧪 MENSAJE DE PRUEBA\n\n" + mensaje)
         else:
             enviar_telegram("🧪 PRUEBA OK — Sin especialidades con cupos en este momento")
+
+        # Muestra de la alerta de PATRÓN (usa el banner real del momento)
+        alerta_p = construir_alerta_patron(_predicciones["banner"], fecha_hora) if _predicciones else None
+        if alerta_p:
+            enviar_telegram("🧪 EJEMPLO — ALERTA DE PATRÓN\n\n" + alerta_p)
+        else:
+            enviar_telegram("🧪 EJEMPLO — ALERTA DE PATRÓN\n\nSin patrón de aperturas en este momento (ninguna especialidad supera el umbral).")
+
+        # Muestra de la alerta de VELOCIDAD (real si hay algo agotándose; si no, un ejemplo)
+        _eventos_t = (cargar_json(ARCHIVOS["estadisticas"]) or {}).get("eventos", [])
+        _items_v = []
+        for _nom, _cup in (procesador.estado_actual or {}).items():
+            if _cup and _cup > 0:
+                _proy = _se_agota_rapido(_nom, _hist.get(_nom), _eventos_t, _cup)
+                if _proy is not None:
+                    _items_v.append((_nom, _cup, _proy))
+        if _items_v:
+            enviar_telegram("🧪 EJEMPLO — ALERTA DE VELOCIDAD (datos reales)\n\n" + construir_alerta_velocidad(_items_v, fecha_hora))
+        else:
+            _ej = construir_alerta_velocidad([("CARDIOLOGIA ADULTO", 6, 8)], fecha_hora)
+            enviar_telegram("🧪 EJEMPLO — ALERTA DE VELOCIDAD (simulada, nada agotándose ahora)\n\n" + _ej)
         return
 
     # ✓ PRIMERA EJECUCIÓN: NO enviar Telegram, solo guardar estado
