@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-27T08:55:09.267683-03:00",
+  "generado": "2026-06-27T09:00:19.255392-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -107,13 +107,13 @@
       }
     },
     "DERMATOLOGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes y sábados cerca de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
+      "texto_sin_hora": "Suele haber turnos los martes y sábados",
+      "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
       "prob_apertura": {
         "emoji": "🟡",
@@ -121,13 +121,13 @@
       }
     },
     "DIABETOLOGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
@@ -182,7 +182,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:45",
       "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
+      "ultima_apertura": "9:00",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -224,6 +224,7 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -283,13 +284,13 @@
       }
     },
     "NEUMONOLOGIA INFANTIL": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
+      "ultima_apertura": "9:00",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -383,7 +384,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "9:15",
+      "ultima_apertura": "9:00",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -477,7 +478,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
-      "ultima_apertura": "12:30",
+      "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
@@ -505,8 +506,9 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "9:45",
       "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "9:15",
+      "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -540,7 +542,7 @@
     }
   },
   "banner": {
-    "hora": "08:00",
+    "hora": "09:00",
     "dias": 23,
     "items": []
   }

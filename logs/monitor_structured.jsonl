@@ -4708,3 +4708,14 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 153, "con_cupos": 13, "ts": "2026-06-27T11:45:27.418640"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 153, "con_cupos": 13, "ts": "2026-06-27T11:50:09.317564"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 153, "con_cupos": 13, "ts": "2026-06-27T11:55:11.001175"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 244, "con_cupos": 20, "ts": "2026-06-27T12:00:21.043161"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 16, "ts": "2026-06-27T12:00:21.090170"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "INFECTOLOGIA PEDIATRICA", "cupos": 8, "ts": "2026-06-27T12:00:21.090259"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "NEFROLOGIA", "cupos": 8, "ts": "2026-06-27T12:00:21.090312"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "PODOLOGIA", "cupos": 16, "ts": "2026-06-27T12:00:21.090330"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)", "cupos": 4, "ts": "2026-06-27T12:00:21.090346"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "DERMATOLOGIA GENERAL", "cupos": 1, "ts": "2026-06-27T12:00:21.090365"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 5, "ts": "2026-06-27T12:00:21.090384"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 3, "ts": "2026-06-27T12:00:21.090411"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-27T12:00:21.090432"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-27T12:00:21.682536"}
