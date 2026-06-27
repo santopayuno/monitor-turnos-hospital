@@ -4784,3 +4784,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 193, "con_cupos": 17, "ts": "2026-06-27T16:55:13.130464"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 193, "con_cupos": 17, "ts": "2026-06-27T17:00:40.611811"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 193, "con_cupos": 17, "ts": "2026-06-27T17:05:13.601753"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 191, "con_cupos": 17, "ts": "2026-06-27T17:10:05.286454"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NEFROLOGIA", "cupos": 5, "ts": "2026-06-27T17:10:05.340870"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA TORACICA", "cupos": 5, "ts": "2026-06-27T17:10:05.340997"}

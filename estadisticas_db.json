@@ -26140,6 +26140,12 @@
         "con_cupos": 17,
         "total_cupos": 193,
         "cambios": 0
+      },
+      {
+        "hora": "14:10:05",
+        "con_cupos": 17,
+        "total_cupos": 191,
+        "cambios": 2
       }
     ]
   },
@@ -31716,6 +31722,18 @@
       "fecha": "2026-06-27T12:45:14.926140-03:00",
       "tipo": "ultimos",
       "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-27T14:10:05.289191-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-27T14:10:05.289191-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA TORACICA",
       "cupos": 5
     }
   ],
