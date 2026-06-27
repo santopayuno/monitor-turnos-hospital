@@ -4789,3 +4789,5 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA TORACICA", "cupos": 5, "ts": "2026-06-27T17:10:05.340997"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 190, "con_cupos": 17, "ts": "2026-06-27T17:15:29.038162"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 190, "con_cupos": 17, "ts": "2026-06-27T17:20:07.771952"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 189, "con_cupos": 17, "ts": "2026-06-27T17:25:34.006135"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA GENERAL", "cupos": 5, "ts": "2026-06-27T17:25:34.062877"}

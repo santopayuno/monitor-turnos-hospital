@@ -26158,6 +26158,12 @@
         "con_cupos": 17,
         "total_cupos": 190,
         "cambios": 0
+      },
+      {
+        "hora": "14:25:34",
+        "con_cupos": 17,
+        "total_cupos": 189,
+        "cambios": 1
       }
     ]
   },
@@ -31746,6 +31752,12 @@
       "fecha": "2026-06-27T14:10:05.289191-03:00",
       "tipo": "ultimos",
       "especialidad": "CIRUGIA TORACICA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-27T14:25:34.010199-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
       "cupos": 5
     }
   ],
