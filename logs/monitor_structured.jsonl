@@ -4742,3 +4742,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "DERMATOLOGIA GENERAL", "cupos": 0, "ts": "2026-06-27T13:40:33.379856"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 228, "con_cupos": 19, "ts": "2026-06-27T13:45:27.137101"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 228, "con_cupos": 19, "ts": "2026-06-27T13:50:23.739919"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 227, "con_cupos": 19, "ts": "2026-06-27T13:55:07.633421"}
