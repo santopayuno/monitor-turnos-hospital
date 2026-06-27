@@ -25888,6 +25888,12 @@
         "con_cupos": 20,
         "total_cupos": 231,
         "cambios": 0
+      },
+      {
+        "hora": "10:40:33",
+        "con_cupos": 19,
+        "total_cupos": 229,
+        "cambios": 1
       }
     ]
   },
@@ -31441,6 +31447,12 @@
       "tipo": "ultimos",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-27T10:40:33.334991-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
