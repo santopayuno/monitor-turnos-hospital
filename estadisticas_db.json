@@ -25924,6 +25924,12 @@
         "con_cupos": 19,
         "total_cupos": 224,
         "cambios": 0
+      },
+      {
+        "hora": "11:10:17",
+        "con_cupos": 18,
+        "total_cupos": 222,
+        "cambios": 1
       }
     ]
   },
@@ -31482,6 +31488,12 @@
       "fecha": "2026-06-27T10:40:33.334991-03:00",
       "tipo": "agotados",
       "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-27T11:10:17.328181-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
