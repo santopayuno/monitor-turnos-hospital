@@ -4719,3 +4719,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 3, "ts": "2026-06-27T12:00:21.090411"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)", "cupos": 3, "ts": "2026-06-27T12:00:21.090432"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-27T12:00:21.682536"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 244, "con_cupos": 20, "ts": "2026-06-27T12:05:12.513932"}
