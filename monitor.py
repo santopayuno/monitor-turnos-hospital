@@ -836,6 +836,11 @@ def generar_reporte_diario():
         registros = stats["registros"][fecha]
         eventos = [e for e in stats["eventos"] if e["fecha"].startswith(fecha)]
 
+        # Actividad del día de AYER (el resumen sale a la mañana y recapitula el día anterior)
+        ayer = (ahora - timedelta(days=1)).strftime("%Y-%m-%d")
+        registros_ayer = stats["registros"].get(ayer, [])
+        eventos_ayer = [e for e in stats["eventos"] if e["fecha"].startswith(ayer)]
+
         # Especialidades con cupos ahora
         estado_actual = cargar_json(ARCHIVOS["estado"]) or {}
         con_cupos = [(nombre, cupo) for nombre, cupo in estado_actual.items() if cupo > 0]
@@ -877,10 +882,10 @@ def generar_reporte_diario():
             "────────────",
             "📈 ACTIVIDAD DE AYER",
             "────────────",
-            f"• Monitoreos realizados: {len(registros)}",
-            f"• Cambios detectados: {len(eventos)}",
-            f"• Nuevas aperturas: {sum(1 for e in eventos if e['tipo'] == 'nuevos')}",
-            f"• Agotamientos: {sum(1 for e in eventos if e['tipo'] == 'agotados')}",
+            f"• Monitoreos realizados: {len(registros_ayer)}",
+            f"• Cambios detectados: {len(eventos_ayer)}",
+            f"• Nuevas aperturas: {sum(1 for e in eventos_ayer if e['tipo'] == 'nuevos')}",
+            f"• Agotamientos: {sum(1 for e in eventos_ayer if e['tipo'] == 'agotados')}",
             "",
             f"🕒 Generado: {ahora.strftime('%d/%m • %H:%M hs')}",
         ]
