@@ -1678,7 +1678,10 @@ def main():
     if not especialidades:
         logger.critical("✗ No se pudo obtener datos de la API")
         enviar_telegram("🚨 Error: No se pudo conectar con la API del hospital")
-        return
+        # Salir con código ≠ 0: así run_monitor NO le manda el ping de "estoy vivo"
+        # a Healthchecks, y el aviso por mail (dead-man's-switch) salta aunque el
+        # Telegram de arriba no se haya podido enviar (ej.: corte de red total).
+        sys.exit(1)
 
     # VERIFICAR si es primera ejecución
     # Re-fijar la base SIN emitir eventos: en el primer arranque, o la primera vez
