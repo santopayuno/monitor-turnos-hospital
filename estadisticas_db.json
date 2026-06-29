@@ -29540,6 +29540,12 @@
         "con_cupos": 21,
         "total_cupos": 107,
         "cambios": 1
+      },
+      {
+        "hora": "13:25:30",
+        "con_cupos": 20,
+        "total_cupos": 106,
+        "cambios": 1
       }
     ]
   },
@@ -35404,6 +35410,12 @@
       "fecha": "2026-06-29T13:20:33.937152-03:00",
       "tipo": "agotados",
       "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T13:25:30.316265-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
       "cupos": 0
     }
   ],
