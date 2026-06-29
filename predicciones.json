@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-29T08:55:17.246299-03:00",
+  "generado": "2026-06-29T09:00:28.132196-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -43,6 +43,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 50,
+        "confianza": "media",
+        "casos": 10,
+        "aciertos": 5
       }
     },
     "CIRUGIA INFANTIL": {
@@ -240,6 +247,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 35,
+        "confianza": "media",
+        "casos": 17,
+        "aciertos": 6
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -455,6 +469,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 30,
+        "confianza": "media",
+        "casos": 10,
+        "aciertos": 3
       }
     },
     "PRE ANESTESIA PEDIATRIA": {
@@ -541,8 +562,33 @@
     }
   },
   "banner": {
-    "hora": "08:00",
+    "hora": "09:00",
     "dias": 24,
-    "items": []
+    "items": [
+      {
+        "especialidad": "CIRUGIA GENERAL",
+        "probabilidad": 50,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 10,
+        "aciertos": 5
+      },
+      {
+        "especialidad": "INFECTOLOGIA",
+        "probabilidad": 35,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 17,
+        "aciertos": 6
+      },
+      {
+        "especialidad": "PODOLOGIA",
+        "probabilidad": 30,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 10,
+        "aciertos": 3
+      }
+    ]
   }
 }
