@@ -5420,3 +5420,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-29T18:05:29.333080"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 78, "con_cupos": 13, "ts": "2026-06-29T18:10:06.495323"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 78, "con_cupos": 13, "ts": "2026-06-29T18:15:27.716442"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 78, "con_cupos": 13, "ts": "2026-06-29T18:20:23.886559"}
