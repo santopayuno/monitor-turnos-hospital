@@ -5379,3 +5379,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 113, "con_cupos": 22, "ts": "2026-06-29T15:46:10.161753"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEFROLOGIA", "cupos": 0, "ts": "2026-06-29T15:46:10.240337"}
 {"evento": "error", "contexto": "api", "mensaje": "Error de red: HTTPSConnectionPool(host='sganotti.mendoza.gov.ar', port=443): Max retries exceeded with url: /digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular (Caused by ResponseError('too many 503 error responses'))", "ts": "2026-06-29T15:51:14.426251"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 112, "con_cupos": 22, "ts": "2026-06-29T15:55:30.587394"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 5, "ts": "2026-06-29T15:55:30.654715"}

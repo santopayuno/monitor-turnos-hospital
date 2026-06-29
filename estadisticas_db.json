@@ -29504,6 +29504,12 @@
         "con_cupos": 22,
         "total_cupos": 113,
         "cambios": 1
+      },
+      {
+        "hora": "12:55:30",
+        "con_cupos": 22,
+        "total_cupos": 112,
+        "cambios": 1
       }
     ]
   },
@@ -35351,6 +35357,12 @@
       "tipo": "agotados",
       "especialidad": "NEFROLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T12:55:30.591897-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
