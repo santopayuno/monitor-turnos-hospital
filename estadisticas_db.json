@@ -29618,6 +29618,12 @@
         "con_cupos": 17,
         "total_cupos": 88,
         "cambios": 1
+      },
+      {
+        "hora": "14:30:24",
+        "con_cupos": 16,
+        "total_cupos": 85,
+        "cambios": 1
       }
     ]
   },
@@ -35512,6 +35518,12 @@
       "fecha": "2026-06-29T14:25:27.260232-03:00",
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T14:30:24.229957-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA INFANTIL",
       "cupos": 0
     }
   ],
