@@ -29582,6 +29582,12 @@
         "con_cupos": 18,
         "total_cupos": 95,
         "cambios": 0
+      },
+      {
+        "hora": "14:00:14",
+        "con_cupos": 18,
+        "total_cupos": 92,
+        "cambios": 1
       }
     ]
   },
@@ -35465,6 +35471,12 @@
       "tipo": "agotados",
       "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T14:00:14.734788-03:00",
+      "tipo": "ultimos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
