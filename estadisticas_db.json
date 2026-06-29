@@ -29204,6 +29204,12 @@
         "con_cupos": 18,
         "total_cupos": 266,
         "cambios": 0
+      },
+      {
+        "hora": "08:40:24",
+        "con_cupos": 17,
+        "total_cupos": 255,
+        "cambios": 2
       }
     ]
   },
@@ -34864,6 +34870,18 @@
       "fecha": "2026-06-29T08:00:37.185100-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T08:40:24.962423-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-29T08:40:24.962423-03:00",
+      "tipo": "agotados",
+      "especialidad": "PODOLOGIA",
       "cupos": 0
     }
   ],
