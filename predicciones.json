@@ -1,15 +1,15 @@
 {
-  "generado": "2026-06-29T11:35:28.065737-03:00",
+  "generado": "2026-06-29T11:40:17.614615-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:30 hs.",
+      "confianza": "media",
+      "categoria": "atencion",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
-      "ultima_apertura": "12:00",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
+      "ultima_apertura": "11:45",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
