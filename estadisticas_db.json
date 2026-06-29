@@ -29612,6 +29612,12 @@
         "con_cupos": 18,
         "total_cupos": 91,
         "cambios": 0
+      },
+      {
+        "hora": "14:25:27",
+        "con_cupos": 17,
+        "total_cupos": 88,
+        "cambios": 1
       }
     ]
   },
@@ -35501,6 +35507,12 @@
       "tipo": "ultimos",
       "especialidad": "HEMATOLOGIA CLINICA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-29T14:25:27.260232-03:00",
+      "tipo": "agotados",
+      "especialidad": "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
