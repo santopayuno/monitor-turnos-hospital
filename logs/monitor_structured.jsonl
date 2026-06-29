@@ -5418,3 +5418,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-29T18:00:29.866499"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 78, "con_cupos": 13, "ts": "2026-06-29T18:05:29.268935"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-29T18:05:29.333080"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 78, "con_cupos": 13, "ts": "2026-06-29T18:10:06.495323"}
