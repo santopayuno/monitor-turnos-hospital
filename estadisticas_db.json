@@ -29534,6 +29534,12 @@
         "con_cupos": 22,
         "total_cupos": 109,
         "cambios": 0
+      },
+      {
+        "hora": "13:20:33",
+        "con_cupos": 21,
+        "total_cupos": 107,
+        "cambios": 1
       }
     ]
   },
@@ -35393,6 +35399,12 @@
       "tipo": "ultimos",
       "especialidad": "ONCOLOGIA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-29T13:20:33.937152-03:00",
+      "tipo": "agotados",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
