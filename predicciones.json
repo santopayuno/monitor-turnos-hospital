@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-29T06:40:32.171379-03:00",
+  "generado": "2026-06-29T06:45:30.707771-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -335,11 +335,11 @@
       }
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos varios días de la semana",
-      "confianza": "media",
-      "categoria": "atencion",
+      "cuando": "Suele haber turnos casi todos los días",
+      "confianza": "alta",
+      "categoria": "abundancia",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "Suele haber turnos varios días de la semana",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
       "ultima_apertura": "6:45",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
