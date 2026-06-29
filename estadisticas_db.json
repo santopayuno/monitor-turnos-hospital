@@ -29246,6 +29246,12 @@
         "con_cupos": 17,
         "total_cupos": 218,
         "cambios": 0
+      },
+      {
+        "hora": "09:15:35",
+        "con_cupos": 17,
+        "total_cupos": 205,
+        "cambios": 1
       }
     ]
   },
@@ -34919,6 +34925,12 @@
       "tipo": "agotados",
       "especialidad": "PODOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T09:15:35.503872-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
