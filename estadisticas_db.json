@@ -29480,6 +29480,12 @@
         "con_cupos": 24,
         "total_cupos": 118,
         "cambios": 1
+      },
+      {
+        "hora": "12:30:37",
+        "con_cupos": 24,
+        "total_cupos": 117,
+        "cambios": 0
       }
     ]
   },
