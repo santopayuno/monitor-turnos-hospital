@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-29T10:25:07.899417-03:00",
+  "generado": "2026-06-29T10:30:32.307359-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -107,12 +107,12 @@
       }
     },
     "DERMATOLOGIA GENERAL": {
-      "cuando": "Suele haber turnos los martes y sábados cerca de las 9:30 hs.",
+      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
       "confianza": "alta",
       "categoria": "certero",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes y sábados",
+      "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
       "prob_apertura": {
