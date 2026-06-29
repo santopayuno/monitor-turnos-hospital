@@ -5351,3 +5351,12 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 105, "con_cupos": 16, "ts": "2026-06-29T14:40:19.321382"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 1, "ts": "2026-06-29T14:40:19.385212"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-29T14:40:20.137215"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 146, "con_cupos": 26, "ts": "2026-06-29T14:45:20.128947"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 1, "ts": "2026-06-29T14:45:20.191618"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA", "cupos": 3, "ts": "2026-06-29T14:45:20.191806"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 4, "ts": "2026-06-29T14:45:20.191839"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-29T14:45:20.191858"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 1, "ts": "2026-06-29T14:45:20.191876"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "UROLOGIA", "cupos": 2, "ts": "2026-06-29T14:45:20.191893"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 4, "ts": "2026-06-29T14:45:20.191930"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-29T14:45:20.851554"}

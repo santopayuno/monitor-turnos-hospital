@@ -29426,6 +29426,12 @@
         "con_cupos": 16,
         "total_cupos": 105,
         "cambios": 2
+      },
+      {
+        "hora": "11:45:20",
+        "con_cupos": 26,
+        "total_cupos": 146,
+        "cambios": 17
       }
     ]
   },
@@ -35135,6 +35141,108 @@
       "tipo": "ultimos",
       "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 1
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ONCOLOGIA",
+      "cupos": 8
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "UROLOGIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 13
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-29T11:45:20.132457-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
