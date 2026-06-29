@@ -29270,6 +29270,12 @@
         "con_cupos": 16,
         "total_cupos": 186,
         "cambios": 0
+      },
+      {
+        "hora": "09:35:22",
+        "con_cupos": 15,
+        "total_cupos": 180,
+        "cambios": 1
       }
     ]
   },
@@ -34954,6 +34960,12 @@
       "fecha": "2026-06-29T09:25:18.974502-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T09:35:22.833056-03:00",
+      "tipo": "agotados",
+      "especialidad": "ONCOLOGIA",
       "cupos": 0
     }
   ],

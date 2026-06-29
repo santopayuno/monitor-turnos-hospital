@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-29T09:30:04.963536-03:00",
+  "generado": "2026-06-29T09:35:21.116596-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -401,6 +401,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 50,
+        "confianza": "media",
+        "casos": 6,
+        "aciertos": 3
       }
     },
     "ORL CONSULTAS": {
@@ -572,6 +579,14 @@
         "nivel": 2,
         "casos": 10,
         "aciertos": 5
+      },
+      {
+        "especialidad": "ONCOLOGIA",
+        "probabilidad": 50,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 6,
+        "aciertos": 3
       },
       {
         "especialidad": "INFECTOLOGIA",
