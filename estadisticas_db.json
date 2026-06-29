@@ -29492,6 +29492,12 @@
         "con_cupos": 24,
         "total_cupos": 116,
         "cambios": 0
+      },
+      {
+        "hora": "12:40:28",
+        "con_cupos": 23,
+        "total_cupos": 115,
+        "cambios": 1
       }
     ]
   },
@@ -35326,6 +35332,12 @@
       "fecha": "2026-06-29T12:25:22.676872-03:00",
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T12:40:28.076108-03:00",
+      "tipo": "agotados",
+      "especialidad": "PEDIATRIA CONSULTA",
       "cupos": 0
     }
   ],
