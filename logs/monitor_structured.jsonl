@@ -5397,3 +5397,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 99, "con_cupos": 19, "ts": "2026-06-29T16:45:28.297351"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 96, "con_cupos": 18, "ts": "2026-06-29T16:50:07.280354"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-29T16:50:07.947050"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 95, "con_cupos": 18, "ts": "2026-06-29T16:55:10.760275"}
