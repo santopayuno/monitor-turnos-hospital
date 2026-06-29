@@ -29660,6 +29660,12 @@
         "con_cupos": 14,
         "total_cupos": 80,
         "cambios": 1
+      },
+      {
+        "hora": "15:05:29",
+        "con_cupos": 13,
+        "total_cupos": 78,
+        "cambios": 1
       }
     ]
   },
@@ -35572,6 +35578,12 @@
       "fecha": "2026-06-29T15:00:29.805929-03:00",
       "tipo": "agotados",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-29T15:05:29.273484-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA ADULTO",
       "cupos": 0
     }
   ],
