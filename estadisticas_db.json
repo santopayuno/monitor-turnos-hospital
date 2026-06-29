@@ -30026,6 +30026,12 @@
         "con_cupos": 13,
         "total_cupos": 69,
         "cambios": 0
+      },
+      {
+        "hora": "20:10:32",
+        "con_cupos": 12,
+        "total_cupos": 68,
+        "cambios": 1
       }
     ]
   },
@@ -35951,6 +35957,12 @@
       "tipo": "ultimos",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-29T20:10:32.608051-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
