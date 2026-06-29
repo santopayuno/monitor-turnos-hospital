@@ -29276,6 +29276,12 @@
         "con_cupos": 15,
         "total_cupos": 180,
         "cambios": 1
+      },
+      {
+        "hora": "09:40:18",
+        "con_cupos": 15,
+        "total_cupos": 179,
+        "cambios": 0
       }
     ]
   },
