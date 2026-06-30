@@ -30886,6 +30886,12 @@
         "con_cupos": 15,
         "total_cupos": 189,
         "cambios": 0
+      },
+      {
+        "hora": "08:05:06",
+        "con_cupos": 14,
+        "total_cupos": 180,
+        "cambios": 2
       }
     ]
   },
@@ -36852,6 +36858,18 @@
       "fecha": "2026-06-30T07:55:23.922926-03:00",
       "tipo": "agotados",
       "especialidad": "NEUMONOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T08:05:06.924865-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-06-30T08:05:06.924865-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 0
     }
   ],
