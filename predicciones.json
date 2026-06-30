@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T09:55:16.144401-03:00",
+  "generado": "2026-06-30T10:00:12.631527-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -15,13 +15,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 5
       }
     },
     "CARDIOLOGIA INFANTIL": {
@@ -126,13 +119,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 5
       }
     },
     "DIABETOLOGIA GENERAL": {
@@ -175,13 +161,6 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 5
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
@@ -208,13 +187,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 31,
-        "confianza": "media",
-        "casos": 13,
-        "aciertos": 4
       }
     },
     "FLEBOLOGIA (CONSULTA)": {
@@ -311,13 +283,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 5
       }
     },
     "NEUMONOLOGIA INFANTIL": {
@@ -331,13 +296,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 4
       }
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
@@ -352,13 +310,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 4
       }
     },
     "NUTRICION GENERAL": {
@@ -373,13 +324,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 5
       }
     },
     "OBSTETRICIA BAJO RIESGO": {
@@ -406,13 +350,6 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 40,
-        "confianza": "media",
-        "casos": 5,
-        "aciertos": 2
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
@@ -428,13 +365,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 40,
-        "confianza": "media",
-        "casos": 5,
-        "aciertos": 2
       }
     },
     "OFTALMOLOGIA": {
@@ -519,13 +449,6 @@
       "prob_apertura": {
         "emoji": "🔴",
         "txt": "Baja"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 40,
-        "confianza": "media",
-        "casos": 5,
-        "aciertos": 2
       }
     },
     "PODOLOGIA": {
@@ -581,13 +504,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 5
       }
     },
     "TRAUMATOLOGIA INFANTIL": {
@@ -603,13 +519,6 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "09:00",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 4
       }
     },
     "UROLOGIA": {
@@ -641,49 +550,8 @@
     }
   },
   "banner": {
-    "hora": "09:00",
+    "hora": "10:00",
     "dias": 25,
-    "items": [
-      {
-        "especialidad": "CARDIOLOGIA ADULTO",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 5
-      },
-      {
-        "especialidad": "DERMATOLOGIA GENERAL",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 5
-      },
-      {
-        "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 5
-      },
-      {
-        "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 5
-      },
-      {
-        "especialidad": "NUTRICION GENERAL",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 5
-      }
-    ]
+    "items": []
   }
 }

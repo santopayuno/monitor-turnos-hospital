@@ -5690,3 +5690,5 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 0, "ts": "2026-06-30T12:50:15.089480"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 318, "con_cupos": 18, "ts": "2026-06-30T12:55:17.711078"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "UROLOGIA", "cupos": 3, "ts": "2026-06-30T12:55:17.777119"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 307, "con_cupos": 18, "ts": "2026-06-30T13:00:14.371757"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)", "cupos": 5, "ts": "2026-06-30T13:00:14.458421"}
