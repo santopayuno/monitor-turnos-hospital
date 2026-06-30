@@ -30904,6 +30904,12 @@
         "con_cupos": 14,
         "total_cupos": 170,
         "cambios": 0
+      },
+      {
+        "hora": "08:20:30",
+        "con_cupos": 13,
+        "total_cupos": 167,
+        "cambios": 1
       }
     ]
   },
@@ -36882,6 +36888,12 @@
       "fecha": "2026-06-30T08:05:06.924865-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T08:20:30.258146-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 0
     }
   ],
