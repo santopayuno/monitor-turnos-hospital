@@ -5685,3 +5685,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)", "cupos": 5, "ts": "2026-06-30T12:40:29.579967"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 0, "ts": "2026-06-30T12:40:29.580058"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 0, "ts": "2026-06-30T12:40:29.580082"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 350, "con_cupos": 19, "ts": "2026-06-30T12:45:05.886910"}
