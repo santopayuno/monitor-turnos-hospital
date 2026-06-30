@@ -31174,6 +31174,12 @@
         "con_cupos": 15,
         "total_cupos": 174,
         "cambios": 0
+      },
+      {
+        "hora": "12:05:15",
+        "con_cupos": 15,
+        "total_cupos": 171,
+        "cambios": 1
       }
     ]
   },
@@ -37555,6 +37561,12 @@
       "tipo": "ultimos",
       "especialidad": "NEFROLOGIA",
       "cupos": 3
+    },
+    {
+      "fecha": "2026-06-30T12:05:15.197351-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA PEDIATRICA",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
