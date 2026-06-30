@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T09:45:04.070501-03:00",
+  "generado": "2026-06-30T09:50:13.485802-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -47,7 +47,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -124,7 +123,6 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -160,7 +158,6 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -195,7 +192,6 @@
       "hora_probable": "9:45",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:45",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -230,7 +226,6 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -259,7 +254,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -287,7 +281,6 @@
       "hora_probable": "mañana",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:45",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -301,7 +294,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -356,7 +348,6 @@
       "hora_probable": "10:00",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "9:15",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "ausencia": "Hace varios días sin turnos nuevos",
       "prob_apertura": {
         "emoji": "🟡",
@@ -545,7 +536,6 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -588,7 +578,6 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
-      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"

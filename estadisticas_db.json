@@ -31012,6 +31012,12 @@
         "con_cupos": 19,
         "total_cupos": 350,
         "cambios": 0
+      },
+      {
+        "hora": "09:50:15",
+        "con_cupos": 18,
+        "total_cupos": 336,
+        "cambios": 1
       }
     ]
   },
@@ -37326,6 +37332,12 @@
       "fecha": "2026-06-30T09:40:28.913846-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:50:15.014693-03:00",
+      "tipo": "agotados",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
       "cupos": 0
     }
   ],
