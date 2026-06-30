@@ -5699,3 +5699,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 277, "con_cupos": 18, "ts": "2026-06-30T13:20:34.927029"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 271, "con_cupos": 17, "ts": "2026-06-30T13:25:26.325864"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "UROLOGIA", "cupos": 0, "ts": "2026-06-30T13:25:26.388419"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 268, "con_cupos": 17, "ts": "2026-06-30T13:30:17.693811"}
