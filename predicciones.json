@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T05:55:06.391242-03:00",
+  "generado": "2026-06-30T06:00:34.904528-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -78,6 +78,13 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "06:00",
+        "probabilidad": 60,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 3
       }
     },
     "COLOPROCTOLOGIA": {
@@ -347,6 +354,13 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "06:00",
+        "probabilidad": 30,
+        "confianza": "media",
+        "casos": 23,
+        "aciertos": 7
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
@@ -362,6 +376,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "06:00",
+        "probabilidad": 35,
+        "confianza": "media",
+        "casos": 20,
+        "aciertos": 7
       }
     },
     "OFTALMOLOGIA": {
@@ -431,6 +452,13 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "06:00",
+        "probabilidad": 60,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 3
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -545,8 +573,41 @@
     }
   },
   "banner": {
-    "hora": "05:00",
+    "hora": "06:00",
     "dias": 24,
-    "items": []
+    "items": [
+      {
+        "especialidad": "CLINICA MEDICA CONSULTA",
+        "probabilidad": 60,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 3
+      },
+      {
+        "especialidad": "PEDIATRIA CONSULTA",
+        "probabilidad": 60,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 3
+      },
+      {
+        "especialidad": "ODONTOLOGÍA PEDIATRICA",
+        "probabilidad": 35,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 20,
+        "aciertos": 7
+      },
+      {
+        "especialidad": "ODONTOLOGIA ADULTO",
+        "probabilidad": 30,
+        "confianza": "media",
+        "nivel": 2,
+        "casos": 23,
+        "aciertos": 7
+      }
+    ]
   }
 }
