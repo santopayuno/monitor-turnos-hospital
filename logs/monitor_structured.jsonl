@@ -5646,3 +5646,12 @@
 {"evento": "cambio", "tipo": "aumentos", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 48, "ts": "2026-06-30T12:00:08.425641"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CIRUGIA TORACICA", "cupos": 0, "ts": "2026-06-30T12:00:08.425689"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-30T12:00:09.041295"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 728, "con_cupos": 31, "ts": "2026-06-30T12:05:22.002758"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "HEMATOLOGIA CLINICA", "cupos": 27, "ts": "2026-06-30T12:05:22.675513"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "INFECTOLOGIA PEDIATRICA", "cupos": 6, "ts": "2026-06-30T12:05:22.675605"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "OBSTETRICIA BAJO RIESGO", "cupos": 45, "ts": "2026-06-30T12:05:22.675630"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)", "cupos": 10, "ts": "2026-06-30T12:05:22.675648"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)", "cupos": 8, "ts": "2026-06-30T12:05:22.675664"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 1, "ts": "2026-06-30T12:05:22.675684"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "PRE ANESTESIA PEDIATRIA", "cupos": 0, "ts": "2026-06-30T12:05:22.675729"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-30T12:05:23.399016"}
