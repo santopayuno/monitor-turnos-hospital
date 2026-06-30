@@ -30964,6 +30964,12 @@
         "con_cupos": 31,
         "total_cupos": 728,
         "cambios": 19
+      },
+      {
+        "hora": "09:10:16",
+        "con_cupos": 29,
+        "total_cupos": 605,
+        "cambios": 5
       }
     ]
   },
@@ -37140,6 +37146,36 @@
       "fecha": "2026-06-30T09:05:22.005958-03:00",
       "tipo": "agotados",
       "especialidad": "PRE ANESTESIA PEDIATRIA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:10:16.029663-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-06-30T09:10:16.029663-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-30T09:10:16.029663-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-30T09:10:16.029663-03:00",
+      "tipo": "agotados",
+      "especialidad": "ORL CONSULTAS",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:10:16.029663-03:00",
+      "tipo": "agotados",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],

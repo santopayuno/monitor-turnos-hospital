@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T09:05:20.296748-03:00",
+  "generado": "2026-06-30T09:10:14.398274-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -62,6 +62,7 @@
       "categoria": "aprendiendo",
       "tipo_hora_modal": "sin_hora",
       "texto_sin_hora": "Todavía no hay suficiente historial",
+      "ausencia": "Hace varios días sin turnos nuevos",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
