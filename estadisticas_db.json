@@ -30952,6 +30952,12 @@
         "con_cupos": 12,
         "total_cupos": 126,
         "cambios": 1
+      },
+      {
+        "hora": "09:00:08",
+        "con_cupos": 20,
+        "total_cupos": 418,
+        "cambios": 12
       }
     ]
   },
@@ -36942,6 +36948,78 @@
       "fecha": "2026-06-30T08:55:35.797570-03:00",
       "tipo": "agotados",
       "especialidad": "CIRUGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 72
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 29
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FLEBOLOGIA (CONSULTA)",
+      "cupos": 24
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 20
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 47
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 18
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "COLOPROCTOLOGIA",
+      "cupos": 20
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 7
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 30
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "aumentos",
+      "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "aumentos",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 48
+    },
+    {
+      "fecha": "2026-06-30T09:00:08.370779-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA TORACICA",
       "cupos": 0
     }
   ],

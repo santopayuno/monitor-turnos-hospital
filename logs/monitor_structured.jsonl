@@ -5641,3 +5641,8 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 132, "con_cupos": 13, "ts": "2026-06-30T11:50:07.847310"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 126, "con_cupos": 12, "ts": "2026-06-30T11:55:35.792016"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CIRUGIA GENERAL", "cupos": 0, "ts": "2026-06-30T11:55:35.873726"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 418, "con_cupos": 20, "ts": "2026-06-30T12:00:08.367420"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA", "cupos": 3, "ts": "2026-06-30T12:00:08.425564"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 48, "ts": "2026-06-30T12:00:08.425641"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CIRUGIA TORACICA", "cupos": 0, "ts": "2026-06-30T12:00:08.425689"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-30T12:00:09.041295"}
