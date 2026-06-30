@@ -30982,6 +30982,12 @@
         "con_cupos": 23,
         "total_cupos": 476,
         "cambios": 4
+      },
+      {
+        "hora": "09:25:27",
+        "con_cupos": 22,
+        "total_cupos": 443,
+        "cambios": 1
       }
     ]
   },
@@ -37248,6 +37254,12 @@
       "fecha": "2026-06-30T09:20:22.412440-03:00",
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:25:27.110424-03:00",
+      "tipo": "agotados",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
