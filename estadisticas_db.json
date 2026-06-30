@@ -31516,6 +31516,12 @@
         "con_cupos": 13,
         "total_cupos": 101,
         "cambios": 0
+      },
+      {
+        "hora": "16:50:15",
+        "con_cupos": 13,
+        "total_cupos": 100,
+        "cambios": 1
       }
     ]
   },
@@ -37939,6 +37945,12 @@
       "tipo": "agotados",
       "especialidad": "INFECTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T16:50:15.892259-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
