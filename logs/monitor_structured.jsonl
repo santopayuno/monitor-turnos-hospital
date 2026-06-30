@@ -5675,3 +5675,6 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-30T12:20:23.214479"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 443, "con_cupos": 22, "ts": "2026-06-30T12:25:27.106605"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-30T12:25:27.169788"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 404, "con_cupos": 22, "ts": "2026-06-30T12:30:15.328357"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 2, "ts": "2026-06-30T12:30:15.396129"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 1, "ts": "2026-06-30T12:30:15.396200"}
