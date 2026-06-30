@@ -31126,6 +31126,12 @@
         "con_cupos": 15,
         "total_cupos": 223,
         "cambios": 1
+      },
+      {
+        "hora": "11:25:33",
+        "con_cupos": 15,
+        "total_cupos": 215,
+        "cambios": 2
       }
     ]
   },
@@ -37483,6 +37489,18 @@
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T11:25:33.272548-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-30T11:25:33.272548-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false

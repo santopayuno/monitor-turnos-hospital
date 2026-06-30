@@ -5712,3 +5712,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 227, "con_cupos": 16, "ts": "2026-06-30T14:15:31.631733"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 223, "con_cupos": 15, "ts": "2026-06-30T14:20:25.824296"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-30T14:20:25.896426"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 215, "con_cupos": 15, "ts": "2026-06-30T14:25:33.268292"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA INFANTIL", "cupos": 5, "ts": "2026-06-30T14:25:33.341315"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA", "cupos": 4, "ts": "2026-06-30T14:25:33.341449"}
