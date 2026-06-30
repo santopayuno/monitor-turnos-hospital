@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T07:55:22.170504-03:00",
+  "generado": "2026-06-30T08:00:16.829315-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -14,6 +14,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "CARDIOLOGIA INFANTIL": {
@@ -91,6 +98,13 @@
       "prob_apertura": {
         "emoji": "🔴",
         "txt": "Baja"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": {
@@ -117,6 +131,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "DIABETOLOGIA GENERAL": {
@@ -159,6 +180,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
@@ -241,6 +269,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 33,
+        "confianza": "media",
+        "casos": 6,
+        "aciertos": 2
       }
     },
     "INFECTOLOGIA PEDIATRICA": {
@@ -267,6 +302,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 33,
+        "confianza": "media",
+        "casos": 6,
+        "aciertos": 2
       }
     },
     "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": {
@@ -281,6 +323,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "NEUMONOLOGIA INFANTIL": {
@@ -294,6 +343,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "NEUROLOGIA NUEVO (CON DERIVACIÓN)": {
@@ -308,6 +364,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "NUTRICION GENERAL": {
@@ -322,6 +385,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "OBSTETRICIA BAJO RIESGO": {
@@ -486,6 +556,13 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "TRAUMATOLOGIA ADULTO": {
@@ -500,6 +577,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "TRAUMATOLOGIA INFANTIL": {
@@ -529,6 +613,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)": {
@@ -546,8 +637,49 @@
     }
   },
   "banner": {
-    "hora": "07:00",
+    "hora": "08:00",
     "dias": 25,
-    "items": []
+    "items": [
+      {
+        "especialidad": "CARDIOLOGIA ADULTO",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
+        "especialidad": "COLOPROCTOLOGIA",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
+        "especialidad": "DERMATOLOGIA GENERAL",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
+        "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
+        "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      }
+    ]
   }
 }
