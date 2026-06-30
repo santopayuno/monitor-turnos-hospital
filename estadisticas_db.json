@@ -31180,6 +31180,12 @@
         "con_cupos": 15,
         "total_cupos": 171,
         "cambios": 1
+      },
+      {
+        "hora": "12:10:24",
+        "con_cupos": 15,
+        "total_cupos": 169,
+        "cambios": 0
       }
     ]
   },
