@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T09:35:08.603119-03:00",
+  "generado": "2026-06-30T09:40:27.386053-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -10,10 +10,18 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes y jueves",
       "ultima_apertura": "9:00",
+      "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 5
       }
     },
     "CARDIOLOGIA INFANTIL": {
@@ -648,6 +656,14 @@
     "dias": 25,
     "items": [
       {
+        "especialidad": "CARDIOLOGIA ADULTO",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 5
+      },
+      {
         "especialidad": "DERMATOLOGIA GENERAL",
         "probabilidad": 100,
         "confianza": "alta",
@@ -673,14 +689,6 @@
       },
       {
         "especialidad": "NUTRICION GENERAL",
-        "probabilidad": 100,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 5
-      },
-      {
-        "especialidad": "TRAUMATOLOGIA ADULTO",
         "probabilidad": 100,
         "confianza": "alta",
         "nivel": 1,
