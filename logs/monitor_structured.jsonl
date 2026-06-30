@@ -5723,3 +5723,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 190, "con_cupos": 15, "ts": "2026-06-30T14:50:15.766520"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 181, "con_cupos": 15, "ts": "2026-06-30T14:55:24.156209"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "NEFROLOGIA", "cupos": 3, "ts": "2026-06-30T14:55:25.293019"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 174, "con_cupos": 15, "ts": "2026-06-30T15:00:52.264563"}
