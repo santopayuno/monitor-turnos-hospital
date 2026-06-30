@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T09:10:14.398274-03:00",
+  "generado": "2026-06-30T09:15:26.322376-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -120,6 +120,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 5
       }
     },
     "DIABETOLOGIA GENERAL": {
@@ -297,6 +304,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 5
       }
     },
     "NEUMONOLOGIA INFANTIL": {
@@ -328,6 +342,7 @@
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "9:15",
       "frecuencia": "Últimamente aparece con frecuencia",
+      "ausencia": "Hace varios días sin turnos nuevos",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -417,6 +432,7 @@
       "hora_probable": "mañana",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
+      "ausencia": "Hace varios días sin turnos nuevos",
       "prob_apertura": {
         "emoji": "🔴",
         "txt": "Baja"
@@ -521,6 +537,7 @@
       "hora_probable": "10:15",
       "texto_sin_hora": "Suele haber turnos los martes y sábados",
       "ultima_apertura": "10:00",
+      "ausencia": "Hace varios días sin turnos nuevos",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -603,6 +620,22 @@
     "dias": 25,
     "items": [
       {
+        "especialidad": "DERMATOLOGIA GENERAL",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 5
+      },
+      {
+        "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 5
+      },
+      {
         "especialidad": "NEUMONOLOGIA INFANTIL",
         "probabilidad": 80,
         "confianza": "alta",
@@ -620,22 +653,6 @@
       },
       {
         "especialidad": "ODONTOLOGIA ADULTO",
-        "probabilidad": 40,
-        "confianza": "media",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 2
-      },
-      {
-        "especialidad": "ODONTOLOGÍA PEDIATRICA",
-        "probabilidad": 40,
-        "confianza": "media",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 2
-      },
-      {
-        "especialidad": "PEDIATRIA MEDIANO RIESGO",
         "probabilidad": 40,
         "confianza": "media",
         "nivel": 1,

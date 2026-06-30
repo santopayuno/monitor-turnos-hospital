@@ -30970,6 +30970,12 @@
         "con_cupos": 29,
         "total_cupos": 605,
         "cambios": 5
+      },
+      {
+        "hora": "09:15:28",
+        "con_cupos": 26,
+        "total_cupos": 532,
+        "cambios": 6
       }
     ]
   },
@@ -37176,6 +37182,42 @@
       "fecha": "2026-06-30T09:10:16.029663-03:00",
       "tipo": "agotados",
       "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:15:28.021286-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-30T09:15:28.021286-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 3
+    },
+    {
+      "fecha": "2026-06-30T09:15:28.021286-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-06-30T09:15:28.021286-03:00",
+      "tipo": "agotados",
+      "especialidad": "DERMATOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:15:28.021286-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:15:28.021286-03:00",
+      "tipo": "agotados",
+      "especialidad": "CARDIOLOGIA INFANTIL",
       "cupos": 0
     }
   ],

@@ -5661,3 +5661,10 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 2, "ts": "2026-06-30T12:10:16.892397"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ORL CONSULTAS", "cupos": 0, "ts": "2026-06-30T12:10:16.892444"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)", "cupos": 0, "ts": "2026-06-30T12:10:16.892489"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 532, "con_cupos": 26, "ts": "2026-06-30T12:15:28.017868"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 2, "ts": "2026-06-30T12:15:28.645242"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "NUTRICION GENERAL", "cupos": 3, "ts": "2026-06-30T12:15:28.645363"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 2, "ts": "2026-06-30T12:15:28.645397"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "DERMATOLOGIA GENERAL", "cupos": 0, "ts": "2026-06-30T12:15:28.645425"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)", "cupos": 0, "ts": "2026-06-30T12:15:28.645446"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-06-30T12:15:28.645467"}
