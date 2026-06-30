@@ -901,25 +901,24 @@ def generar_reporte_diario():
 
 def construir_alerta_patron(banner, fecha_hora):
     """Alerta anticipatoria (uso personal), alineada con el banner del dashboard.
-    Reusa el modelo condicional: especialidades agotadas AHORA con probabilidad
-    real de abrir pronto (probabilidad + confianza), no la frecuencia cruda."""
+    Muestra el hecho crudo (abrió N de las últimas M veces), sin rótulo de
+    probabilidad ni 'detectado'."""
     if not banner or not banner.get("items"):
         return None
 
     hora = banner.get("hora", "")
+    hora_h = hora.split(":")[0] if ":" in hora else hora
     dias = banner.get("dias", 0)
     lineas = [
-        "🔮 PATRÓN DE APERTURAS DETECTADO",
-        f"Suelen abrir cerca de las {hora} hs y ahora están agotadas:",
+        "🔮 SUELEN ABRIR PRONTO",
+        f"Cerca de las {hora_h} hs. suelen reabrir (ahora están agotadas):",
         "",
     ]
     for it in banner["items"]:
         nombre = it["especialidad"]
-        nivel = "Alta" if it.get("confianza") == "alta" else "Media"
-        lineas.append(f"{emoji_de(nombre)} {nombre}")
-        lineas.append(f"   Probabilidad {nivel} · {it['aciertos']} de {it['casos']} días similares")
-        lineas.append("")
+        lineas.append(f"{emoji_de(nombre)} {nombre} — abrió {it['aciertos']} de las últimas {it['casos']} veces")
     lineas += [
+        "",
         f"🕒 Basado en {dias} días de historial · {fecha_hora}",
         "",
         "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
@@ -1218,9 +1217,10 @@ FERIADOS_AR = {
     "2026-12-25",
 }
 VENTANA_BANNER_MIN = 90   # ventana de apertura tras estar agotada
-MIN_CASOS_BANNER   = 5    # casos comparables mínimos para confiar
-PROB_MIN_BANNER    = 30   # piso de probabilidad para mostrar
+MIN_CASOS_BANNER   = 8    # casos comparables mínimos para confiar
+PROB_MIN_BANNER    = 50   # piso de probabilidad para mostrar
 MAX_BANNER         = 5    # tope de especialidades en el banner
+RECENCIA_FUERA_D   = 21   # sin apertura real hace 21+ días → fuera del banner
 
 
 def _es_dia_habil(fecha):
@@ -1262,16 +1262,17 @@ def _estado_en(tl, momento):
     return last
 
 
-def calcular_chance_apertura_proxima(nombre, eventos, ahora):
-    """Probabilidad condicional de que una especialidad AGOTADA abra pronto.
-    Devuelve dict {especialidad, probabilidad, confianza, nivel, casos} o None.
-    No bloquea por franja horaria fija: las horas sin actividad dan ~0% y el
-    piso de probabilidad las descarta solas."""
+def calcular_chance_apertura_proxima(nombre, eventos, ahora, registros=None):
+    """Chance condicional de que una especialidad AGOTADA abra pronto.
+    Etapa actual: solo Nivel 2 (cualquier día hábil), fracción cruda, base en
+    días monitoreados reales (registros) y corte por recencia. El Nivel 1
+    (mismo día de semana) queda apagado: con pocas semanas hay ~5 casos por día
+    de semana y una racha corta se lee como 100% (infla). Reactivable con más
+    historial. Devuelve {especialidad, probabilidad, casos, aciertos} o None."""
     if not _es_dia_habil(ahora.date()):
         return None  # hoy no es día hábil
 
     H = ahora.hour
-    wd = ahora.weekday()
     ventana = timedelta(minutes=VENTANA_BANNER_MIN)
 
     tl = _timeline_estado(nombre, eventos)
@@ -1286,30 +1287,29 @@ def calcular_chance_apertura_proxima(nombre, eventos, ahora):
             except Exception:
                 pass
 
-    dias = sorted({datetime.fromisoformat(e["fecha"]).date() for e in eventos})
+    # Corte por recencia: sin apertura real en los últimos N días → fuera
+    if not aperturas:
+        return None
+    if (ahora - max(aperturas)).days >= RECENCIA_FUERA_D:
+        return None
+
+    # Días monitoreados reales (registros), no solo los días con eventos
+    if registros:
+        dias = sorted({datetime.fromisoformat(d[:10]).date() for d in registros})
+    else:
+        dias = sorted({datetime.fromisoformat(e["fecha"]).date() for e in eventos})
     dias_habil = [d for d in dias if _es_dia_habil(d)]
 
-    def evaluar(solo_wd):
-        casos = aciertos = 0
-        for d in dias_habil:
-            if solo_wd is not None and d.weekday() != solo_wd:
-                continue
-            mom = datetime(d.year, d.month, d.day, H, 0, 0, tzinfo=ahora.tzinfo)
-            if _estado_en(tl, mom) == "agotada":
-                casos += 1
-                if any(mom <= a < mom + ventana for a in aperturas):
-                    aciertos += 1
-        return casos, aciertos
-
-    # Nivel 1: mismo día de semana (si hay evidencia suficiente)
-    casos, aciertos = evaluar(wd)
-    nivel = 1
+    # Nivel 2: cualquier día hábil
+    casos = aciertos = 0
+    for d in dias_habil:
+        mom = datetime(d.year, d.month, d.day, H, 0, 0, tzinfo=ahora.tzinfo)
+        if _estado_en(tl, mom) == "agotada":
+            casos += 1
+            if any(mom <= a < mom + ventana for a in aperturas):
+                aciertos += 1
     if casos < MIN_CASOS_BANNER:
-        # Nivel 2: cualquier día hábil
-        casos, aciertos = evaluar(None)
-        nivel = 2
-        if casos < MIN_CASOS_BANNER:
-            return None  # Nivel 3: sin evidencia → no mostrar
+        return None
 
     prob = round(100 * aciertos / casos)
     if prob < PROB_MIN_BANNER:
@@ -1318,8 +1318,6 @@ def calcular_chance_apertura_proxima(nombre, eventos, ahora):
     return {
         "especialidad": nombre,
         "probabilidad": prob,
-        "confianza": "alta" if prob >= 60 else "media",
-        "nivel": nivel,
         "casos": casos,
         "aciertos": aciertos,
     }
@@ -1394,14 +1392,13 @@ def generar_predicciones(stats, estado_actual, ahora):
         cupo_now = (estado_actual or {}).get(nombre, 0)
         if cupo_now and cupo_now > 0:
             continue  # solo las que están agotadas ahora
-        chance = calcular_chance_apertura_proxima(nombre, eventos, ahora)
+        chance = calcular_chance_apertura_proxima(nombre, eventos, ahora, registros)
         if chance:
             # adjuntar al detalle de la especialidad (lo usa el modal)
             if nombre in especialidades:
                 especialidades[nombre]["chance"] = {
                     "hora": ahora.strftime("%H:00"),
                     "probabilidad": chance["probabilidad"],
-                    "confianza": chance["confianza"],
                     "casos": chance["casos"],
                     "aciertos": chance["aciertos"],
                 }
@@ -1897,23 +1894,27 @@ def main():
         except Exception as e:
             logger.warning(f"Error verificando hora de reporte: {e}")
 
-    # Detección de patrones: usando timestamp para no depender del minuto exacto
-    if CONFIG.get("alertas_patrones", True):
-        hb_pat = cargar_json(ARCHIVOS["heartbeat"]) or {}
-        ultima_alerta_ts = hb_pat.get("ultima_alerta_patron_ts", "1970-01-01T00:00:00")
-        try:
-            ultima_alerta_dt = datetime.fromisoformat(ultima_alerta_ts)
-            if ultima_alerta_dt.tzinfo is None:
-                ultima_alerta_dt = ultima_alerta_dt.replace(tzinfo=ahora.tzinfo)
-        except Exception:
-            ultima_alerta_dt = datetime.min.replace(tzinfo=ahora.tzinfo)
-        minutos_desde_ultima = (ahora - ultima_alerta_dt).total_seconds() / 60
-        if minutos_desde_ultima >= 45:
-            alerta_patrones = construir_alerta_patron(_predicciones["banner"], fecha_hora) if _predicciones else None
-            if alerta_patrones:
-                enviar_telegram(alerta_patrones)
-                hb_pat["ultima_alerta_patron_ts"] = ahora.isoformat()
-                guardar_json_seguro(hb_pat, ARCHIVOS["heartbeat"])
+    # Detección de patrones: avisar UNA VEZ por especialidad por día (no en loop)
+    if CONFIG.get("alertas_patrones", True) and _predicciones:
+        banner_pat = _predicciones.get("banner") or {}
+        items_pat = banner_pat.get("items") or []
+        if items_pat:
+            hb_pat = cargar_json(ARCHIVOS["heartbeat"]) or {}
+            hoy_str = ahora.date().isoformat()
+            avisos = hb_pat.get("patron_avisos") or {}
+            if avisos.get("fecha") != hoy_str:
+                avisos = {"fecha": hoy_str, "especialidades": []}
+            ya = set(avisos.get("especialidades", []))
+            nuevas = [it for it in items_pat if it["especialidad"] not in ya]
+            if nuevas:
+                banner_filtrado = dict(banner_pat)
+                banner_filtrado["items"] = nuevas
+                alerta_patrones = construir_alerta_patron(banner_filtrado, fecha_hora)
+                if alerta_patrones:
+                    enviar_telegram(alerta_patrones)
+                    avisos["especialidades"] = sorted(ya | {it["especialidad"] for it in nuevas})
+                    hb_pat["patron_avisos"] = avisos
+                    guardar_json_seguro(hb_pat, ARCHIVOS["heartbeat"])
 
     logger.info("═════════════════════════════════════════════════════")
 
