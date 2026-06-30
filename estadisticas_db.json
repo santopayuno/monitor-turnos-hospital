@@ -31030,6 +31030,12 @@
         "con_cupos": 18,
         "total_cupos": 307,
         "cambios": 1
+      },
+      {
+        "hora": "10:05:30",
+        "con_cupos": 18,
+        "total_cupos": 298,
+        "cambios": 1
       }
     ]
   },
@@ -37362,6 +37368,12 @@
       "fecha": "2026-06-30T10:00:14.385404-03:00",
       "tipo": "ultimos",
       "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-30T10:05:30.925203-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 5
     }
   ],
