@@ -30976,6 +30976,12 @@
         "con_cupos": 26,
         "total_cupos": 532,
         "cambios": 6
+      },
+      {
+        "hora": "09:20:22",
+        "con_cupos": 23,
+        "total_cupos": 476,
+        "cambios": 4
       }
     ]
   },
@@ -37218,6 +37224,30 @@
       "fecha": "2026-06-30T09:15:28.021286-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:20:22.412440-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-06-30T09:20:22.412440-03:00",
+      "tipo": "agotados",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:20:22.412440-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:20:22.412440-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
       "cupos": 0
     }
   ],

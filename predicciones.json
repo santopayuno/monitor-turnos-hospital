@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T09:15:26.322376-03:00",
+  "generado": "2026-06-30T09:20:20.894699-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -367,6 +367,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 5
       }
     },
     "OBSTETRICIA BAJO RIESGO": {
@@ -502,7 +509,7 @@
       "hora_probable": "9:45",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
-      "ausencia": "Hace varios días sin turnos nuevos",
+      "ausencia": "Hace semanas sin turnos nuevos",
       "prob_apertura": {
         "emoji": "🔴",
         "txt": "Baja"
@@ -570,6 +577,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 5
       }
     },
     "TRAUMATOLOGIA INFANTIL": {
@@ -585,6 +599,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 80,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 4
       }
     },
     "UROLOGIA": {
@@ -636,28 +657,28 @@
         "aciertos": 5
       },
       {
+        "especialidad": "NUTRICION GENERAL",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 5
+      },
+      {
+        "especialidad": "TRAUMATOLOGIA ADULTO",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 5
+      },
+      {
         "especialidad": "NEUMONOLOGIA INFANTIL",
         "probabilidad": 80,
         "confianza": "alta",
         "nivel": 1,
         "casos": 5,
         "aciertos": 4
-      },
-      {
-        "especialidad": "NEUROLOGIA NUEVO (CON DERIVACIÓN)",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 4
-      },
-      {
-        "especialidad": "ODONTOLOGIA ADULTO",
-        "probabilidad": 40,
-        "confianza": "media",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 2
       }
     ]
   }
