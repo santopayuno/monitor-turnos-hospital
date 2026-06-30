@@ -31054,6 +31054,12 @@
         "con_cupos": 18,
         "total_cupos": 277,
         "cambios": 0
+      },
+      {
+        "hora": "10:25:26",
+        "con_cupos": 17,
+        "total_cupos": 271,
+        "cambios": 1
       }
     ]
   },
@@ -37393,6 +37399,12 @@
       "tipo": "ultimos",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-30T10:25:26.329547-03:00",
+      "tipo": "agotados",
+      "especialidad": "UROLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
