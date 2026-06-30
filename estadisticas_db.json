@@ -31534,6 +31534,12 @@
         "con_cupos": 13,
         "total_cupos": 99,
         "cambios": 0
+      },
+      {
+        "hora": "17:05:21",
+        "con_cupos": 12,
+        "total_cupos": 97,
+        "cambios": 1
       }
     ]
   },
@@ -37963,6 +37969,12 @@
       "tipo": "ultimos",
       "especialidad": "PODOLOGIA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-30T17:05:21.675636-03:00",
+      "tipo": "agotados",
+      "especialidad": "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
