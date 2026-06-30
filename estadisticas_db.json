@@ -31120,6 +31120,12 @@
         "con_cupos": 16,
         "total_cupos": 227,
         "cambios": 0
+      },
+      {
+        "hora": "11:20:25",
+        "con_cupos": 15,
+        "total_cupos": 223,
+        "cambios": 1
       }
     ]
   },
@@ -37470,6 +37476,12 @@
       "fecha": "2026-06-30T10:55:34.384582-03:00",
       "tipo": "agotados",
       "especialidad": "ESPIROMETRIA ADULTO (CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T11:20:25.828189-03:00",
+      "tipo": "agotados",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
     }
   ],
