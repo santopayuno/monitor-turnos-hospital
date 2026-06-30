@@ -5759,3 +5759,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 114, "con_cupos": 14, "ts": "2026-06-30T17:30:07.888651"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 114, "con_cupos": 14, "ts": "2026-06-30T17:35:07.917604"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 114, "con_cupos": 14, "ts": "2026-06-30T17:40:27.154693"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 118, "con_cupos": 15, "ts": "2026-06-30T17:45:22.358364"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CLINICA MEDICA CONSULTA", "cupos": 4, "ts": "2026-06-30T17:45:22.451532"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-06-30T17:45:23.043946"}
