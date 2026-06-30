@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T09:30:13.765801-03:00",
+  "generado": "2026-06-30T09:35:08.603119-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -170,6 +170,13 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "09:00",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "casos": 5,
+        "aciertos": 5
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
@@ -649,6 +656,14 @@
         "aciertos": 5
       },
       {
+        "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+        "probabilidad": 100,
+        "confianza": "alta",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 5
+      },
+      {
         "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
         "probabilidad": 100,
         "confianza": "alta",
@@ -671,14 +686,6 @@
         "nivel": 1,
         "casos": 5,
         "aciertos": 5
-      },
-      {
-        "especialidad": "NEUMONOLOGIA INFANTIL",
-        "probabilidad": 80,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 4
       }
     ]
   }

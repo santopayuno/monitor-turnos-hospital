@@ -5678,3 +5678,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 404, "con_cupos": 22, "ts": "2026-06-30T12:30:15.328357"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "FLEBOLOGIA (CONSULTA)", "cupos": 2, "ts": "2026-06-30T12:30:15.396129"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 1, "ts": "2026-06-30T12:30:15.396200"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 386, "con_cupos": 21, "ts": "2026-06-30T12:35:10.150153"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 4, "ts": "2026-06-30T12:35:10.218473"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 0, "ts": "2026-06-30T12:35:10.218548"}
