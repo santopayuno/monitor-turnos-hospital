@@ -31018,6 +31018,12 @@
         "con_cupos": 18,
         "total_cupos": 336,
         "cambios": 1
+      },
+      {
+        "hora": "09:55:17",
+        "con_cupos": 18,
+        "total_cupos": 318,
+        "cambios": 1
       }
     ]
   },
@@ -37339,6 +37345,12 @@
       "tipo": "agotados",
       "especialidad": "FLEBOLOGIA (CONSULTA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T09:55:17.715563-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 3
     }
   ],
   "es_primera_ejecucion": false
