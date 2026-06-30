@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T06:50:09.633545-03:00",
+  "generado": "2026-06-30T06:55:22.176412-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -73,18 +73,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "6:45",
+      "ultima_apertura": "7:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 60,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 3
       }
     },
     "COLOPROCTOLOGIA": {
@@ -343,24 +336,18 @@
       }
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos varios días de la semana",
-      "confianza": "media",
-      "categoria": "atencion",
-      "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "Suele haber turnos varios días de la semana",
-      "ultima_apertura": "6:45",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 6:45 hs.",
+      "confianza": "alta",
+      "categoria": "abundancia",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "6:45",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "7:00",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 30,
-        "confianza": "media",
-        "casos": 23,
-        "aciertos": 7
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
@@ -370,19 +357,12 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "6:45",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
-      "ultima_apertura": "6:45",
+      "ultima_apertura": "7:00",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 35,
-        "confianza": "media",
-        "casos": 20,
-        "aciertos": 7
       }
     },
     "OFTALMOLOGIA": {
@@ -447,18 +427,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "6:45",
+      "ultima_apertura": "7:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 60,
-        "confianza": "alta",
-        "casos": 5,
-        "aciertos": 3
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -574,40 +547,7 @@
   },
   "banner": {
     "hora": "06:00",
-    "dias": 24,
-    "items": [
-      {
-        "especialidad": "CLINICA MEDICA CONSULTA",
-        "probabilidad": 60,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 3
-      },
-      {
-        "especialidad": "PEDIATRIA CONSULTA",
-        "probabilidad": 60,
-        "confianza": "alta",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 3
-      },
-      {
-        "especialidad": "ODONTOLOGÍA PEDIATRICA",
-        "probabilidad": 35,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 20,
-        "aciertos": 7
-      },
-      {
-        "especialidad": "ODONTOLOGIA ADULTO",
-        "probabilidad": 30,
-        "confianza": "media",
-        "nivel": 2,
-        "casos": 23,
-        "aciertos": 7
-      }
-    ]
+    "dias": 25,
+    "items": []
   }
 }
