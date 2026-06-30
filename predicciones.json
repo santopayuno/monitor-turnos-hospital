@@ -1,5 +1,5 @@
 {
-  "generado": "2026-06-30T08:50:06.291653-03:00",
+  "generado": "2026-06-30T08:55:34.243136-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -49,6 +49,13 @@
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
+      },
+      "chance": {
+        "hora": "08:00",
+        "probabilidad": 40,
+        "confianza": "media",
+        "casos": 5,
+        "aciertos": 2
       }
     },
     "CIRUGIA INFANTIL": {
@@ -649,6 +656,14 @@
         "aciertos": 2
       },
       {
+        "especialidad": "CIRUGIA GENERAL",
+        "probabilidad": 40,
+        "confianza": "media",
+        "nivel": 1,
+        "casos": 5,
+        "aciertos": 2
+      },
+      {
         "especialidad": "COLOPROCTOLOGIA",
         "probabilidad": 40,
         "confianza": "media",
@@ -666,14 +681,6 @@
       },
       {
         "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
-        "probabilidad": 40,
-        "confianza": "media",
-        "nivel": 1,
-        "casos": 5,
-        "aciertos": 2
-      },
-      {
-        "especialidad": "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)",
         "probabilidad": 40,
         "confianza": "media",
         "nivel": 1,
