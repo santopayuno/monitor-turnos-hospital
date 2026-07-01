@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-01T05:55:31.406797-03:00",
+  "generado": "2026-07-01T06:00:06.387010-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -80,6 +80,12 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "06:00",
+        "probabilidad": 64,
+        "casos": 25,
+        "aciertos": 16
       }
     },
     "COLOPROCTOLOGIA": {
@@ -435,6 +441,12 @@
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
+      },
+      "chance": {
+        "hora": "06:00",
+        "probabilidad": 62,
+        "casos": 24,
+        "aciertos": 15
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -550,8 +562,21 @@
     }
   },
   "banner": {
-    "hora": "05:00",
+    "hora": "06:00",
     "dias": 25,
-    "items": []
+    "items": [
+      {
+        "especialidad": "CLINICA MEDICA CONSULTA",
+        "probabilidad": 64,
+        "casos": 25,
+        "aciertos": 16
+      },
+      {
+        "especialidad": "PEDIATRIA CONSULTA",
+        "probabilidad": 62,
+        "casos": 24,
+        "aciertos": 15
+      }
+    ]
   }
 }
