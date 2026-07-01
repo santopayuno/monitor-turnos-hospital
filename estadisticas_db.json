@@ -33000,6 +33000,12 @@
         "con_cupos": 11,
         "total_cupos": 47,
         "cambios": 0
+      },
+      {
+        "hora": "13:25:26",
+        "con_cupos": 11,
+        "total_cupos": 46,
+        "cambios": 1
       }
     ]
   },
@@ -39591,6 +39597,12 @@
       "tipo": "agotados",
       "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-01T13:25:26.501072-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
