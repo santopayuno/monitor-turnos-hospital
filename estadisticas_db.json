@@ -32964,6 +32964,12 @@
         "con_cupos": 13,
         "total_cupos": 62,
         "cambios": 0
+      },
+      {
+        "hora": "12:55:11",
+        "con_cupos": 11,
+        "total_cupos": 59,
+        "cambios": 2
       }
     ]
   },
@@ -39542,6 +39548,18 @@
       "fecha": "2026-07-01T12:40:12.592488-03:00",
       "tipo": "agotados",
       "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-07-01T12:55:11.484282-03:00",
+      "tipo": "agotados",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-07-01T12:55:11.484282-03:00",
+      "tipo": "agotados",
+      "especialidad": "COLOPROCTOLOGIA",
       "cupos": 0
     }
   ],
