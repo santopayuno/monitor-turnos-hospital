@@ -32008,6 +32008,12 @@
         "con_cupos": 10,
         "total_cupos": 66,
         "cambios": 1
+      },
+      {
+        "hora": "23:40:07",
+        "con_cupos": 10,
+        "total_cupos": 65,
+        "cambios": 0
       }
     ]
   },

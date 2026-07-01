@@ -5875,3 +5875,4 @@
 {"evento": "cambio", "tipo": "agotados", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 0, "ts": "2026-07-01T02:30:13.728950"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 66, "con_cupos": 10, "ts": "2026-07-01T02:35:29.924166"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "NEFROLOGIA", "cupos": 0, "ts": "2026-07-01T02:35:29.984872"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 65, "con_cupos": 10, "ts": "2026-07-01T02:40:07.343961"}
