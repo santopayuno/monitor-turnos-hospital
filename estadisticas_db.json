@@ -33372,6 +33372,12 @@
         "con_cupos": 9,
         "total_cupos": 29,
         "cambios": 0
+      },
+      {
+        "hora": "18:40:18",
+        "con_cupos": 9,
+        "total_cupos": 27,
+        "cambios": 1
       }
     ]
   },
@@ -39987,6 +39993,12 @@
       "tipo": "agotados",
       "especialidad": "NUTRICION GENERAL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-01T18:40:18.095898-03:00",
+      "tipo": "ultimos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
