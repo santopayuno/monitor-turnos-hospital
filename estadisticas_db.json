@@ -32514,6 +32514,12 @@
         "con_cupos": 13,
         "total_cupos": 293,
         "cambios": 3
+      },
+      {
+        "hora": "06:40:29",
+        "con_cupos": 14,
+        "total_cupos": 313,
+        "cambios": 1
       }
     ]
   },
@@ -38985,6 +38991,12 @@
       "tipo": "reaperturas",
       "especialidad": "CLINICA MEDICA CONSULTA",
       "cupos": 123
+    },
+    {
+      "fecha": "2026-07-01T06:40:29.928438-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 20
     }
   ],
   "es_primera_ejecucion": false
