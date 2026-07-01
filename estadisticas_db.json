@@ -32892,6 +32892,12 @@
         "con_cupos": 14,
         "total_cupos": 99,
         "cambios": 0
+      },
+      {
+        "hora": "11:55:23",
+        "con_cupos": 14,
+        "total_cupos": 94,
+        "cambios": 3
       }
     ]
   },
@@ -39446,6 +39452,24 @@
       "fecha": "2026-07-01T11:25:07.533050-03:00",
       "tipo": "ultimos",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-07-01T11:55:23.722909-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-07-01T11:55:23.722909-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CIRUGIA GENERAL",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-07-01T11:55:23.722909-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ONCOLOGIA",
       "cupos": 5
     }
   ],
