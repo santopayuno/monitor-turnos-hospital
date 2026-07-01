@@ -6022,3 +6022,4 @@
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-01T13:55:12.820947"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 138, "con_cupos": 15, "ts": "2026-07-01T14:00:55.892962"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 133, "con_cupos": 15, "ts": "2026-07-01T14:05:13.844314"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 130, "con_cupos": 15, "ts": "2026-07-01T14:10:15.544523"}
