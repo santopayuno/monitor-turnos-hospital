@@ -6039,3 +6039,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "CIRUGIA GENERAL", "cupos": 5, "ts": "2026-07-01T14:55:23.789044"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ONCOLOGIA", "cupos": 5, "ts": "2026-07-01T14:55:23.789084"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 93, "con_cupos": 14, "ts": "2026-07-01T15:00:13.239307"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 89, "con_cupos": 14, "ts": "2026-07-01T15:05:30.326852"}
