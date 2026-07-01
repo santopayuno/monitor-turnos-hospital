@@ -6150,3 +6150,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "OBSTETRICIA BAJO RIESGO", "cupos": 5, "ts": "2026-07-01T23:25:11.789813"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 18, "con_cupos": 9, "ts": "2026-07-01T23:30:30.331546"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 18, "con_cupos": 9, "ts": "2026-07-01T23:35:21.958094"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 18, "con_cupos": 9, "ts": "2026-07-01T23:40:29.272272"}
