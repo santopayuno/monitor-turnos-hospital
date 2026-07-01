@@ -32508,6 +32508,12 @@
         "con_cupos": 10,
         "total_cupos": 63,
         "cambios": 0
+      },
+      {
+        "hora": "06:35:06",
+        "con_cupos": 13,
+        "total_cupos": 293,
+        "cambios": 3
       }
     ]
   },
@@ -38961,6 +38967,24 @@
       "tipo": "agotados",
       "especialidad": "NEFROLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-01T06:35:06.143311-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PEDIATRIA CONSULTA",
+      "cupos": 42
+    },
+    {
+      "fecha": "2026-07-01T06:35:06.143311-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 65
+    },
+    {
+      "fecha": "2026-07-01T06:35:06.143311-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 123
     }
   ],
   "es_primera_ejecucion": false

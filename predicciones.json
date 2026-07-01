@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-01T06:30:28.594953-03:00",
+  "generado": "2026-07-01T06:35:04.617793-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -75,17 +75,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "14:45",
+      "ultima_apertura": "6:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 64,
-        "casos": 25,
-        "aciertos": 16
       }
     },
     "COLOPROCTOLOGIA": {
@@ -344,13 +338,13 @@
       }
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 6:45 hs.",
-      "confianza": "media",
-      "categoria": "atencion",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 6:45 hs.",
+      "confianza": "alta",
+      "categoria": "abundancia",
       "tipo_hora_modal": "probable",
       "hora_probable": "6:45",
-      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
-      "ultima_apertura": "7:00",
+      "texto_sin_hora": "Suele haber turnos casi todos los días",
+      "ultima_apertura": "6:30",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
@@ -436,17 +430,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:00",
+      "ultima_apertura": "6:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 62,
-        "casos": 24,
-        "aciertos": 15
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -563,20 +551,7 @@
   },
   "banner": {
     "hora": "06:00",
-    "dias": 25,
-    "items": [
-      {
-        "especialidad": "CLINICA MEDICA CONSULTA",
-        "probabilidad": 64,
-        "casos": 25,
-        "aciertos": 16
-      },
-      {
-        "especialidad": "PEDIATRIA CONSULTA",
-        "probabilidad": 62,
-        "casos": 24,
-        "aciertos": 15
-      }
-    ]
+    "dias": 26,
+    "items": []
   }
 }
