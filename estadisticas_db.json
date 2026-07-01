@@ -32898,6 +32898,12 @@
         "con_cupos": 14,
         "total_cupos": 94,
         "cambios": 3
+      },
+      {
+        "hora": "12:00:13",
+        "con_cupos": 14,
+        "total_cupos": 93,
+        "cambios": 0
       }
     ]
   },
