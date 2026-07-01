@@ -31996,6 +31996,12 @@
         "con_cupos": 12,
         "total_cupos": 68,
         "cambios": 0
+      },
+      {
+        "hora": "23:30:13",
+        "con_cupos": 11,
+        "total_cupos": 67,
+        "cambios": 1
       }
     ]
   },
@@ -38437,6 +38443,12 @@
       "tipo": "ultimos",
       "especialidad": "COLOPROCTOLOGIA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-06-30T23:30:13.656959-03:00",
+      "tipo": "agotados",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
