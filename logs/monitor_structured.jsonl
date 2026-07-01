@@ -6017,3 +6017,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 137, "con_cupos": 11, "ts": "2026-07-01T13:40:16.128715"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 133, "con_cupos": 11, "ts": "2026-07-01T13:45:20.504857"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 129, "con_cupos": 11, "ts": "2026-07-01T13:50:08.552436"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 143, "con_cupos": 15, "ts": "2026-07-01T13:55:11.941574"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "UROLOGIA", "cupos": 1, "ts": "2026-07-01T13:55:12.058575"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-01T13:55:12.820947"}

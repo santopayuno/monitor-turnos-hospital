@@ -32820,6 +32820,12 @@
         "con_cupos": 11,
         "total_cupos": 129,
         "cambios": 0
+      },
+      {
+        "hora": "10:55:11",
+        "con_cupos": 15,
+        "total_cupos": 143,
+        "cambios": 5
       }
     ]
   },
@@ -39327,6 +39333,36 @@
       "tipo": "agotados",
       "especialidad": "PODOLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-01T10:55:11.949475-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 9
+    },
+    {
+      "fecha": "2026-07-01T10:55:11.949475-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "NUTRICION GENERAL",
+      "cupos": 6
+    },
+    {
+      "fecha": "2026-07-01T10:55:11.949475-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 11
+    },
+    {
+      "fecha": "2026-07-01T10:55:11.949475-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "UROLOGIA",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-07-01T10:55:11.949475-03:00",
+      "tipo": "ultimos",
+      "especialidad": "UROLOGIA",
+      "cupos": 1
     }
   ],
   "es_primera_ejecucion": false
