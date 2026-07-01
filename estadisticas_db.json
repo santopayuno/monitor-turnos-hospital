@@ -32002,6 +32002,12 @@
         "con_cupos": 11,
         "total_cupos": 67,
         "cambios": 1
+      },
+      {
+        "hora": "23:35:29",
+        "con_cupos": 10,
+        "total_cupos": 66,
+        "cambios": 1
       }
     ]
   },
@@ -38448,6 +38454,12 @@
       "fecha": "2026-06-30T23:30:13.656959-03:00",
       "tipo": "agotados",
       "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-06-30T23:35:29.927744-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
       "cupos": 0
     }
   ],

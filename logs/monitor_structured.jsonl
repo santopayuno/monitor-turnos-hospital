@@ -5873,3 +5873,5 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 68, "con_cupos": 12, "ts": "2026-07-01T02:25:15.900067"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 67, "con_cupos": 11, "ts": "2026-07-01T02:30:13.651922"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "DIABETOLOGIA GENERAL", "cupos": 0, "ts": "2026-07-01T02:30:13.728950"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 66, "con_cupos": 10, "ts": "2026-07-01T02:35:29.924166"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "NEFROLOGIA", "cupos": 0, "ts": "2026-07-01T02:35:29.984872"}
