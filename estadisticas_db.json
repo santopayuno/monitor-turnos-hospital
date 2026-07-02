@@ -34358,6 +34358,12 @@
         "con_cupos": 12,
         "total_cupos": 250,
         "cambios": 0
+      },
+      {
+        "hora": "08:20:12",
+        "con_cupos": 12,
+        "total_cupos": 248,
+        "cambios": 0
       }
     ]
   },
