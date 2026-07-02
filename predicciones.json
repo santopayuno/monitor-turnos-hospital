@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T07:30:23.548392-03:00",
+  "generado": "2026-07-02T07:35:26.170959-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -354,18 +354,18 @@
       }
     },
     "ODONTOLOGÍA PEDIATRICA": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 6:45 hs.",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 7:00 hs.",
       "confianza": "media",
       "categoria": "atencion",
       "tipo_hora_modal": "probable",
-      "hora_probable": "6:45",
+      "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
-      "ultima_apertura": "6:45",
+      "ultima_apertura": "7:30",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🟢",
+        "txt": "Alta"
       }
     },
     "OFTALMOLOGIA": {
