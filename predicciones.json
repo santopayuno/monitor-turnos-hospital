@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T09:40:29.528401-03:00",
+  "generado": "2026-07-02T09:45:26.046789-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -412,12 +412,11 @@
       }
     },
     "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos por la mañana",
+      "cuando": "Suele haber turnos hacia fin de mes",
       "confianza": "media",
-      "categoria": "franja_manana",
-      "tipo_hora_modal": "franja",
-      "hora_probable": "mañana",
-      "texto_sin_hora": "Suele haber turnos",
+      "categoria": "mensual",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "Suele haber turnos hacia fin de mes",
       "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
