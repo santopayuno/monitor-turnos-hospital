@@ -34370,6 +34370,12 @@
         "con_cupos": 12,
         "total_cupos": 242,
         "cambios": 1
+      },
+      {
+        "hora": "08:30:35",
+        "con_cupos": 12,
+        "total_cupos": 238,
+        "cambios": 0
       }
     ]
   },
