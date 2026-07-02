@@ -34592,6 +34592,12 @@
         "con_cupos": 10,
         "total_cupos": 80,
         "cambios": 2
+      },
+      {
+        "hora": "11:35:34",
+        "con_cupos": 11,
+        "total_cupos": 82,
+        "cambios": 6
       }
     ]
   },
@@ -41291,6 +41297,42 @@
       "tipo": "ultimos",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 2
+    },
+    {
+      "fecha": "2026-07-02T11:35:34.461983-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-07-02T11:35:34.461983-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-07-02T11:35:34.461983-03:00",
+      "tipo": "aumentos",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-07-02T11:35:34.461983-03:00",
+      "tipo": "ultimos",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-07-02T11:35:34.461983-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-07-02T11:35:34.461983-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false

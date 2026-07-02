@@ -6339,3 +6339,9 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 80, "con_cupos": 10, "ts": "2026-07-02T14:30:09.131010"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 2, "ts": "2026-07-02T14:30:09.208248"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-02T14:30:09.916957"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 82, "con_cupos": 11, "ts": "2026-07-02T14:35:34.457639"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "NEFROLOGIA", "cupos": 4, "ts": "2026-07-02T14:35:34.533164"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 2, "ts": "2026-07-02T14:35:34.533231"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 4, "ts": "2026-07-02T14:35:34.533274"}
+{"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 0, "ts": "2026-07-02T14:35:34.533294"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-02T14:35:35.100575"}
