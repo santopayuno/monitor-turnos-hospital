@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T07:25:37.307262-03:00",
+  "generado": "2026-07-02T07:30:23.548392-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -76,17 +76,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "6:30",
+      "ultima_apertura": "7:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "07:00",
-        "probabilidad": 67,
-        "casos": 18,
-        "aciertos": 12
       }
     },
     "COLOPROCTOLOGIA": {
@@ -345,13 +339,13 @@
       }
     },
     "ODONTOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos casi todos los días alrededor de las 6:45 hs.",
+      "cuando": "Suele haber turnos casi todos los días alrededor de las 7:00 hs.",
       "confianza": "alta",
       "categoria": "abundancia",
       "tipo_hora_modal": "probable",
-      "hora_probable": "6:45",
+      "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "6:30",
+      "ultima_apertura": "7:30",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
@@ -437,17 +431,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "6:30",
+      "ultima_apertura": "7:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "07:00",
-        "probabilidad": 65,
-        "casos": 17,
-        "aciertos": 11
       }
     },
     "PEDIATRIA MEDIANO RIESGO": {
@@ -564,20 +552,7 @@
   },
   "banner": {
     "hora": "07:00",
-    "dias": 26,
-    "items": [
-      {
-        "especialidad": "CLINICA MEDICA CONSULTA",
-        "probabilidad": 67,
-        "casos": 18,
-        "aciertos": 12
-      },
-      {
-        "especialidad": "PEDIATRIA CONSULTA",
-        "probabilidad": 65,
-        "casos": 17,
-        "aciertos": 11
-      }
-    ]
+    "dias": 27,
+    "items": []
   }
 }
