@@ -34328,6 +34328,12 @@
         "con_cupos": 12,
         "total_cupos": 265,
         "cambios": 1
+      },
+      {
+        "hora": "07:55:23",
+        "con_cupos": 12,
+        "total_cupos": 264,
+        "cambios": 0
       }
     ]
   },
