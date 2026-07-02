@@ -34718,6 +34718,12 @@
         "con_cupos": 12,
         "total_cupos": 42,
         "cambios": 0
+      },
+      {
+        "hora": "13:20:09",
+        "con_cupos": 11,
+        "total_cupos": 40,
+        "cambios": 1
       }
     ]
   },
@@ -41459,6 +41465,12 @@
       "tipo": "reaperturas",
       "especialidad": "UROLOGIA",
       "cupos": 11
+    },
+    {
+      "fecha": "2026-07-02T13:20:09.016802-03:00",
+      "tipo": "agotados",
+      "especialidad": "TRAUMATOLOGIA INFANTIL",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
