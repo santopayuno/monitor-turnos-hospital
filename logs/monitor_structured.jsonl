@@ -6285,3 +6285,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 286, "con_cupos": 13, "ts": "2026-07-02T10:35:27.916424"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-02T10:35:28.545444"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 272, "con_cupos": 13, "ts": "2026-07-02T10:40:28.965986"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 271, "con_cupos": 13, "ts": "2026-07-02T10:45:18.240486"}
