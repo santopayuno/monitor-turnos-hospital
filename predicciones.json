@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-01T23:55:22.859628-03:00",
+  "generado": "2026-07-02T00:00:14.021350-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -159,8 +159,8 @@
       "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟢",
-        "txt": "Alta"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
@@ -551,7 +551,7 @@
     }
   },
   "banner": {
-    "hora": "23:00",
+    "hora": "00:00",
     "dias": 26,
     "items": []
   }
