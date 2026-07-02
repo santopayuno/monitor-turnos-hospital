@@ -34706,6 +34706,12 @@
         "con_cupos": 11,
         "total_cupos": 37,
         "cambios": 0
+      },
+      {
+        "hora": "13:10:34",
+        "con_cupos": 12,
+        "total_cupos": 44,
+        "cambios": 1
       }
     ]
   },
@@ -41441,6 +41447,12 @@
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-02T13:10:34.329206-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "UROLOGIA",
+      "cupos": 11
     }
   ],
   "es_primera_ejecucion": false

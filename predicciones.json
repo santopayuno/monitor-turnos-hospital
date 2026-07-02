@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T13:05:15.444174-03:00",
+  "generado": "2026-07-02T13:10:32.652341-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -520,13 +520,12 @@
       }
     },
     "UROLOGIA": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
-      "ultima_apertura": "11:00",
+      "cuando": "No hay patrón claro todavía",
+      "confianza": "baja",
+      "categoria": "sinPatron",
+      "tipo_hora_modal": "sin_hora",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "13:15",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
