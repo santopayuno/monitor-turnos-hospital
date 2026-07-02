@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T10:00:32.287573-03:00",
+  "generado": "2026-07-02T10:05:15.469917-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -480,11 +480,11 @@
       }
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:30 hs.",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 12:00 hs.",
       "confianza": "media",
       "categoria": "atencion",
       "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
+      "hora_probable": "12:00",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "11:00",
       "frecuencia": "Últimamente aparece con frecuencia",

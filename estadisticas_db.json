@@ -34484,6 +34484,12 @@
         "con_cupos": 10,
         "total_cupos": 150,
         "cambios": 1
+      },
+      {
+        "hora": "10:05:17",
+        "con_cupos": 10,
+        "total_cupos": 149,
+        "cambios": 0
       }
     ]
   },
