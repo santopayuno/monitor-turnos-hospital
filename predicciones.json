@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T11:15:20.287891-03:00",
+  "generado": "2026-07-02T11:20:09.383263-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -396,12 +396,12 @@
       }
     },
     "ORL CONSULTAS": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:15 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
+      "cuando": "Últimamente vienen apareciendo turnos los martes alrededor de las 9:15 hs.",
+      "confianza": "media",
+      "categoria": "reciente",
       "tipo_hora_modal": "probable",
       "hora_probable": "9:15",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "texto_sin_hora": "Últimamente vienen apareciendo turnos los martes",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
       "prob_apertura": {
