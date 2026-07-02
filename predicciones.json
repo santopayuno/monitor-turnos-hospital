@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T09:30:27.247420-03:00",
+  "generado": "2026-07-02T09:35:29.399789-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -151,11 +151,12 @@
       }
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
-      "cuando": "No hay patrón claro todavía",
-      "confianza": "baja",
-      "categoria": "sinPatron",
-      "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "No hay patrón claro todavía",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:15 hs.",
+      "confianza": "media",
+      "categoria": "atencion",
+      "tipo_hora_modal": "probable",
+      "hora_probable": "9:15",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
