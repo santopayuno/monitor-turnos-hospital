@@ -6368,3 +6368,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 42, "con_cupos": 12, "ts": "2026-07-02T16:15:09.229075"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 40, "con_cupos": 11, "ts": "2026-07-02T16:20:09.010298"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "TRAUMATOLOGIA INFANTIL", "cupos": 0, "ts": "2026-07-02T16:20:09.092036"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 36, "con_cupos": 11, "ts": "2026-07-02T16:25:35.411679"}
