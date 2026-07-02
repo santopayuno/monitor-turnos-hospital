@@ -34364,6 +34364,12 @@
         "con_cupos": 12,
         "total_cupos": 248,
         "cambios": 0
+      },
+      {
+        "hora": "08:25:12",
+        "con_cupos": 12,
+        "total_cupos": 242,
+        "cambios": 1
       }
     ]
   },
@@ -41021,6 +41027,12 @@
       "tipo": "agotados",
       "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-02T08:25:12.979017-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
