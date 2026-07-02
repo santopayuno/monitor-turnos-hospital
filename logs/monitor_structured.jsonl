@@ -6387,3 +6387,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 19, "con_cupos": 11, "ts": "2026-07-02T17:40:26.278530"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PEDIATRIA CONSULTA", "cupos": 5, "ts": "2026-07-02T17:40:26.354124"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "UROLOGIA", "cupos": 5, "ts": "2026-07-02T17:40:26.354239"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 19, "con_cupos": 11, "ts": "2026-07-02T17:45:20.387802"}
