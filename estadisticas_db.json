@@ -34730,6 +34730,12 @@
         "con_cupos": 11,
         "total_cupos": 36,
         "cambios": 0
+      },
+      {
+        "hora": "13:30:34",
+        "con_cupos": 11,
+        "total_cupos": 33,
+        "cambios": 1
       }
     ]
   },
@@ -41477,6 +41483,12 @@
       "tipo": "agotados",
       "especialidad": "TRAUMATOLOGIA INFANTIL",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-02T13:30:34.574739-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
