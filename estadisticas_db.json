@@ -34586,6 +34586,12 @@
         "con_cupos": 9,
         "total_cupos": 79,
         "cambios": 0
+      },
+      {
+        "hora": "11:30:09",
+        "con_cupos": 10,
+        "total_cupos": 80,
+        "cambios": 2
       }
     ]
   },
@@ -41273,6 +41279,18 @@
       "tipo": "agotados",
       "especialidad": "OBSTETRICIA BAJO RIESGO",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-02T11:30:09.136881-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-07-02T11:30:09.136881-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 2
     }
   ],
   "es_primera_ejecucion": false

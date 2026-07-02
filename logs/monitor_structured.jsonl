@@ -6336,3 +6336,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 84, "con_cupos": 9, "ts": "2026-07-02T14:15:21.822237"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 83, "con_cupos": 9, "ts": "2026-07-02T14:20:10.768750"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 79, "con_cupos": 9, "ts": "2026-07-02T14:25:15.036925"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 80, "con_cupos": 10, "ts": "2026-07-02T14:30:09.131010"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 2, "ts": "2026-07-02T14:30:09.208248"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-02T14:30:09.916957"}

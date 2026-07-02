@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T11:25:13.293392-03:00",
+  "generado": "2026-07-02T11:30:07.076099-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -359,7 +359,7 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
-      "ultima_apertura": "7:30",
+      "ultima_apertura": "11:30",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
