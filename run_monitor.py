@@ -21,7 +21,10 @@ DATA_DIR  = os.getenv("DATA_DIR", "/data")
 CICLO_SEG = int(os.getenv("CICLO_SEG", "300"))   # 5 min
 PORT      = int(os.getenv("PORT", "8080"))       # Railway inyecta PORT
 
-os.makedirs(DATA_DIR, exist_ok=True)
+try:
+    os.makedirs(DATA_DIR, exist_ok=True)
+except OSError:
+    DATA_DIR = "."
 
 # Archivos que el dashboard puede pedir por HTTP
 SERVIBLES = {
