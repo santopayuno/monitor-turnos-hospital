@@ -41,7 +41,10 @@ if not CHAT_ID:
 API_URL = "https://sganotti.mendoza.gov.ar/digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular"
 
 DATA_DIR = os.getenv("DATA_DIR", "/data")
-os.makedirs(DATA_DIR, exist_ok=True)
+try:
+    os.makedirs(DATA_DIR, exist_ok=True)
+except OSError:
+    DATA_DIR = "."   # entornos sin /data (ej. test de GitHub): usa carpeta local
 def _d(nombre):
     return os.path.join(DATA_DIR, nombre)
 
