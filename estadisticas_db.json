@@ -36112,6 +36112,12 @@
         "con_cupos": 11,
         "total_cupos": 216,
         "cambios": 0
+      },
+      {
+        "hora": "08:45:33",
+        "con_cupos": 11,
+        "total_cupos": 212,
+        "cambios": 1
       }
     ]
   },
@@ -42925,6 +42931,12 @@
       "tipo": "agotados",
       "especialidad": "NEFROLOGIA",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-03T08:45:33.113744-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 4
     }
   ],
   "es_primera_ejecucion": false
