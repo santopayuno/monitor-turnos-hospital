@@ -36160,6 +36160,12 @@
         "con_cupos": 21,
         "total_cupos": 276,
         "cambios": 0
+      },
+      {
+        "hora": "09:25:10",
+        "con_cupos": 20,
+        "total_cupos": 270,
+        "cambios": 1
       }
     ]
   },
@@ -43098,6 +43104,12 @@
       "fecha": "2026-07-03T09:00:35.209680-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-07-03T09:25:10.470660-03:00",
+      "tipo": "agotados",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
       "cupos": 0
     }
   ],
