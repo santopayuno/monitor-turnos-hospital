@@ -6581,3 +6581,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 9, "con_cupos": 9, "ts": "2026-07-03T09:35:24.770091"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 153, "con_cupos": 10, "ts": "2026-07-03T09:40:37.073356"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-03T09:40:37.794412"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 308, "con_cupos": 12, "ts": "2026-07-03T09:45:35.373049"}
+{"evento": "cambio", "tipo": "aumentos", "especialidad": "PEDIATRIA CONSULTA", "cupos": 84, "ts": "2026-07-03T09:45:35.435207"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-03T09:45:35.998786"}
