@@ -40,18 +40,23 @@ if not CHAT_ID:
 
 API_URL = "https://sganotti.mendoza.gov.ar/digisalud/WebServices/WebServiciosNotti.asmx/GetEntornoTurnosPublicosParticular"
 
+DATA_DIR = os.getenv("DATA_DIR", "/data")
+os.makedirs(DATA_DIR, exist_ok=True)
+def _d(nombre):
+    return os.path.join(DATA_DIR, nombre)
+
 ARCHIVOS = {
-    "estado": "estado_turnos.json",
-    "estadisticas": "estadisticas_db.json",
+    "estado": _d("estado_turnos.json"),
+    "estadisticas": _d("estadisticas_db.json"),
     "config": "config.json",
     "logs": "monitor.log",
-    "reporte": "reporte_diario.txt",
-    "heartbeat": "heartbeat.json",
-    "estado_anterior": "estado_anterior.json",
-    "predicciones": "predicciones.json",
-    "historial_cupos": "historial_cupos.json",
-    "velocidad": "velocidad_estado.json",
-    "encargos": "encargos.json"
+    "reporte": _d("reporte_diario.txt"),
+    "heartbeat": _d("heartbeat.json"),
+    "estado_anterior": _d("estado_anterior.json"),
+    "predicciones": _d("predicciones.json"),
+    "historial_cupos": _d("historial_cupos.json"),
+    "velocidad": _d("velocidad_estado.json"),
+    "encargos": _d("encargos.json")
 }
 
 REEMPLAZOS_NOMBRES = {
