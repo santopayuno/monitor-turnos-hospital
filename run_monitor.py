@@ -1,177 +1,165 @@
 #!/usr/bin/env python3
 """
-Script para ejecutar monitor.py en Railway + git push CORRECTO
-Resuelve conflictos de archivos y rama main vs master
+Monitor Perrupato en Railway — proceso 24/7:
+  - Corre monitor.py en loop cada 5 min
+  - Sirve los JSON de /data por HTTP con CORS (para el dashboard)
+  - YA NO pushea datos a git. El código sigue viniendo de git al arrancar.
 """
 import subprocess
 import sys
 import os
+import json
+import time
+import shutil
+import threading
+from datetime import datetime, timezone
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-def run_cmd(cmd, ignore_error=False):
-    """Ejecutar comando de shell"""
+DATA_DIR  = os.getenv("DATA_DIR", "/data")
+CICLO_SEG = int(os.getenv("CICLO_SEG", "300"))   # 5 min
+PORT      = int(os.getenv("PORT", "8080"))       # Railway inyecta PORT
+
+os.makedirs(DATA_DIR, exist_ok=True)
+
+# Archivos que el dashboard puede pedir por HTTP
+SERVIBLES = {
+    "estado_turnos.json", "estado_anterior.json", "estadisticas_db.json",
+    "heartbeat.json", "historial_cupos.json", "predicciones.json",
+    "velocidad_estado.json", "encargos.json",
+}
+
+
+def run_cmd(cmd):
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, check=not ignore_error)
-        if result.stdout:
-            print(result.stdout)
-        if result.stderr and not ignore_error:
-            print(f"ERROR: {result.stderr}")
-        return result.returncode == 0
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        if r.stdout:
+            print(r.stdout)
+        return r.returncode == 0
     except Exception as e:
-        print(f"Exception: {e}")
+        print(f"cmd error: {e}")
         return False
 
-try:
-    # ============================================================
-    # PASO 1: Inicializar Git si no existe
-    # ============================================================
-    if not os.path.exists('.git'):
-        print("🔧 Inicializando repositorio git...")
 
-        run_cmd(['git', 'init'])
-        run_cmd(['git', 'config', 'user.email', 'railway@monitor.local'])
-        run_cmd(['git', 'config', 'user.name', 'Railway Monitor'])
+def pull_codigo():
+    """Trae el código de GitHub al arrancar (solo si no hay repo local)."""
+    if not os.path.exists(".git"):
+        token = os.getenv("GITHUB_TOKEN", "")
+        url = f"https://{token}@github.com/santopayuno/monitor-turnos-hospital.git"
+        run_cmd(["git", "init"])
+        run_cmd(["git", "config", "user.email", "railway@monitor.local"])
+        run_cmd(["git", "config", "user.name", "Railway Monitor"])
+        run_cmd(["git", "remote", "add", "origin", url])
+        run_cmd(["git", "fetch", "origin", "main"])
+        run_cmd(["git", "reset", "--hard", "origin/main"])
+        print("✅ Código sincronizado de GitHub")
 
-        # Agregar remote
-        token = os.getenv('GITHUB_TOKEN', '')
-        repo_url = f'https://{token}@github.com/santopayuno/monitor-turnos-hospital.git'
-        run_cmd(['git', 'remote', 'add', 'origin', repo_url])
 
-        # Fetch limpio
-        print("📥 Descargando repositorio...")
-        run_cmd(['git', 'fetch', 'origin', 'main'])
+def sembrar_data():
+    """Primera vez: si /data está vacío pero el repo trae los JSON, los copia."""
+    for nombre in SERVIBLES:
+        destino = os.path.join(DATA_DIR, nombre)
+        origen = nombre  # copia local traída del repo
+        if not os.path.exists(destino) and os.path.exists(origen):
+            try:
+                shutil.copy2(origen, destino)
+                print(f"🌱 Sembrado {nombre} en {DATA_DIR}")
+            except Exception as e:
+                print(f"⚠️ No se pudo sembrar {nombre}: {e}")
 
-        # Reset --hard: resuelve conflictos de archivos locales
-        print("🔄 Sincronizando archivos locales...")
-        run_cmd(['git', 'reset', '--hard', 'origin/main'], ignore_error=True)
 
-        # Crear rama main si no existe (y trackear origin/main)
-        run_cmd(['git', 'checkout', '--track', 'origin/main'], ignore_error=True)
+class Handler(BaseHTTPRequestHandler):
+    def _cors(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Cache-Control", "no-store")
 
-        print("✅ Git inicializado correctamente\n")
+    def do_GET(self):
+        nombre = self.path.lstrip("/").split("?")[0]
+        if nombre in SERVIBLES:
+            ruta = os.path.join(DATA_DIR, nombre)
+            if os.path.exists(ruta):
+                try:
+                    with open(ruta, "rb") as f:
+                        data = f.read()
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/json; charset=utf-8")
+                    self._cors()
+                    self.end_headers()
+                    self.wfile.write(data)
+                    return
+                except Exception:
+                    pass
+            self.send_response(404); self._cors(); self.end_headers()
+            return
+        if nombre in ("", "health"):
+            self.send_response(200); self._cors(); self.end_headers()
+            self.wfile.write(b"ok")
+            return
+        self.send_response(404); self._cors(); self.end_headers()
 
-    # ============================================================
-    # PASO 2: Watchdog — detectar si el monitor anterior falló
-    # ============================================================
-    import json
-    from datetime import datetime, timezone
+    def log_message(self, *a):
+        pass  # silencia el log de accesos
 
+
+def iniciar_servidor():
+    srv = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
+    print(f"🌐 Server HTTP escuchando en :{PORT}")
+    srv.serve_forever()
+
+
+def watchdog():
+    """Avisa por Telegram si el monitor lleva >30 min sin correr."""
     try:
-        with open('heartbeat.json', 'r') as f:
+        with open(os.path.join(DATA_DIR, "heartbeat.json")) as f:
             hb = json.load(f)
-        ultima = datetime.fromisoformat(hb.get('ultima_ejecucion', ''))
-        ahora_utc = datetime.now(timezone.utc)
+        ultima = datetime.fromisoformat(hb.get("ultima_ejecucion", ""))
         if ultima.tzinfo is None:
             ultima = ultima.replace(tzinfo=timezone.utc)
-        minutos_desde_ultima = (ahora_utc - ultima).total_seconds() / 60
-
-        if minutos_desde_ultima > 30:
-            horas = int(minutos_desde_ultima // 60)
-            mins = int(minutos_desde_ultima % 60)
-            tiempo_str = f"{horas} h {mins} min" if horas > 0 else f"{int(minutos_desde_ultima)} min"
-            bot_token = os.getenv('BOT_TOKEN', '')
-            chat_id = os.getenv('CHAT_ID', '')
-            if bot_token and chat_id:
+        mins = (datetime.now(timezone.utc) - ultima).total_seconds() / 60
+        if mins > 30:
+            bot = os.getenv("BOT_TOKEN", ""); chat = os.getenv("CHAT_ID", "")
+            if bot and chat:
                 import urllib.request
-                msg = (
-                    f"⚠️ ALERTA: Monitor sin ejecutar\n\n"
-                    f"La última ejecución exitosa fue hace {tiempo_str}.\n"
-                    f"Revisá Railway → Cron Runs para verificar el estado del servicio."
-                )
-                data = json.dumps({"chat_id": chat_id, "text": msg}).encode('utf-8')
+                msg = f"⚠️ Monitor sin ejecutar hace {int(mins)} min. Revisá Railway."
+                data = json.dumps({"chat_id": chat, "text": msg}).encode("utf-8")
                 req = urllib.request.Request(
-                    f"https://api.telegram.org/bot{bot_token}/sendMessage",
-                    data=data,
-                    headers={"Content-Type": "application/json"},
-                    method="POST"
-                )
+                    f"https://api.telegram.org/bot{bot}/sendMessage",
+                    data=data, headers={"Content-Type": "application/json"}, method="POST")
                 urllib.request.urlopen(req, timeout=10)
-                print(f"⚠️ Watchdog: alerta enviada por Telegram ({tiempo_str} sin ejecución)")
+                print(f"⚠️ Watchdog: alerta enviada ({int(mins)} min)")
     except Exception as e:
-        print(f"ℹ️ Watchdog: no pudo verificar heartbeat ({e})")
+        print(f"ℹ️ Watchdog: {e}")
 
-    # ============================================================
-    # PASO 3: Ejecutar monitor
-    # ============================================================
-    print("🏥 Ejecutando monitor.py...")
-    result = subprocess.run([sys.executable, 'monitor.py'], check=False)
-    print()
 
-    # ============================================================
-    # PASO 3b: Avisar a Healthchecks que el monitor corrió bien
-    # (dead-man's-switch: si este ping no llega, Healthchecks alerta)
-    # ============================================================
-    if result.returncode == 0:
-        hc_url = os.getenv('HEALTHCHECK_URL', '')
-        if hc_url:
-            try:
-                import urllib.request
-                urllib.request.urlopen(hc_url, timeout=10)
-                print("✅ Healthchecks: ping de 'estoy vivo' enviado")
-            except Exception as e:
-                print(f"ℹ️ Healthchecks: no se pudo pingear ({e})")
+def main():
+    pull_codigo()
+    sembrar_data()
+    threading.Thread(target=iniciar_servidor, daemon=True).start()
 
-    # ============================================================
-    # PASO 3: Git config (por si acaso)
-    # ============================================================
-    run_cmd(['git', 'config', 'user.email', 'railway@monitor.local'], ignore_error=True)
-    run_cmd(['git', 'config', 'user.name', 'Railway Monitor'], ignore_error=True)
+    while True:
+        inicio = time.time()
+        print(f"🏥 Ciclo {datetime.now().isoformat()}")
+        r = subprocess.run([sys.executable, "monitor.py"])
 
-    # ============================================================
-    # PASO 4: Verificar estado del repo
-    # ============================================================
-    print("📊 Estado del repositorio:")
-    run_cmd(['git', 'status'])
-    print()
+        if r.returncode == 0:
+            hc = os.getenv("HEALTHCHECK_URL", "")
+            if hc:
+                try:
+                    import urllib.request
+                    urllib.request.urlopen(hc, timeout=10)
+                    print("✅ Healthchecks: ping enviado")
+                except Exception as e:
+                    print(f"ℹ️ Healthchecks: {e}")
 
-    # ============================================================
-    # PASO 5: Git add - Solo archivos específicos
-    # ============================================================
-    print("📝 Agregando archivos cambios...")
-    run_cmd(['git', 'add', 'estado_turnos.json', 'estado_anterior.json', 'estadisticas_db.json', 'heartbeat.json'], ignore_error=True)
-    run_cmd(['git', 'add', 'historial_cupos.json'], ignore_error=True)
-    run_cmd(['git', 'add', 'predicciones.json'], ignore_error=True)
-    run_cmd(['git', 'add', 'velocidad_estado.json'], ignore_error=True)
-    run_cmd(['git', 'add', 'encargos.json'], ignore_error=True)
-    run_cmd(['git', 'add', 'logs/'], ignore_error=True)
+        watchdog()
+        dormir = max(5, CICLO_SEG - int(time.time() - inicio))
+        print(f"😴 Próximo ciclo en {dormir}s")
+        time.sleep(dormir)
 
-    # ============================================================
-    # PASO 6: Git commit
-    # ============================================================
-    print("💾 Creando commit...")
-    import datetime
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    run_cmd(['git', 'commit', '-m', f'Monitor: Railway cron job - {timestamp}'], ignore_error=True)
 
-    # ============================================================
-    # PASO 7: Pull antes de push (resolver conflictos)
-    # ============================================================
-    print("🔀 Sincronizando cambios remotos...")
-    run_cmd(['git', 'pull', 'origin', 'main', '--rebase'], ignore_error=True)
-
-    # ============================================================
-    # PASO 8: Git push
-    # ============================================================
-    print("📤 Haciendo push a GitHub...")
-    success = run_cmd(['git', 'push', 'origin', 'main'], ignore_error=True)
-
-    if success:
-        print("✅ Push exitoso a GitHub\n")
-    else:
-        print("⚠️  Push falló, pero monitor ejecutó correctamente\n")
-
-    # ============================================================
-    # PASO 9: Log final
-    # ============================================================
-    print("=" * 60)
-    print("🎉 EJECUCIÓN COMPLETADA")
-    print("=" * 60)
-    print(f"Timestamp: {datetime.datetime.now()}")
-    print("Próxima ejecución: en 15 minutos")
-
-    sys.exit(result.returncode)
-
-except Exception as e:
-    print(f"❌ Error fatal: {e}")
-    sys.exit(1)
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Interrumpido")
