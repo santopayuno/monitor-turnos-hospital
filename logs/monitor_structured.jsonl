@@ -6625,3 +6625,4 @@
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "PODOLOGIA", "cupos": 2, "ts": "2026-07-03T12:00:35.276188"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "ODONTOLOGÍA PEDIATRICA", "cupos": 0, "ts": "2026-07-03T12:00:35.276208"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-03T12:00:35.854779"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 284, "con_cupos": 21, "ts": "2026-07-03T12:05:24.790873"}
