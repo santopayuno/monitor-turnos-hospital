@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-03T08:55:16.521837-03:00",
+  "generado": "2026-07-03T09:00:33.845994-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -58,15 +58,15 @@
       }
     },
     "CIRUGIA TORACICA": {
-      "cuando": "Todavía no hay suficiente historial",
+      "cuando": "No hay patrón claro todavía",
       "confianza": "baja",
-      "categoria": "aprendiendo",
+      "categoria": "sinPatron",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "Todavía no hay suficiente historial",
-      "ausencia": "Hace varios días sin turnos nuevos",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "9:00",
       "prob_apertura": {
-        "emoji": "🔴",
-        "txt": "Baja"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "CLINICA MEDICA CONSULTA": {
@@ -227,6 +227,7 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:15",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -460,6 +461,7 @@
       "hora_probable": "9:30",
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -480,13 +482,13 @@
       }
     },
     "REUMATOLOGIA (DERIVACION OBLIGATORIA)": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 12:00 hs.",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:15 hs.",
       "confianza": "media",
       "categoria": "atencion",
       "tipo_hora_modal": "probable",
-      "hora_probable": "12:00",
+      "hora_probable": "9:15",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
-      "ultima_apertura": "11:00",
+      "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
@@ -550,7 +552,7 @@
     }
   },
   "banner": {
-    "hora": "08:00",
+    "hora": "09:00",
     "dias": 28,
     "items": []
   }

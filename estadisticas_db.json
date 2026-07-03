@@ -36130,6 +36130,12 @@
         "con_cupos": 19,
         "total_cupos": 271,
         "cambios": 13
+      },
+      {
+        "hora": "09:00:35",
+        "con_cupos": 21,
+        "total_cupos": 290,
+        "cambios": 7
       }
     ]
   },
@@ -43027,6 +43033,48 @@
       "tipo": "ultimos",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-07-03T09:00:35.209680-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-07-03T09:00:35.209680-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CIRUGIA TORACICA",
+      "cupos": 10
+    },
+    {
+      "fecha": "2026-07-03T09:00:35.209680-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "PODOLOGIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-07-03T09:00:35.209680-03:00",
+      "tipo": "aumentos",
+      "especialidad": "HEMATOLOGIA CLINICA",
+      "cupos": 16
+    },
+    {
+      "fecha": "2026-07-03T09:00:35.209680-03:00",
+      "tipo": "ultimos",
+      "especialidad": "REUMATOLOGIA (DERIVACION OBLIGATORIA)",
+      "cupos": 1
+    },
+    {
+      "fecha": "2026-07-03T09:00:35.209680-03:00",
+      "tipo": "ultimos",
+      "especialidad": "PODOLOGIA",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-07-03T09:00:35.209680-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGÍA PEDIATRICA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
