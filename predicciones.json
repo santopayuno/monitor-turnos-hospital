@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-02T23:55:13.320420-03:00",
+  "generado": "2026-07-03T00:00:10.202035-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -65,8 +65,8 @@
       "texto_sin_hora": "Todavía no hay suficiente historial",
       "ausencia": "Hace varios días sin turnos nuevos",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🔴",
+        "txt": "Baja"
       }
     },
     "CLINICA MEDICA CONSULTA": {
@@ -92,8 +92,8 @@
       "texto_sin_hora": "Suele haber turnos los martes",
       "ultima_apertura": "9:00",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🔴",
+        "txt": "Baja"
       }
     },
     "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": {
@@ -132,8 +132,8 @@
       "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟢",
-        "txt": "Alta"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
@@ -160,8 +160,8 @@
       "ultima_apertura": "11:30",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟢",
-        "txt": "Alta"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
@@ -363,8 +363,8 @@
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟢",
-        "txt": "Alta"
+        "emoji": "🟡",
+        "txt": "Media"
       }
     },
     "OFTALMOLOGIA": {
@@ -547,7 +547,7 @@
     }
   },
   "banner": {
-    "hora": "23:00",
+    "hora": "00:00",
     "dias": 27,
     "items": []
   }
