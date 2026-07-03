@@ -36070,6 +36070,12 @@
         "con_cupos": 12,
         "total_cupos": 251,
         "cambios": 1
+      },
+      {
+        "hora": "08:10:32",
+        "con_cupos": 12,
+        "total_cupos": 248,
+        "cambios": 0
       }
     ]
   },
