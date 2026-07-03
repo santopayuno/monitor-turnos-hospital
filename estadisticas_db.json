@@ -36376,6 +36376,12 @@
         "con_cupos": 16,
         "total_cupos": 168,
         "cambios": 0
+      },
+      {
+        "hora": "12:25:35",
+        "con_cupos": 15,
+        "total_cupos": 165,
+        "cambios": 1
       }
     ]
   },
@@ -43369,6 +43375,12 @@
       "tipo": "ultimos",
       "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-07-03T12:25:35.114298-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
