@@ -36274,6 +36274,12 @@
         "con_cupos": 18,
         "total_cupos": 212,
         "cambios": 1
+      },
+      {
+        "hora": "11:00:08",
+        "con_cupos": 17,
+        "total_cupos": 210,
+        "cambios": 1
       }
     ]
   },
@@ -43230,6 +43236,12 @@
       "fecha": "2026-07-03T10:55:09.565438-03:00",
       "tipo": "agotados",
       "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-07-03T11:00:08.667147-03:00",
+      "tipo": "agotados",
+      "especialidad": "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)",
       "cupos": 0
     }
   ],
