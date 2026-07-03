@@ -36406,6 +36406,12 @@
         "con_cupos": 15,
         "total_cupos": 160,
         "cambios": 0
+      },
+      {
+        "hora": "12:50:23",
+        "con_cupos": 14,
+        "total_cupos": 157,
+        "cambios": 1
       }
     ]
   },
@@ -43404,6 +43410,12 @@
       "fecha": "2026-07-03T12:25:35.114298-03:00",
       "tipo": "agotados",
       "especialidad": "ODONTOLOGIA ADULTO",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-07-03T12:50:23.994333-03:00",
+      "tipo": "agotados",
+      "especialidad": "INFECTOLOGIA",
       "cupos": 0
     }
   ],
