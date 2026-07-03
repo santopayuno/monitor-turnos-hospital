@@ -6612,3 +6612,10 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 212, "con_cupos": 11, "ts": "2026-07-03T11:45:33.109917"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 4, "ts": "2026-07-03T11:45:33.173374"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 206, "con_cupos": 11, "ts": "2026-07-03T11:50:24.288429"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 271, "con_cupos": 19, "ts": "2026-07-03T11:55:18.265259"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)", "cupos": 4, "ts": "2026-07-03T11:55:18.337432"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "INFECTOLOGIA", "cupos": 5, "ts": "2026-07-03T11:55:18.337553"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "OBSTETRICIA BAJO RIESGO", "cupos": 2, "ts": "2026-07-03T11:55:18.337582"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "CARDIOLOGIA ADULTO", "cupos": 4, "ts": "2026-07-03T11:55:18.337617"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)", "cupos": 5, "ts": "2026-07-03T11:55:18.337633"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-03T11:55:18.924972"}

@@ -1,14 +1,14 @@
 {
-  "generado": "2026-07-03T08:50:22.714644-03:00",
+  "generado": "2026-07-03T08:55:16.521837-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
-      "cuando": "Suele haber turnos los martes y jueves cerca de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:15 hs.",
+      "confianza": "media",
+      "categoria": "atencion",
       "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes y jueves",
+      "hora_probable": "9:15",
+      "texto_sin_hora": "Suele haber turnos varios días de la semana,",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
       "frecuencia": "Últimamente aparece con frecuencia",
@@ -46,12 +46,12 @@
       }
     },
     "CIRUGIA INFANTIL": {
-      "cuando": "Todavía no hay suficiente historial",
+      "cuando": "No hay patrón claro todavía",
       "confianza": "baja",
-      "categoria": "aprendiendo",
+      "categoria": "sinPatron",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "Todavía no hay suficiente historial",
-      "ausencia": "Hace varios días sin turnos nuevos",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "9:00",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -132,8 +132,8 @@
       "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🟢",
+        "txt": "Alta"
       }
     },
     "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": {
@@ -151,17 +151,17 @@
       }
     },
     "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": {
-      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 11:30 hs.",
+      "cuando": "Suele haber turnos varios días de la semana, alrededor de las 9:15 hs.",
       "confianza": "media",
       "categoria": "atencion",
       "tipo_hora_modal": "probable",
-      "hora_probable": "11:30",
+      "hora_probable": "9:15",
       "texto_sin_hora": "Suele haber turnos varios días de la semana,",
-      "ultima_apertura": "11:30",
+      "ultima_apertura": "9:00",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
-        "emoji": "🟡",
-        "txt": "Media"
+        "emoji": "🟢",
+        "txt": "Alta"
       }
     },
     "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": {
@@ -205,14 +205,15 @@
       }
     },
     "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)": {
-      "cuando": "Suele haber turnos los martes alrededor de las 9:30 hs.",
-      "confianza": "alta",
-      "categoria": "certero",
-      "tipo_hora_modal": "probable",
-      "hora_probable": "9:30",
-      "texto_sin_hora": "Suele haber turnos los martes",
+      "cuando": "Suele haber turnos por la mañana",
+      "confianza": "media",
+      "categoria": "franja_manana",
+      "tipo_hora_modal": "franja",
+      "hora_probable": "mañana",
+      "texto_sin_hora": "Suele haber turnos",
       "ultima_apertura": "9:00",
       "duracion": "Cuando aparece, suele durar poco",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -239,6 +240,7 @@
       "hora_probable": "mañana",
       "texto_sin_hora": "Suele haber turnos",
       "ultima_apertura": "9:00",
+      "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"
@@ -327,11 +329,12 @@
       }
     },
     "OBSTETRICIA BAJO RIESGO": {
-      "cuando": "Todavía no hay suficiente historial",
+      "cuando": "No hay patrón claro todavía",
       "confianza": "baja",
-      "categoria": "aprendiendo",
+      "categoria": "sinPatron",
       "tipo_hora_modal": "sin_hora",
-      "texto_sin_hora": "Todavía no hay suficiente historial",
+      "texto_sin_hora": "No hay patrón claro todavía",
+      "ultima_apertura": "9:00",
       "prob_apertura": {
         "emoji": "🟡",
         "txt": "Media"

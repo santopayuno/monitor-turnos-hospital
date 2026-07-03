@@ -36124,6 +36124,12 @@
         "con_cupos": 11,
         "total_cupos": 206,
         "cambios": 0
+      },
+      {
+        "hora": "08:55:18",
+        "con_cupos": 19,
+        "total_cupos": 271,
+        "cambios": 13
       }
     ]
   },
@@ -42943,6 +42949,84 @@
       "tipo": "ultimos",
       "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 4
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CIRUGIA INFANTIL",
+      "cupos": 11
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "DIABETOLOGIA GENERAL",
+      "cupos": 14
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CARDIOLOGIA INFANTIL",
+      "cupos": 21
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "ultimos",
+      "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "ultimos",
+      "especialidad": "INFECTOLOGIA",
+      "cupos": 5
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "ultimos",
+      "especialidad": "OBSTETRICIA BAJO RIESGO",
+      "cupos": 2
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "ultimos",
+      "especialidad": "CARDIOLOGIA ADULTO",
+      "cupos": 4
+    },
+    {
+      "fecha": "2026-07-03T08:55:18.270000-03:00",
+      "tipo": "ultimos",
+      "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
+      "cupos": 5
     }
   ],
   "es_primera_ejecucion": false
