@@ -36178,6 +36178,12 @@
         "con_cupos": 20,
         "total_cupos": 262,
         "cambios": 0
+      },
+      {
+        "hora": "09:40:29",
+        "con_cupos": 19,
+        "total_cupos": 256,
+        "cambios": 1
       }
     ]
   },
@@ -43122,6 +43128,12 @@
       "fecha": "2026-07-03T09:25:10.470660-03:00",
       "tipo": "agotados",
       "especialidad": "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)",
+      "cupos": 0
+    },
+    {
+      "fecha": "2026-07-03T09:40:29.907998-03:00",
+      "tipo": "agotados",
+      "especialidad": "ODONTOLOGIA ADULTO",
       "cupos": 0
     }
   ],
