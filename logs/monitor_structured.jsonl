@@ -6673,3 +6673,4 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 171, "con_cupos": 16, "ts": "2026-07-03T15:15:10.325811"}
 {"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 4, "ts": "2026-07-03T15:15:10.390214"}
 {"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-03T15:15:10.983678"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 168, "con_cupos": 16, "ts": "2026-07-03T15:20:22.944072"}

@@ -36370,6 +36370,12 @@
         "con_cupos": 16,
         "total_cupos": 171,
         "cambios": 2
+      },
+      {
+        "hora": "12:20:22",
+        "con_cupos": 16,
+        "total_cupos": 168,
+        "cambios": 0
       }
     ]
   },
