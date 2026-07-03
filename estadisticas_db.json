@@ -36082,6 +36082,12 @@
         "con_cupos": 12,
         "total_cupos": 240,
         "cambios": 0
+      },
+      {
+        "hora": "08:20:25",
+        "con_cupos": 11,
+        "total_cupos": 235,
+        "cambios": 1
       }
     ]
   },
@@ -42889,6 +42895,12 @@
       "tipo": "ultimos",
       "especialidad": "ODONTOLOGÍA PEDIATRICA",
       "cupos": 5
+    },
+    {
+      "fecha": "2026-07-03T08:20:25.472950-03:00",
+      "tipo": "agotados",
+      "especialidad": "NEFROLOGIA",
+      "cupos": 0
     }
   ],
   "es_primera_ejecucion": false
