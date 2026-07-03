@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-03T06:35:23.058300-03:00",
+  "generado": "2026-07-03T06:40:35.531172-03:00",
   "version": 1,
   "especialidades": {
     "CARDIOLOGIA ADULTO": {
@@ -76,17 +76,11 @@
       "tipo_hora_modal": "probable",
       "hora_probable": "7:00",
       "texto_sin_hora": "Suele haber turnos casi todos los días",
-      "ultima_apertura": "7:30",
+      "ultima_apertura": "6:45",
       "frecuencia": "Últimamente aparece con frecuencia",
       "prob_apertura": {
         "emoji": "🟢",
         "txt": "Alta"
-      },
-      "chance": {
-        "hora": "06:00",
-        "probabilidad": 63,
-        "casos": 27,
-        "aciertos": 17
       }
     },
     "COLOPROCTOLOGIA": {
@@ -554,14 +548,7 @@
   },
   "banner": {
     "hora": "06:00",
-    "dias": 27,
-    "items": [
-      {
-        "especialidad": "CLINICA MEDICA CONSULTA",
-        "probabilidad": 63,
-        "casos": 27,
-        "aciertos": 17
-      }
-    ]
+    "dias": 28,
+    "items": []
   }
 }

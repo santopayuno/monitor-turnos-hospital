@@ -35962,6 +35962,12 @@
         "con_cupos": 9,
         "total_cupos": 9,
         "cambios": 0
+      },
+      {
+        "hora": "06:40:37",
+        "con_cupos": 10,
+        "total_cupos": 153,
+        "cambios": 1
       }
     ]
   },
@@ -42739,6 +42745,12 @@
       "tipo": "agotados",
       "especialidad": "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)",
       "cupos": 0
+    },
+    {
+      "fecha": "2026-07-03T06:40:37.082673-03:00",
+      "tipo": "reaperturas",
+      "especialidad": "CLINICA MEDICA CONSULTA",
+      "cupos": 144
     }
   ],
   "es_primera_ejecucion": false
