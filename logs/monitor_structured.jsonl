@@ -6670,3 +6670,6 @@
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 176, "con_cupos": 16, "ts": "2026-07-03T15:05:26.113335"}
 {"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 169, "con_cupos": 15, "ts": "2026-07-03T15:10:35.240765"}
 {"evento": "cambio", "tipo": "agotados", "especialidad": "CARDIOLOGIA INFANTIL", "cupos": 0, "ts": "2026-07-03T15:10:35.320428"}
+{"evento": "ejecucion", "estado": "ok", "especialidades": 40, "cupos_total": 171, "con_cupos": 16, "ts": "2026-07-03T15:15:10.325811"}
+{"evento": "cambio", "tipo": "ultimos", "especialidad": "ODONTOLOGIA ADULTO", "cupos": 4, "ts": "2026-07-03T15:15:10.390214"}
+{"evento": "telegram", "tipo": "notificacion_principal", "exito": true, "detalle": "", "ts": "2026-07-03T15:15:10.983678"}
