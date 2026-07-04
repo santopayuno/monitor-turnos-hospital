@@ -1,4 +1,4 @@
-const CACHE_NAME = 'monitor-turnos-v2';
+const CACHE_NAME = 'monitor-turnos-v3';
 
 // Archivos estáticos: cache-first
 const CACHE_STATIC = [
@@ -35,7 +35,7 @@ self.addEventListener('activate', event => {
 // Fetch: estrategia según tipo de archivo
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
-    const isDataFile = DATA_FILES.some(f => url.pathname.endsWith(f));
+    const isDataFile = url.hostname.endsWith('railway.app') || DATA_FILES.some(f => url.pathname.endsWith(f));
 
     if (isDataFile) {
         // Network-first: intenta red, si falla usa cache
