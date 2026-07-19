@@ -151,9 +151,9 @@ def main():
                 try:
                     import urllib.request
                     urllib.request.urlopen(hc, timeout=10)
-                    print("✅ Healthchecks: ping enviado")
+                    # Ping OK: no se loguea (evita ruido). Solo se avisa si falla.
                 except Exception as e:
-                    print(f"ℹ️ Healthchecks: {e}")
+                    print(f"⚠️ Healthchecks: falló el ping ({e})")
 
         watchdog()
         dormir = max(5, CICLO_SEG - int(time.time() - inicio))
