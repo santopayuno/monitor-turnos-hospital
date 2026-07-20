@@ -1,4 +1,4 @@
-const CACHE_NAME = 'monitor-turnos-v3';
+const CACHE_NAME = 'monitor-turnos-v4';
 
 // Archivos estáticos: cache-first
 const CACHE_STATIC = [
@@ -7,7 +7,7 @@ const CACHE_STATIC = [
     'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js'
 ];
 
-// Archivos de datos: network-first con fallback a cache
+// Archivos de datos (Railway): stale-while-revalidate
 const DATA_FILES = [
     'estado_turnos.json',
     'estadisticas_db.json',
@@ -38,17 +38,22 @@ self.addEventListener('fetch', event => {
     const isDataFile = url.hostname.endsWith('railway.app') || DATA_FILES.some(f => url.pathname.endsWith(f));
 
     if (isDataFile) {
-        // Network-first: intenta red, si falla usa cache
+        // Stale-while-revalidate: responde al instante con la copia en cache si existe,
+        // y en paralelo pide la versión fresca a la red y actualiza la cache para el próximo refresco.
+        // Si no hay cache, espera la red (como antes).
         event.respondWith(
-            fetch(event.request)
-                .then(response => {
-                    if (response.ok) {
-                        const clone = response.clone();
-                        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-                    }
-                    return response;
-                })
-                .catch(() => caches.match(event.request))
+            caches.match(event.request).then(cached => {
+                const fresca = fetch(event.request)
+                    .then(response => {
+                        if (response.ok) {
+                            const clone = response.clone();
+                            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                        }
+                        return response;
+                    })
+                    .catch(() => cached);
+                return cached || fresca;
+            })
         );
     } else {
         // Cache-first: usa cache si existe, sino red
