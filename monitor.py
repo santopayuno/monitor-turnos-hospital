@@ -252,17 +252,6 @@ def guardar_json_seguro(datos, archivo):
         logger.error(f"Error guardando {archivo}: {e}")
 
 # ═══════════════════════════════════════════════════════════════
-# UTILIDADES DE FORMATO
-# ═══════════════════════════════════════════════════════════════
-
-def formato_cupos_disponibles(cupo):
-    """Formatea: X Cupo(s) Disponible(s)"""
-    if cupo == 1:
-        return f"1 Cupo Disponible"
-    else:
-        return f"{cupo} Cupos Disponibles"
-
-# ═══════════════════════════════════════════════════════════════
 # API
 # ═══════════════════════════════════════════════════════════════
 
@@ -484,12 +473,6 @@ class ProcesadorEspecialidades:
             self.cambios["agotados"]
         ])
 
-    def hay_contenido(self):
-        return (
-            any(self.cambios.values()) or
-            any(self.clasificacion.values())
-        )
-
 # ═══════════════════════════════════════════════════════════════
 # TELEGRAM - MENSAJES PROFESIONALES - VERSIÓN FINAL
 # ═══════════════════════════════════════════════════════════════
@@ -581,153 +564,6 @@ class ConstructorMensajeTelegram:
             bool(self.cambios.get("aumentos")) or
             any(self.clasificacion.values())
         )
-
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: CAMBIOS DETECTADOS
-    # ─────────────────────────────────────────────────────────
-
-    def _seccion_cambios(self):
-        # Solo mostrar nuevos y aumentos — ultimos tienen su propia alerta urgente
-        if not any([self.cambios["nuevos"], self.cambios["aumentos"]]):
-            return None
-
-        lineas = ["────────────", "🆕 CAMBIOS DETECTADOS", "────────────"]
-        todos_items = []
-
-        nuevos_ordenados = sorted(self.cambios["nuevos"], key=lambda x: x['nombre'])
-        for item in nuevos_ordenados:
-            cupo = item['cupo_actual']
-            plural = "s" if cupo > 1 else ""
-            todos_items.append([
-                f"{emoji_de(item['nombre'])} {item['nombre']}",
-                f"🍀 {formato_cupos_disponibles(cupo)}",
-                f"📈 +{cupo} nuevo{plural}",
-            ])
-
-        aumentos_ordenados = sorted(self.cambios["aumentos"], key=lambda x: x['nombre'])
-        for item in aumentos_ordenados:
-            aumento = item['aumento']
-            plural = "s" if aumento > 1 else ""
-            todos_items.append([
-                f"{emoji_de(item['nombre'])} {item['nombre']}",
-                f"🍀 {formato_cupos_disponibles(item['cupo_actual'])}",
-                f"📈 +{aumento} nuevo{plural}",
-            ])
-
-        for i, item_lineas in enumerate(todos_items):
-            lineas.extend(item_lineas)
-            if i < len(todos_items) - 1:
-                lineas.append("")
-
-        return lineas
-
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: REAPERTURAS
-    # ─────────────────────────────────────────────────────────
-
-    def _seccion_reaperturas(self):
-        if not self.cambios.get("reaperturas"):
-            return None
-
-        items = sorted(self.cambios["reaperturas"], key=lambda x: x["nombre"])
-        lineas = ["────────────", "🔄 REAPERTURAS", "────────────"]
-
-        for i, item in enumerate(items):
-            cupo = item["cupo_actual"]
-            veces = item["veces_agotada"]
-            plural = "s" if cupo > 1 else ""
-            lineas.append(f"{emoji_de(item['nombre'])} {item['nombre']}")
-            lineas.append(f"🍀 {formato_cupos_disponibles(cupo)}")
-            lineas.append(f"⚡ Reabre · agotada {veces}x antes")
-            if i < len(items) - 1:
-                lineas.append("")
-
-        return lineas
-
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: DISPONIBLES AHORA
-    # ─────────────────────────────────────────────────────────
-
-    def _seccion_disponibles(self):
-        if not self.clasificacion["disponible"]:
-            return None
-
-        items = sorted(self.clasificacion["disponible"], key=lambda x: x[0])
-        lineas = ["────────────", "🟢 DISPONIBLES AHORA", "────────────"]
-
-        for i, (nombre, cupo) in enumerate(items):
-            plural = "s" if cupo > 1 else ""
-            lineas.append(f"{emoji_de(nombre)} {nombre}")
-            lineas.append(f"✅ {cupo} Cupo{plural}")
-            if i < len(items) - 1:
-                lineas.append("")
-
-        return lineas
-
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: POCOS CUPOS DISPONIBLES
-    # ─────────────────────────────────────────────────────────
-
-    def _seccion_pocos(self):
-        especiales = self.clasificacion["pocos"] + self.clasificacion["ultimos"]
-
-        if not especiales:
-            return None
-
-        items = sorted(especiales, key=lambda x: x[0])
-        lineas = ["────────────", "⚠️ POCOS CUPOS DISPONIBLES", "────────────"]
-
-        for i, (nombre, cupo) in enumerate(items):
-            plural = "s" if cupo > 1 else ""
-            lineas.append(f"{emoji_de(nombre)} {nombre}")
-            lineas.append(f"⚠️ {cupo} Cupo{plural}")
-            if i < len(items) - 1:
-                lineas.append("")
-
-        return lineas
-
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: SIN CUPOS DISPONIBLES (SIEMPRE visible)
-    # ─────────────────────────────────────────────────────────
-
-    def _seccion_agotados(self):
-        lineas = ["────────────", "‼️ SIN CUPOS DISPONIBLES", "────────────"]
-
-        agotadas = sorted(
-            [(nombre, cupo) for nombre, cupo in self.estado_actual.items() if cupo == 0],
-            key=lambda x: x[0]
-        )
-
-        if not agotadas:
-            lineas.append("(No hay especialidades agotadas)")
-            return lineas
-
-        # Compacto: sin líneas vacías entre items
-        for nombre, _ in agotadas:
-            lineas.append(f"🚫 {nombre}")
-
-        return lineas
-
-    # ─────────────────────────────────────────────────────────
-    # SECCIÓN: ESTADÍSTICAS FINALES
-    # ─────────────────────────────────────────────────────────
-
-    def _seccion_estadisticas(self):
-        total_con_cupos = len([c for c in self.estado_actual.values() if c > 0])
-        total_cupos = sum(self.estado_actual.values())
-
-        lineas = [
-            "📊 ESTADÍSTICAS",
-            f"• Monitoreadas: {self.total_especialidades}",
-            f"• Con cupos: {total_con_cupos}",
-            f"• Total: {total_cupos}",
-            "",
-            f"🕒 {self.fecha_hora}",
-            "",
-            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
-        ]
-
-        return lineas
 
 # ═══════════════════════════════════════════════════════════════
 # NOTIFICACIONES
@@ -1569,7 +1405,7 @@ def construir_alerta_velocidad(items, fecha_hora):
 
 # ── COMANDOS POR TELEGRAM: manejar la lista de encargos desde el chat ──
 # El bot lee mensajes nuevos en cada ciclo (getUpdates). No depende de un
-# marcador frágil: guarda el offset en encargos.json (que se respalda por git)
+# marcador frágil: guarda el offset en encargos.json (en el volumen persistente de Railway)
 # y además descarta mensajes más viejos que 1 h, para acotar cualquier reproceso
 # tras un reinicio de Railway. Todo es no crítico: si falla, el ciclo sigue igual.
 
