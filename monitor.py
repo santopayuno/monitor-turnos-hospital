@@ -83,55 +83,9 @@ def _norm_esp(s):
     sin_tildes = ''.join(c for c in base if unicodedata.category(c) != 'Mn')
     return ' '.join(sin_tildes.split())
 
-# Emoji propio de cada especialidad (catálogo provisto). Las claves se normalizan
-# para que el match no dependa de tildes ni espacios. Si una especialidad no está, usa el genérico.
-_EMOJI_CATALOGO = {
-    "CARDIOLOGIA ADULTO": "🫀",
-    "CARDIOLOGIA INFANTIL": "🫀",
-    "CIRUGIA GENERAL": "🔪",
-    "CIRUGIA INFANTIL": "🔪",
-    "CIRUGIA TORACICA": "🔪",
-    "CLINICA MEDICA CONSULTA": "🩺",
-    "COLOPROCTOLOGIA": "💩",
-    "CUIDADOS PALIATIVOS CON DERIVACION OBLIGATORIA": "🕊️",
-    "DERMATOLOGIA GENERAL": "🧴",
-    "DIABETOLOGIA GENERAL": "🍬",
-    "ECOCARDIOGRAMA DOPPLER ADULTO (DERIVACION OBLIGATORIA)": "🫀",
-    "ELECTROCARDIOGRAMA ADULTO(CON DERIVACION)": "🫀",
-    "ESPIROMETRIA ADULTO (CON DERIVACIÓN)": "🫁",
-    "ESPIROMETRIA NIÑOS (CON DERIVACIÓN)": "🫁",
-    "FLEBOLOGIA (CONSULTA)": "🦵",
-    "FONOAUDIOLOGIA AUDIOMETRIA (SOLO CON DERIVACIÓN)": "🦻",
-    "HEMATOLOGIA CLINICA": "🩸",
-    "INFECTOLOGIA": "🦠",
-    "INFECTOLOGIA PEDIATRICA": "🦠",
-    "NEFROLOGIA": "🫘",
-    "NEUMONOLOGIA ADULTO (CON DERIVACIÓN)": "🫁",
-    "NEUMONOLOGIA INFANTIL": "🫁",
-    "NEUROLOGIA NUEVO (CON DERIVACIÓN)": "🧠",
-    "NUTRICION GENERAL": "🥗",
-    "OBSTETRICIA BAJO RIESGO": "🤰",
-    "ODONTOLOGIA ADULTO": "🦷",
-    "ODONTOLOGÍA PEDIATRICA": "🦷",
-    "OFTALMOLOGIA": "👁️",
-    "ONCOLOGIA": "🎗️",
-    "ORL CONSULTAS": "🗣️",
-    "PATOLOGIA MAMARIA (CON DERIVACION OBLIGATORIA)": "🎀",
-    "PEDIATRIA CONSULTA": "👶",
-    "PEDIATRIA MEDIANO RIESGO": "👶",
-    "PODOLOGIA": "🦶",
-    "PRE ANESTESIA PEDIATRIA": "💉",
-    "REUMATOLOGIA (DERIVACION OBLIGATORIA)": "🦴",
-    "TRAUMATOLOGIA ADULTO": "🦴",
-    "TRAUMATOLOGIA INFANTIL": "🦴",
-    "UROLOGIA": "🚻",
-    "VASCULAR PERIFERICO (OBLIGATORIO DERIVACION PACIENTE NUEVO)": "🦵",
-}
-EMOJI_ESPECIALIDAD = {_norm_esp(k): v for k, v in _EMOJI_CATALOGO.items()}
-EMOJI_DEFAULT = "🏥"
-
+# Todas las especialidades usan el mismo ícono que el dashboard.
 def emoji_de(nombre):
-    return EMOJI_ESPECIALIDAD.get(_norm_esp(nombre), EMOJI_DEFAULT)
+    return "🩺"
 
 # ═══════════════════════════════════════════════════════════════
 # LOGGING
@@ -1471,6 +1425,8 @@ def leer_y_procesar_comandos():
             continue
         if ahora_ts - fecha_msg > COMANDOS_VENTANA_SEG:   # descartar viejos
             continue
+        if texto == "?":                    # "?" a secas = ayuda
+            texto = "/ayuda"
         if not texto.startswith("/"):
             continue
         partes = texto.split(maxsplit=1)
@@ -1494,12 +1450,23 @@ def leer_y_procesar_comandos():
                 respuestas.append("📋 Tus encargos:\n" + "\n".join(f"• {p.lower()}" for p in palabras))
             else:
                 respuestas.append("No tenés encargos cargados.\nAgregá con: /encargo oftalmo")
-        elif cmd in ("ayuda", "help", "start"):
+        elif cmd in ("estado", "turnos", "turno"):
+            est = cargar_json(ARCHIVOS["estado"]) or {}
+            disp = sorted([(n, c) for n, c in est.items() if isinstance(c, int) and c > 0], key=lambda x: -x[1])
+            if disp:
+                filas = "\n".join(f"🩺 {n} — {c} cupo{'s' if c != 1 else ''}" for n, c in disp)
+                respuestas.append(f"📋 Turnos disponibles ahora ({len(disp)}):\n{filas}")
+            else:
+                respuestas.append("Ahora mismo no hay turnos disponibles")
+        elif cmd in ("ayuda", "help", "start", "?"):
             respuestas.append(
                 "Comandos:\n"
-                "/encargo <palabra> — anotar (ej: /encargo oftalmo)\n"
-                "/sacar <palabra> — quitar\n"
-                "/lista — ver lo anotado"
+                "➕ Agregar: /encargo, /agregar o /add <especialidad>\n"
+                "   ej: /encargo oftalmo\n"
+                "➖ Quitar: /sacar, /quitar o /borrar <especialidad>\n"
+                "📋 /lista — ver lo que anotaste\n"
+                "🩺 /estado — turnos disponibles ahora\n"
+                "❓ ? o /ayuda — este mensaje"
             )
 
     # Guardar SIEMPRE el offset (aunque no cambie la lista) para no reprocesar
