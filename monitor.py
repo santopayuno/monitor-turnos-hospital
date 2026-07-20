@@ -1553,7 +1553,7 @@ def construir_alerta_velocidad(items, fecha_hora):
         mins = max(1, round(proy))
         plural = "s" if cupo != 1 else ""
         lineas.append(f"{emoji_de(nombre)} {nombre}")
-        lineas.append(f"   Quedan {cupo} cupo{plural} · se agotaría en ~{mins} min")
+        lineas.append(f"   Quedan {cupo} cupo{plural} · se agotaría en ~ {mins} min.")
         lineas.append("")
     lineas += [
         f"🕒 {fecha_hora}",
