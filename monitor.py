@@ -252,6 +252,17 @@ def guardar_json_seguro(datos, archivo):
         logger.error(f"Error guardando {archivo}: {e}")
 
 # ═══════════════════════════════════════════════════════════════
+# UTILIDADES DE FORMATO
+# ═══════════════════════════════════════════════════════════════
+
+def formato_cupos_disponibles(cupo):
+    """Formatea: X Cupo(s) Disponible(s)"""
+    if cupo == 1:
+        return f"1 Cupo Disponible"
+    else:
+        return f"{cupo} Cupos Disponibles"
+
+# ═══════════════════════════════════════════════════════════════
 # API
 # ═══════════════════════════════════════════════════════════════
 
