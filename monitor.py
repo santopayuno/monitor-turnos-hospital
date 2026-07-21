@@ -1566,10 +1566,8 @@ def main():
                     nuevas.append((nombre, cupo, proy))
                     ya.add(nombre)
             if nuevas:
-                msg_vel = construir_alerta_velocidad(nuevas, fecha_hora)
-                if msg_vel:
-                    enviar_telegram(msg_vel)
-                    logger.info(f"⚡ Alerta de velocidad enviada: {len(nuevas)} especialidad(es)")
+                # Velocidad: ya NO se envía por Telegram; el estado se guarda igual para el dashboard
+                logger.info(f"⚡ Velocidad detectada (no se envía a Telegram): {len(nuevas)} especialidad(es)")
             vel_estado["alertadas"] = sorted(ya)
             guardar_json_seguro(vel_estado, ARCHIVOS["velocidad"])
     except Exception as e:
@@ -1699,7 +1697,7 @@ def main():
         try:
             hora_config_min = int(hora_config_str.split(":")[0]) * 60 + int(hora_config_str.split(":")[1])
             hora_actual_min = ahora.hour * 60 + ahora.minute
-            if abs(hora_actual_min - hora_config_min) <= 7:
+            if 0 <= (hora_actual_min - hora_config_min) <= 7:
                 # Verificar que no se envió ya hoy
                 hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
                 ultimo_reporte = hb.get("ultimo_reporte_fecha", "")
@@ -1733,10 +1731,8 @@ def main():
                 banner_filtrado["items"] = nuevas
                 alerta_patrones = construir_alerta_patron(banner_filtrado, fecha_hora)
                 if alerta_patrones:
-                    enviar_telegram(alerta_patrones)
-                    avisos["especialidades"] = sorted(ya | {it["especialidad"] for it in nuevas})
-                    hb_pat["patron_avisos"] = avisos
-                    guardar_json_seguro(hb_pat, ARCHIVOS["heartbeat"])
+                    # Alerta de patrón: ya NO se envía por Telegram; el dashboard sigue mostrando el banner (predicciones.json intacto)
+                    pass
 
     logger.info("═════════════════════════════════════════════════════")
 
