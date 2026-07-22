@@ -1561,6 +1561,17 @@ def _cargar_encargos():
         palabras = []
     return data, palabras
 
+MSG_COMANDOS = (
+    "🤖 COMANDOS\n\n"
+    "✅ Agregar: /encargo, /agregar o /add <especialidad>\n"
+    "ej: /encargo oftalmo\n"
+    "❌ Quitar: /sacar, /quitar o /borrar <especialidad>\n"
+    "📝 /lista — ver lo que anotaste\n"
+    "☘️ /estado — turnos disponibles ahora\n"
+    "❓ ? o /ayuda — este mensaje"
+)
+
+
 def leer_y_procesar_comandos():
     if not BOT_TOKEN or not CHAT_ID:
         return
@@ -1610,42 +1621,40 @@ def leer_y_procesar_comandos():
         partes = texto.split(maxsplit=1)
         cmd = partes[0].lower().lstrip("/").split("@")[0]
         arg = _norm_esp(partes[1]) if len(partes) > 1 else ""
-        if cmd in ("encargo", "agregar", "add") and arg:
-            if not _ya_esta(arg):
+        if cmd in ("encargo", "agregar", "add"):
+            if not arg:
+                respuestas.append(f"📝 FALTA LA ESPECIALIDAD\n\n✅ Ejemplo: /{cmd} oftalmo")
+            elif not _ya_esta(arg):
                 palabras.append(arg); cambió = True
-                respuestas.append(f"✓ Anotada: {arg.lower()}. Te aviso cuando aparezca.")
+                respuestas.append(f"✅ ANOTADA\n\n🩺 {arg.lower()}.\n👍 Te aviso cuando aparezca")
             else:
-                respuestas.append(f"Ya la tenías anotada: {arg.lower()}.")
-        elif cmd in ("sacar", "quitar", "borrar", "remove") and arg:
-            nuevas = [p for p in palabras if _norm_esp(p) != arg]
-            if len(nuevas) != len(palabras):
-                palabras = nuevas; cambió = True
-                respuestas.append(f"✓ Saqué: {arg.lower()}.")
+                respuestas.append(f"📝 YA LA TENÍAS ANOTADA\n\n🩺 {arg.lower()}.")
+        elif cmd in ("sacar", "quitar", "borrar", "remove"):
+            if not arg:
+                respuestas.append(f"📝 FALTA LA ESPECIALIDAD\n\n✅ Ejemplo: /{cmd} oftalmo")
             else:
-                respuestas.append(f"No estaba en la lista: {arg.lower()}.")
+                nuevas = [p for p in palabras if _norm_esp(p) != arg]
+                if len(nuevas) != len(palabras):
+                    palabras = nuevas; cambió = True
+                    respuestas.append(f"❌ SAQUÉ\n\n🩺 {arg.lower()}.")
+                else:
+                    respuestas.append(f"📝 NO ESTABA EN LA LISTA\n\n🩺 {arg.lower()}.")
         elif cmd in ("lista", "encargos", "list"):
             if palabras:
-                respuestas.append("📋 Tus encargos:\n" + "\n".join(f"• {p.lower()}" for p in palabras))
+                respuestas.append("📝 TUS ENCARGOS\n\n" + "\n".join(f"• {p.lower()}" for p in palabras))
             else:
-                respuestas.append("No tenés encargos cargados.\nAgregá con: /encargo oftalmo")
+                respuestas.append("📝 NO TENÉS ENCARGOS\n\n✅ Agregá con: /encargo oftalmo")
         elif cmd in ("estado", "turnos", "turno"):
             est = cargar_json(ARCHIVOS["estado"]) or {}
             disp = sorted([(n, c) for n, c in est.items() if isinstance(c, int) and c > 0], key=lambda x: -x[1])
             if disp:
-                filas = "\n".join(f"🩺 {n} — {c} cupo{'s' if c != 1 else ''}" for n, c in disp)
-                respuestas.append(f"📋 Turnos disponibles ahora ({len(disp)}):\n{filas}")
+                filas = "\n".join(f"🩺 {n}\n☘️ {c} Cupo{'s' if c != 1 else ''}" for n, c in disp)
+                respuestas.append(f"────────────\n☘️ TURNOS DISPONIBLES ({len(disp)})\n────────────\n\n{filas}")
             else:
-                respuestas.append("Ahora mismo no hay turnos disponibles")
-        elif cmd in ("ayuda", "help", "start", "?"):
-            respuestas.append(
-                "Comandos:\n"
-                "➕ Agregar: /encargo, /agregar o /add <especialidad>\n"
-                "   ej: /encargo oftalmo\n"
-                "➖ Quitar: /sacar, /quitar o /borrar <especialidad>\n"
-                "📋 /lista — ver lo que anotaste\n"
-                "🩺 /estado — turnos disponibles ahora\n"
-                "❓ ? o /ayuda — este mensaje"
-            )
+                respuestas.append("✖️ AHORA MISMO NO HAY TURNOS DISPONIBLES")
+        else:
+            # /ayuda, ? y también cualquier comando que no exista
+            respuestas.append(MSG_COMANDOS)
 
     # Guardar SIEMPRE el offset (aunque no cambie la lista) para no reprocesar
     data["palabras"] = palabras
@@ -1674,7 +1683,7 @@ def main():
 
     if not especialidades:
         logger.critical("✗ No se pudo obtener datos de la API")
-        enviar_telegram("🚨 Error: No se pudo conectar con la API del hospital")
+        enviar_telegram("❌ ERROR\n\n🏥 No se pudo conectar con la API del hospital.")
         # Salir con código ≠ 0: así run_monitor NO le manda el ping de "estoy vivo"
         # a Healthchecks, y el aviso por mail (dead-man's-switch) salta aunque el
         # Telegram de arriba no se haya podido enviar (ej.: corte de red total).
@@ -1853,15 +1862,17 @@ def main():
                     ("🆕 NUEVO", procesador.cambios["nuevos"]),
                     ("🔄 REAPERTURA", procesador.cambios["reaperturas"]),
                     ("📈 AUMENTO", procesador.cambios["aumentos"]),
-                    ("⚠️ ÚLTIMOS CUPOS", procesador.cambios["ultimos"]),
+                    ("‼️ ÚLTIMOS CUPOS", procesador.cambios["ultimos"]),
                 ] if item in lista
             )
             plural = "s" if cupo > 1 else ""
             msg_individual = (
-                f"⭐ ENCARGO DISPONIBLE\n"
-                f"{emoji_de(nom)} {nom}\n\n"
+                f"📌 ENCARGO DISPONIBLE\n\n\n"
+                f"────────────\n"
                 f"{tipo}\n"
-                f"🍀 {cupo} Cupo{plural} Disponible{plural}\n\n"
+                f"────────────\n"
+                f"{emoji_de(nom)} {nom}\n"
+                f"☘️ {cupo} Cupo{plural} Disponible{plural}\n\n\n"
                 f"🕒 {fecha_hora}\n\n"
                 f"👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx"
                 f"?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328"
@@ -1921,4 +1932,4 @@ if __name__ == "__main__":
         logger.info("Interrumpido por usuario")
     except Exception as e:
         logger.critical(f"Error crítico: {e}", exc_info=True)
-        enviar_telegram(f"🚨 Error crítico: {str(e)[:100]}")
+        enviar_telegram(f"❌ ERROR\n\n🏥 {str(e)[:100]}")
