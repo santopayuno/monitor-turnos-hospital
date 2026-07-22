@@ -59,7 +59,8 @@ ARCHIVOS = {
     "predicciones": _d("predicciones.json"),
     "historial_cupos": _d("historial_cupos.json"),
     "velocidad": _d("velocidad_estado.json"),
-    "encargos": _d("encargos.json")
+    "encargos": _d("encargos.json"),
+    "archivo_diario": _d("archivo_diario.json")
 }
 
 REEMPLAZOS_NOMBRES = {
@@ -622,9 +623,136 @@ def guardar_estadisticas(cambios, estado_actual):
             logger.info("✓ Primera ejecución completada")
 
         guardar_json_seguro(stats, ARCHIVOS["estadisticas"])
+        mantener_archivo_diario()
 
     except Exception as e:
         logger.error(f"Error guardando estadísticas: {e}")
+
+# ═══════════════════════════════════════════════════════════════
+# ARCHIVO HISTÓRICO DIARIO (permanente)
+# ═══════════════════════════════════════════════════════════════
+# Resumen por día y especialidad que NO vence nunca, aunque el detalle
+# fino de estadisticas_db.json se vaya borrando. Sirve para, con los
+# años, ver cómo se comporta cada época del año.
+#
+# Regla: acá van SOLO datos crudos y sumables (conteos, sumas, repartos
+# por hora). Nada de promedios ni conclusiones: la estación del año se
+# deduce después, a partir de la fecha. Lo que no se guarde hoy, no se
+# recupera mañana.
+#
+# El análisis por época todavía NO está escrito (hacen falta años de
+# datos). Este bloque solo junta la materia prima.
+
+ARCHIVO_DIARIO_VERSION = 1
+
+
+def _resumen_dia_especialidades(eventos_dia):
+    """Resumen por especialidad de un día, a partir de sus eventos."""
+    esp = {}
+
+    def get(n):
+        if n not in esp:
+            esp[n] = {"aperturas": 0, "aumentos": 0, "agotamientos": 0,
+                      "turnos_liberados": 0, "cupo_max": 0,
+                      "horas_apertura": {}, "horas_agotamiento": {},
+                      "duraciones": []}
+        return esp[n]
+
+    ordenados = sorted(eventos_dia, key=lambda x: x.get("fecha", ""))
+
+    for e in ordenados:
+        nombre = e.get("especialidad")
+        if not nombre:
+            continue
+        try:
+            hora = str(_ev_dt(e["fecha"]).hour)
+        except Exception:
+            continue
+        s = get(nombre)
+        tipo = e.get("tipo")
+        cupos = e.get("cupos") or 0
+        if cupos > s["cupo_max"]:
+            s["cupo_max"] = cupos
+        if tipo in ("nuevos", "reaperturas"):
+            s["aperturas"] += 1
+            # En una apertura, "cupos" es lo que se liberó (venía de 0)
+            s["turnos_liberados"] += cupos
+            s["horas_apertura"][hora] = s["horas_apertura"].get(hora, 0) + 1
+        elif tipo == "aumentos":
+            # No se suma a turnos_liberados: "cupos" es el total nuevo, no el incremento
+            s["aumentos"] += 1
+        elif tipo == "agotados":
+            s["agotamientos"] += 1
+            s["horas_agotamiento"][hora] = s["horas_agotamiento"].get(hora, 0) + 1
+
+    # Duraciones: se cuenta cada ciclo apertura → agotamiento del mismo día
+    abiertos = {}
+    for e in ordenados:
+        nombre = e.get("especialidad")
+        if nombre not in esp:
+            continue
+        try:
+            dt = _ev_dt(e["fecha"])
+        except Exception:
+            continue
+        tipo = e.get("tipo")
+        if tipo in ("nuevos", "reaperturas") and nombre not in abiertos:
+            abiertos[nombre] = dt
+        elif tipo == "agotados" and nombre in abiertos:
+            minutos = int((dt - abiertos.pop(nombre)).total_seconds() / 60)
+            if minutos >= 0:
+                esp[nombre]["duraciones"].append(minutos)
+
+    return esp
+
+
+def mantener_archivo_diario():
+    """Rellena los días que falten y recalcula hoy y ayer. Los días viejos no se tocan."""
+    try:
+        stats = cargar_json(ARCHIVOS["estadisticas"]) or {}
+        eventos = stats.get("eventos", [])
+        registros = stats.get("registros", {})
+        if not eventos and not registros:
+            return
+
+        archivo = cargar_json(ARCHIVOS["archivo_diario"]) or {}
+        dias = archivo.get("dias") or {}
+
+        ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
+        hoy = ahora.strftime("%Y-%m-%d")
+        ayer = (ahora - timedelta(days=1)).strftime("%Y-%m-%d")
+
+        por_dia = {}
+        for e in eventos:
+            f = (e.get("fecha") or "")[:10]
+            if f:
+                por_dia.setdefault(f, []).append(e)
+
+        agregados = 0
+        for f in sorted(set(registros.keys()) | set(por_dia.keys())):
+            ya_estaba = f in dias
+            reciente = f in (hoy, ayer)
+            if ya_estaba and not reciente:
+                continue                      # día viejo: congelado
+            dias[f] = {
+                # "en_vivo" = medido mientras pasaba · "reconstruido" = armado
+                # después desde el detalle, con criterios de medición distintos
+                "origen": "en_vivo" if reciente else "reconstruido",
+                "lecturas": len(registros.get(f, [])),   # cobertura: cuánto se miró ese día
+                "especialidades": _resumen_dia_especialidades(por_dia.get(f, []))
+            }
+            if not ya_estaba:
+                agregados += 1
+
+        archivo["version"] = ARCHIVO_DIARIO_VERSION
+        archivo["dias"] = dias
+        guardar_json_seguro(archivo, ARCHIVOS["archivo_diario"])
+        if agregados:
+            logger.info(f"📚 Archivo histórico: +{agregados} día(s) · total {len(dias)}")
+
+    except Exception as e:
+        logger.error(f"Error actualizando archivo histórico: {e}")
+
 
 # ═══════════════════════════════════════════════════════════════
 # REPORTE DIARIO
