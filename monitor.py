@@ -478,45 +478,46 @@ class ConstructorMensajeTelegram:
                 if n in ya:
                     continue
                 ya.add(n)
-                if grupo:
-                    grupo.append("")          # renglón en blanco entre especialidades
                 grupo.extend(arma(it))
             if grupo:
                 cajones.append([SEP, titulo, SEP] + grupo)
 
         # 1) Nuevos  2) Reaperturas  3) Aumentos  (la novedad de esta pasada)
         agregar("🆕 NUEVOS TURNOS", self.cambios.get("nuevos", []),
-                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "🍀", " Disponibles"))
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles"))
 
         agregar("🔄 REAPERTURAS", self.cambios.get("reaperturas", []),
-                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "🍀", " Disponibles",
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles",
                                   (f"⚡ Reabre · agotada {it['veces_agotada']}x antes"
                                    if it.get("veces_agotada") else "⚡ Reabre")))
 
         agregar("📈 SUMARON CUPOS", self.cambios.get("aumentos", []),
-                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "🍀", " Disponibles",
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles",
                                   f"📈 Sumó {it.get('aumento', 0)}"))
 
-        # 4) Disponibles (20+)  5) Pocos (1-19)  6) Sin cupos — mismos cortes que el dashboard
-        disponibles, pocos, agotados = [], [], []
+        # 4) Disponibles (20+)  5) Pocos (6-19)  6) Últimos (1-5)  7) Sin cupos
+        #    Mismos cortes e íconos que las viñetas del dashboard.
+        disponibles, pocos, ultimos, agotados = [], [], [], []
         for nombre, cupo in sorted(self.estado_actual.items()):
             if nombre in ya:
                 continue
             if cupo >= 20:
-                if disponibles: disponibles.append("")
-                disponibles.extend(bloque(nombre, cupo, "✅"))
-            elif cupo > 0:
-                if pocos: pocos.append("")
+                disponibles.extend(bloque(nombre, cupo, "☘️"))
+            elif cupo >= 6:
                 pocos.extend(bloque(nombre, cupo, "⚠️"))
+            elif cupo > 0:
+                ultimos.extend(bloque(nombre, cupo, "‼️"))
             else:
-                agotados.append(f"🚫 {nombre}")
+                agotados.append(f"✖️ {nombre}")
 
         if disponibles:
             cajones.append([SEP, "☘️ DISPONIBLES AHORA", SEP] + disponibles)
         if pocos:
             cajones.append([SEP, "⚠️ POCOS CUPOS DISPONIBLES", SEP] + pocos)
+        if ultimos:
+            cajones.append([SEP, "‼️ ÚLTIMOS CUPOS DISPONIBLES", SEP] + ultimos)
         if agotados:
-            cajones.append([SEP, "‼️ SIN CUPOS DISPONIBLES", SEP] + agotados)
+            cajones.append([SEP, "✖️ SIN CUPOS DISPONIBLES", SEP] + agotados)
 
         # Encabezado honesto: "nuevos" solo si de verdad hubo novedad en esta pasada
         hubo_novedad = bool(self.cambios.get("nuevos") or
