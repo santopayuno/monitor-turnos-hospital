@@ -773,10 +773,29 @@ def generar_reporte_diario():
         registros = stats["registros"][fecha]
         eventos = [e for e in stats["eventos"] if e["fecha"].startswith(fecha)]
 
-        # Actividad del día de AYER (el resumen sale a la mañana y recapitula el día anterior)
-        ayer = (ahora - timedelta(days=1)).strftime("%Y-%m-%d")
-        registros_ayer = stats["registros"].get(ayer, [])
-        eventos_ayer = [e for e in stats["eventos"] if e["fecha"].startswith(ayer)]
+        # ACTIVIDAD DE AYER: ventana de 24 hs. hacia atrás (de las 8 de ayer a las 8 de hoy).
+        # El resumen sale una vez por día, así que cada uno toma justo lo que pasó desde
+        # el anterior: sin agujeros ni repeticiones entre un día y el siguiente.
+        desde = ahora - timedelta(days=1)
+        ayer = desde.strftime("%Y-%m-%d")
+
+        def _en_ventana(iso):
+            try:
+                return desde <= datetime.fromisoformat(iso) <= ahora
+            except Exception:
+                return False
+
+        eventos_ayer = [e for e in stats["eventos"] if _en_ventana(e.get("fecha", ""))]
+
+        registros_ayer = []
+        for dia in (ayer, fecha):
+            for r in stats["registros"].get(dia, []):
+                try:
+                    dt = datetime.fromisoformat(f"{dia}T{r['hora']}").replace(tzinfo=ahora.tzinfo)
+                    if desde <= dt <= ahora:
+                        registros_ayer.append(r)
+                except Exception:
+                    pass
 
         # Especialidades con cupos ahora
         estado_actual = cargar_json(ARCHIVOS["estado"]) or {}
