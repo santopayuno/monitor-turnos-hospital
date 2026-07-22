@@ -1324,6 +1324,10 @@ def generar_predicciones(stats, estado_actual, ahora):
         especialidades[nombre] = entrada
 
     # ── BANNER PREDICTIVO: especialidades agotadas AHORA con chance real de abrir pronto ──
+    # La franja que se evalúa arranca en la hora en punto y dura VENTANA_BANNER_MIN.
+    # Se mandan las dos puntas para que el cartel diga la franja completa y no solo el arranque.
+    _franja_ini = ahora.replace(minute=0, second=0, microsecond=0)
+    _franja_fin = _franja_ini + timedelta(minutes=VENTANA_BANNER_MIN)
     banner_items = []
     for nombre in sorted(universo):
         cupo_now = (estado_actual or {}).get(nombre, 0)
@@ -1334,7 +1338,8 @@ def generar_predicciones(stats, estado_actual, ahora):
             # adjuntar al detalle de la especialidad (lo usa el modal)
             if nombre in especialidades:
                 especialidades[nombre]["chance"] = {
-                    "hora": ahora.strftime("%H:00"),
+                    "hora": _franja_ini.strftime("%H:%M"),
+                    "hora_fin": _franja_fin.strftime("%H:%M"),
                     "probabilidad": chance["probabilidad"],
                     "casos": chance["casos"],
                     "aciertos": chance["aciertos"],
@@ -1348,7 +1353,8 @@ def generar_predicciones(stats, estado_actual, ahora):
     dias_habil_n = len([d for d in _dias if _es_dia_habil(d)])
 
     banner = {
-        "hora": ahora.strftime("%H:00"),
+        "hora": _franja_ini.strftime("%H:%M"),
+        "hora_fin": _franja_fin.strftime("%H:%M"),
         "dias": dias_habil_n,
         "items": banner_items,
     }
