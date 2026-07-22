@@ -784,8 +784,9 @@ def generar_reporte_diario():
         con_cupos.sort(key=lambda x: x[0])
         sin_cupos = [nombre for nombre, cupo in estado_actual.items() if cupo == 0]
 
-        # Aperturas del día
-        nuevas_hoy = list({e["especialidad"] for e in eventos if e["tipo"] == "nuevos"})
+        # Aperturas del día (desde las 00:00). Se cuentan reaperturas: son el 89% de
+        # lo que abre; con solo "nuevos" la sección quedaba casi siempre vacía.
+        nuevas_hoy = list({e["especialidad"] for e in eventos if e["tipo"] in ("nuevos", "reaperturas")})
         nuevas_hoy.sort()
 
         # Construir mensaje
@@ -821,10 +822,10 @@ def generar_reporte_diario():
             "────────────",
             f"• Monitoreos realizados: {len(registros_ayer)}",
             f"• Cambios detectados: {len(eventos_ayer)}",
-            f"• Nuevas aperturas: {sum(1 for e in eventos_ayer if e['tipo'] == 'nuevos')}",
+            f"• Nuevas aperturas: {sum(1 for e in eventos_ayer if e['tipo'] in ('nuevos', 'reaperturas'))}",
             f"• Agotamientos: {sum(1 for e in eventos_ayer if e['tipo'] == 'agotados')}",
             "",
-            f"🕒 Generado: {ahora.strftime('%d/%m • %H:%M hs')}",
+            f"🕒 Generado: {ahora.strftime('%d/%m • %H:%M hs.')}",
         ]
 
         return "\n".join(lineas)
@@ -1026,7 +1027,7 @@ def generar_frase_cuando(nombre, eventos, ahora):
                     clHab[1]['peso'] / clTot >= 0.30 and abs(clHab[0]['rep'] - clHab[1]['rep']) >= 90):
                 dos = sorted([clHab[0]['rep'], clHab[1]['rep']])
                 conf = "alta" if diasD >= DIAS_MIN_ALTA else "media"
-                return (f"Suele haber turnos los {nombresHab[0]} cerca de las {_hhmm(dos[0])} hs y nuevamente alrededor de las {_hhmm(dos[1])} hs.", conf, "certero")
+                return (f"Suele haber turnos los {nombresHab[0]} cerca de las {_hhmm(dos[0])} hs. y nuevamente alrededor de las {_hhmm(dos[1])} hs.", conf, "certero")
             if clHab[0]['n'] >= 2 and clHab[0]['peso'] / clTot >= 0.6:
                 if diasD >= DIAS_MIN_ALTA:
                     return (f"Suele haber turnos los {nombresHab[0]} alrededor de las {_hhmm(clHab[0]['rep'])} hs.", "alta", "certero")
@@ -1084,8 +1085,8 @@ def _estructura_modal(frase):
         else:
             hora, tipo = None, 'sin_hora'
     txt = re.sub(
-        r'\s*(?:cerca de las|alrededor de las)\s*\d{1,2}:\d{2}\s*hs'
-        r'(?:\s*y nuevamente alrededor de las\s*\d{1,2}:\d{2}\s*hs)?',
+        r'\s*(?:cerca de las|alrededor de las)\s*\d{1,2}:\d{2}\s*hs\.?'
+        r'(?:\s*y nuevamente alrededor de las\s*\d{1,2}:\d{2}\s*hs\.?)?',
         '', frase)
     txt = re.sub(r'\s*por la (?:mañana|tarde|noche)', '', txt)
     txt = txt.strip().rstrip('.').strip()
@@ -1616,7 +1617,7 @@ def leer_y_procesar_comandos():
 
 def main():
     ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
-    fecha_hora = ahora.strftime("%d/%m • %H:%M hs")
+    fecha_hora = ahora.strftime("%d/%m • %H:%M hs.")
 
     logger.info("╔════════════════════════════════════════════════════╗")
     logger.info(f"║ 🏥 MONITOR PROFESIONAL - {ahora.strftime('%d/%m/%Y %H:%M:%S')} ║")
