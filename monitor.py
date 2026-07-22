@@ -58,7 +58,6 @@ ARCHIVOS = {
     "estado_anterior": _d("estado_anterior.json"),
     "predicciones": _d("predicciones.json"),
     "historial_cupos": _d("historial_cupos.json"),
-    "velocidad": _d("velocidad_estado.json"),
     "encargos": _d("encargos.json"),
     "archivo_diario": _d("archivo_diario.json")
 }
@@ -876,36 +875,6 @@ def generar_reporte_diario():
         logger.error(f"Error generando reporte: {e}")
         return None
 
-# ═══════════════════════════════════════════════════════════════
-# DETECCIÓN DE PATRONES
-# ═══════════════════════════════════════════════════════════════
-
-def construir_alerta_patron(banner, fecha_hora):
-    """Alerta anticipatoria (uso personal), alineada con el banner del dashboard.
-    Muestra el hecho crudo (abrió N de las últimas M veces), sin rótulo de
-    probabilidad ni 'detectado'."""
-    if not banner or not banner.get("items"):
-        return None
-
-    hora = banner.get("hora", "")
-    hora_h = hora.split(":")[0] if ":" in hora else hora
-    dias = banner.get("dias", 0)
-    lineas = [
-        "🔮 SUELEN ABRIR PRONTO",
-        f"Cerca de las {hora_h} hs. suelen reabrir (ahora están agotadas):",
-        "",
-    ]
-    for it in banner["items"]:
-        nombre = it["especialidad"]
-        lineas.append(f"{emoji_de(nombre)} {nombre} — abrió {it['aciertos']} de las últimas {it['casos']} veces")
-    lineas += [
-        "",
-        f"🕒 Basado en {dias} días de historial · {fecha_hora}",
-        "",
-        "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
-    ]
-    return "\n".join(lineas)
-
 
 # ═══════════════════════════════════════════════════════════════
 # MOTOR PREDICTIVO  (capa nueva, AISLADA)
@@ -1444,104 +1413,6 @@ def guardar_historial_cupos(estado_actual, ahora):
     return limpio
 
 
-# ── VELOCIDAD DE AGOTAMIENTO (portado del dashboard, lógica idéntica) ──
-VEL_VENTANA_MIN = 75    # ventana reciente para medir el ritmo
-VEL_ELAPSED_MIN = 10    # span mínimo de lecturas para confiar
-VEL_CONSUMO_MIN = 3     # caída mínima de cupos para considerar riesgo
-VEL_UMBRAL_BASE = 30    # se agota en <= 30 min → riesgo (lo modula el histórico)
-
-def _velocidad_historica(nombre, eventos, limite_ms=7 * 24 * 60 * 60 * 1000):
-    """Promedio en minutos que dura una especialidad desde que abre hasta agotarse.
-    Solo modula la sensibilidad del umbral; None si no hay ciclos suficientes."""
-    relevantes = sorted(
-        (e for e in eventos if e.get("especialidad") == nombre
-         and e.get("tipo") in ("nuevos", "reaperturas", "agotados")),
-        key=lambda e: e.get("fecha", "")
-    )
-    pares, inicio = [], None
-    for e in relevantes:
-        try:
-            t = datetime.fromisoformat(e["fecha"])
-        except Exception:
-            continue
-        if e["tipo"] == "agotados":
-            if inicio is not None:
-                dur_ms = (t - inicio).total_seconds() * 1000
-                if 0 < dur_ms < limite_ms:
-                    pares.append(dur_ms / 60000)
-                inicio = None
-        elif inicio is None:
-            inicio = t
-    if len(pares) < 2:
-        return None
-    return round(sum(pares) / len(pares))
-
-def _proyeccion_agotamiento(lecturas, cupo_actual):
-    """Minutos estimados hasta agotarse al ritmo reciente. None si no hay confianza."""
-    if not isinstance(lecturas, list) or len(lecturas) < 2:
-        return None
-    try:
-        t_ult = datetime.fromisoformat(lecturas[-1]["t"])
-    except Exception:
-        return None
-    recientes = []
-    for l in lecturas:
-        try:
-            t = datetime.fromisoformat(l["t"])
-            if (t_ult - t).total_seconds() <= VEL_VENTANA_MIN * 60:
-                recientes.append((t, l["c"]))
-        except Exception:
-            continue
-    if len(recientes) < 2:
-        return None
-    elapsed_min = (recientes[-1][0] - recientes[0][0]).total_seconds() / 60
-    if elapsed_min < VEL_ELAPSED_MIN:
-        return None
-    consumo = 0
-    for i in range(1, len(recientes)):
-        delta = recientes[i - 1][1] - recientes[i][1]
-        if delta > 0:
-            consumo += delta
-    if consumo < VEL_CONSUMO_MIN:
-        return None
-    ritmo = consumo / elapsed_min
-    if ritmo <= 0:
-        return None
-    return cupo_actual / ritmo
-
-def _se_agota_rapido(nombre, lecturas, eventos, cupo_actual):
-    """Minutos proyectados si se está agotando rápido AHORA; None si no aplica."""
-    proy = _proyeccion_agotamiento(lecturas, cupo_actual)
-    if proy is None:
-        return None
-    umbral = VEL_UMBRAL_BASE
-    vel_hist = _velocidad_historica(nombre, eventos)
-    if vel_hist is not None:
-        if vel_hist < 60:
-            umbral = 45        # suele agotarse rápido → más sensible
-        elif vel_hist > 180:
-            umbral = 15        # suele durar mucho → exigir más evidencia
-    return proy if proy <= umbral else None
-
-def construir_alerta_velocidad(items, fecha_hora):
-    """items: lista de (nombre, cupo_actual, proy_min)."""
-    if not items:
-        return None
-    lineas = ["⚡ SE ESTÁ AGOTANDO RÁPIDO", ""]
-    for nombre, cupo, proy in items:
-        mins = max(1, round(proy))
-        plural = "s" if cupo != 1 else ""
-        lineas.append(f"{emoji_de(nombre)} {nombre}")
-        lineas.append(f"   Quedan {cupo} cupo{plural} · se agotaría en ~ {mins} min.")
-        lineas.append("")
-    lineas += [
-        f"🕒 {fecha_hora}",
-        "",
-        "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
-    ]
-    return "\n".join(lineas)
-
-
 # ═══════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════
@@ -1727,38 +1598,14 @@ def main():
     except Exception as e:
         logger.error(f"Capa predictiva falló (no crítico, se ignora): {e}")
 
-    # ── HISTORIAL DE CUPOS (nuevo, aislado): escribe historial_cupos.json para la velocidad. ──
+    # ── HISTORIAL DE CUPOS: escribe historial_cupos.json, que el dashboard usa
+    #    para detectar si una especialidad se está agotando rápido. ──
     _hist = {}
     try:
         _hist = guardar_historial_cupos(procesador.estado_actual, ahora)
         logger.info(f"📉 historial_cupos.json actualizado ({len(_hist)} especialidades con cupos)")
     except Exception as e:
         logger.error(f"Historial de cupos falló (no crítico, se ignora): {e}")
-
-    # ── ALERTA DE VELOCIDAD: especialidades que se están agotando rápido (uso personal) ──
-    try:
-        if CONFIG.get("alertas_velocidad", True):
-            estado_vel = procesador.estado_actual or {}
-            eventos_vel = (cargar_json(ARCHIVOS["estadisticas"]) or {}).get("eventos", [])
-            vel_estado = cargar_json(ARCHIVOS["velocidad"]) or {}
-            ya = set(vel_estado.get("alertadas", []))
-            # Cerrar episodios: las ya agotadas salen de la lista y pueden volver a alertar luego
-            ya = {n for n in ya if estado_vel.get(n, 0) and estado_vel[n] > 0}
-            nuevas = []
-            for nombre, cupo in estado_vel.items():
-                if not cupo or cupo <= 0 or nombre in ya:
-                    continue
-                proy = _se_agota_rapido(nombre, _hist.get(nombre), eventos_vel, cupo)
-                if proy is not None:
-                    nuevas.append((nombre, cupo, proy))
-                    ya.add(nombre)
-            if nuevas:
-                # Velocidad: ya NO se envía por Telegram; el estado se guarda igual para el dashboard
-                logger.info(f"⚡ Velocidad detectada (no se envía a Telegram): {len(nuevas)} especialidad(es)")
-            vel_estado["alertadas"] = sorted(ya)
-            guardar_json_seguro(vel_estado, ARCHIVOS["velocidad"])
-    except Exception as e:
-        logger.error(f"Alerta de velocidad falló (no crítico, se ignora): {e}")
 
     # ✓ MODO PRUEBA: Forzar notificación con estado actual
     if os.environ.get("TEST_MODE") == "true":
@@ -1777,27 +1624,6 @@ def main():
             enviar_telegram("🧪 MENSAJE DE PRUEBA\n\n" + mensaje)
         else:
             enviar_telegram("🧪 PRUEBA OK — Sin especialidades con cupos en este momento")
-
-        # Muestra de la alerta de PATRÓN (usa el banner real del momento)
-        alerta_p = construir_alerta_patron(_predicciones["banner"], fecha_hora) if _predicciones else None
-        if alerta_p:
-            enviar_telegram("🧪 EJEMPLO — ALERTA DE PATRÓN\n\n" + alerta_p)
-        else:
-            enviar_telegram("🧪 EJEMPLO — ALERTA DE PATRÓN\n\nSin patrón de aperturas en este momento (ninguna especialidad supera el umbral).")
-
-        # Muestra de la alerta de VELOCIDAD (real si hay algo agotándose; si no, un ejemplo)
-        _eventos_t = (cargar_json(ARCHIVOS["estadisticas"]) or {}).get("eventos", [])
-        _items_v = []
-        for _nom, _cup in (procesador.estado_actual or {}).items():
-            if _cup and _cup > 0:
-                _proy = _se_agota_rapido(_nom, _hist.get(_nom), _eventos_t, _cup)
-                if _proy is not None:
-                    _items_v.append((_nom, _cup, _proy))
-        if _items_v:
-            enviar_telegram("🧪 EJEMPLO — ALERTA DE VELOCIDAD (datos reales)\n\n" + construir_alerta_velocidad(_items_v, fecha_hora))
-        else:
-            _ej = construir_alerta_velocidad([("CARDIOLOGIA ADULTO", 6, 8)], fecha_hora)
-            enviar_telegram("🧪 EJEMPLO — ALERTA DE VELOCIDAD (simulada, nada agotándose ahora)\n\n" + _ej)
         return
 
     # ✓ PRIMERA EJECUCIÓN o RE-BASELINE: NO enviar Telegram, solo guardar estado
@@ -1902,26 +1728,6 @@ def main():
                         logger.info("📋 Reporte matutino enviado")
         except Exception as e:
             logger.warning(f"Error verificando hora de reporte: {e}")
-
-    # Detección de patrones: avisar UNA VEZ por especialidad por día (no en loop)
-    if CONFIG.get("alertas_patrones", True) and _predicciones:
-        banner_pat = _predicciones.get("banner") or {}
-        items_pat = banner_pat.get("items") or []
-        if items_pat:
-            hb_pat = cargar_json(ARCHIVOS["heartbeat"]) or {}
-            hoy_str = ahora.date().isoformat()
-            avisos = hb_pat.get("patron_avisos") or {}
-            if avisos.get("fecha") != hoy_str:
-                avisos = {"fecha": hoy_str, "especialidades": []}
-            ya = set(avisos.get("especialidades", []))
-            nuevas = [it for it in items_pat if it["especialidad"] not in ya]
-            if nuevas:
-                banner_filtrado = dict(banner_pat)
-                banner_filtrado["items"] = nuevas
-                alerta_patrones = construir_alerta_patron(banner_filtrado, fecha_hora)
-                if alerta_patrones:
-                    # Alerta de patrón: ya NO se envía por Telegram; el dashboard sigue mostrando el banner (predicciones.json intacto)
-                    pass
 
     logger.info("═════════════════════════════════════════════════════")
 
