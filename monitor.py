@@ -455,50 +455,68 @@ class ConstructorMensajeTelegram:
         if not self._hay_contenido():
             return None
 
-        def linea(nombre, cupo, extra=""):
-            alerta = " ⚠️" if 1 <= cupo <= 5 else ""
-            unidad = "cupo" if cupo == 1 else "cupos"
-            return f"{emoji_de(nombre)} {nombre} — {cupo} {unidad}{alerta}{extra}"
+        SEP = "────────────"
+        LINK = ("https://sganotti.mendoza.gov.ar/digisalud/comunicacion/"
+                "solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328")
+
+        def bloque(nombre, cupo, icono, sufijo="", nota=""):
+            """Una especialidad: su nombre en un renglón y el cupo debajo (más una nota si va)."""
+            unidad = "Cupo" if cupo == 1 else "Cupos"
+            filas = [f"{emoji_de(nombre)} {nombre}", f"{icono} {cupo} {unidad}{sufijo}"]
+            if nota:
+                filas.append(nota)
+            return filas
 
         # Cada especialidad aparece en UN SOLO cajón, por prioridad de arriba a abajo.
         ya = set()
         cajones = []
 
-        def agregar(titulo, items, arma_linea):
+        def agregar(titulo, items, arma):
             grupo = []
             for it in sorted(items, key=lambda x: x["nombre"]):
                 n = it["nombre"]
                 if n in ya:
                     continue
                 ya.add(n)
-                grupo.append(arma_linea(it))
+                if grupo:
+                    grupo.append("")          # renglón en blanco entre especialidades
+                grupo.extend(arma(it))
             if grupo:
-                cajones.append([titulo] + grupo)
+                cajones.append([SEP, titulo, SEP] + grupo)
 
         # 1) Nuevos  2) Reaperturas  3) Aumentos  (la novedad de esta pasada)
-        agregar("🆕 NUEVOS", self.cambios.get("nuevos", []),
-                lambda it: linea(it["nombre"], it.get("cupo_actual", 0)))
-        agregar("🔄 REABRIERON", self.cambios.get("reaperturas", []),
-                lambda it: linea(it["nombre"], it.get("cupo_actual", 0),
-                                 (f" · reabrió (agotada {it['veces_agotada']}x)"
-                                  if it.get("veces_agotada") else " · reabrió")))
-        agregar("📈 SUMARON CUPOS", self.cambios.get("aumentos", []),
-                lambda it: linea(it["nombre"], it.get("cupo_actual", 0),
-                                 f" (+{it.get('aumento', 0)})"))
+        agregar("🆕 NUEVOS TURNOS", self.cambios.get("nuevos", []),
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "🍀", " Disponibles"))
 
-        # 4) Disponibles (con cupos, sin novedad)  5) Sin cupos  — el resto, una vez
-        disponibles, agotados = [], []
+        agregar("🔄 REAPERTURAS", self.cambios.get("reaperturas", []),
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "🍀", " Disponibles",
+                                  (f"⚡ Reabre · agotada {it['veces_agotada']}x antes"
+                                   if it.get("veces_agotada") else "⚡ Reabre")))
+
+        agregar("📈 SUMARON CUPOS", self.cambios.get("aumentos", []),
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "🍀", " Disponibles",
+                                  f"📈 Sumó {it.get('aumento', 0)}"))
+
+        # 4) Disponibles (20+)  5) Pocos (1-19)  6) Sin cupos — mismos cortes que el dashboard
+        disponibles, pocos, agotados = [], [], []
         for nombre, cupo in sorted(self.estado_actual.items()):
             if nombre in ya:
                 continue
-            if cupo > 0:
-                disponibles.append(linea(nombre, cupo))
+            if cupo >= 20:
+                if disponibles: disponibles.append("")
+                disponibles.extend(bloque(nombre, cupo, "✅"))
+            elif cupo > 0:
+                if pocos: pocos.append("")
+                pocos.extend(bloque(nombre, cupo, "⚠️"))
             else:
                 agotados.append(f"🚫 {nombre}")
+
         if disponibles:
-            cajones.append(["🟢 DISPONIBLES"] + disponibles)
+            cajones.append([SEP, "🟢 DISPONIBLES AHORA", SEP] + disponibles)
+        if pocos:
+            cajones.append([SEP, "⚠️ POCOS CUPOS DISPONIBLES", SEP] + pocos)
         if agotados:
-            cajones.append(["‼️ SIN CUPOS"] + agotados)
+            cajones.append([SEP, "‼️ SIN CUPOS DISPONIBLES", SEP] + agotados)
 
         # Encabezado honesto: "nuevos" solo si de verdad hubo novedad en esta pasada
         hubo_novedad = bool(self.cambios.get("nuevos") or
@@ -508,17 +526,21 @@ class ConstructorMensajeTelegram:
 
         lineas = [encabezado, "🏥 HOSPITAL PERRUPATO"]
         for caj in cajones:
-            lineas.append("")
+            lineas += ["", ""]                # dos renglones en blanco entre secciones
             lineas.extend(caj)
 
         total_con = len([c for c in self.estado_actual.values() if c > 0])
         total_cupos = sum(self.estado_actual.values())
         lineas += [
+            "", "",
+            "📊 ESTADÍSTICAS",
+            f"• Monitoreadas: {self.total_especialidades}",
+            f"• Con cupos: {total_con}",
+            f"• Total: {total_cupos}",
             "",
-            f"📊 {total_con} con cupos · {total_cupos} cupos · {self.total_especialidades} monitoreadas",
             f"🕒 {self.fecha_hora}",
             "",
-            "👉 https://sganotti.mendoza.gov.ar/digisalud/comunicacion/solicitudturnosweb.aspx?plantilla=PLT_PUBLIC_ESPE_TURNOS_PERRUPATO&multiempresa=837328",
+            f"👉 {LINK}",
         ]
         return "\n".join(lineas)
 
@@ -827,7 +849,8 @@ def generar_reporte_diario():
             lineas += ["", "────────────", "✅ DISPONIBLES AHORA", "────────────"]
             for nombre, cupo in con_cupos:
                 plural = "s" if cupo > 1 else ""
-                lineas.append(f"{emoji_de(nombre)} {nombre}: {cupo} cupo{plural}")
+                lineas.append(f"{emoji_de(nombre)} {nombre}")
+                lineas.append(f"☘️ {cupo} Cupo{plural}")
 
         if nuevas_hoy:
             lineas += ["", "────────────", "🆕 ABRIERON HOY", "────────────"]
