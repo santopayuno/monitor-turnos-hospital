@@ -512,7 +512,7 @@ class ConstructorMensajeTelegram:
                 agotados.append(f"🚫 {nombre}")
 
         if disponibles:
-            cajones.append([SEP, "🟢 DISPONIBLES AHORA", SEP] + disponibles)
+            cajones.append([SEP, "☘️ DISPONIBLES AHORA", SEP] + disponibles)
         if pocos:
             cajones.append([SEP, "⚠️ POCOS CUPOS DISPONIBLES", SEP] + pocos)
         if agotados:
@@ -835,7 +835,7 @@ def generar_reporte_diario():
             f"🌅 RESUMEN MATUTINO",
             f"🏥 HOSPITAL PERRUPATO",
             f"📅 {ahora.strftime('%d/%m/%Y')}",
-            "",
+            "", "",
             "────────────",
             "📊 ESTADO ACTUAL",
             "────────────",
@@ -846,19 +846,19 @@ def generar_reporte_diario():
         ]
 
         if con_cupos:
-            lineas += ["", "────────────", "✅ DISPONIBLES AHORA", "────────────"]
+            lineas += ["", "", "────────────", "☘️ DISPONIBLES AHORA", "────────────"]
             for nombre, cupo in con_cupos:
                 plural = "s" if cupo > 1 else ""
                 lineas.append(f"{emoji_de(nombre)} {nombre}")
                 lineas.append(f"☘️ {cupo} Cupo{plural}")
 
         if nuevas_hoy:
-            lineas += ["", "────────────", "🆕 ABRIERON HOY", "────────────"]
+            lineas += ["", "", "────────────", "🆕 ABRIERON HOY", "────────────"]
             for nombre in nuevas_hoy:
-                lineas.append(f"• {nombre}")
+                lineas.append(f"{emoji_de(nombre)} {nombre}")
 
         lineas += [
-            "",
+            "", "",
             "────────────",
             "📈 ACTIVIDAD DE AYER",
             "────────────",
@@ -866,7 +866,7 @@ def generar_reporte_diario():
             f"• Cambios detectados: {len(eventos_ayer)}",
             f"• Nuevas aperturas: {sum(1 for e in eventos_ayer if e['tipo'] in ('nuevos', 'reaperturas'))}",
             f"• Agotamientos: {sum(1 for e in eventos_ayer if e['tipo'] == 'agotados')}",
-            "",
+            "", "",
             f"🕒 Generado: {ahora.strftime('%d/%m • %H:%M hs.')}",
         ]
 
