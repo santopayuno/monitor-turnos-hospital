@@ -30,7 +30,7 @@ except OSError:
 SERVIBLES = {
     "estado_turnos.json", "estado_anterior.json", "estadisticas_db.json",
     "heartbeat.json", "historial_cupos.json", "predicciones.json",
-    "velocidad_estado.json", "encargos.json", "archivo_diario.json",
+    "encargos.json", "archivo_diario.json",
 }
 
 
