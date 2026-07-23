@@ -1119,7 +1119,7 @@ def _ultima_apertura(nombre, eventos):
 
 def generar_frase_duracion(nombre, eventos):
     items = sorted([e for e in eventos if e.get('especialidad') == nombre], key=lambda x: x['fecha'])
-    aps = [_ev_dt(e['fecha']) for e in items if e['tipo'] in ('nuevos', 'reaperturas', 'aumentos')]
+    aps = [_ev_dt(e['fecha']) for e in items if e['tipo'] in ('nuevos', 'reaperturas')]
     agos = [_ev_dt(e['fecha']) for e in items if e['tipo'] == 'agotados']
     dur = []
     for a in aps:
@@ -1131,7 +1131,7 @@ def generar_frase_duracion(nombre, eventos):
 
 def generar_frase_frecuencia(nombre, eventos, ahora):
     aps_dias = {e['fecha'][:10] for e in eventos
-                if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas', 'aumentos')
+                if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas')
                 and (ahora - _ev_dt(e['fecha'])).total_seconds() <= FREC_DIAS_VENTANA * 86400}
     if len(aps_dias) >= FREC_DIAS_MIN:
         return "Últimamente aparece con frecuencia"
