@@ -477,6 +477,8 @@ class ConstructorMensajeTelegram:
                 if n in ya:
                     continue
                 ya.add(n)
+                if grupo:
+                    grupo.append("")      # un renglón en blanco entre especialidades
                 grupo.extend(arma(it))
             if grupo:
                 cajones.append([SEP, titulo, SEP] + grupo)
@@ -501,10 +503,13 @@ class ConstructorMensajeTelegram:
             if nombre in ya:
                 continue
             if cupo >= 20:
+                if disponibles: disponibles.append("")
                 disponibles.extend(bloque(nombre, cupo, "☘️"))
             elif cupo >= 6:
+                if pocos: pocos.append("")
                 pocos.extend(bloque(nombre, cupo, "⚠️"))
             elif cupo > 0:
+                if ultimos: ultimos.append("")
                 ultimos.extend(bloque(nombre, cupo, "‼️"))
             else:
                 agotados.append(f"✖️ {nombre}")
@@ -525,21 +530,20 @@ class ConstructorMensajeTelegram:
         encabezado = "🚨 NUEVOS TURNOS DISPONIBLES" if hubo_novedad else "📋 ESTADO DE TURNOS"
 
         lineas = [encabezado, "🏥 HOSPITAL PERRUPATO"]
-        for caj in cajones:
-            lineas += ["", ""]                # dos renglones en blanco entre secciones
+        for i, caj in enumerate(cajones):
+            lineas += ["", "", ""] if i == 0 else ["", ""]
             lineas.extend(caj)
 
         total_con = len([c for c in self.estado_actual.values() if c > 0])
         total_cupos = sum(self.estado_actual.values())
         lineas += [
-            "", "",
+            "", "", "",
             "📊 ESTADÍSTICAS",
             f"• Monitoreadas: {self.total_especialidades}",
             f"• Con cupos: {total_con}",
             f"• Total: {total_cupos}",
-            "",
+            "", "",
             f"🕒 {self.fecha_hora}",
-            "",
             f"👉 {LINK}",
         ]
         return "\n".join(lineas)
