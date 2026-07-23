@@ -568,7 +568,7 @@ def enviar_telegram(mensaje):
     if len(mensaje) > limite_telegram:
         logger.warning(f"⚠️ Mensaje muy largo ({len(mensaje)} chars), truncando...")
         # Truncar y agregar nota
-        mensaje = mensaje[:limite_telegram - 50] + "\n\n✂️ Mensaje recortado por longitud"
+        mensaje = mensaje[:limite_telegram - 50] + "\n\n💔 Mensaje recortado por longitud"
 
     try:
         response = requests.post(
@@ -1622,9 +1622,9 @@ def main():
         constructor.cambios = {"nuevos": [], "reaperturas": [], "aumentos": [], "ultimos": [], "agotados": []}
         mensaje = constructor.construir()
         if mensaje:
-            enviar_telegram("🧪 MENSAJE DE PRUEBA\n" + mensaje)
+            enviar_telegram("🔬 MENSAJE DE PRUEBA\n" + mensaje)
         else:
-            enviar_telegram("🧪 PRUEBA OK\n\n🏥 Sin especialidades con cupos en este momento")
+            enviar_telegram("🔬 PRUEBA OK\n\n✖️ Sin especialidades con cupos en este momento")
         return
 
     # ✓ PRIMERA EJECUCIÓN o RE-BASELINE: NO enviar Telegram, solo guardar estado
