@@ -11,6 +11,7 @@ import os
 import json
 import time
 import shutil
+import gzip
 import threading
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -85,8 +86,20 @@ class Handler(BaseHTTPRequestHandler):
                 try:
                     with open(ruta, "rb") as f:
                         data = f.read()
+                    # Comprimir si el navegador lo acepta: el JSON es muy repetitivo
+                    # y baja ~94%. El navegador lo descomprime solo; el dashboard no cambia.
+                    comprimido = False
+                    if "gzip" in self.headers.get("Accept-Encoding", ""):
+                        try:
+                            data = gzip.compress(data, 6)
+                            comprimido = True
+                        except Exception:
+                            pass
                     self.send_response(200)
                     self.send_header("Content-Type", "application/json; charset=utf-8")
+                    if comprimido:
+                        self.send_header("Content-Encoding", "gzip")
+                    self.send_header("Content-Length", str(len(data)))
                     self._cors()
                     self.end_headers()
                     self.wfile.write(data)
