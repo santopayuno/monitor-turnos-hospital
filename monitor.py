@@ -488,13 +488,10 @@ class ConstructorMensajeTelegram:
                 lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles"))
 
         agregar("🔄 REAPERTURAS", self.cambios.get("reaperturas", []),
-                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles",
-                                  (f"⚡ Reabre · agotada {it['veces_agotada']}x antes"
-                                   if it.get("veces_agotada") else "⚡ Reabre")))
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles"))
 
         agregar("📈 SUMARON CUPOS", self.cambios.get("aumentos", []),
-                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles",
-                                  f"📈 Sumó {it.get('aumento', 0)}"))
+                lambda it: bloque(it["nombre"], it.get("cupo_actual", 0), "☘️", " Disponibles"))
 
         # 4) Disponibles (20+)  5) Pocos (6-19)  6) Últimos (1-5)  7) Sin cupos
         #    Mismos cortes e íconos que las viñetas del dashboard.
@@ -527,7 +524,7 @@ class ConstructorMensajeTelegram:
         hubo_novedad = bool(self.cambios.get("nuevos") or
                             self.cambios.get("reaperturas") or
                             self.cambios.get("aumentos"))
-        encabezado = "🚨 NUEVOS TURNOS DISPONIBLES" if hubo_novedad else "📋 ESTADO DE TURNOS"
+        encabezado = "🚨 NUEVOS TURNOS DISPONIBLES" if hubo_novedad else "📊 ESTADO DE TURNOS"
 
         lineas = [encabezado, "🏥 HOSPITAL PERRUPATO"]
         for i, caj in enumerate(cajones):
@@ -571,7 +568,7 @@ def enviar_telegram(mensaje):
     if len(mensaje) > limite_telegram:
         logger.warning(f"⚠️ Mensaje muy largo ({len(mensaje)} chars), truncando...")
         # Truncar y agregar nota
-        mensaje = mensaje[:limite_telegram - 50] + "\n\n[...mensaje truncado por longitud]"
+        mensaje = mensaje[:limite_telegram - 50] + "\n\n✂️ Mensaje recortado por longitud"
 
     try:
         response = requests.post(
@@ -1622,12 +1619,12 @@ def main():
             total_especialidades
         )
         # En modo prueba, forzar cambios vacíos pero mostrar disponibles
-        constructor.cambios = {"nuevos": [], "aumentos": [], "ultimos": [], "agotados": []}
+        constructor.cambios = {"nuevos": [], "reaperturas": [], "aumentos": [], "ultimos": [], "agotados": []}
         mensaje = constructor.construir()
         if mensaje:
-            enviar_telegram("🧪 MENSAJE DE PRUEBA\n\n" + mensaje)
+            enviar_telegram("🧪 MENSAJE DE PRUEBA\n" + mensaje)
         else:
-            enviar_telegram("🧪 PRUEBA OK — Sin especialidades con cupos en este momento")
+            enviar_telegram("🧪 PRUEBA OK\n\n🏥 Sin especialidades con cupos en este momento")
         return
 
     # ✓ PRIMERA EJECUCIÓN o RE-BASELINE: NO enviar Telegram, solo guardar estado
