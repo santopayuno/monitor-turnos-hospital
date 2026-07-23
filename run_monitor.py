@@ -124,7 +124,9 @@ def watchdog():
             bot = os.getenv("BOT_TOKEN", ""); chat = os.getenv("CHAT_ID", "")
             if bot and chat:
                 import urllib.request
-                msg = f"⚠️ Monitor sin ejecutar hace {int(mins)} min. Revisá Railway."
+                msg = ("⚠️ ALERTA\n🚫 Monitor sin ejecutar\n\n"
+                       f"🕒 La última ejecución exitosa fue hace {int(mins)} min.\n"
+                       "📲 Revisá Railway → Deployments para verificar el estado del servicio")
                 data = json.dumps({"chat_id": chat, "text": msg}).encode("utf-8")
                 req = urllib.request.Request(
                     f"https://api.telegram.org/bot{bot}/sendMessage",
