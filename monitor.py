@@ -1473,8 +1473,8 @@ def leer_y_procesar_comandos():
             est = cargar_json(ARCHIVOS["estado"]) or {}
             disp = sorted([(n, c) for n, c in est.items() if isinstance(c, int) and c > 0], key=lambda x: -x[1])
             if disp:
-                filas = "\n".join(f"🩺 {n}\n☘️ {c} Cupo{'s' if c != 1 else ''}" for n, c in disp)
-                respuestas.append(f"────────────\n☘️ TURNOS DISPONIBLES ({len(disp)})\n────────────\n\n{filas}")
+                filas = "\n\n".join(f"🩺 {n}\n☘️ {c} Cupo{'s' if c != 1 else ''}" for n, c in disp)
+                respuestas.append(f"────────────\n☘️ TURNOS DISPONIBLES ({len(disp)})\n────────────\n\n\n\n{filas}")
             else:
                 respuestas.append("✖️ AHORA MISMO NO HAY TURNOS DISPONIBLES")
         else:
