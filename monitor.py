@@ -52,8 +52,6 @@ ARCHIVOS = {
     "estado": _d("estado_turnos.json"),
     "estadisticas": _d("estadisticas_db.json"),
     "config": "config.json",
-    "logs": "monitor.log",
-    "reporte": _d("reporte_diario.txt"),
     "heartbeat": _d("heartbeat.json"),
     "estado_anterior": _d("estado_anterior.json"),
     "predicciones": _d("predicciones.json"),
@@ -94,57 +92,11 @@ def emoji_de(nombre):
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s | %(levelname)-8s | %(message)s',
-    handlers=[
-        logging.FileHandler(ARCHIVOS["logs"], encoding='utf-8'),
-        logging.StreamHandler()
-    ]
+    handlers=[logging.StreamHandler()]
 )
 logger = logging.getLogger(__name__)
 
 
-class StructuredLogger:
-    """Escribe eventos clave en formato JSON Lines usando RotatingFileHandler nativo."""
-
-    LOG_PATH = "logs/monitor_structured.jsonl"
-
-    def __init__(self):
-        os.makedirs("logs", exist_ok=True)
-        self._logger = logging.getLogger("StructuredLogger")
-        self._logger.setLevel(logging.INFO)
-        self._logger.propagate = False
-        if not self._logger.handlers:
-            from logging.handlers import RotatingFileHandler
-            handler = RotatingFileHandler(
-                self.LOG_PATH,
-                maxBytes=1024 * 1024,  # 1MB por archivo
-                backupCount=3,
-                encoding="utf-8"
-            )
-            self._logger.addHandler(handler)
-
-    def _escribir(self, evento: dict):
-        try:
-            evento["ts"] = datetime.now().isoformat()
-            self._logger.info(json.dumps(evento, ensure_ascii=False))
-        except Exception as e:
-            logger.warning(f"StructuredLogger error: {e}")
-
-    def ejecucion(self, estado: str, especialidades: int, cupos: int, con_cupos: int):
-        self._escribir({
-            "evento": "ejecucion", "estado": estado,
-            "especialidades": especialidades, "cupos_total": cupos, "con_cupos": con_cupos
-        })
-
-    def cambio(self, tipo: str, especialidad: str, cupos: int):
-        self._escribir({"evento": "cambio", "tipo": tipo, "especialidad": especialidad, "cupos": cupos})
-
-    def telegram(self, tipo: str, exito: bool, detalle: str = ""):
-        self._escribir({"evento": "telegram", "tipo": tipo, "exito": exito, "detalle": detalle})
-
-    def error(self, contexto: str, mensaje: str):
-        self._escribir({"evento": "error", "contexto": contexto, "mensaje": mensaje})
-
-slog = StructuredLogger()
 
 # ═══════════════════════════════════════════════════════════════
 # CONFIGURACIÓN
@@ -275,7 +227,6 @@ def consultar_api(max_intentos=3, espera_segundos=10):
             time.sleep(espera_segundos)
 
     logger.error(f"✗ API falló tras {max_intentos} intentos. Último error: {ultimo_error}")
-    slog.error("api", str(ultimo_error))
 
     return None
 
@@ -1581,12 +1532,6 @@ def main():
     hb["modelo_efectivo"] = True
     guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
     total_especialidades = len(procesador.estado_actual)
-    slog.ejecucion(
-        estado="ok",
-        especialidades=total_especialidades,
-        cupos=sum(procesador.estado_actual.values()),
-        con_cupos=len([c for c in procesador.estado_actual.values() if c > 0])
-    )
     guardar_estadisticas(procesador.cambios, procesador.estado_actual)
 
     # ── CAPA PREDICTIVA (nueva, aislada): escribe predicciones.json. Nunca rompe el flujo. ──
@@ -1634,16 +1579,6 @@ def main():
         logger.info("   ℹ️ No se envía notificación en este ciclo")
         return
 
-    # Log estructurado de cambios detectados
-    for item in procesador.cambios.get("nuevos", []):
-        slog.cambio("nuevos", item["nombre"], item.get("cupo_actual", 0))
-    for item in procesador.cambios.get("aumentos", []):
-        slog.cambio("aumentos", item["nombre"], item.get("cupo_actual", 0))
-    for item in procesador.cambios.get("ultimos", []):
-        slog.cambio("ultimos", item["nombre"], item.get("cupo_actual", 0))
-    for item in procesador.cambios.get("agotados", []):
-        slog.cambio("agotados", item["nombre"], 0)
-
     # ── FLUJO 1: Mensaje general (siempre, con todos los cambios) ──
     hay_cambios = (procesador.cambios["nuevos"] or procesador.cambios["reaperturas"] or
                    procesador.cambios["aumentos"])
@@ -1658,8 +1593,7 @@ def main():
         )
         mensaje = constructor.construir()
         if mensaje:
-            exito = enviar_telegram(mensaje)
-            slog.telegram("notificacion_principal", exito)
+            enviar_telegram(mensaje)
     else:
         logger.info("ℹ️ Sin nuevos o aumentos para notificar")
 
@@ -1721,8 +1655,6 @@ def main():
                 if ultimo_reporte != hoy:
                     reporte = generar_reporte_diario()
                     if reporte:
-                        with open(ARCHIVOS["reporte"], "w", encoding="utf-8") as f:
-                            f.write(reporte)
                         enviar_telegram(reporte)
                         hb["ultimo_reporte_fecha"] = hoy
                         guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
