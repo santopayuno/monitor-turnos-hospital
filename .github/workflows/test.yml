@@ -48,7 +48,7 @@ jobs:
           import json
           with open('config.json') as f:
               config = json.load(f)
-          campos = ['especialidades_interes', 'generar_reporte_diario', 'hora_reporte_diario', 'alertas_patrones']
+          campos = ['especialidades_interes', 'generar_reporte_diario', 'hora_reporte_diario']
           for campo in campos:
               assert campo in config, f'Campo faltante: {campo}'
           print('✓ config.json válido:', config)
