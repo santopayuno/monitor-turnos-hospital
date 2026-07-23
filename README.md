@@ -1,17 +1,14 @@
 # 🏥 Monitor de Turnos — Hospital Alfredo I. Perrupato
 
-Sistema gratuito y público que vigila la disponibilidad de turnos médicos del **Hospital Alfredo I. Perrupato** (San Martín, Mendoza) y avisa cuando aparecen.
+Sistema gratuito y público que vigila la disponibilidad de turnos médicos del **Hospital Alfredo I. Perrupato** (San Martín, Mendoza), avisa cuando aparecen y —con la estadística que va juntando— **calcula cuándo es probable que vuelvan a aparecer.**
 
-**Dashboard en vivo:**
-[santopayuno.github.io/monitor-turnos-hospital](https://santopayuno.github.io/monitor-turnos-hospital)
+**Dashboard en vivo:** [santopayuno.github.io/monitor-turnos-hospital](https://santopayuno.github.io/monitor-turnos-hospital)
 
-**Datos en vivo:**
-[monitor-turnos-hospital-production.up.railway.app](https://monitor-turnos-hospital-production.up.railway.app)
-
+**Datos en vivo:** [monitor-turnos-hospital-production.up.railway.app](https://monitor-turnos-hospital-production.up.railway.app)
 
 Está pensado para gente que necesita un turno y no puede estar mirando la página del hospital todo el día. Muchos de sus usuarios son personas mayores o con poca práctica digital, así que **todo se resuelve del lado del sistema y se muestra simple.**
 
-> 📖 **Los otros dos documentos:** `MANUAL_INSTALACION.md` (montar el sistema desde cero) y `MANUAL_RECUPERACION.md` (qué hacer cuando algo se rompe).
+> 📖 **Los otros documentos:** `ARRANQUE.md` (por dónde empezar si retomás el proyecto), `DECISIONES.md` (por qué el sistema es como es), `MANUAL_INSTALACION.md` (montarlo desde cero) y `MANUAL_RECUPERACION.md` (qué hacer cuando algo se rompe).
 
 ---
 
@@ -59,6 +56,42 @@ Está pensado para gente que necesita un turno y no puede estar mirando la pági
 | **Los datos** | Volumen de Railway (`/data`) | El dashboard queda sin datos frescos |
 
 El monitor **ya no sube datos a GitHub**. Antes lo hacía y eso chocaba con el límite de publicaciones de GitHub Pages (llegó a mandar ~288 avisos de error por día). Desde la migración, el repo solo guarda código.
+
+---
+
+## 🧠 Cómo piensa
+
+Avisar cuando aparece un turno es la mitad del sistema. La otra mitad es **anticiparse**: el monitor no solo mira el presente, acumula historia y calcula sobre ella.
+
+### Qué junta
+
+Cada 5 minutos guarda dos cosas: una **lectura** del estado de las 40 especialidades, y un **evento** por cada cambio real (apareció, reabrió, sumó cupos, quedan pocos, se agotó). El detalle fino se conserva 180 días; el resumen de cada día, para siempre.
+
+### Qué calcula
+
+| Cálculo | Qué responde | Cómo lo hace |
+|---|---|---|
+| **Cuándo suele abrir** | "¿Qué día y a qué hora conviene mirar?" | Agrupa las aperturas por día de semana y las junta en franjas horarias. Lo reciente pesa más que lo viejo |
+| **Chance de abrir pronto** | "Está agotada, ¿puede abrir en un rato?" | De todas las veces que estuvo agotada a esta misma hora en un día hábil, cuenta en cuántas abrió dentro de los 90 minutos siguientes |
+| **Cuánto suele durar** | "Si aparece, ¿cuánto tengo para sacarlo?" | Mide cada ciclo desde que abre hasta que se agota y toma el valor del medio |
+| **Se está agotando rápido** | "¿Se está vaciando ahora mismo?" | Mira el ritmo de consumo de las últimas horas y proyecta cuánto falta |
+| **Aparece seguido / hace días que no abre** | "¿Es una especialidad activa o dormida?" | Cuenta días con apertura real en una ventana reciente |
+
+Los feriados se excluyen de todos los cálculos de patrón: distorsionan el "suele abrir" porque el hospital no trabaja igual.
+
+### Cómo decide si lo dice
+
+Acá está lo importante, y es lo que diferencia a este sistema de uno que adivina:
+
+- **Cada cálculo tiene un piso de evidencia.** El banner, por ejemplo, exige al menos 8 casos comparables y un 50% de aciertos. Si no llega, no se muestra
+- **Si no alcanza, lo dice:** *"No hay patrón claro todavía"*
+- **Lo reciente pesa más.** Un patrón de hace tres meses no vale lo mismo que uno de la semana pasada
+- **Un aumento no es una apertura.** Que una especialidad ya abierta sume cupos no cuenta como que "abrió": mezclarlos ensuciaba las horas y las duraciones
+- **Nunca se muestra un porcentaje compuesto.** El sistema calcula niveles de confianza internamente, pero afuera muestra el hecho verificable: *"abrió 12 de las últimas 17 veces"*
+
+### Lo que viene
+
+Ya se está guardando, día por día, un resumen que no vence nunca. Con los años eso permite una pregunta que hoy todavía no se puede contestar: **cómo se comporta cada época del año**. Si en primavera abren más temprano, si en invierno hay menos turnos. La materia prima se junta desde ahora; el análisis se escribe cuando haya suficiente historia para que signifique algo.
 
 ---
 
