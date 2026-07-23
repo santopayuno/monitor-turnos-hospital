@@ -2,7 +2,8 @@
 
 Sistema gratuito y público que vigila la disponibilidad de turnos médicos del **Hospital Alfredo I. Perrupato** (San Martín, Mendoza) y avisa cuando aparecen.
 
-**Dashboard en vivo:** [santopayuno.github.io/monitor-turnos-hospital](https://santopayuno.github.io/monitor-turnos-hospital)
+**Dashboard en vivo:**
+[santopayuno.github.io/monitor-turnos-hospital](https://santopayuno.github.io/monitor-turnos-hospital)
 
 **Datos en vivo:**
 [monitor-turnos-hospital-production.up.railway.app](https://monitor-turnos-hospital-production.up.railway.app)
