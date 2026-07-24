@@ -57,7 +57,8 @@ ARCHIVOS = {
     "predicciones": _d("predicciones.json"),
     "historial_cupos": _d("historial_cupos.json"),
     "encargos": _d("encargos.json"),
-    "archivo_diario": _d("archivo_diario.json")
+    "archivo_diario": _d("archivo_diario.json"),
+    "feriados": _d("feriados.json")
 }
 
 REEMPLAZOS_NOMBRES = {
@@ -617,6 +618,10 @@ def _finalizar_ciclo_exitoso():
         hb = _cerrar_incidencia_y_notificar(hb, ahora)
         hb["ultima_ejecucion"] = ahora.isoformat()
         guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
+        # B-1: refresco de feriados con caché existente. Va acá, al final de
+        # todo: si tarda o falla, ya no afecta a nadie. Se aplica desde el
+        # ciclo siguiente.
+        _feriados_sincronizar(ahora, solo_faltantes=False)
     except Exception as e:
         # Nunca convertir un ciclo exitoso en fallido por culpa del cierre
         logger.warning(f"⚠️ No se pudo cerrar el ciclo correctamente: {e}")
@@ -1257,14 +1262,132 @@ def generar_frase_ausencia(nombre, eventos, estado_actual, ahora):
 # muestra. El Nivel 1 queda implementado pero "duerme" hasta tener
 # ≥5 casos comparables, y se activa solo cuando el historial crece.
 
-# Feriados nacionales AR (editable). Se excluyen como "día hábil" tanto
-# para el bloqueo de hoy como para los casos comparables del historial.
-FERIADOS_AR = {
-    "2026-01-01", "2026-02-16", "2026-02-17", "2026-03-24", "2026-04-02",
-    "2026-04-03", "2026-05-01", "2026-05-25", "2026-06-17", "2026-06-20",
-    "2026-07-09", "2026-08-17", "2026-10-12", "2026-11-23", "2026-12-08",
-    "2026-12-25",
+# ── FERIADOS (B-1) ────────────────────────────────────────────────────
+# Misma fuente y mismo criterio que el dashboard: api.argentinadatos.com,
+# tomando TODOS los días que devuelve (inamovibles, trasladados, puentes y
+# no laborables), cacheados en el volumen. Se excluyen como "día hábil"
+# tanto para el bloqueo de hoy como para los casos comparables del historial.
+#
+# IMPORTANTE: esto solo afecta a la capa predictiva. El monitor sigue
+# consultando el hospital, registrando eventos y notificando también en
+# feriados y puentes, por si el Perrupato publica turnos igual.
+
+# Respaldo de arranque: NO es una segunda fuente de verdad. Se usa solo si
+# todavía no hay caché en el volumen y ArgentinaDatos no respondió. Apenas
+# la API contesta una vez, manda la caché dinámica. Son los 16 feriados
+# nacionales de 2026 (Güemes ya trasladado al lunes 15/06 por Ley 27.399)
+# más los 3 días no laborables turísticos (Resolución 164/2025).
+FERIADOS_RESPALDO_ARRANQUE = {
+    "2026-01-01", "2026-02-16", "2026-02-17", "2026-03-23", "2026-03-24",
+    "2026-04-02", "2026-04-03", "2026-05-01", "2026-05-25", "2026-06-15",
+    "2026-06-20", "2026-07-09", "2026-07-10", "2026-08-17", "2026-10-12",
+    "2026-11-23", "2026-12-07", "2026-12-08", "2026-12-25",
 }
+
+FERIADOS = set(FERIADOS_RESPALDO_ARRANQUE)   # se rellena en cada ciclo
+
+FERIADOS_URL              = "https://api.argentinadatos.com/v1/feriados/{}"
+FERIADOS_VENCIMIENTO_D    = 7   # igual que el dashboard
+FERIADOS_ESPERA_SIN_CACHE = 1   # horas entre intentos si no hay caché
+FERIADOS_ESPERA_CON_CACHE = 6   # horas entre intentos si hay caché vieja
+FERIADOS_TIMEOUT          = (3, 5)   # (conectar, leer): demora máxima acotada
+
+
+def _feriados_descargar(anio):
+    """Petición DEDICADA: timeout corto y SIN los reintentos de la sesión
+    general del hospital. Nunca lanza excepción y nunca demora más que el
+    timeout, así una falla externa no puede volverse una falla del ciclo."""
+    try:
+        r = requests.get(FERIADOS_URL.format(anio), timeout=FERIADOS_TIMEOUT)
+        if r.status_code == 200:
+            datos = r.json()
+            # Solo se acepta una lista CON contenido: una respuesta vacía o
+            # rota nunca debe pisar una caché buena.
+            if isinstance(datos, list) and datos:
+                return datos
+        logger.info(f"ℹ️ Feriados {anio}: respuesta no utilizable ({r.status_code})")
+    except Exception as e:
+        logger.info(f"ℹ️ Feriados {anio}: no se pudo consultar ({type(e).__name__})")
+    return None
+
+
+def _feriados_anios(ahora):
+    """Año en curso; y también el siguiente en noviembre y diciembre, para
+    que el 1 de enero ya esté descargado. Mismo criterio que el dashboard."""
+    return [ahora.year] + ([ahora.year + 1] if ahora.month >= 11 else [])
+
+
+def _feriados_horas(desde, ahora):
+    try:
+        return (ahora - datetime.fromisoformat(desde)).total_seconds() / 3600
+    except Exception:
+        return None
+
+
+def _feriados_aplicar(cache):
+    """Vuelca la caché al conjunto en memoria. Si no hay nada cacheado,
+    recién ahí entra el respaldo de arranque."""
+    global FERIADOS
+    fechas = set()
+    for entrada in (cache.get("anios") or {}).values():
+        for f in (entrada.get("datos") or []):
+            fecha = f.get("fecha") if isinstance(f, dict) else None
+            if isinstance(fecha, str) and len(fecha) == 10:
+                fechas.add(fecha)
+    if fechas:
+        FERIADOS = fechas
+    else:
+        FERIADOS = set(FERIADOS_RESPALDO_ARRANQUE)
+        logger.warning("⚠️ Sin caché de feriados: usando el respaldo de arranque")
+
+
+def _feriados_sincronizar(ahora, solo_faltantes):
+    """solo_faltantes=True  → arranque: solo baja los años SIN caché (el dato
+                              se necesita ya, antes de las predicciones).
+       solo_faltantes=False → cierre: refresca los años con caché vencida;
+                              se aplica desde el ciclo siguiente.
+       Backoff persistido: 1 h sin caché, 6 h con caché vieja."""
+    try:
+        cache = cargar_json(ARCHIVOS["feriados"]) or {}
+        cache.setdefault("anios", {})
+        cache.setdefault("ultimo_intento", {})
+        cambio = False
+
+        for anio in _feriados_anios(ahora):
+            clave = str(anio)
+            entrada = cache["anios"].get(clave) or {}
+            tiene = bool(entrada.get("datos"))
+            if solo_faltantes and tiene:
+                continue
+            if not solo_faltantes and not tiene:
+                continue          # los faltantes son del arranque, no del cierre
+            if tiene:
+                edad = _feriados_horas(entrada.get("fecha_descarga", ""), ahora)
+                if edad is not None and edad < FERIADOS_VENCIMIENTO_D * 24:
+                    continue      # caché vigente: ni se intenta
+            espera = FERIADOS_ESPERA_CON_CACHE if tiene else FERIADOS_ESPERA_SIN_CACHE
+            desde = _feriados_horas(cache["ultimo_intento"].get(clave, ""), ahora)
+            if desde is not None and desde < espera:
+                continue          # backoff: todavía no toca reintentar
+
+            cache["ultimo_intento"][clave] = ahora.isoformat()
+            cambio = True
+            datos = _feriados_descargar(anio)
+            if datos:
+                cache["anios"][clave] = {"fecha_descarga": ahora.isoformat(), "datos": datos}
+                # Tras una descarga exitosa el backoff se limpia: a partir de acá
+                # rige el vencimiento normal de 7 días, no la espera de reintento.
+                cache["ultimo_intento"].pop(clave, None)
+                logger.info(f"📅 Feriados {anio}: {len(datos)} días actualizados")
+
+        if cambio:
+            guardar_json_seguro(cache, ARCHIVOS["feriados"])
+        if solo_faltantes:
+            _feriados_aplicar(cache)
+    except Exception as e:
+        logger.warning(f"⚠️ Feriados: no se pudo sincronizar ({e})")
+        if solo_faltantes and not FERIADOS:
+            _feriados_aplicar({})
 VENTANA_BANNER_MIN = 90   # ventana de apertura tras estar agotada
 MIN_CASOS_BANNER   = 8    # casos comparables mínimos para confiar
 PROB_MIN_BANNER    = 50   # piso de probabilidad para mostrar
@@ -1274,7 +1397,7 @@ RECENCIA_FUERA_D   = 21   # sin apertura real hace 21+ días → fuera del banne
 
 def _es_dia_habil(fecha):
     """fecha: datetime.date → True si es lun-vie y no feriado nacional."""
-    return fecha.weekday() < 5 and fecha.isoformat() not in FERIADOS_AR
+    return fecha.weekday() < 5 and fecha.isoformat() not in FERIADOS
 
 
 def _timeline_estado(nombre, eventos):
@@ -1388,7 +1511,7 @@ def calcular_prob_apertura(nombre, eventos, registros, ahora):
             fd = datetime.fromisoformat(fstr).date()
         except Exception:
             continue
-        if fd >= hace30 and fstr not in FERIADOS_AR:
+        if fd >= hace30 and fstr not in FERIADOS:
             dias_con_apertura.add(fstr)
     dias_monit = 0
     for f in (registros or {}):
@@ -1397,7 +1520,7 @@ def calcular_prob_apertura(nombre, eventos, registros, ahora):
             fd = datetime.fromisoformat(fstr).date()
         except Exception:
             continue
-        if fd >= hace30 and fstr not in FERIADOS_AR:
+        if fd >= hace30 and fstr not in FERIADOS:
             dias_monit += 1
     if not aperturas or dias_monit == 0:
         return {"emoji": "🧮", "txt": "s/datos"}
@@ -1648,6 +1771,10 @@ def main():
     # A-3R: registrar que el ciclo ARRANCÓ, antes de que nada pueda fallar.
     # El watchdog mira esta marca: solo alerta si el monitor ni siquiera intenta.
     _actualizar_heartbeat({"ultimo_intento": ahora.isoformat()})
+
+    # B-1: feriados desde la caché del volumen. Si falta algún año, se consulta
+    # ahora (el dato se necesita antes de generar predicciones.json).
+    _feriados_sincronizar(ahora, solo_faltantes=True)
 
     # Leer comandos del bot (/encargo, /sacar, /lista) antes de procesar
     leer_y_procesar_comandos()
