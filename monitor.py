@@ -1058,6 +1058,9 @@ def _obs_de(nombre, eventos, ahora):
         # Solo nuevos y reaperturas: un 'aumento' suma cupos a una ventana ya abierta,
         # no inicia una apertura, y contaminaría la hora probable (condición acordada).
         if e.get('tipo') not in ('nuevos', 'reaperturas'): continue
+        # B-1: un feriado o puente no describe el comportamiento de un día hábil
+        # normal. El evento sigue registrado y notificado; solo no alimenta el patrón.
+        if e['fecha'][:10] in FERIADOS: continue
         dt = _ev_dt(e['fecha']); fecha = e['fecha'][:10]; minu = dt.hour * 60 + dt.minute
         if fecha not in porDia:
             porDia[fecha] = {'dow': (dt.weekday() + 1) % 7, 'mins': [], 'peso': _peso_edad(dt, ahora),
@@ -1069,13 +1072,15 @@ def _obs_de(nombre, eventos, ahora):
 
 
 def _frecuencia_diaria(obs, ahora):
-    """Fracción de días hábiles (lun-vie) del período observado en los que hubo apertura."""
+    """Fracción de días hábiles del período observado en los que hubo apertura.
+    B-1: el denominador excluye feriados y puentes, igual que el numerador
+    (_obs_de ya los descarta), para que ambos midan lo mismo."""
     if not obs:
         return 0.0
     d0 = min(o['ts'] for o in obs).date()
     d1 = ahora.date()
     habiles = sum(1 for i in range((d1 - d0).days + 1)
-                  if (d0 + timedelta(days=i)).weekday() < 5)
+                  if _es_dia_habil(d0 + timedelta(days=i)))
     return (len(obs) / habiles) if habiles else 0.0
 
 
@@ -1221,8 +1226,11 @@ def _ultima_apertura(nombre, eventos):
 
 
 def generar_frase_duracion(nombre, eventos):
+    # B-1: es una conclusión estadística sobre el comportamiento habitual,
+    # así que los ciclos iniciados en feriado o puente no entran.
     items = sorted([e for e in eventos if e.get('especialidad') == nombre], key=lambda x: x['fecha'])
-    aps = [_ev_dt(e['fecha']) for e in items if e['tipo'] in ('nuevos', 'reaperturas')]
+    aps = [_ev_dt(e['fecha']) for e in items
+           if e['tipo'] in ('nuevos', 'reaperturas') and e['fecha'][:10] not in FERIADOS]
     agos = [_ev_dt(e['fecha']) for e in items if e['tipo'] == 'agotados']
     dur = []
     for a in aps:
@@ -1235,6 +1243,7 @@ def generar_frase_duracion(nombre, eventos):
 def generar_frase_frecuencia(nombre, eventos, ahora):
     aps_dias = {e['fecha'][:10] for e in eventos
                 if e.get('especialidad') == nombre and e['tipo'] in ('nuevos', 'reaperturas')
+                and e['fecha'][:10] not in FERIADOS          # B-1: patrón de días hábiles
                 and (ahora - _ev_dt(e['fecha'])).total_seconds() <= FREC_DIAS_VENTANA * 86400}
     if len(aps_dias) >= FREC_DIAS_MIN:
         return "Últimamente aparece con frecuencia"
@@ -1293,6 +1302,27 @@ FERIADOS_ESPERA_CON_CACHE = 6   # horas entre intentos si hay caché vieja
 FERIADOS_TIMEOUT          = (3, 5)   # (conectar, leer): demora máxima acotada
 
 
+def _feriados_validar(datos, anio):
+    """Validación ESTRICTA antes de tocar una caché buena: lista no vacía, cada
+    elemento un objeto con 'fecha', fecha ISO YYYY-MM-DD real y del año pedido.
+    Basta que uno falle para rechazar la respuesta entera."""
+    if not isinstance(datos, list) or not datos:
+        return False
+    for f in datos:
+        if not isinstance(f, dict):
+            return False
+        fecha = f.get("fecha")
+        if not isinstance(fecha, str) or len(fecha) != 10:
+            return False
+        try:
+            d = datetime.strptime(fecha, "%Y-%m-%d").date()
+        except Exception:
+            return False
+        if d.year != int(anio):
+            return False
+    return True
+
+
 def _feriados_descargar(anio):
     """Petición DEDICADA: timeout corto y SIN los reintentos de la sesión
     general del hospital. Nunca lanza excepción y nunca demora más que el
@@ -1301,20 +1331,31 @@ def _feriados_descargar(anio):
         r = requests.get(FERIADOS_URL.format(anio), timeout=FERIADOS_TIMEOUT)
         if r.status_code == 200:
             datos = r.json()
-            # Solo se acepta una lista CON contenido: una respuesta vacía o
-            # rota nunca debe pisar una caché buena.
-            if isinstance(datos, list) and datos:
+            if _feriados_validar(datos, anio):
                 return datos
-        logger.info(f"ℹ️ Feriados {anio}: respuesta no utilizable ({r.status_code})")
+            logger.info(f"ℹ️ Feriados {anio}: respuesta rechazada por validación")
+        else:
+            logger.info(f"ℹ️ Feriados {anio}: respuesta no utilizable ({r.status_code})")
     except Exception as e:
         logger.info(f"ℹ️ Feriados {anio}: no se pudo consultar ({type(e).__name__})")
     return None
 
 
 def _feriados_anios(ahora):
-    """Año en curso; y también el siguiente en noviembre y diciembre, para
-    que el 1 de enero ya esté descargado. Mismo criterio que el dashboard."""
-    return [ahora.year] + ([ahora.year + 1] if ahora.month >= 11 else [])
+    """Años que hay que cubrir, sin duplicados y en orden:
+      · el año en curso;
+      · el año donde empieza la ventana histórica de 180 días, si es otro
+        (si no, en enero se leería medio historial sin feriados);
+      · el año siguiente durante noviembre y diciembre, para que el 1 de
+        enero ya esté descargado (mismo criterio que el dashboard)."""
+    anios = [ahora.year, (ahora - timedelta(days=180)).year]
+    if ahora.month >= 11:
+        anios.append(ahora.year + 1)
+    vistos, orden = set(), []
+    for a in anios:
+        if a not in vistos:
+            vistos.add(a); orden.append(a)
+    return orden
 
 
 def _feriados_horas(desde, ahora):
@@ -1324,21 +1365,30 @@ def _feriados_horas(desde, ahora):
         return None
 
 
-def _feriados_aplicar(cache):
-    """Vuelca la caché al conjunto en memoria. Si no hay nada cacheado,
-    recién ahí entra el respaldo de arranque."""
+def _feriados_aplicar(cache, anios):
+    """Vuelca la caché al conjunto en memoria, año por año. El respaldo fijo
+    entra SOLO para el año que le corresponde (2026) y SOLO si ese año no
+    tiene datos válidos cacheados, aunque otros años sí los tengan. Los años
+    sin respaldo fijo degradan sin feriados hasta que ArgentinaDatos responda."""
     global FERIADOS
-    fechas = set()
-    for entrada in (cache.get("anios") or {}).values():
-        for f in (entrada.get("datos") or []):
-            fecha = f.get("fecha") if isinstance(f, dict) else None
-            if isinstance(fecha, str) and len(fecha) == 10:
-                fechas.add(fecha)
-    if fechas:
-        FERIADOS = fechas
-    else:
-        FERIADOS = set(FERIADOS_RESPALDO_ARRANQUE)
-        logger.warning("⚠️ Sin caché de feriados: usando el respaldo de arranque")
+    fechas, faltan = set(), []
+    for anio in anios:
+        entrada = (cache.get("anios") or {}).get(str(anio)) or {}
+        datos = entrada.get("datos") or []
+        propias = {f.get("fecha") for f in datos
+                   if isinstance(f, dict) and isinstance(f.get("fecha"), str) and len(f["fecha"]) == 10}
+        if propias:
+            fechas |= propias
+        else:
+            respaldo = {f for f in FERIADOS_RESPALDO_ARRANQUE if f.startswith(f"{anio}-")}
+            if respaldo:
+                fechas |= respaldo
+                faltan.append(f"{anio} (respaldo)")
+            else:
+                faltan.append(f"{anio} (sin datos)")
+    if faltan:
+        logger.warning(f"⚠️ Feriados incompletos: {', '.join(faltan)}")
+    FERIADOS = fechas
 
 
 def _feriados_sincronizar(ahora, solo_faltantes):
@@ -1352,8 +1402,9 @@ def _feriados_sincronizar(ahora, solo_faltantes):
         cache.setdefault("anios", {})
         cache.setdefault("ultimo_intento", {})
         cambio = False
+        anios = _feriados_anios(ahora)
 
-        for anio in _feriados_anios(ahora):
+        for anio in anios:
             clave = str(anio)
             entrada = cache["anios"].get(clave) or {}
             tiene = bool(entrada.get("datos"))
@@ -1383,11 +1434,14 @@ def _feriados_sincronizar(ahora, solo_faltantes):
         if cambio:
             guardar_json_seguro(cache, ARCHIVOS["feriados"])
         if solo_faltantes:
-            _feriados_aplicar(cache)
+            _feriados_aplicar(cache, anios)
     except Exception as e:
         logger.warning(f"⚠️ Feriados: no se pudo sincronizar ({e})")
-        if solo_faltantes and not FERIADOS:
-            _feriados_aplicar({})
+        if solo_faltantes:
+            try:
+                _feriados_aplicar({}, _feriados_anios(ahora))
+            except Exception:
+                pass
 VENTANA_BANNER_MIN = 90   # ventana de apertura tras estar agotada
 MIN_CASOS_BANNER   = 8    # casos comparables mínimos para confiar
 PROB_MIN_BANNER    = 50   # piso de probabilidad para mostrar
