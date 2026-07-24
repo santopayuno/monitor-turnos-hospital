@@ -2025,4 +2025,4 @@ if __name__ == "__main__":
         except Exception:
             # Si hasta el registro falla, avisar igual (fail-open)
             enviar_telegram(f"❌ ERROR\n\n🏥 {str(e)[:100]}")
-        sys.exit(1) 
+        sys.exit(1)
