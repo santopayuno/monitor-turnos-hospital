@@ -547,7 +547,11 @@ def enviar_telegram(mensaje):
         return False
 
 # ═══════════════════════════════════════════════════════════════
-# A-3R · INCIDENCIAS DE CICLO (anti-spam de errores + aviso de recuperación)
+# A-3R/A-6 · INCIDENCIAS DE CICLO (anti-spam de errores + aviso de recuperación)
+# La clave persistida se llama "incidencia_api" por compatibilidad con el volumen,
+# pero desde A-6 representa una INCIDENCIA GENERAL DEL CICLO: se abre ante
+# cualquier motivo por el que el ciclo no completa (API caída o error interno) y
+# se cierra SOLO cuando main() termina normalmente. No renombrar sin migrar.
 # La incidencia registra el hecho (inicio, SIEMPRE persistido antes de avisar).
 # La marca de aviso vive DENTRO de la incidencia y solo se guarda si Telegram
 # confirmó (True). La notificación de recuperación va aparte y se reintenta
@@ -601,6 +605,23 @@ def _registrar_fallo_ciclo(detalle):
         _actualizar_heartbeat({"incidencia_api": inc})
 
 
+def _finalizar_ciclo_exitoso():
+    """A-6: única finalización de ciclo. Se ejecuta cuando main() retornó
+    normalmente — incluidas las salidas anticipadas de TEST_MODE y de
+    re-baseline —, nunca tras una excepción ni tras sys.exit(). Cierra la
+    incidencia (si la había), gestiona el ✅ y recién ahí marca ultima_ejecucion,
+    que conserva su significado: último ciclo COMPLETO."""
+    try:
+        ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
+        hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
+        hb = _cerrar_incidencia_y_notificar(hb, ahora)
+        hb["ultima_ejecucion"] = ahora.isoformat()
+        guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
+    except Exception as e:
+        # Nunca convertir un ciclo exitoso en fallido por culpa del cierre
+        logger.warning(f"⚠️ No se pudo cerrar el ciclo correctamente: {e}")
+
+
 def _fmt_duracion(mins):
     if mins is None:
         return None
@@ -618,7 +639,7 @@ def _hora_de_iso(iso):
 
 
 def _mensaje_recuperado(pend):
-    lineas = ["✅ RECUPERADO", "", "🏥 La API del hospital volvió a responder"]
+    lineas = ["✅ RECUPERADO", "", "🏥 El monitor volvió a completar un ciclo correctamente"]
     if "cantidad" in pend:
         lineas.append(f"🔁 Hubo {pend['cantidad']} caídas entre las "
                       f"{_hora_de_iso(pend.get('primera_desde', ''))} y las {_hora_de_iso(pend.get('ultima_hasta', ''))} hs.")
@@ -1658,9 +1679,11 @@ def main():
 
     guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
-    # A-3R: si veníamos de una caída, cerrarla SIEMPRE y gestionar el ✅
-    hb = _cerrar_incidencia_y_notificar(hb, ahora)
-    hb["ultima_ejecucion"] = ahora.isoformat()
+    # A-6: el cierre de la incidencia y "ultima_ejecucion" NO van acá.
+    # Se hacen en _finalizar_ciclo_exitoso(), después de que main() retorne
+    # normalmente, para que un error posterior no dispare un ✅ falso.
+    # "modelo_efectivo" sí va acá: en este punto la base ya quedó re-fijada,
+    # y aplazarlo provocaría re-baselines repetidos ante un error posterior.
     hb["modelo_efectivo"] = True
     guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
     total_especialidades = len(procesador.estado_actual)
@@ -1799,6 +1822,9 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+        # A-6: solo se llega acá si main() retornó normalmente (las salidas por
+        # sys.exit lanzan SystemExit y no pasan por este punto).
+        _finalizar_ciclo_exitoso()
     except KeyboardInterrupt:
         logger.info("Interrumpido por usuario")
     except Exception as e:
