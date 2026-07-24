@@ -547,6 +547,122 @@ def enviar_telegram(mensaje):
         return False
 
 # ═══════════════════════════════════════════════════════════════
+# A-3R · INCIDENCIAS DE CICLO (anti-spam de errores + aviso de recuperación)
+# La incidencia registra el hecho (inicio, SIEMPRE persistido antes de avisar).
+# La marca de aviso vive DENTRO de la incidencia y solo se guarda si Telegram
+# confirmó (True). La notificación de recuperación va aparte y se reintenta
+# hasta confirmarse. Todo es fail-open: ante cualquier duda, se avisa.
+# ═══════════════════════════════════════════════════════════════
+
+INTERVALO_RECORDATORIO_MIN = 60   # recordatorio de caída: como mucho uno por hora
+
+
+def _actualizar_heartbeat(cambios):
+    """Carga el heartbeat, aplica cambios (valor None borra la clave) y guarda.
+    Nunca lanza: si falla, el ciclo sigue (fail-open)."""
+    try:
+        hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
+        for k, v in cambios.items():
+            if v is None:
+                hb.pop(k, None)
+            else:
+                hb[k] = v
+        guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
+        return hb
+    except Exception as e:
+        logger.warning(f"⚠️ No se pudo actualizar el heartbeat: {e}")
+        return None
+
+
+def _registrar_fallo_ciclo(detalle):
+    """El ciclo no completó: abre (o continúa) la incidencia y avisa espaciado.
+    Orden: PRIMERO se persiste el inicio (registro técnico), DESPUÉS se envía
+    el ❌, y la marca de aviso se guarda SOLO si el envío confirmó."""
+    ahora = datetime.now(ZoneInfo("America/Argentina/Mendoza"))
+    try:
+        hb = cargar_json(ARCHIVOS["heartbeat"]) or {}
+    except Exception:
+        hb = {}
+    inc = hb.get("incidencia_api")
+    if not isinstance(inc, dict) or not inc.get("inicio"):
+        inc = {"inicio": ahora.isoformat()}
+        _actualizar_heartbeat({"incidencia_api": inc})
+
+    avisar = True
+    ua = inc.get("ultimo_aviso")
+    if ua:
+        try:
+            mins = (ahora - datetime.fromisoformat(ua)).total_seconds() / 60
+            avisar = mins >= INTERVALO_RECORDATORIO_MIN
+        except Exception:
+            avisar = True
+    if avisar and enviar_telegram(f"❌ ERROR\n\n🏥 {detalle}"):
+        inc["ultimo_aviso"] = ahora.isoformat()
+        _actualizar_heartbeat({"incidencia_api": inc})
+
+
+def _fmt_duracion(mins):
+    if mins is None:
+        return None
+    if mins < 60:
+        return f"{mins} min."
+    h, m = divmod(mins, 60)
+    return f"{h} hs. {m} min." if m else f"{h} hs."
+
+
+def _hora_de_iso(iso):
+    try:
+        return datetime.fromisoformat(iso).strftime("%H:%M")
+    except Exception:
+        return "?"
+
+
+def _mensaje_recuperado(pend):
+    lineas = ["✅ RECUPERADO", "", "🏥 La API del hospital volvió a responder"]
+    if "cantidad" in pend:
+        lineas.append(f"🔁 Hubo {pend['cantidad']} caídas entre las "
+                      f"{_hora_de_iso(pend.get('primera_desde', ''))} y las {_hora_de_iso(pend.get('ultima_hasta', ''))} hs.")
+        dur = _fmt_duracion(pend.get("ultima_duracion_min"))
+        if dur:
+            lineas.append(f"🕒 La última duró {dur}")
+    else:
+        dur = _fmt_duracion(pend.get("duracion_min"))
+        if dur:
+            lineas.append(f"🕒 La caída duró {dur}")
+        else:
+            lineas.append(f"🕒 Caída entre las {_hora_de_iso(pend.get('inicio', ''))} y las {_hora_de_iso(pend.get('fin', ''))} hs.")
+    return "\n".join(lineas)
+
+
+def _cerrar_incidencia_y_notificar(hb, ahora):
+    """Primer ciclo exitoso: la incidencia se cierra SIEMPRE (dependa o no
+    Telegram). El ✅ queda en recuperacion_pendiente y se borra solo cuando
+    un envío confirme; si se acumulan caídas, se resume sin crecer."""
+    inc = hb.pop("incidencia_api", None)
+    if isinstance(inc, dict) and inc.get("inicio"):
+        fin = ahora.isoformat()
+        try:
+            dur = int((ahora - datetime.fromisoformat(inc["inicio"])).total_seconds() // 60)
+        except Exception:
+            dur = None
+        pend = hb.get("recuperacion_pendiente")
+        if isinstance(pend, dict):
+            hb["recuperacion_pendiente"] = {
+                "primera_desde": pend.get("primera_desde") or pend.get("inicio") or inc["inicio"],
+                "ultima_hasta": fin,
+                "cantidad": int(pend.get("cantidad", 1)) + 1,
+                "ultima_duracion_min": dur,
+            }
+        else:
+            hb["recuperacion_pendiente"] = {"inicio": inc["inicio"], "fin": fin, "duracion_min": dur}
+
+    pend = hb.get("recuperacion_pendiente")
+    if isinstance(pend, dict) and enviar_telegram(_mensaje_recuperado(pend)):
+        hb.pop("recuperacion_pendiente", None)
+    return hb
+
+
+# ═══════════════════════════════════════════════════════════════
 # ESTADÍSTICAS
 # ═══════════════════════════════════════════════════════════════
 
@@ -1508,6 +1624,10 @@ def main():
     logger.info(f"║ 🏥 MONITOR PROFESIONAL - {ahora.strftime('%d/%m/%Y %H:%M:%S')} ║")
     logger.info("╚════════════════════════════════════════════════════╝")
 
+    # A-3R: registrar que el ciclo ARRANCÓ, antes de que nada pueda fallar.
+    # El watchdog mira esta marca: solo alerta si el monitor ni siquiera intenta.
+    _actualizar_heartbeat({"ultimo_intento": ahora.isoformat()})
+
     # Leer comandos del bot (/encargo, /sacar, /lista) antes de procesar
     leer_y_procesar_comandos()
 
@@ -1516,7 +1636,7 @@ def main():
 
     if not especialidades:
         logger.critical("✗ No se pudo obtener datos de la API")
-        enviar_telegram("❌ ERROR\n\n🏥 No se pudo conectar con la API del hospital.")
+        _registrar_fallo_ciclo("No se pudo conectar con la API del hospital.")
         # Salir con código ≠ 0: así run_monitor NO le manda el ping de "estoy vivo"
         # a Healthchecks, y el aviso por mail (dead-man's-switch) salta aunque el
         # Telegram de arriba no se haya podido enviar (ej.: corte de red total).
@@ -1538,6 +1658,8 @@ def main():
 
     guardar_json_seguro(estado_anterior, ARCHIVOS["estado_anterior"])
     guardar_json_seguro(procesador.estado_actual, ARCHIVOS["estado"])
+    # A-3R: si veníamos de una caída, cerrarla SIEMPRE y gestionar el ✅
+    hb = _cerrar_incidencia_y_notificar(hb, ahora)
     hb["ultima_ejecucion"] = ahora.isoformat()
     hb["modelo_efectivo"] = True
     guardar_json_seguro(hb, ARCHIVOS["heartbeat"])
@@ -1681,4 +1803,9 @@ if __name__ == "__main__":
         logger.info("Interrumpido por usuario")
     except Exception as e:
         logger.critical(f"Error crítico: {e}", exc_info=True)
-        enviar_telegram(f"❌ ERROR\n\n🏥 {str(e)[:100]}")
+        try:
+            _registrar_fallo_ciclo(str(e)[:100])
+        except Exception:
+            # Si hasta el registro falla, avisar igual (fail-open)
+            enviar_telegram(f"❌ ERROR\n\n🏥 {str(e)[:100]}")
+        sys.exit(1)
