@@ -1231,11 +1231,21 @@ def generar_frase_duracion(nombre, eventos):
     items = sorted([e for e in eventos if e.get('especialidad') == nombre], key=lambda x: x['fecha'])
     aps = [_ev_dt(e['fecha']) for e in items
            if e['tipo'] in ('nuevos', 'reaperturas') and e['fecha'][:10] not in FERIADOS]
-    agos = [_ev_dt(e['fecha']) for e in items if e['tipo'] == 'agotados']
+    # Los agotados se conservan TODOS, feriados incluidos, para que "el primer
+    # cierre" sea de verdad el primero y no uno posterior.
+    agos = [(_ev_dt(e['fecha']), e['fecha'][:10]) for e in items if e['tipo'] == 'agotados']
     dur = []
     for a in aps:
-        post = [g for g in agos if 0 <= (g - a).total_seconds() <= 24 * 3600]
-        if post: dur.append((min(post) - a).total_seconds() / 60.0)
+        post = [(g, f) for g, f in agos if 0 <= (g - a).total_seconds() <= 24 * 3600]
+        if not post:
+            continue
+        cierre, fecha_cierre = min(post, key=lambda x: x[0])
+        # Si ese primer cierre real cayó en feriado o puente, se descarta el PAR
+        # COMPLETO: no se salta al siguiente agotamiento, porque ese ciclo no
+        # describe el comportamiento de un día hábil normal.
+        if fecha_cierre in FERIADOS:
+            continue
+        dur.append((cierre - a).total_seconds() / 60.0)
     if len(dur) >= DUR_POCO_PARES and statistics.median(dur) <= DUR_POCO_MIN:
         return "Cuando aparece, suele durar poco"
     return None
