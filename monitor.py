@@ -261,7 +261,15 @@ class ProcesadorEspecialidades:
         return self
 
     def _procesar_especialidad(self, esp):
-        nombre = self._normalizar_nombre(esp.get("descripcion", ""))
+        # Validación DEFENSIVA del nombre: si la API manda una descripción nula,
+        # ausente, no-texto o vacía, se descarta SOLO esa entrada (con aviso en el
+        # log) y el ciclo sigue con las demás. Nunca se crea una especialidad "".
+        descripcion = esp.get("descripcion")
+        if not isinstance(descripcion, str) or not descripcion.strip():
+            logger.warning(f"⚠️ Entrada descartada: descripción inválida ({repr(descripcion)[:80]})")
+            return
+
+        nombre = self._normalizar_nombre(descripcion)
 
         # Parseo DEFENSIVO: API puede devolver null, strings inválidos, etc
         try:
