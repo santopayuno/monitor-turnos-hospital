@@ -124,27 +124,49 @@ def iniciar_servidor():
     srv.serve_forever()
 
 
+ULTIMO_AVISO_WATCHDOG = None  # memoria del proceso: anti-spam (se resetea al reiniciar, y está bien)
+
+
+def _watchdog_decide(hb, ahora_utc, ultimo_aviso):
+    """Decisión pura, para poder probarla: (debe_avisar, minutos).
+    Mira ultimo_intento (A-3R: el monitor la escribe al ARRANCAR cada ciclo,
+    falle o no la API), con caída a ultima_ejecucion para heartbeats previos
+    al cambio. Así el watchdog solo alerta si el monitor NI INTENTA correr."""
+    ref = hb.get("ultimo_intento") or hb.get("ultima_ejecucion", "")
+    ultima = datetime.fromisoformat(ref)
+    if ultima.tzinfo is None:
+        ultima = ultima.replace(tzinfo=timezone.utc)
+    mins = (ahora_utc - ultima).total_seconds() / 60
+    if mins <= 30:
+        return False, mins
+    if ultimo_aviso is not None and (ahora_utc - ultimo_aviso).total_seconds() / 60 < 60:
+        return False, mins
+    return True, mins
+
+
 def watchdog():
-    """Avisa por Telegram si el monitor lleva >30 min sin correr."""
+    """Avisa por Telegram si el monitor lleva >30 min sin intentar correr.
+    Espaciado: como mucho un aviso por hora, recordado en memoria del proceso."""
+    global ULTIMO_AVISO_WATCHDOG
     try:
         with open(os.path.join(DATA_DIR, "heartbeat.json")) as f:
             hb = json.load(f)
-        ultima = datetime.fromisoformat(hb.get("ultima_ejecucion", ""))
-        if ultima.tzinfo is None:
-            ultima = ultima.replace(tzinfo=timezone.utc)
-        mins = (datetime.now(timezone.utc) - ultima).total_seconds() / 60
-        if mins > 30:
+        ahora = datetime.now(timezone.utc)
+        avisar, mins = _watchdog_decide(hb, ahora, ULTIMO_AVISO_WATCHDOG)
+        if avisar:
             bot = os.getenv("BOT_TOKEN", ""); chat = os.getenv("CHAT_ID", "")
             if bot and chat:
                 import urllib.request
                 msg = ("⚠️ ALERTA\n🚫 Monitor sin ejecutar\n\n"
-                       f"🕒 La última ejecución exitosa fue hace {int(mins)} min.\n"
+                       f"🕒 Sin intentos de ejecución hace {int(mins)} min.\n"
                        "📲 Revisá Railway → Deployments para verificar el estado del servicio")
                 data = json.dumps({"chat_id": chat, "text": msg}).encode("utf-8")
                 req = urllib.request.Request(
                     f"https://api.telegram.org/bot{bot}/sendMessage",
                     data=data, headers={"Content-Type": "application/json"}, method="POST")
                 urllib.request.urlopen(req, timeout=10)
+                # urlopen sin excepción = entrega confirmada; recién ahí se marca
+                ULTIMO_AVISO_WATCHDOG = ahora
                 print(f"⚠️ Watchdog: alerta enviada ({int(mins)} min)")
     except Exception as e:
         print(f"ℹ️ Watchdog: {e}")
